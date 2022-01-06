@@ -15,7 +15,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
 group = 'PORTB'
-version = '1.0-SNAPSHOT'
+def modversion = version = '1.18-1.0'
 
 java {
     archivesBaseName = 'biggerstacks'
@@ -108,6 +108,7 @@ jar {
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 //"Implementation-Vendor": "biggerstacks authors",
+                "Implementation-Version": modversion,
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
