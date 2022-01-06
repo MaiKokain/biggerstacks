@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.network.protocol.game.ClientboundBlockUpdatePacket;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Surrogate;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import portb.biggerstacks.config.ClientConfig;
 
 import java.text.DecimalFormat;
 
@@ -27,14 +29,17 @@ public class ItemRendererMixin
     @Redirect(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V", at = @At(value = "INVOKE", target = "Ljava/lang/String;valueOf(I)Ljava/lang/String;"))
     private String getStringForBigStackCount(int count)
     {
-        if(count > ONE_BILLION)
-            return BILLION_FORMAT.format((double)count / ONE_BILLION);
-        else if(count > ONE_MILLION)
-            return MILLION_FORMAT.format((double)count / ONE_MILLION);
-        else if(count > ONE_THOUSAND)
-            return THOUSAND_FORMAT.format((double)count / ONE_THOUSAND);
-        else
-            return String.valueOf(count);
+        if (ClientConfig.enableNumberShortening.get())
+        {
+            if (count > ONE_BILLION)
+                return BILLION_FORMAT.format((double) count / ONE_BILLION);
+            else if (count > ONE_MILLION)
+                return MILLION_FORMAT.format((double) count / ONE_MILLION);
+            else if (count > ONE_THOUSAND)
+                return THOUSAND_FORMAT.format((double) count / ONE_THOUSAND);
+        }
+
+        return String.valueOf(count);
     }
 
     //scale down fonts to fit
@@ -63,7 +68,7 @@ public class ItemRendererMixin
 
         posestack.translate(-(x + 19 - 2 - width), -(y + 6 + 3), 0); //translate back to 0,0 for easier accounting for scaling
 
-        posestack.translate((x + 19 - 2 - extraOffset - width * scale) / scale, (y + 6 + (3 / scale)) / scale, 0);
+        posestack.translate((x + 19 - 2 - extraOffset - width * scale) / scale, (y - 6 - 3) + 16 - (8 * scale), 0);
     }
 
     private double calculateStringScale(Font font, String countString)

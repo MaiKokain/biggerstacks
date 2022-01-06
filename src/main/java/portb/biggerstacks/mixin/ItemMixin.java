@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.BiggerStacks;
+import portb.biggerstacks.config.ServerConfig;
 
 @Mixin(Item.class)
 public class ItemMixin
@@ -16,7 +17,7 @@ public class ItemMixin
         if(returnInfo.getReturnValue() != 1)
         {
             returnInfo.cancel();
-            returnInfo.setReturnValue(BiggerStacks.MAX_STACK_SIZE);
+            returnInfo.setReturnValue(ServerConfig.maxStackCount.get());
         }
     }
 }
