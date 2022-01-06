@@ -47,7 +47,7 @@ public class ItemRendererMixin
     @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
             at =@At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(DDD)V", shift = At.Shift.BEFORE),
             locals = LocalCapture.CAPTURE_FAILHARD)
-    private void pushStack(Font font, ItemStack tesselator, int bufferbuilder, int i, String j, CallbackInfo ci, PoseStack posestack, String countString)
+    private void pushStack(Font font, ItemStack tesselator, int x, int y, String j, CallbackInfo ci, PoseStack posestack, String countString)
     {
         posestack.pushPose();
         float scale = (float) calculateStringScale(font, countString);
@@ -62,13 +62,20 @@ public class ItemRendererMixin
     locals = LocalCapture.CAPTURE_FAILHARD)
     private void translateStackBack(Font font, ItemStack itemStack, int x, int y, String _a, CallbackInfo ci, PoseStack posestack, String countString, MultiBufferSource.BufferSource multibuffersource$buffersource)
     {
+        //don't ask wtf this shit is.
+
         int width = font.width(countString);
         double scale = calculateStringScale(font, countString);
-        double extraOffset = scale == 1 ? 0 : 1 / (scale * 2);
+        double extraXOffset = scale == 1 ? 0 : 1 / (scale * 2);
+        double extraYOffset = scale == 1 ? 0 : 1.5 / (scale);
 
         posestack.translate(-(x + 19 - 2 - width), -(y + 6 + 3), 0); //translate back to 0,0 for easier accounting for scaling
 
-        posestack.translate((x + 19 - 2 - extraOffset - width * scale) / scale, (y - 6 - 3) + 16 - (8 * scale), 0);
+        posestack.translate(
+                (x + 19 - 2 - extraXOffset - width * scale) / scale,
+                (y + 6 + 3) / scale - (9 - 9 / scale) - extraYOffset, //this is stupid
+                0
+        );
     }
 
     private double calculateStringScale(Font font, String countString)
