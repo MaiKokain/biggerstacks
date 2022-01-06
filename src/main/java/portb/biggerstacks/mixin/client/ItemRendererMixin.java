@@ -37,6 +37,7 @@ public class ItemRendererMixin
             return String.valueOf(count);
     }
 
+    //scale down fonts to fit
     @Surrogate
     @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
             at =@At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(DDD)V", shift = At.Shift.BEFORE),
@@ -49,6 +50,7 @@ public class ItemRendererMixin
         posestack.scale(scale, scale, 1);
     }
 
+    //move the text to the correct place
     @Surrogate
     @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
             at=@At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Font;drawInBatch(Ljava/lang/String;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I"),
