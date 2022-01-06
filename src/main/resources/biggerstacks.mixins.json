@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "portb.biggerstacks.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "biggerstacks.refmap.json",
+  "mixins": [
+    "ContainerMixin",
+    "ItemStackAccessor",
+    "ItemStackMixin",
+    "ItemMixin",
+    "ServerGamePacketListenerImplMixin",
+    "AbstractContainerMenuMixin",
+    "GiveCommandMixin"
+  ],
+  "client": [
+    "client.ItemEntityRendererMixin",
+    "client.ItemRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
