@@ -39,7 +39,7 @@ public class ItemEntityRendererMixin
 
     @ModifyConstant(method = "render(Lnet/minecraft/world/entity/item/ItemEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V",
             constant = @Constant(floatValue = -0.09375F))
-    private float idontsef(float value, ItemEntity entity, float p_115037_, float p_115038_, PoseStack p_115039_, MultiBufferSource p_115040_, int p_115041_)
+    private float reduceItemSpreadFloat(float value, ItemEntity entity, float p_115037_, float p_115038_, PoseStack p_115039_, MultiBufferSource p_115040_, int p_115041_)
     {
         int displayCount = calculateDisplayStackAmount(entity.getItem().getCount());
         float distanceScale = displayCount < 5 ? value : value * ((float)5 / displayCount);
