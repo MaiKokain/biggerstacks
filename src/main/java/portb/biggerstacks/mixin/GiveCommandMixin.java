@@ -1,10 +1,8 @@
 package portb.biggerstacks.mixin;
 
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.commands.GiveCommand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(GiveCommand.class)
