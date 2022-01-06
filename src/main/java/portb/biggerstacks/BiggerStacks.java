@@ -6,6 +6,7 @@ import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.commands.GiveCommand;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -46,7 +47,7 @@ public class BiggerStacks
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void showExactItemStackCount(ItemTooltipEvent event)
     {
         var stack = event.getItemStack();
