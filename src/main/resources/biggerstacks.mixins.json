@@ -11,7 +11,9 @@
     "ItemMixin",
     "ServerGamePacketListenerImplMixin",
     "AbstractContainerMenuMixin",
-    "GiveCommandMixin"
+    "GiveCommandMixin",
+    "ItemStackHandlerMixin",
+    "fixyourmods.ImmersiveEngineeringFixer"
   ],
   "client": [
     "client.ItemEntityRendererMixin",

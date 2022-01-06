@@ -1,11 +1,8 @@
 package portb.biggerstacks;
 
-import com.mojang.realmsclient.util.task.WorldCreationTask;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.worldselection.WorldSelectionList;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.game.*;
-import net.minecraft.server.commands.GiveCommand;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -13,8 +10,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.DefaultServerConfig;
 import portb.biggerstacks.config.ServerConfig;
