@@ -5,6 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import portb.biggerstacks.BiggerStacks;
+import portb.biggerstacks.config.ServerConfig;
 
 @Mixin(ServerGamePacketListenerImpl.class)
 public class ServerGamePacketListenerImplMixin
@@ -13,6 +14,6 @@ public class ServerGamePacketListenerImplMixin
     @ModifyConstant(method = "handleSetCreativeModeSlot", constant = @Constant(intValue = 64))
     private int handleBiggerStackLimit(int value)
     {
-        return BiggerStacks.MAX_STACK_SIZE;
+        return ServerConfig.maxStackCount.get();
     }
 }

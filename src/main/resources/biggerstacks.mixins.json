@@ -15,7 +15,8 @@
   ],
   "client": [
     "client.ItemEntityRendererMixin",
-    "client.ItemRendererMixin"
+    "client.ItemRendererMixin",
+    "client.CreateWorldScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
