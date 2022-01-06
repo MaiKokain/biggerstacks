@@ -77,7 +77,9 @@ mixin {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+
 repositories {
+    maven {	name = "BlameJared";	url = "https://maven.blamejared.com/" }         // IE & CT Files
 }
 
 dependencies {
@@ -94,8 +96,11 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.0-145") //cringe mod that can't do it right
+    runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.0-145") //cringe mod that can't do it right
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
