@@ -32,7 +32,7 @@ public class ItemRendererMixin
     {
         if (ClientConfig.enableNumberShortening.get())
         {
-            BigDecimal decimal = new BigDecimal(count).round(new MathContext(4)); //pinnacle of over engineering
+            BigDecimal decimal = new BigDecimal(count).round(new MathContext(3)); //pinnacle of over engineering
 
             var value = decimal.doubleValue();
 

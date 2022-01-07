@@ -118,17 +118,27 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.0-145") //cringe mod that can't do it right
-    runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.0-145") //cringe mod that can't do it right
 
-    compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.2.61")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.2.61")
+    var modularRouters = "curse.maven:ModularRouters-250294:3574035"
+    var ie = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.0-145"
+    var jei = "mezz.jei:jei-1.18.1:9.1.2.61"
+    var rs = "com.refinedmods:refinedstorage:1.10.0-beta.4"
+    var cyclic = "curse.maven:Cyclic-239286:3594244"
 
-    compileOnly fg.deobf("com.refinedmods:refinedstorage:1.10.0-beta.4") { transitive false }
-    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.10.0-beta.4") { transitive false }
+    compileOnly fg.deobf(ie)
+    runtimeOnly fg.deobf(ie)
 
-    compileOnly fg.deobf("curse.maven:ModularRouters-250294:3574035")
-    //runtimeOnly fg.deobf("curse.maven:ModularRouters-250294:3574035")
+    compileOnly fg.deobf(jei)
+    runtimeOnly fg.deobf(jei)
+
+    compileOnly fg.deobf(rs) { transitive false }
+    runtimeOnly fg.deobf(rs) { transitive false }
+
+    compileOnly fg.deobf(modularRouters)
+    runtimeOnly fg.deobf(modularRouters)
+
+    compileOnly fg.deobf(cyclic)
+    runtimeOnly fg.deobf(cyclic)
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
