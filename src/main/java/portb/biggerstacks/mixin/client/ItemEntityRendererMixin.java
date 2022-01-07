@@ -17,7 +17,7 @@ import portb.biggerstacks.FastLog2;
 public class ItemEntityRendererMixin
 {
     //make stacks of items dropped on the ground look extra thicc
-    @Inject(method = "getRenderAmount", at = @At("HEAD"), cancellable = true)
+//    @Inject(method = "getRenderAmount", at = @At("HEAD"), cancellable = true)
     private void getBiggerStackRenderAmount(ItemStack stack, CallbackInfoReturnable<Integer> returnInfo)
     {
         returnInfo.cancel();
