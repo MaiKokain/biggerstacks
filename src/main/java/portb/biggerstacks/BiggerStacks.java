@@ -1,7 +1,9 @@
 package portb.biggerstacks;
 
+import mezz.jei.network.packets.PacketGiveItemStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;

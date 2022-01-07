@@ -14,7 +14,8 @@
     "GiveCommandMixin",
     "ItemStackHandlerMixin",
     "fixyourmods.ImmersiveEngineeringFixer",
-    "fixyourmods.RefinedStorageFixer"
+    "fixyourmods.RefinedStorageFixer",
+    "FriendlyByteBufMixin"
   ],
   "client": [
     "client.ItemEntityRendererMixin",
