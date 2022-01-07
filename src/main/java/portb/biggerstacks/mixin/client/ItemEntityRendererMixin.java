@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import portb.biggerstacks.FastLog2;
 
 @Mixin(ItemEntityRenderer.class)
 public class ItemEntityRendererMixin
@@ -25,7 +26,7 @@ public class ItemEntityRendererMixin
 
     private int calculateDisplayStackAmount(int count)
     {
-        return (int) Math.floor(Math.log(count) / Math.log(4)) + 1;
+        return (FastLog2.fastLog2(count) / 2) + 1;
     }
 
     /*@ModifyArg(method = "render(Lnet/minecraft/world/entity/item/ItemEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V",

@@ -77,7 +77,7 @@ public class BiggerStacks
 
         if (stack.getCount() > Constants.ONE_THOUSAND)
         {
-            event.getToolTip().add(1, new TextComponent(ChatFormatting.DARK_GRAY + "Exact count: " + TOOLTIP_NUMBER_FORMAT.format(stack.getCount())));
+            event.getToolTip().add(1, new TextComponent(ChatFormatting.GRAY + "Exact count: " + ChatFormatting.DARK_AQUA + TOOLTIP_NUMBER_FORMAT.format(stack.getCount())));
         }
     }
 }

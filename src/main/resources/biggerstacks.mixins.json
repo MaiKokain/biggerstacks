@@ -18,7 +18,9 @@
     "compat.RefinedStorageFixer",
     "compat.modularrouters.CompiledModuleMixin",
     "compat.modularrouters.ModularRouterBlockEntityMixin",
-    "compat.modularrouters.ModularRoutersStackUpgradeMixin"
+    "compat.modularrouters.ModularRoutersStackUpgradeMixin",
+    "compat.cyclic.CyclicFixer",
+    "compat.cyclic.TileCableItemAccessor"
   ],
   "client": [
     "client.ItemEntityRendererMixin",
