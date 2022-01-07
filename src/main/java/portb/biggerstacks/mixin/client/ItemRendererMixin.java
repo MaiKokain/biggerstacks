@@ -31,11 +31,11 @@ public class ItemRendererMixin
         if (ClientConfig.enableNumberShortening.get())
         {
             if (count > ONE_BILLION)
-                return BILLION_FORMAT.format((double) count / ONE_BILLION);
+                return BILLION_FORMAT.format(Math.round((double) count / ONE_BILLION));
             else if (count > ONE_MILLION)
-                return MILLION_FORMAT.format((double) count / ONE_MILLION);
+                return MILLION_FORMAT.format(Math.round((double) count / ONE_MILLION));
             else if (count > ONE_THOUSAND)
-                return THOUSAND_FORMAT.format((double) count / ONE_THOUSAND);
+                return THOUSAND_FORMAT.format(Math.round((double) count / ONE_THOUSAND));
         }
 
         return String.valueOf(count);
