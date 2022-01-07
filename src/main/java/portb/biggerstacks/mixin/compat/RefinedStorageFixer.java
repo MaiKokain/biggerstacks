@@ -1,7 +1,6 @@
-package portb.biggerstacks.mixin.fixyourmods;
+package portb.biggerstacks.mixin.compat;
 
 import com.refinedmods.refinedstorage.apiimpl.network.grid.handler.ItemGridHandler;
-import org.checkerframework.common.value.qual.IntVal;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;

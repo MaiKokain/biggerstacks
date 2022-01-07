@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin.fixyourmods;
+package portb.biggerstacks.mixin.compat;
 
 import blusunrize.immersiveengineering.common.gui.BlockEntityInventory;
 import org.spongepowered.asm.mixin.Mixin;

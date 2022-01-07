@@ -89,11 +89,17 @@ repositories {
         name 'DVS1 Maven FS'
         url 'https://dvs1.progwml6.com/files/maven'
     }
-    maven {
+    maven { //Refined storage
         url = uri("https://maven.pkg.github.com/refinedmods/refinedstorage")
         credentials {
             username = "githubisstupid"
             password = "\u0067hp_pnP5hVDYXXhhXwe21IEkrUzGjquUJL0xjLzb"
+        }
+    }
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
         }
     }
 }
@@ -120,6 +126,9 @@ dependencies {
 
     compileOnly fg.deobf("com.refinedmods:refinedstorage:1.10.0-beta.4") { transitive false }
     runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.10.0-beta.4") { transitive false }
+
+    compileOnly fg.deobf("curse.maven:ModularRouters-250294:3574035")
+    //runtimeOnly fg.deobf("curse.maven:ModularRouters-250294:3574035")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 

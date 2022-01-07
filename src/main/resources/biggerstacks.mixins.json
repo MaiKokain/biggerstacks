@@ -13,9 +13,12 @@
     "AbstractContainerMenuMixin",
     "GiveCommandMixin",
     "ItemStackHandlerMixin",
-    "fixyourmods.ImmersiveEngineeringFixer",
-    "fixyourmods.RefinedStorageFixer",
-    "FriendlyByteBufMixin"
+    "FriendlyByteBufMixin",
+    "compat.ImmersiveEngineeringFixer",
+    "compat.RefinedStorageFixer",
+    "compat.modularrouters.CompiledModuleMixin",
+    "compat.modularrouters.ModularRouterBlockEntityMixin",
+    "compat.modularrouters.ModularRoutersStackUpgradeMixin"
   ],
   "client": [
     "client.ItemEntityRendererMixin",
