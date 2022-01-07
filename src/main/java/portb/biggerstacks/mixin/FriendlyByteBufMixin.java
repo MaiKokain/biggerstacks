@@ -22,7 +22,7 @@ public class FriendlyByteBufMixin
         return 0; // do nothing, because we cannot change the return type of this method
     }
 
-    @ModifyVariable(method = "readItem", at = @At("STORE"), ordinal = 1, print = true)
+    @ModifyVariable(method = "readItem", at = @At("STORE"), ordinal = 1)
     private int change(int value)
     {
         //actually read the count here
