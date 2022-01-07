@@ -124,21 +124,16 @@ dependencies {
     var jei = "mezz.jei:jei-1.18.1:9.1.2.61"
     var rs = "com.refinedmods:refinedstorage:1.10.0-beta.4"
     var cyclic = "curse.maven:Cyclic-239286:3594244"
+    var rftoolsBase = "curse.maven:RFToolsBase-326041:3596859"
+    var rftoolsStorage = "curse.maven:RFToolsBase-350006:3596864"
 
-    compileOnly fg.deobf(ie)
-    runtimeOnly fg.deobf(ie)
-
-    compileOnly fg.deobf(jei)
-    runtimeOnly fg.deobf(jei)
-
-    compileOnly fg.deobf(rs) { transitive false }
-    runtimeOnly fg.deobf(rs) { transitive false }
-
-    compileOnly fg.deobf(modularRouters)
-    runtimeOnly fg.deobf(modularRouters)
-
-    compileOnly fg.deobf(cyclic)
-    runtimeOnly fg.deobf(cyclic)
+    implementation fg.deobf(ie)
+    implementation fg.deobf(jei)
+    implementation fg.deobf(rs) { transitive false }
+    implementation fg.deobf(modularRouters)
+    implementation fg.deobf(cyclic)
+    implementation fg.deobf(rftoolsBase)
+    implementation fg.deobf(rftoolsStorage)
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
