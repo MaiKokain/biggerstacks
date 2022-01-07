@@ -13,7 +13,8 @@
     "AbstractContainerMenuMixin",
     "GiveCommandMixin",
     "ItemStackHandlerMixin",
-    "fixyourmods.ImmersiveEngineeringFixer"
+    "fixyourmods.ImmersiveEngineeringFixer",
+    "fixyourmods.RefinedStorageFixer"
   ],
   "client": [
     "client.ItemEntityRendererMixin",

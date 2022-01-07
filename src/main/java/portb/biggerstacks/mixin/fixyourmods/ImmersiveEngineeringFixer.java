@@ -10,7 +10,7 @@ import portb.biggerstacks.config.ServerConfig;
 @Mixin(BlockEntityInventory.class)
 class ImmersiveEngineeringFixer
 {
-    @Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true, remap = false, require = 0)
+    @Inject(method = {"getMaxStackSize", "m_6893_"}, at = @At("RETURN"), cancellable = true, remap = false, require = 0)
     private void fixMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
         returnInfo.cancel();

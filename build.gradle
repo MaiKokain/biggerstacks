@@ -79,7 +79,22 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
 repositories {
-    maven {	name = "BlameJared";	url = "https://maven.blamejared.com/" }         // IE & CT Files
+    mavenCentral()
+    maven {	// IE & CT Files
+        name = "BlameJared";
+        url = "https://maven.blamejared.com/"
+    }
+    maven { // JEI & Tinkers
+        name 'DVS1 Maven FS'
+        url 'https://dvs1.progwml6.com/files/maven'
+    }
+    maven {
+        url = uri("https://maven.pkg.github.com/refinedmods/refinedstorage")
+        credentials {
+            username = "githubisstupid"
+            password = "\u0067hp_pnP5hVDYXXhhXwe21IEkrUzGjquUJL0xjLzb"
+        }
+    }
 }
 
 dependencies {
@@ -98,6 +113,16 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.0-145") //cringe mod that can't do it right
     runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.0-145") //cringe mod that can't do it right
+
+    compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.2.61")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.2.61")
+
+    compileOnly fg.deobf("com.refinedmods:refinedstorage:1.10.0-beta.4"){
+        transitive false
+    }
+    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.10.0-beta.4"){
+        transitive false
+    }
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 

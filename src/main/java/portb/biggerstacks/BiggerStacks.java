@@ -41,11 +41,21 @@ public class BiggerStacks
         IGNORED_CLASSES.add(ClientboundBlockUpdatePacket.class);
         IGNORED_CLASSES.add(ClientboundSetTimePacket.class);
         IGNORED_CLASSES.add(ClientboundRemoveEntitiesPacket.class);
+
         IGNORED_CLASSES.add(ServerboundMovePlayerPacket.class);
         IGNORED_CLASSES.add(ServerboundMovePlayerPacket.Pos.class);
         IGNORED_CLASSES.add(ServerboundMovePlayerPacket.PosRot.class);
         IGNORED_CLASSES.add(ServerboundMovePlayerPacket.Rot.class);
+        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.StatusOnly.class);
+
         IGNORED_CLASSES.add(ClientboundAddMobPacket.class);
+        IGNORED_CLASSES.add(ClientboundSectionBlocksUpdatePacket.class);
+        IGNORED_CLASSES.add(ClientboundUpdateAttributesPacket.class);
+        IGNORED_CLASSES.add(ClientboundSetChunkCacheCenterPacket.class);
+        IGNORED_CLASSES.add(ClientboundLightUpdatePacket.class);
+        IGNORED_CLASSES.add(ClientboundKeepAlivePacket.class);
+        IGNORED_CLASSES.add(ServerboundKeepAlivePacket.class);
+        IGNORED_CLASSES.add(ClientboundForgetLevelChunkPacket.class);
     }
 
     public BiggerStacks()
