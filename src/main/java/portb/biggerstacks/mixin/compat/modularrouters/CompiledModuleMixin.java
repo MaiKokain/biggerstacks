@@ -12,7 +12,7 @@ public class CompiledModuleMixin
     @ModifyConstant(method = "getItemsPerTick", constant = @Constant(intValue = 64), remap = false, require = 0)
     private int increaseMaxTransferRate(int value)
     {
-        if(ServerConfig.INSTANCE.increaseTransferRate.get())
+        if (ServerConfig.INSTANCE.increaseTransferRate.get())
             return ServerConfig.INSTANCE.maxStackCount.get();
         else
             return value;

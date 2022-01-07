@@ -26,6 +26,6 @@ public class FriendlyByteBufMixin
     private int change(int value)
     {
         //actually read the count here
-        return ((FriendlyByteBuf)(Object)this).readInt();
+        return ((FriendlyByteBuf) (Object) this).readInt();
     }
 }

@@ -13,7 +13,7 @@ public class ItemMixin
     @Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true)
     private void biggerMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
-        if(returnInfo.getReturnValue() != 1)
+        if (returnInfo.getReturnValue() != 1)
         {
             returnInfo.cancel();
             returnInfo.setReturnValue(ServerConfig.INSTANCE.maxStackCount.get());

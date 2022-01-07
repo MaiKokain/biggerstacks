@@ -23,14 +23,14 @@ public class ItemStackMixin
     @Redirect(method = "save", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/CompoundTag;putByte(Ljava/lang/String;B)V"))
     private void saveBigStack(CompoundTag tag, String key, byte p_128346_)
     {
-        int count = ((ItemStack)(Object)this).getCount();
+        int count = ((ItemStack) (Object) this).getCount();
         tag.putInt(key, count);
     }
 
     @Redirect(method = "<init>(Lnet/minecraft/nbt/CompoundTag;)V", at = @At(value = "FIELD", target = "Lnet/minecraft/world/item/ItemStack;count:I", opcode = Opcodes.PUTFIELD))
     private void readBigStack(ItemStack instance, int value, CompoundTag tag)
     {
-        ((ItemStackAccessor)(Object)instance).accessSetCount(tag.getInt("Count"));
+        ((ItemStackAccessor) (Object) instance).accessSetCount(tag.getInt("Count"));
     }
 
 }

@@ -14,7 +14,7 @@ public class ModularRoutersStackUpgradeMixin
     @Inject(method = "getStackLimit", at = @At("RETURN"), remap = false, require = 0, cancellable = true)
     private void increaseStackLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
     {
-        if(ServerConfig.INSTANCE.increaseTransferRate.get())
+        if (ServerConfig.INSTANCE.increaseTransferRate.get())
         {
             returnInfo.cancel();
             returnInfo.setReturnValue(ModularRoutersHelper.getMaxStackUpgrades());

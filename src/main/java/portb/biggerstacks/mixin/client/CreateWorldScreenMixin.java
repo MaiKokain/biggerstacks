@@ -11,7 +11,7 @@ import portb.biggerstacks.config.ServerConfig;
 @Mixin(CreateWorldScreen.class)
 public class CreateWorldScreenMixin
 {
-    @Inject(method = "onCreate", at=@At("TAIL"))
+    @Inject(method = "onCreate", at = @At("TAIL"))
     private void setDefaultStackSize(CallbackInfo callbackInfo)
     {
         //set the default stack size so the user doesn't have to do it manually every time
