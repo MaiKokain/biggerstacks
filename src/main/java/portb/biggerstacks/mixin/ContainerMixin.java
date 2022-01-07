@@ -10,6 +10,6 @@ public interface ContainerMixin extends Container
     @Override
     default int getMaxStackSize()
     {
-        return ServerConfig.maxStackCount.get();
+        return ServerConfig.INSTANCE.maxStackCount.get();
     }
 }

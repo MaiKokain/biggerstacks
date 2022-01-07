@@ -15,6 +15,6 @@ public class CreateWorldScreenMixin
     private void setDefaultStackSize(CallbackInfo callbackInfo)
     {
         //set the default stack size so the user doesn't have to do it manually every time
-        ServerConfig.maxStackCount.set(DefaultServerConfig.maxStackCount.get());
+        ServerConfig.INSTANCE.maxStackCount.set(DefaultServerConfig.INSTANCE.maxStackCount.get());
     }
 }

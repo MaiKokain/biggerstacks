@@ -13,6 +13,6 @@ public class RefinedStorageFixer
     @ModifyConstant(method = "onExtract(Lnet/minecraft/server/level/ServerPlayer;Ljava/util/UUID;II)V", constant = @Constant(intValue = 64), remap = false, require = 0)
     private int biggerStackExtract(int value)
     {
-        return ServerConfig.maxStackCount.get();
+        return ServerConfig.INSTANCE.maxStackCount.get();
     }
 }

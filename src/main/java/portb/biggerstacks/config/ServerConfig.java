@@ -4,16 +4,19 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ServerConfig
 {
-    private static final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+    public final static ServerConfig INSTANCE = new ServerConfig();
 
-    public static final ForgeConfigSpec SPEC;
+    private final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
-    public static final ForgeConfigSpec.IntValue maxStackCount;
+    public final ForgeConfigSpec SPEC;
 
-    static{
+    public final ForgeConfigSpec.IntValue maxStackCount;
+
+    ServerConfig()
+    {
         maxStackCount = builder.comment("Maximum stack size for items. Items that are able to stack more than 1 item " +
                 "(i.e. swords, tools, etc) are not effected, stack size for everything else is raised to this value.", " While you *can* go up to " + Integer.MAX_VALUE +
-                        ", that doesn't mean you *should*").defineInRange("Max stack size", DefaultServerConfig.maxStackCount.get(), 1, Integer.MAX_VALUE);
+                        ", that doesn't mean you *should*").defineInRange("Max stack size", 999, 1, Integer.MAX_VALUE);
 
         SPEC = builder.build();
     }

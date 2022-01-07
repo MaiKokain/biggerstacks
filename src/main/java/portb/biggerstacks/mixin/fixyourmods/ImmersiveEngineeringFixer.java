@@ -16,7 +16,7 @@ class ImmersiveEngineeringFixer
         if(returnInfo.getReturnValue() == 64)
         {
             returnInfo.cancel();
-            returnInfo.setReturnValue(ServerConfig.maxStackCount.get());
+            returnInfo.setReturnValue(ServerConfig.INSTANCE.maxStackCount.get());
         }
     }
 }
