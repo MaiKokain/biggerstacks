@@ -67,8 +67,6 @@ public class ItemRendererMixin
             locals = LocalCapture.CAPTURE_FAILHARD)
     private void translateStackBack(Font font, ItemStack itemStack, int x, int y, String _a, CallbackInfo ci, PoseStack posestack, String countString, MultiBufferSource.BufferSource multibuffersource$buffersource)
     {
-        //don't ask wtf this shit is.
-
         int width = font.width(countString);
         double scale = calculateStringScale(font, countString);
         double extraXOffset = scale == 1 ? 0 : 1 / (scale * 2);
@@ -76,7 +74,7 @@ public class ItemRendererMixin
 
         posestack.translate(-(x + 19 - 2 - width), -(y + 6 + 3), 0); //translate back to 0,0 for easier accounting for scaling
 
-        posestack.translate(
+        posestack.translate( //i just messed around until i found something that felt right
                 (x + 19 - 2 - extraXOffset - width * scale) / scale,
                 (y + 6 + 3) / scale - (9 - 9 / scale) - extraYOffset, //this is stupid
                 0

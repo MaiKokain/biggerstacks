@@ -7,6 +7,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(GenericItemHandler.Builder.class)
 public interface BuilderAccessor
 {
-    @Accessor("slotLimit")
+    @Accessor(value = "slotLimit", remap = false)
     void setSlotLimit(int value);
 }
