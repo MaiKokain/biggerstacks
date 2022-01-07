@@ -7,6 +7,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(TileCableItem.class)
 public interface TileCableItemAccessor
 {
-    @Accessor("extractQty")
+    @Accessor(value = "extractQty", remap = false)
     void setExtractQty(int value);
 }
