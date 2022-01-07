@@ -4,11 +4,9 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ClientConfig
 {
-    private static final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-
     public static final ForgeConfigSpec SPEC;
-
     public static final ForgeConfigSpec.BooleanValue enableNumberShortening;
+    private static final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
     static
     {

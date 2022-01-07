@@ -13,7 +13,7 @@ class ImmersiveEngineeringFixer
     @Inject(method = {"getMaxStackSize", "m_6893_"}, at = @At("RETURN"), cancellable = true, remap = false, require = 0)
     private void fixMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
-        if(returnInfo.getReturnValue() == 64)
+        if (returnInfo.getReturnValue() == 64)
         {
             returnInfo.cancel();
             returnInfo.setReturnValue(ServerConfig.INSTANCE.maxStackCount.get());

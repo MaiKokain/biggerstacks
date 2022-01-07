@@ -13,7 +13,7 @@ public class ModularRouterBlockEntityMixin
     @ModifyConstant(method = "compileUpgrades", constant = @Constant(intValue = 6), require = 0, remap = false)
     private int increaseMaxStackUpgrades(int constant)
     {
-        if(ServerConfig.INSTANCE.increaseTransferRate.get())
+        if (ServerConfig.INSTANCE.increaseTransferRate.get())
         {
             return ModularRoutersHelper.getMaxStackUpgrades();
         }

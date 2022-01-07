@@ -1,9 +1,7 @@
 package portb.biggerstacks;
 
-import mezz.jei.network.packets.PacketGiveItemStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -30,7 +28,8 @@ public class BiggerStacks
     private static final DecimalFormat TOOLTIP_NUMBER_FORMAT = new DecimalFormat("###,###,###,###,###,###");
 
     //for debugging every packet sent ever
-    static{
+    static
+    {
         IGNORED_CLASSES.add(ClientboundMoveEntityPacket.Rot.class);
         IGNORED_CLASSES.add(ClientboundMoveEntityPacket.PosRot.class);
         IGNORED_CLASSES.add(ClientboundMoveEntityPacket.Pos.class);
@@ -71,12 +70,12 @@ public class BiggerStacks
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void showExactItemStackCount(ItemTooltipEvent event)
     {
-        if(!ClientConfig.enableNumberShortening.get())
+        if (!ClientConfig.enableNumberShortening.get())
             return;
 
         var stack = event.getItemStack();
 
-        if(stack.getCount() > Constants.ONE_THOUSAND)
+        if (stack.getCount() > Constants.ONE_THOUSAND)
         {
             event.getToolTip().add(1, new TextComponent(ChatFormatting.DARK_GRAY + "Exact count: " + TOOLTIP_NUMBER_FORMAT.format(stack.getCount())));
         }

@@ -8,5 +8,5 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 public interface ItemStackAccessor
 {
     @Accessor("count")
-    public void accessSetCount(int value);
+    void accessSetCount(int value);
 }

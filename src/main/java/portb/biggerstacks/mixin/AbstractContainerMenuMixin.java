@@ -12,7 +12,7 @@ public class AbstractContainerMenuMixin
     @ModifyArg(method = "doClick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/Slot;tryRemove(IILnet/minecraft/world/entity/player/Player;)Ljava/util/Optional;"), index = 0)
     private int preventIntegerOverflow(int value)
     {
-        if(value == (Integer.MAX_VALUE + 1) / 2)
+        if (value == (Integer.MAX_VALUE + 1) / 2)
         {
             return Integer.MAX_VALUE / 2 + 1;
         }
