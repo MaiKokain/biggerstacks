@@ -15,6 +15,7 @@
     "ItemStackHandlerMixin",
     "FriendlyByteBufMixin",
     "ContainersMixin",
+    "SlotItemHandlerMixin",
 
     "compat.ImmersiveEngineeringFixer",
     "compat.RefinedStorageFixer",
@@ -22,7 +23,12 @@
     "compat.modularrouters.ModularRouterBlockEntityMixin",
     "compat.modularrouters.ModularRoutersStackUpgradeMixin",
     "compat.cyclic.CyclicFixer",
-    "compat.cyclic.TileCableItemAccessor"
+    "compat.cyclic.TileCableItemAccessor",
+    "compat.rftools.GlobalStorageItemWrapperMixin",
+    "compat.rftools.GenericItemHandlerBuilderMixins",
+    "compat.rftools.GenericItemHandlerMixin",
+    "compat.rftools.BuilderAccessor"
+
   ],
   "client": [
     "client.ItemEntityRendererMixin",
