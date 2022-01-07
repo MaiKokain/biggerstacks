@@ -16,7 +16,7 @@ public class ItemMixin
         if(returnInfo.getReturnValue() != 1)
         {
             returnInfo.cancel();
-            returnInfo.setReturnValue(ServerConfig.maxStackCount.get());
+            returnInfo.setReturnValue(ServerConfig.INSTANCE.maxStackCount.get());
         }
     }
 }

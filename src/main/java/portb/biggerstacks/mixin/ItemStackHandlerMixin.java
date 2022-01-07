@@ -14,6 +14,6 @@ public class ItemStackHandlerMixin
     private void increaseSlotLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
     {
         returnInfo.cancel();
-        returnInfo.setReturnValue(ServerConfig.maxStackCount.get());
+        returnInfo.setReturnValue(ServerConfig.INSTANCE.maxStackCount.get());
     }
 }

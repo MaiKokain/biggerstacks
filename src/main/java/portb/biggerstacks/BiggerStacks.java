@@ -64,8 +64,8 @@ public class BiggerStacks
     {
         MinecraftForge.EVENT_BUS.register(this);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, MOD_ID + "-client.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC, MOD_ID + "-server.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DefaultServerConfig.SPEC, MOD_ID + "-default.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DefaultServerConfig.INSTANCE.SPEC, MOD_ID + "-default.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.INSTANCE.SPEC, MOD_ID + "-server.toml");
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
