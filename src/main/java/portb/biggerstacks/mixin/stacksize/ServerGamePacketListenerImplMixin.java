@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin;
+package portb.biggerstacks.mixin.stacksize;
 
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import org.spongepowered.asm.mixin.Mixin;

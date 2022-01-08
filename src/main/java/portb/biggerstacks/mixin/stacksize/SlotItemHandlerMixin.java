@@ -1,17 +1,17 @@
-package portb.biggerstacks.mixin;
+package portb.biggerstacks.mixin.stacksize;
 
-import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.SlotItemHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.ServerConfig;
 
-@Mixin(ItemStackHandler.class)
-public class ItemStackHandlerMixin
+@Mixin(SlotItemHandler.class)
+public class SlotItemHandlerMixin
 {
-    @Inject(method = "getSlotLimit", at = @At("RETURN"), cancellable = true, remap = false)
-    private void increaseSlotLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
+    @Inject(method = "getMaxStackSize()I", at = @At("RETURN"), cancellable = true, remap = false)
+    private void fixMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
         if(returnInfo.getReturnValue() == 64)
         {
