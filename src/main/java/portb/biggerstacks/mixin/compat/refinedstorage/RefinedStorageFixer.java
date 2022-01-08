@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin.compat;
+package portb.biggerstacks.mixin.compat.refinedstorage;
 
 import com.refinedmods.refinedstorage.apiimpl.network.grid.handler.ItemGridHandler;
 import org.spongepowered.asm.mixin.Mixin;

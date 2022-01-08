@@ -19,8 +19,8 @@
     "FriendlyByteBufMixin",
     "ContainersMixin",
     "ItemMixin",
-
-    "compat.RefinedStorageFixer",
+    "compat.refinedstorage.RefinedStorageFixer",
+    "compat.refinedstorage.UpgradeItemHandlerMixin",
     "compat.modularrouters.CompiledModuleMixin",
     "compat.modularrouters.ModularRouterBlockEntityMixin",
     "compat.modularrouters.ModularRoutersStackUpgradeMixin",
