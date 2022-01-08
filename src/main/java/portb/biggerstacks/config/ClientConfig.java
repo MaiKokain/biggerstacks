@@ -1,5 +1,6 @@
 package portb.biggerstacks.config;
 
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ClientConfig
