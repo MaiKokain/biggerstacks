@@ -27,7 +27,8 @@
     "compat.rftools.GlobalStorageItemWrapperMixin",
     "compat.rftools.GenericItemHandlerBuilderMixins",
     "compat.rftools.GenericItemHandlerMixin",
-    "compat.rftools.BuilderAccessor"
+    "compat.rftools.BuilderAccessor",
+    "compat.xnet.ItemConnectorSettingsMixin"
 
   ],
   "client": [
