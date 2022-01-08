@@ -6,6 +6,7 @@ public class ModularRoutersHelper
 {
     public static int getMaxStackUpgrades()
     {
-        return (int) Math.ceil(FastLog2.fastLog2(ServerConfig.INSTANCE.maxStackCount.get()));
+        //this needs precision, and is only done once per opening the gui
+        return (int) Math.ceil(Math.log(ServerConfig.INSTANCE.maxStackCount.get()) / Math.log(2));
     }
 }
