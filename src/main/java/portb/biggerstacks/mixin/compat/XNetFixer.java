@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin.compat.xnet;
+package portb.biggerstacks.mixin.compat;
 
 import mcjty.xnet.apiimpl.items.ItemChannelSettings;
 import mcjty.xnet.apiimpl.items.ItemConnectorSettings;
@@ -12,9 +12,9 @@ import portb.biggerstacks.config.ServerConfig;
         ItemConnectorSettings.class,
         ItemChannelSettings.class
 })
-public class ItemConnectorSettingsMixin
+public class XNetFixer
 {
-    @ModifyConstant(method = {"tickItemHandler", "createGui"}, constant = @Constant(intValue = 64), require = 1, remap = false)
+    @ModifyConstant(method = {"tickItemHandler", "createGui"}, constant = @Constant(intValue = 64), require = 0, remap = false)
     private int increaseMaxExtractAmount(int value)
     {
         return ServerConfig.INSTANCE.maxStackCount.get();
