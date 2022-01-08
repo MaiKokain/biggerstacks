@@ -25,7 +25,10 @@ public class ServerConfig
                 "E.g. if max stack limit is 1000, it will become 1000 items per tick (where applicable).",
                 "How this is done will vary for each mod",
                 "Modular routers will require more stack upgrades",
-                "Pipez does not need this option, it has a config for transfer rate, which you can set to anything").define("Increase transfer rate", true);
+                "Pipez does not need this option, it has a config for transfer rate, which you can set to anything",
+                "Pretty pipes has its extract rate scaled up",
+                "XNet can already extract a variable amount, but you will be able to go past 64 to the new maximum stack limit",
+                "Cyclic still extracts 1 stack (more than 64 items) per tick, but the size of the stack is adjusted ").define("Increase transfer rate", true);
 
         SPEC = builder.build();
     }
