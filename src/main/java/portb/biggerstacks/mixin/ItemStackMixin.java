@@ -5,20 +5,23 @@ import net.minecraft.world.item.ItemStack;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import portb.biggerstacks.config.ServerConfig;
 
 @Mixin(ItemStack.class)
 public class ItemStackMixin
 {
-/*    @Inject(method = "getMaxStackSize", at=@At("RETURN"), cancellable = true)
+    @Inject(method = "getMaxStackSize", at=@At("RETURN"), cancellable = true)
     private void biggerMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
         if (returnInfo.getReturnValue() != 1)
         {
             returnInfo.cancel();
-            returnInfo.setReturnValue(BiggerStacks.MAX_STACK_SIZE);
+            returnInfo.setReturnValue(ServerConfig.INSTANCE.maxStackCount.get());
         }
-    }*/
+    }
 
     @Redirect(method = "save", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/CompoundTag;putByte(Ljava/lang/String;B)V"))
     private void saveBigStack(CompoundTag tag, String key, byte p_128346_)

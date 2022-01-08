@@ -19,8 +19,8 @@
     "FriendlyByteBufMixin",
     "ContainersMixin",
     "ItemMixin",
-
-    "compat.RefinedStorageFixer",
+    "compat.refinedstorage.RefinedStorageFixer",
+    "compat.refinedstorage.UpgradeItemHandlerMixin",
     "compat.modularrouters.CompiledModuleMixin",
     "compat.modularrouters.ModularRouterBlockEntityMixin",
     "compat.modularrouters.ModularRoutersStackUpgradeMixin",
@@ -35,7 +35,8 @@
     "compat.prettypipes.ExtractionModuleItemAccessor",
     "compat.prettypipes.ExtractionModuleItemFixer",
     "compat.prettypipes.RetrievalModuleItemFixer",
-    "compat.immersiveengineering.IEInventoryHandlerMixin"
+    "compat.immersiveengineering.IEInventoryHandlerMixin",
+    "compat.AppliedEnergisticsCompat"
   ],
   "client": [
     "client.ItemEntityRendererMixin",

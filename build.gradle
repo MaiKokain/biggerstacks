@@ -96,6 +96,13 @@ repositories {
             password = "\u0067hp_pnP5hVDYXXhhXwe21IEkrUzGjquUJL0xjLzb"
         }
     }
+    maven { //Applied energy sticks 2
+        url = uri("https://maven.pkg.github.com/AppliedEnergistics/Applied-Energistics-2")
+        credentials {
+            username = "githubisstupid"
+            password = "\u0067hp_pnP5hVDYXXhhXwe21IEkrUzGjquUJL0xjLzb"
+        }
+    }
     maven {
         url "https://cursemaven.com"
         content {
@@ -123,6 +130,7 @@ dependencies {
     var ie = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.0-145"
     var jei = "mezz.jei:jei-1.18.1:9.1.2.61"
     var rs = "com.refinedmods:refinedstorage:1.10.0-beta.4"
+    var ae2 = "curse.maven:appliedenergistics2-223794:3590239"
     var cyclic = "curse.maven:Cyclic-239286:3594244"
     var mcJtyLib = "curse.maven:McJtyLib-233105:3596858"
     var rftoolsBase = "curse.maven:RFToolsBase-326041:3596859"
@@ -135,6 +143,7 @@ dependencies {
     implementation fg.deobf(ie)
     implementation fg.deobf(jei)
     implementation fg.deobf(rs) { transitive false }
+    implementation fg.deobf(ae2)
     implementation fg.deobf(modularRouters)
     implementation fg.deobf(cyclic)
     implementation fg.deobf(mcJtyLib)
