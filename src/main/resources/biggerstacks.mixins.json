@@ -5,18 +5,19 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "biggerstacks.refmap.json",
   "mixins": [
-    "ContainerMixin",
+    "stacksize.ContainerMixin",
     "ItemStackAccessor",
     "ItemStackMixin",
-    "ItemMixin",
-    "ServerGamePacketListenerImplMixin",
+    "stacksize.CompoundContainerMixin",
+    "stacksize.SlotItemHandlerMixin",
+    "stacksize.SlotMixin",
+    "stacksize.ServerGamePacketListenerImplMixin",
     "AbstractContainerMenuMixin",
     "GiveCommandMixin",
-    "ItemStackHandlerMixin",
+    "stacksize.ItemStackHandlerMixin",
     "FriendlyByteBufMixin",
     "ContainersMixin",
-    "SlotItemHandlerMixin",
-    "SlotMixin",
+    "ItemMixin",
 
     "compat.RefinedStorageFixer",
     "compat.modularrouters.CompiledModuleMixin",
@@ -28,7 +29,8 @@
     "compat.rftools.GenericItemHandlerBuilderMixins",
     "compat.rftools.GenericItemHandlerMixin",
     "compat.rftools.BuilderAccessor",
-    "compat.XNetFixer"
+    "compat.XNetFixer",
+    "compat.PrettyPipesFixer"
   ],
   "client": [
     "client.ItemEntityRendererMixin",
