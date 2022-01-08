@@ -8,15 +8,18 @@ public class ServerConfig
     public final ForgeConfigSpec SPEC;
     public final ForgeConfigSpec.IntValue maxStackCount;
     public final ForgeConfigSpec.BooleanValue increaseTransferRate;
-    private final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
     ServerConfig()
     {
+        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+
         maxStackCount = builder.comment(
                 "Maximum stack size for items. Items that are able to stack more than 1 item (i.e. swords, tools, etc) are not effected, stack size for everything else is raised to this value.",
-                "The maximum value is " + Integer.MAX_VALUE + ". I strongly recommend NOT setting it anywhere near that high, as things may break. You have been warned.",
+                "The maximum theoretical limit is " + Integer.MAX_VALUE + ". However, to prevent funny integer overflows, I have limited the max stack size to " + (Integer.MAX_VALUE / 2)  + ".",
+                "I don't recommend setting it that high, as things could still break. You have been warned.",
+                "Anything below 10 million should be pretty safe.",
                 "Some things may need a world restart for this to take effect."
-        ).defineInRange("Max stack size", 999, 1, Integer.MAX_VALUE);
+        ).defineInRange("Max stack size", 999, 1, Integer.MAX_VALUE / 2);
 
         increaseTransferRate = builder.comment("Whether to increase max transfer rate of some mods to the new stack limit/t.",
                 "E.g. if max stack limit is 1000, it will become 1000 items per tick (where applicable).",
