@@ -6,15 +6,16 @@
   "refmap": "biggerstacks.refmap.json",
   "mixins": [
     "stacksize.ContainerMixin",
-    "ItemStackAccessor",
-    "ItemStackMixin",
     "stacksize.CompoundContainerMixin",
     "stacksize.SlotItemHandlerMixin",
     "stacksize.SlotMixin",
     "stacksize.ServerGamePacketListenerImplMixin",
+    "stacksize.InvWrapperMixin",
+    "stacksize.ItemStackHandlerMixin",
+    "ItemStackAccessor",
     "AbstractContainerMenuMixin",
     "GiveCommandMixin",
-    "stacksize.ItemStackHandlerMixin",
+    "ItemStackMixin",
     "FriendlyByteBufMixin",
     "ContainersMixin",
     "ItemMixin",
@@ -30,7 +31,11 @@
     "compat.rftools.GenericItemHandlerMixin",
     "compat.rftools.BuilderAccessor",
     "compat.XNetFixer",
-    "compat.PrettyPipesFixer"
+    "compat.prettypipes.RetrievalModuleItemAccessor",
+    "compat.prettypipes.ExtractionModuleItemAccessor",
+    "compat.prettypipes.ExtractionModuleItemFixer",
+    "compat.prettypipes.RetrievalModuleItemFixer",
+    "compat.immersiveengineering.IEInventoryHandlerMixin"
   ],
   "client": [
     "client.ItemEntityRendererMixin",
