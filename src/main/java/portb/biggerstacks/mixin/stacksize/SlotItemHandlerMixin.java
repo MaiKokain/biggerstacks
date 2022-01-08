@@ -1,19 +1,19 @@
-package portb.biggerstacks.mixin.compat;
+package portb.biggerstacks.mixin.stacksize;
 
-import blusunrize.immersiveengineering.common.gui.BlockEntityInventory;
+import net.minecraftforge.items.SlotItemHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.ServerConfig;
 
-@Mixin(BlockEntityInventory.class)
-class ImmersiveEngineeringFixer
+@Mixin(SlotItemHandler.class)
+public class SlotItemHandlerMixin
 {
-    @Inject(method = {"getMaxStackSize", "m_6893_"}, at = @At("RETURN"), cancellable = true, remap = false, require = 0)
+    @Inject(method = "getMaxStackSize()I", at = @At("RETURN"), cancellable = true, remap = false)
     private void fixMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
-        if (returnInfo.getReturnValue() == 64)
+        if(returnInfo.getReturnValue() == 64)
         {
             returnInfo.cancel();
             returnInfo.setReturnValue(ServerConfig.INSTANCE.maxStackCount.get());

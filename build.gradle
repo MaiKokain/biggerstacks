@@ -128,6 +128,9 @@ dependencies {
     var rftoolsBase = "curse.maven:RFToolsBase-326041:3596859"
     var rftoolsStorage = "curse.maven:RFToolsBase-350006:3596864"
     var rftoolsUtility = "curse.maven:RFToolsUtility-342466:3596861"
+    var xnet = "curse.maven:XNet-260912:3596865"
+    var dimStorage = "curse.maven:DimStorage-353882:3569750"
+    var prettyPipes = "curse.maven:PrettyPipes-376737:3582953"
 
     implementation fg.deobf(ie)
     implementation fg.deobf(jei)
@@ -138,6 +141,9 @@ dependencies {
     implementation fg.deobf(rftoolsUtility)
     implementation fg.deobf(rftoolsBase)
     implementation fg.deobf(rftoolsStorage)
+    implementation fg.deobf(xnet)
+    implementation fg.deobf(dimStorage)
+    implementation fg.deobf(prettyPipes)
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
