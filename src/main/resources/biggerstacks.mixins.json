@@ -35,7 +35,8 @@
     "compat.prettypipes.ExtractionModuleItemAccessor",
     "compat.prettypipes.ExtractionModuleItemFixer",
     "compat.prettypipes.RetrievalModuleItemFixer",
-    "compat.immersiveengineering.IEInventoryHandlerMixin"
+    "compat.immersiveengineering.IEInventoryHandlerMixin",
+    "compat.AppliedEnergisticsCompat"
   ],
   "client": [
     "client.ItemEntityRendererMixin",
