@@ -16,8 +16,8 @@
     "FriendlyByteBufMixin",
     "ContainersMixin",
     "SlotItemHandlerMixin",
+    "SlotMixin",
 
-    "compat.ImmersiveEngineeringFixer",
     "compat.RefinedStorageFixer",
     "compat.modularrouters.CompiledModuleMixin",
     "compat.modularrouters.ModularRouterBlockEntityMixin",
@@ -28,8 +28,7 @@
     "compat.rftools.GenericItemHandlerBuilderMixins",
     "compat.rftools.GenericItemHandlerMixin",
     "compat.rftools.BuilderAccessor",
-    "compat.xnet.ItemConnectorSettingsMixin"
-
+    "compat.XNetFixer"
   ],
   "client": [
     "client.ItemEntityRendererMixin",
