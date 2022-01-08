@@ -13,7 +13,7 @@ public class UpgradeItemHandlerMixin
     @Inject(method = "getStackInteractCount", at=@At("RETURN"),cancellable = true, require = 0, remap = false)
     private void fixStackInteractCount(CallbackInfoReturnable<Integer> returnInfo)
     {
-        if(returnInfo.getReturnValue() == 64)
+        if(returnInfo.getReturnValue() == 64 && ServerConfig.INSTANCE.increaseTransferRate.get())
         {
             returnInfo.cancel();
             returnInfo.setReturnValue(ServerConfig.INSTANCE.maxStackCount.get());
