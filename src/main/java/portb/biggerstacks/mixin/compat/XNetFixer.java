@@ -17,6 +17,13 @@ public class XNetFixer
     @ModifyConstant(method = {"tickItemHandler", "createGui"}, constant = @Constant(intValue = 64), require = 0, remap = false)
     private int increaseMaxExtractAmount(int value)
     {
-        return ServerConfig.INSTANCE.maxStackCount.get();
+        if(ServerConfig.INSTANCE.increaseTransferRate.get())
+        {
+            return ServerConfig.INSTANCE.maxStackCount.get();
+        }
+        else
+        {
+            return value;
+        }
     }
 }
