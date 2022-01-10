@@ -6,7 +6,6 @@
   "refmap": "biggerstacks.refmap.json",
   "mixins": [
     "stacksize.ContainerMixin",
-    "stacksize.CompoundContainerMixin",
     "stacksize.SlotItemHandlerMixin",
     "stacksize.SlotMixin",
     "stacksize.ServerGamePacketListenerImplMixin",

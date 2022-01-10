@@ -7,10 +7,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.ServerConfig;
 
-@Mixin(CompoundContainer.class)
+//@Mixin(CompoundContainer.class)
 public class CompoundContainerMixin
 {
-    @Inject(method = "getMaxStackSize()I", at = @At("RETURN"), cancellable = true, remap = false)
+    //@Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true)
     private void fixMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
         if(returnInfo.getReturnValue() == 64)
