@@ -10,7 +10,7 @@ import portb.biggerstacks.config.ServerConfig;
 @Mixin(SlotItemHandler.class)
 public class SlotItemHandlerMixin
 {
-    @Inject(method = "getMaxStackSize()I", at = @At("RETURN"), cancellable = true, remap = false)
+    @Inject(method = "getMaxStackSize()I", at = @At("RETURN"), cancellable = true)
     private void fixMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
         if(returnInfo.getReturnValue() == 64)
