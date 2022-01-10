@@ -16,7 +16,7 @@ apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'idea'
 
 group = 'PORTB'
-def modversion = version = '1.18-2.0'
+def modversion = version = '1.18-2.3'
 
 java {
     archivesBaseName = 'biggerstacks'
@@ -112,7 +112,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.10'
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.14'
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
