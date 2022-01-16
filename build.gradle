@@ -16,7 +16,7 @@ apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'idea'
 
 group = 'PORTB'
-def modversion = version = '1.18-2.3'
+def modversion = version = '1.18-2.4'
 
 java {
     archivesBaseName = 'biggerstacks'
@@ -128,7 +128,7 @@ dependencies {
 
     var modularRouters = "curse.maven:ModularRouters-250294:3574035"
     var ie = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.0-145"
-    var jei = "mezz.jei:jei-1.18.1:9.1.2.61"
+    var jei = "mezz.jei:jei-1.18.1:9.2.1.69"
     var rs = "com.refinedmods:refinedstorage:1.10.0-beta.4"
     var ae2 = "curse.maven:appliedenergistics2-223794:3590239"
     var cyclic = "curse.maven:Cyclic-239286:3594244"
