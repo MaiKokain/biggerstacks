@@ -16,7 +16,7 @@ apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'idea'
 
 group = 'PORTB'
-def modversion = version = '1.18-2.4'
+def modversion = version = '1.18-2.5'
 
 java {
     archivesBaseName = 'biggerstacks'
@@ -112,7 +112,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.14'
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.40'
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
@@ -132,13 +132,19 @@ dependencies {
     var rs = "com.refinedmods:refinedstorage:1.10.0-beta.4"
     var ae2 = "curse.maven:appliedenergistics2-223794:3590239"
     var cyclic = "curse.maven:Cyclic-239286:3594244"
-    var mcJtyLib = "curse.maven:McJtyLib-233105:3596858"
-    var rftoolsBase = "curse.maven:RFToolsBase-326041:3596859"
-    var rftoolsStorage = "curse.maven:RFToolsBase-350006:3596864"
-    var rftoolsUtility = "curse.maven:RFToolsUtility-342466:3596861"
-    var xnet = "curse.maven:XNet-260912:3596865"
+    var mcJtyLib = "curse.maven:McJtyLib-233105:3604742"
+    var rftoolsBase = "curse.maven:RFToolsBase-326041:3603065"
+    var rftoolsStorage = "curse.maven:RFToolsBase-350006:3603059"
+    var rftoolsUtility = "curse.maven:RFToolsUtility-342466:3604743"
+    var xnet = "curse.maven:XNet-260912:3603062"
     var dimStorage = "curse.maven:DimStorage-353882:3569750"
     var prettyPipes = "curse.maven:PrettyPipes-376737:3582953"
+
+    var minecolonies = "curse.maven:MineColonies-245506:3599965"
+    var structurize = "curse.maven:Structurize-298744:3564388"
+    var domumOrnamentum = "curse.maven:DomumOrnamentum-527361:3561327"
+    var multipiston = "curse.maven:multipiston-303278:3543720"
+    var blockui = "curse.maven:blockui-522992:3561693"
 
     implementation fg.deobf(ie)
     implementation fg.deobf(jei)
@@ -153,6 +159,12 @@ dependencies {
     implementation fg.deobf(xnet)
     implementation fg.deobf(dimStorage)
     implementation fg.deobf(prettyPipes)
+
+    runtimeOnly fg.deobf(minecolonies)
+    runtimeOnly fg.deobf(structurize)
+    runtimeOnly fg.deobf(domumOrnamentum)
+    runtimeOnly fg.deobf(multipiston)
+    runtimeOnly fg.deobf(blockui)
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
