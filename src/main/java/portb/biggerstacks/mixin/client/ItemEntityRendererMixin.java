@@ -19,7 +19,10 @@ import portb.biggerstacks.config.ServerConfig;
 public class ItemEntityRendererMixin
 {
     //make stacks of items dropped on the ground look extra thicc
-    @Inject(method = "getRenderAmount", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getRenderAmount",
+            at = @At("HEAD"),
+            cancellable = true,
+            require = 0)  //mitigate optifine messing with item rendering
     private void getBiggerStackRenderAmount(ItemStack stack, CallbackInfoReturnable<Integer> returnInfo)
     {
         if(ClientConfig.enableFatStacks.get())
@@ -35,7 +38,8 @@ public class ItemEntityRendererMixin
     }
 
     @ModifyConstant(method = "render(Lnet/minecraft/world/entity/item/ItemEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V",
-            constant = @Constant(doubleValue = 0.09375F))
+            constant = @Constant(doubleValue = 0.09375F),
+            require = 0) //mitigate optifine messing with item rendering
     private double reduceItemSpread(double value, ItemEntity entity, float p_115037_, float p_115038_, PoseStack p_115039_, MultiBufferSource p_115040_, int p_115041_)
     {
         if(!ClientConfig.enableFatStacks.get())
@@ -46,7 +50,8 @@ public class ItemEntityRendererMixin
     }
 
     @ModifyConstant(method = "render(Lnet/minecraft/world/entity/item/ItemEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V",
-            constant = @Constant(floatValue = -0.09375F))
+            constant = @Constant(floatValue = -0.09375F),
+            require = 0)  //mitigate optifine messing with item rendering
     private float reduceItemSpreadFloat(float value, ItemEntity entity, float p_115037_, float p_115038_, PoseStack p_115039_, MultiBufferSource p_115040_, int p_115041_)
     {
         if(!ClientConfig.enableFatStacks.get())
