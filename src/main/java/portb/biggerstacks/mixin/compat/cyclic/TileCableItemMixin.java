@@ -1,9 +1,7 @@
 package portb.biggerstacks.mixin.compat.cyclic;
 
 import com.lothrazar.cyclic.block.cable.item.TileCableItem;
-import org.lwjgl.system.CallbackI;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -12,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import portb.biggerstacks.config.ServerConfig;
 
 @Mixin(value = TileCableItem.class, remap = false)
-public class CyclicFixer
+public class TileCableItemMixin
 {
     @Inject(method = "<init>", at = @At("TAIL"), require = 0)
     private void fixExtractQty(CallbackInfo callbackInfo)
