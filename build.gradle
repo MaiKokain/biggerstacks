@@ -139,12 +139,13 @@ dependencies {
     var xnet = "curse.maven:XNet-260912:3603062"
     var dimStorage = "curse.maven:DimStorage-353882:3569750"
     var prettyPipes = "curse.maven:PrettyPipes-376737:3582953"
-
-    var minecolonies = "curse.maven:MineColonies-245506:3599965"
-    var structurize = "curse.maven:Structurize-298744:3564388"
-    var domumOrnamentum = "curse.maven:DomumOrnamentum-527361:3561327"
-    var multipiston = "curse.maven:multipiston-303278:3543720"
-    var blockui = "curse.maven:blockui-522992:3561693"
+    var colossalChests = "curse.maven:ColossalChests-237875:3630277" //deobf version
+    var cyclopsCore = "curse.maven:CyclopsCore-232758:3614855" //deobf version
+    //var minecolonies = "curse.maven:MineColonies-245506:3599965"
+    //var structurize = "curse.maven:Structurize-298744:3564388"
+    //var domumOrnamentum = "curse.maven:DomumOrnamentum-527361:3561327"
+    //var multipiston = "curse.maven:multipiston-303278:3543720"
+    //var blockui = "curse.maven:blockui-522992:3561693"
 
     implementation fg.deobf(ie)
     implementation fg.deobf(jei)
@@ -159,12 +160,14 @@ dependencies {
     implementation fg.deobf(xnet)
     implementation fg.deobf(dimStorage)
     implementation fg.deobf(prettyPipes)
+    implementation colossalChests
+    implementation cyclopsCore
 
-    runtimeOnly fg.deobf(minecolonies)
-    runtimeOnly fg.deobf(structurize)
-    runtimeOnly fg.deobf(domumOrnamentum)
-    runtimeOnly fg.deobf(multipiston)
-    runtimeOnly fg.deobf(blockui)
+    //runtimeOnly fg.deobf(minecolonies)
+    //runtimeOnly fg.deobf(structurize)
+    //runtimeOnly fg.deobf(domumOrnamentum)
+    //runtimeOnly fg.deobf(multipiston)
+    //runtimeOnly fg.deobf(blockui)
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
