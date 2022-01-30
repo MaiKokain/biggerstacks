@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin.compat;
+package portb.biggerstacks.mixin.compat.ae2;
 
 import appeng.parts.automation.IOBusPart;
 import org.spongepowered.asm.mixin.Mixin;
@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.ServerConfig;
 
 @Mixin(IOBusPart.class)
-public class AppliedEnergisticsCompat
+public class IOBusPartMixin
 {
     @Inject(method = "getOperationsPerTick", at = @At("RETURN"), cancellable = true, require = 0, remap = false)
     private void scaleOperationsPerTick(CallbackInfoReturnable<Integer> returnInfo)

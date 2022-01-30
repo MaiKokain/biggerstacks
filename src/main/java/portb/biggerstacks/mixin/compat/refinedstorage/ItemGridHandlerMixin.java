@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import portb.biggerstacks.config.ServerConfig;
 
 @Mixin(ItemGridHandler.class)
-public class RefinedStorageFixer
+public class ItemGridHandlerMixin
 {
     @ModifyConstant(method = "onExtract(Lnet/minecraft/server/level/ServerPlayer;Ljava/util/UUID;II)V", constant = @Constant(intValue = 64), remap = false, require = 0)
     private int biggerStackExtract(int value)
