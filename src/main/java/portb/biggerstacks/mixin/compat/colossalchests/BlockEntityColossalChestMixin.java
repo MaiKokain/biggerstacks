@@ -9,7 +9,7 @@ import portb.biggerstacks.config.ServerConfig;
 @Mixin(BlockEntityColossalChest.class)
 public class BlockEntityColossalChestMixin
 {
-    @ModifyConstant(method = {"constructInventory", "constructInventoryDebug"}, constant = @Constant(intValue = 64), remap = false)
+    @ModifyConstant(method = {"constructInventory", "constructInventoryDebug"}, constant = @Constant(intValue = 64), remap = false, require = 0)
     private int increaseStackSize(int value)
     {
         return ServerConfig.INSTANCE.maxStackCount.get();
