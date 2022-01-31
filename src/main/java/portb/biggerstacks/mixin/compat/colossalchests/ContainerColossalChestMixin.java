@@ -9,7 +9,7 @@ import portb.biggerstacks.config.ServerConfig;
 @Mixin(ContainerColossalChest.class)
 public class ContainerColossalChestMixin
 {
-    @ModifyConstant(method = "<init>(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/FriendlyByteBuf;)V", constant = @Constant(intValue = 64))
+    @ModifyConstant(method = "<init>(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/FriendlyByteBuf;)V", constant = @Constant(intValue = 64), require = 0)
     private static int increaseStackSize(int value)
     {
         return ServerConfig.INSTANCE.maxStackCount.get();
