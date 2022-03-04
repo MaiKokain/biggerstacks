@@ -16,7 +16,7 @@ apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'idea'
 
 group = 'PORTB'
-def modversion = version = '1.18-2.6'
+def modversion = version = '1.18-2.7'
 
 java {
     archivesBaseName = 'biggerstacks'
