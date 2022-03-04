@@ -41,7 +41,6 @@
     "compat.colossalchests.ContainerColossalChestMixin"
   ],
   "client": [
-    "client.ItemEntityRendererMixin",
     "client.ItemRendererMixin",
     "client.CreateWorldScreenMixin"
   ],

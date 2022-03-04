@@ -2,6 +2,7 @@ package portb.biggerstacks;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -77,7 +78,7 @@ public class BiggerStacks
 
         if (stack.getCount() > Constants.ONE_THOUSAND)
         {
-            event.getToolTip().add(1, new TextComponent(ChatFormatting.GRAY + "Exact count: " + ChatFormatting.DARK_AQUA + TOOLTIP_NUMBER_FORMAT.format(stack.getCount())));
+            event.getToolTip().add(1, new TranslatableComponent("biggerstacks.exact.count", new TextComponent(TOOLTIP_NUMBER_FORMAT.format(stack.getCount())).withStyle(ChatFormatting.DARK_AQUA)).withStyle(ChatFormatting.GRAY));
         }
     }
 }
