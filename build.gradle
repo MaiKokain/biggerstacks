@@ -1,6 +1,5 @@
 buildscript {
     repositories {
-        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = 'https://maven.minecraftforge.net' }
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
@@ -8,31 +7,38 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+
     }
+}
+
+plugins {
+    id 'eclipse'
+    id 'maven-publish'
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'idea'
 
+version = '1.18-2.7'
 group = 'PORTB'
-def modversion = version = '1.18-2.7'
+archivesBaseName = 'biggerstacks'
 
-java {
-    archivesBaseName = 'biggerstacks'
-    toolchain.languageVersion = JavaLanguageVersion.of(17)
-}
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 
 minecraft {
     mappings channel: 'official', version: '1.18.1'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
+    
     runs {
         client {
             workingDirectory project.file('run')
+            
             property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'verbose'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'biggerstacks'
 
             mods {
                 biggerstacks {
@@ -42,10 +48,25 @@ minecraft {
         }
 
         server {
-            workingDirectory project.file('run')
+            workingDirectory project.file('serverrun')
+            
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'biggerstacks'
+
+            mods {
+                biggerstacks {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        gameTestServer {
+            workingDirectory project.file('gametestrun')
 
             property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'verbose'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'biggerstacks'
 
             mods {
                 biggerstacks {
@@ -55,7 +76,7 @@ minecraft {
         }
 
         data {
-            workingDirectory project.file('run')
+            workingDirectory project.file('datarun')
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -78,9 +99,9 @@ mixin {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-
 repositories {
     mavenCentral()
+
     maven {	// IE & CT Files
         name = "BlameJared"
         url = "https://maven.blamejared.com/"
@@ -112,42 +133,26 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.40'
+    minecraft 'net.minecraftforge:forge:1.18.1-39.1.2'
 
-    // Real mod deobf dependency examples - these get remapped to your current mappings
-    // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
-    // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency
-    // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency
-
-    // Examples using mod jars from ./libs
-    // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
-
-    // For more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
-    var modularRouters = "curse.maven:ModularRouters-250294:3574035"
-    var ie = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.0-145"
     var jei = "mezz.jei:jei-1.18.1:9.2.1.69"
-    var rs = "com.refinedmods:refinedstorage:1.10.0-beta.4"
-    var ae2 = "curse.maven:appliedenergistics2-223794:3590239"
-    var cyclic = "curse.maven:Cyclic-239286:3594244"
-    var mcJtyLib = "curse.maven:McJtyLib-233105:3604742"
-    var rftoolsBase = "curse.maven:RFToolsBase-326041:3603065"
-    var rftoolsStorage = "curse.maven:RFToolsBase-350006:3603059"
-    var rftoolsUtility = "curse.maven:RFToolsUtility-342466:3604743"
-    var xnet = "curse.maven:XNet-260912:3603062"
+    var rs = "com.refinedmods:refinedstorage:1.10.0"
+    var ae2 = "appeng:appliedenergistics2:10.0.1"
+    var cyclic = "curse.maven:Cyclic-239286:3680474"
+    var mcJtyLib = "curse.maven:McJtyLib-233105:3665826"
+    var rftoolsBase = "curse.maven:RFToolsBase-326041:3665829"
+    var rftoolsStorage = "curse.maven:RFToolsBase-350006:3665835"
+    var rftoolsUtility = "curse.maven:RFToolsUtility-342466:3665830"
+    var xnet = "curse.maven:XNet-260912:3642808"
     var dimStorage = "curse.maven:DimStorage-353882:3569750"
-    var prettyPipes = "curse.maven:PrettyPipes-376737:3582953"
-    var colossalChests = "curse.maven:ColossalChests-237875:3630277" //deobf version
-    var cyclopsCore = "curse.maven:CyclopsCore-232758:3614855" //deobf version
-    //var minecolonies = "curse.maven:MineColonies-245506:3599965"
-    //var structurize = "curse.maven:Structurize-298744:3564388"
-    //var domumOrnamentum = "curse.maven:DomumOrnamentum-527361:3561327"
-    //var multipiston = "curse.maven:multipiston-303278:3543720"
-    //var blockui = "curse.maven:blockui-522992:3561693"
+    var prettyPipes = "curse.maven:PrettyPipes-376737:3672088"
+    var colossalChests = "curse.maven:ColossalChests-237875:3614897" //deobf version
+    var cyclopsCore = "curse.maven:CyclopsCore-232758:3683832" //deobf version
+    var modularRouters = "curse.maven:ModularRouters-250294:3621743"
+    var ie = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.1-pre.9"
+    //var bonsaiTrees = "curse.maven:BonsaiTrees-278993:3677571"
+    //var libnonymous = "curse.maven:Libnonymous-357557:3677573"
 
-    implementation fg.deobf(ie)
     implementation fg.deobf(jei)
     implementation fg.deobf(rs) { transitive false }
     implementation fg.deobf(ae2)
@@ -160,33 +165,31 @@ dependencies {
     implementation fg.deobf(xnet)
     implementation fg.deobf(dimStorage)
     implementation fg.deobf(prettyPipes)
+    implementation fg.deobf(ie)
     implementation colossalChests
     implementation cyclopsCore
-
-    //runtimeOnly fg.deobf(minecolonies)
-    //runtimeOnly fg.deobf(structurize)
-    //runtimeOnly fg.deobf(domumOrnamentum)
-    //runtimeOnly fg.deobf(multipiston)
-    //runtimeOnly fg.deobf(blockui)
+    //implementation fg.deobf(bonsaiTrees)
+    //implementation fg.deobf(libnonymous)
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-
 }
 
-// Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
         attributes([
                 "Specification-Title"     : "biggerstacks",
-                //"Specification-Vendor": "biggerstacks authors",
+                //"Specification-Vendor"    : "biggerstackssareus",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                //"Implementation-Vendor": "biggerstacks authors",
-                "Implementation-Version": modversion,
+                "Implementation-Version"  : project.jar.archiveVersion.get(),
+                //"Implementation-Vendor"   : "biggerstackssareus",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
 
 jar.finalizedBy('reobfJar')
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
