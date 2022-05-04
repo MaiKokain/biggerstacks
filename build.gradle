@@ -19,7 +19,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.18-2.7'
+version = '1.18-2.7.1'
 group = 'PORTB'
 archivesBaseName = 'biggerstacks'
 
