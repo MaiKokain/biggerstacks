@@ -18,7 +18,9 @@ public class ServerConfig
                 "The maximum theoretical limit is " + Integer.MAX_VALUE + ". However, to prevent funny integer overflows, I have limited the max stack size to " + (Integer.MAX_VALUE / 2)  + ".",
                 "I don't recommend setting it that high, as things could still break. You have been warned.",
                 "Anything below 10 million should be pretty safe.",
-                "Some things may need a world restart for this to take effect."
+                "Some mods may need a world restart for changes to take effect.",
+                "**If you are trying to change the maximum stack size for an existing world, you have to change it in the serverconfig for it to work.**",
+                "The serverconfig file is located in <minecraft folder>/saves/<your world folder>/serverconfig/biggerstacks.toml"
         ).defineInRange("Max stack size", 999, 1, Integer.MAX_VALUE / 2);
 
         increaseTransferRate = builder.comment("Whether to increase max transfer rate of some mods to the new stack limit/t.",
