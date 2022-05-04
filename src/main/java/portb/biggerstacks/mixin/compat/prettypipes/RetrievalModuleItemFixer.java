@@ -1,6 +1,5 @@
 package portb.biggerstacks.mixin.compat.prettypipes;
 
-import de.ellpeck.prettypipes.pipe.modules.extraction.ExtractionModuleItem;
 import de.ellpeck.prettypipes.pipe.modules.retrieval.RetrievalModuleItem;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
