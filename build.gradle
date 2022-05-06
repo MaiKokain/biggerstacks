@@ -28,7 +28,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 
 minecraft {
-    mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'official', version: '1.18.2'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     
@@ -102,26 +102,26 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     mavenCentral()
 
-    maven {	// IE & CT Files
+    maven {	// IE
         name = "BlameJared"
         url = "https://maven.blamejared.com/"
     }
-    maven { // JEI & Tinkers
+    maven { // JEI
         name 'DVS1 Maven FS'
         url 'https://dvs1.progwml6.com/files/maven'
     }
     maven { //Refined storage
         url = uri("https://maven.pkg.github.com/refinedmods/refinedstorage")
         credentials {
-            username = "githubisstupid"
-            password = "\u0067hp_pnP5hVDYXXhhXwe21IEkrUzGjquUJL0xjLzb"
+            username = "github_is_stupid"
+            password = "\u0067hp_oGjcDFCn8jeTzIj" + /*why do i have to put this here?*/ "4Ke9pLoEVtpnZMP4VQgaX"
         }
     }
     maven { //Applied energy sticks 2
         url = uri("https://maven.pkg.github.com/AppliedEnergistics/Applied-Energistics-2")
         credentials {
-            username = "githubisstupid"
-            password = "\u0067hp_pnP5hVDYXXhhXwe21IEkrUzGjquUJL0xjLzb"
+            username = "github_is_stupid"
+            password = "\u0067hp_oGjcD" /*im blue daba de daba di*/ + "FCn8jeTzIj4Ke9pLoEVtpnZMP4VQgaX"
         }
     }
     maven {
@@ -133,29 +133,33 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.1.2'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.16'
 
-    var jei = "mezz.jei:jei-1.18.1:9.2.1.69"
-    var rs = "com.refinedmods:refinedstorage:1.10.0"
-    var ae2 = "appeng:appliedenergistics2:10.0.1"
-    var cyclic = "curse.maven:Cyclic-239286:3680474"
-    var mcJtyLib = "curse.maven:McJtyLib-233105:3665826"
-    var rftoolsBase = "curse.maven:RFToolsBase-326041:3665829"
-    var rftoolsStorage = "curse.maven:RFToolsBase-350006:3665835"
-    var rftoolsUtility = "curse.maven:RFToolsUtility-342466:3665830"
-    var xnet = "curse.maven:XNet-260912:3642808"
-    var dimStorage = "curse.maven:DimStorage-353882:3569750"
-    var prettyPipes = "curse.maven:PrettyPipes-376737:3672088"
-    var colossalChests = "curse.maven:ColossalChests-237875:3614897" //deobf version
-    var cyclopsCore = "curse.maven:CyclopsCore-232758:3683832" //deobf version
-    var modularRouters = "curse.maven:ModularRouters-250294:3621743"
-    var ie = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.1-7.1.1-pre.9"
+    var jei             = "mezz.jei:jei-1.18.2:9.7.0.194"
+    var rs              = "com.refinedmods:refinedstorage:1.10.2"
+    var ae2             = "appeng:appliedenergistics2:11.0.0-alpha.5"
+    var ie              = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.2-8.0.2-pre.9"
+
+    var cyclic          = "curse.maven:Cyclic-239286:3708026"           //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
+    var mcJtyLib        = "curse.maven:McJtyLib-233105:3757792"         //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
+    var rftoolsBase     = "curse.maven:RFToolsBase-326041:3711541"      //https://www.curseforge.com/minecraft/mc-mods/rftools-base/files
+    var rftoolsStorage  = "curse.maven:RFToolsStorage-350006:3771412"   //https://www.curseforge.com/minecraft/mc-mods/rftools-storage/files
+    var rftoolsUtility  = "curse.maven:RFToolsUtility-342466:3753619"   //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
+    var xnet            = "curse.maven:XNet-260912:3711553"             //https://www.curseforge.com/minecraft/mc-mods/xnet/files
+    var dimStorage      = "curse.maven:DimStorage-353882:3737321"       //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
+    var prettyPipes     = "curse.maven:PrettyPipes-376737:3724800"      //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
+    var colossalChests  = "curse.maven:ColossalChests-237875:3768513"   //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files (deobf version)
+    var cyclopsCore     = "curse.maven:CyclopsCore-232758:3778683"      //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files (deobf version)
+    var modularRouters  = "curse.maven:ModularRouters-250294:3776175"   //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
+    var playerTabs      = "curse.maven:PlayerTabs-618102:3772581"       //https://www.curseforge.com/minecraft/mc-mods/player-tabs/files/
     //var bonsaiTrees = "curse.maven:BonsaiTrees-278993:3677571"
     //var libnonymous = "curse.maven:Libnonymous-357557:3677573"
 
     implementation fg.deobf(jei)
     implementation fg.deobf(rs) { transitive false }
     implementation fg.deobf(ae2)
+    implementation fg.deobf(ie)
+
     implementation fg.deobf(modularRouters)
     implementation fg.deobf(cyclic)
     implementation fg.deobf(mcJtyLib)
@@ -165,7 +169,7 @@ dependencies {
     implementation fg.deobf(xnet)
     implementation fg.deobf(dimStorage)
     implementation fg.deobf(prettyPipes)
-    implementation fg.deobf(ie)
+    implementation fg.deobf(playerTabs)
     implementation colossalChests
     implementation cyclopsCore
     //implementation fg.deobf(bonsaiTrees)
