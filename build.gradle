@@ -139,6 +139,7 @@ dependencies {
     var rs              = "com.refinedmods:refinedstorage:1.10.2"
     var ae2             = "appeng:appliedenergistics2:11.0.0-alpha.5"
     var ie              = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.2-8.0.2-pre.9"
+    var ct              = "com.blamejared.crafttweaker:CraftTweaker-forge-1.18.2:9.1.134" //used for testing blacklist tag
 
     var cyclic          = "curse.maven:Cyclic-239286:3708026"           //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
     var mcJtyLib        = "curse.maven:McJtyLib-233105:3757792"         //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
@@ -159,6 +160,7 @@ dependencies {
     implementation fg.deobf(rs) { transitive false }
     implementation fg.deobf(ae2)
     implementation fg.deobf(ie)
+    implementation fg.deobf(ct)
 
     implementation fg.deobf(modularRouters)
     implementation fg.deobf(cyclic)

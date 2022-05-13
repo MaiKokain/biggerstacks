@@ -4,7 +4,13 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,12 +25,12 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(BiggerStacks.MOD_ID)
+@Mod(Constants.MOD_ID)
 public class BiggerStacks
 {
-    public static final String MOD_ID = "biggerstacks";
-    public static final ArrayList<Class> IGNORED_CLASSES = new ArrayList<>();
-    //public static final int MAX_STACK_SIZE = Integer.MAX_VALUE;
+    public static final ArrayList<Class<?>> IGNORED_CLASSES = new ArrayList<>();
+
+    public static final TagKey<Item> BLACKLIST_TAG = ItemTags.create(new ResourceLocation(Constants.MOD_ID, "blacklist"));
 
     private static final DecimalFormat TOOLTIP_NUMBER_FORMAT = new DecimalFormat("###,###,###,###,###,###");
 
@@ -63,11 +69,12 @@ public class BiggerStacks
     public BiggerStacks()
     {
         MinecraftForge.EVENT_BUS.register(this);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, MOD_ID + "-client.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
         ModLoadingContext.get()
-                         .registerConfig(ModConfig.Type.CLIENT, LocalConfig.INSTANCE.SPEC, MOD_ID + "-local.toml");
+                         .registerConfig(ModConfig.Type.CLIENT, LocalConfig.INSTANCE.SPEC, Constants.MOD_ID + "-local.toml");
         ModLoadingContext.get()
-                         .registerConfig(ModConfig.Type.SERVER, ServerConfig.INSTANCE.SPEC, MOD_ID + "-server.toml");
+                         .registerConfig(ModConfig.Type.SERVER, ServerConfig.INSTANCE.SPEC, Constants.MOD_ID + "-server.toml");
+        //Items.DIRT.
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
