@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.ModularRoutersHelper;
-import portb.biggerstacks.config.ServerConfig;
+import portb.biggerstacks.config.AutoSidedConfig;
 
 @Mixin(StackUpgrade.class)
 public class ModularRoutersStackUpgradeMixin
@@ -14,7 +14,7 @@ public class ModularRoutersStackUpgradeMixin
     @Inject(method = "getStackLimit", at = @At("RETURN"), remap = false, require = 0, cancellable = true)
     private void increaseStackLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
     {
-        if (ServerConfig.INSTANCE.increaseTransferRate.get())
+        if (AutoSidedConfig.increaseTransferRate())
         {
             returnInfo.cancel();
             returnInfo.setReturnValue(ModularRoutersHelper.getMaxStackUpgrades());

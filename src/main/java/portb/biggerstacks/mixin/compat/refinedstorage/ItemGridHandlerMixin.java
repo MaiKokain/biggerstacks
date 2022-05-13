@@ -4,14 +4,17 @@ import com.refinedmods.refinedstorage.apiimpl.network.grid.handler.ItemGridHandl
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import portb.biggerstacks.config.ServerConfig;
+import portb.biggerstacks.config.AutoSidedConfig;
 
 @Mixin(ItemGridHandler.class)
 public class ItemGridHandlerMixin
 {
-    @ModifyConstant(method = "onExtract(Lnet/minecraft/server/level/ServerPlayer;Ljava/util/UUID;II)V", constant = @Constant(intValue = 64), remap = false, require = 0)
+    @ModifyConstant(method = "onExtract(Lnet/minecraft/server/level/ServerPlayer;Ljava/util/UUID;II)V",
+                    constant = @Constant(intValue = 64),
+                    remap = false,
+                    require = 0)
     private int biggerStackExtract(int value)
     {
-        return ServerConfig.INSTANCE.maxStackCount.get();
+        return AutoSidedConfig.maxStackSize();
     }
 }

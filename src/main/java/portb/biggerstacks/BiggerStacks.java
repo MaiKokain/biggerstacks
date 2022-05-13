@@ -12,7 +12,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import portb.biggerstacks.config.ClientConfig;
-import portb.biggerstacks.config.DefaultServerConfig;
+import portb.biggerstacks.config.LocalConfig;
 import portb.biggerstacks.config.ServerConfig;
 
 import java.text.DecimalFormat;
@@ -64,8 +64,10 @@ public class BiggerStacks
     {
         MinecraftForge.EVENT_BUS.register(this);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, MOD_ID + "-client.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DefaultServerConfig.INSTANCE.SPEC, MOD_ID + "-default.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.INSTANCE.SPEC, MOD_ID + "-server.toml");
+        ModLoadingContext.get()
+                         .registerConfig(ModConfig.Type.CLIENT, LocalConfig.INSTANCE.SPEC, MOD_ID + "-local.toml");
+        ModLoadingContext.get()
+                         .registerConfig(ModConfig.Type.SERVER, ServerConfig.INSTANCE.SPEC, MOD_ID + "-server.toml");
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -78,7 +80,11 @@ public class BiggerStacks
 
         if (stack.getCount() > Constants.ONE_THOUSAND)
         {
-            event.getToolTip().add(1, new TranslatableComponent("biggerstacks.exact.count", new TextComponent(TOOLTIP_NUMBER_FORMAT.format(stack.getCount())).withStyle(ChatFormatting.DARK_AQUA)).withStyle(ChatFormatting.GRAY));
+            event.getToolTip()
+                 .add(1,
+                      new TranslatableComponent("biggerstacks.exact.count",
+                                                new TextComponent(TOOLTIP_NUMBER_FORMAT.format(stack.getCount())).withStyle(
+                                                        ChatFormatting.DARK_AQUA)).withStyle(ChatFormatting.GRAY));
         }
     }
 }
