@@ -1,7 +1,7 @@
 package portb.biggerstacks.mixin.stacksize;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import portb.biggerstacks.config.ServerConfig;
+import portb.biggerstacks.config.AutoSidedConfig;
 
 //@Mixin(CompoundContainer.class)
 public class CompoundContainerMixin
@@ -9,10 +9,10 @@ public class CompoundContainerMixin
     //@Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true)
     private void fixMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
-        if(returnInfo.getReturnValue() == 64)
+        if (returnInfo.getReturnValue() == 64)
         {
             returnInfo.cancel();
-            returnInfo.setReturnValue(ServerConfig.INSTANCE.maxStackCount.get());
+            returnInfo.setReturnValue(AutoSidedConfig.maxStackSize());
         }
     }
 }

@@ -5,8 +5,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import portb.biggerstacks.config.DefaultServerConfig;
-import portb.biggerstacks.config.ServerConfig;
 
 @Mixin(CreateWorldScreen.class)
 public class CreateWorldScreenMixin
@@ -15,6 +13,6 @@ public class CreateWorldScreenMixin
     private void setDefaultStackSize(CallbackInfo callbackInfo)
     {
         //set the default stack size so the user doesn't have to do it manually every time
-        ServerConfig.INSTANCE.maxStackCount.set(DefaultServerConfig.INSTANCE.maxStackCount.get());
+        //ServerConfig.INSTANCE.maxStackCount.set(DefaultSpecialConfig.maxStackSize());
     }
 }

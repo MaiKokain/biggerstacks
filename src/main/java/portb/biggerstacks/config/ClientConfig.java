@@ -1,8 +1,10 @@
 package portb.biggerstacks.config;
 
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraftforge.common.ForgeConfigSpec;
 
+/**
+ * Config used for client-side only things, such as how stack numbers are rendered.
+ */
 public class ClientConfig
 {
     public static final ForgeConfigSpec SPEC;
@@ -12,7 +14,8 @@ public class ClientConfig
     static
     {
         builder.comment("Client configs");
-        enableNumberShortening = builder.comment("Enable number shortening. E.g. 1000000 becomes 1M.").define("Enable number shortening", true);
+        enableNumberShortening = builder.comment("Enable number shortening. E.g. 1000000 becomes 1M.")
+                                        .define("Enable number shortening", true);
 
         SPEC = builder.build();
     }

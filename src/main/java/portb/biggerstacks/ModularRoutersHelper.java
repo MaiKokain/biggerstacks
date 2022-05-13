@@ -1,12 +1,12 @@
 package portb.biggerstacks;
 
-import portb.biggerstacks.config.ServerConfig;
+import portb.biggerstacks.config.AutoSidedConfig;
 
 public class ModularRoutersHelper
 {
     public static int getMaxStackUpgrades()
     {
         //this needs precision, and is only done once per opening the gui
-        return (int) Math.ceil(Math.log(ServerConfig.INSTANCE.maxStackCount.get()) / Math.log(2));
+        return (int) Math.ceil(Math.log(AutoSidedConfig.maxStackSize()) / Math.log(2));
     }
 }

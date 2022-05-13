@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import portb.biggerstacks.config.ServerConfig;
+import portb.biggerstacks.config.AutoSidedConfig;
 
 import java.util.function.Supplier;
 
@@ -16,6 +16,6 @@ public class GenericItemHandlerBuilderMixin
     @Inject(method = "<init>", at = @At("TAIL"), require = 0)
     private void fixDefaultSlotLimit(GenericTileEntity te, Supplier<?> factorySupplier, CallbackInfo ci)
     {
-        ((BuilderAccessor)this).setSlotLimit(ServerConfig.INSTANCE.maxStackCount.get());
+        ((BuilderAccessor) this).setSlotLimit(AutoSidedConfig.maxStackSize());
     }
 }
