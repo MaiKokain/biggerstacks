@@ -42,10 +42,9 @@
         "stacksize.SlotMixin"
     ],
     "client": [
-        "client.CreateWorldScreenMixin",
         "client.ItemRendererMixin"
     ],
     "injectors": {
         "defaultRequire": 1
-  }
+    }
 }

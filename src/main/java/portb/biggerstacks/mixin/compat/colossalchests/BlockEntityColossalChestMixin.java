@@ -15,6 +15,6 @@ public class BlockEntityColossalChestMixin
                     require = 0)
     private int increaseStackSize(int value)
     {
-        return AutoSidedConfig.maxStackSize();
+        return AutoSidedConfig.getMaxStackSize();
     }
 }

@@ -20,7 +20,7 @@ public class TileCableItemMixin
         //i think it's a legacy thing anyway, you used to be able to set the extract
         //rate in the gui, but that doesn't seem like an option anymore
         if (AutoSidedConfig.increaseTransferRate())
-            ((TileCableItemAccessor) this).setExtractQty(AutoSidedConfig.maxStackSize());
+            ((TileCableItemAccessor) this).setExtractQty(AutoSidedConfig.getMaxStackSize());
     }
 
     @ModifyConstant(method = "normalFlow", constant = @Constant(intValue = 64), require = 0)
@@ -28,7 +28,7 @@ public class TileCableItemMixin
     {
         if (AutoSidedConfig.increaseTransferRate())
         {
-            return AutoSidedConfig.maxStackSize();
+            return AutoSidedConfig.getMaxStackSize();
         }
         else
         {

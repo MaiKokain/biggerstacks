@@ -15,10 +15,11 @@ public class ItemMixin
     private void biggerMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
         //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
-        if(AutoSidedConfig.isUsingWhitelist() && !((Item)(Object) this).getDefaultInstance().is(BiggerStacks.WHITELIST_TAG))
+        if (AutoSidedConfig.isUsingWhitelist() && !((Item) (Object) this).getDefaultInstance()
+                                                                         .is(BiggerStacks.WHITELIST_TAG))
             return;
-        //check if this item has the blacklist tag, and if it does, don't increase its stack size
-        else if(((Item)(Object) this).getDefaultInstance().is(BiggerStacks.BLACKLIST_TAG))
+            //check if this item has the blacklist tag, and if it does, don't increase its stack size
+        else if (((Item) (Object) this).getDefaultInstance().is(BiggerStacks.BLACKLIST_TAG))
             return;
 
         if (returnInfo.getReturnValue() != 1)

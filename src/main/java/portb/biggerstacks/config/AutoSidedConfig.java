@@ -6,12 +6,14 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 /**
  * Provides the config values from LocalConfig if the player is playing on singleplayer,
  * or the values from ServerConfig if the player is playing on a remote server.
- *
+ * <p>
  * If the game instance is a dedicated server, it will use ServerConfig.
  */
 public class AutoSidedConfig
 {
-    private AutoSidedConfig() {}
+    private AutoSidedConfig()
+    {
+    }
 
     public static boolean increaseTransferRate()
     {
@@ -30,7 +32,7 @@ public class AutoSidedConfig
 
     private static ServerConfig getConfigInstance()
     {
-        if(isPlayingOnRemoteServer())
+        if (isPlayingOnRemoteServer())
             return ServerConfig.INSTANCE;
         else
             return LocalConfig.INSTANCE;

@@ -16,7 +16,7 @@ public class UpgradeItemHandlerMixin
         if (returnInfo.getReturnValue() == 64 && AutoSidedConfig.increaseTransferRate())
         {
             returnInfo.cancel();
-            returnInfo.setReturnValue(AutoSidedConfig.maxStackSize());
+            returnInfo.setReturnValue(AutoSidedConfig.getMaxStackSize());
         }
     }
 }

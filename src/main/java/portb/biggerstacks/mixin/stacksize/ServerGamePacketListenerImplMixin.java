@@ -13,6 +13,6 @@ public class ServerGamePacketListenerImplMixin
     @ModifyConstant(method = "handleSetCreativeModeSlot", constant = @Constant(intValue = 64))
     private int handleBiggerStackLimit(int value)
     {
-        return AutoSidedConfig.maxStackSize();
+        return AutoSidedConfig.getMaxStackSize();
     }
 }

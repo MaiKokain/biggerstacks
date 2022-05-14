@@ -21,7 +21,7 @@ public class XNetCompat
     {
         if (AutoSidedConfig.increaseTransferRate())
         {
-            return AutoSidedConfig.maxStackSize();
+            return AutoSidedConfig.getMaxStackSize();
         }
         else
         {

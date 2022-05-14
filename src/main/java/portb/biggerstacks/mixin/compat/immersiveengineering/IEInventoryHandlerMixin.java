@@ -21,7 +21,7 @@ public class IEInventoryHandlerMixin
 
         if (limit == 64)
         {
-            return AutoSidedConfig.maxStackSize();
+            return AutoSidedConfig.getMaxStackSize();
         }
 
         return limit;

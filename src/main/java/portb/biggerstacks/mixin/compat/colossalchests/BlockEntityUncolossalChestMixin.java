@@ -12,6 +12,6 @@ public class BlockEntityUncolossalChestMixin
     @ModifyConstant(method = "<init>", constant = @Constant(intValue = 64), remap = false, require = 0)
     private int increaseStackSize(int val)
     {
-        return AutoSidedConfig.maxStackSize();
+        return AutoSidedConfig.getMaxStackSize();
     }
 }

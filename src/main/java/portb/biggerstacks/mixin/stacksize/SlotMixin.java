@@ -16,7 +16,7 @@ public class SlotMixin
         if (returnInfo.getReturnValue() == 64)
         {
             returnInfo.cancel();
-            returnInfo.setReturnValue(AutoSidedConfig.maxStackSize());
+            returnInfo.setReturnValue(AutoSidedConfig.getMaxStackSize());
         }
     }
 }

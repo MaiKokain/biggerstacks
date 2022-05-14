@@ -14,6 +14,6 @@ public class ContainerColossalChestMixin
                     require = 0)
     private static int increaseStackSize(int value)
     {
-        return AutoSidedConfig.maxStackSize();
+        return AutoSidedConfig.getMaxStackSize();
     }
 }
