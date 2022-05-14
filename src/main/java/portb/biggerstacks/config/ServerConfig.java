@@ -24,7 +24,7 @@ public class ServerConfig
                     "IGNORE THIS CONFIG FILE!!!!",
                     "IGNORE THIS CONFIG FILE!!!!",
                     "IGNORE THIS CONFIG FILE!!!!",
-                    "IT IS ONLY USED ON DEDICATED SERVERS OR WHEN HOSTING ON LAN"
+                    "IT IS ONLY USED WHEN HOSTING ON LAN"
             );
         }
 
