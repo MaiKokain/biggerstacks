@@ -15,7 +15,7 @@ public class GenericItemHandlerMixin
     private void fixSlotLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
     {
         returnInfo.cancel();
-        returnInfo.setReturnValue(AutoSidedConfig.maxStackSize());
+        returnInfo.setReturnValue(AutoSidedConfig.getMaxStackSize());
     }
 
 }

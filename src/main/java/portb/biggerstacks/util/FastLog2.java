@@ -1,4 +1,4 @@
-package portb.biggerstacks;
+package portb.biggerstacks.util;
 
 public class FastLog2
 {

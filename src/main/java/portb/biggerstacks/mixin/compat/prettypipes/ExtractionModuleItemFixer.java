@@ -5,8 +5,8 @@ import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import portb.biggerstacks.PrettyPipesHelper;
 import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.PrettyPipesHelper;
 
 @Mixin(ExtractionModuleItem.class)
 public class ExtractionModuleItemFixer

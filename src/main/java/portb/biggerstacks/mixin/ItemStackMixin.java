@@ -1,7 +1,6 @@
 package portb.biggerstacks.mixin;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,10 +18,10 @@ public class ItemStackMixin
     private void biggerMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
         //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
-        if(AutoSidedConfig.isUsingWhitelist() && !((ItemStack)(Object) this).is(BiggerStacks.WHITELIST_TAG))
+        if (AutoSidedConfig.isUsingWhitelist() && !((ItemStack) (Object) this).is(BiggerStacks.WHITELIST_TAG))
             return;
-        //check if this item has the blacklist tag, and if it does, don't increase its stack size
-        else if(((ItemStack)(Object) this).is(BiggerStacks.BLACKLIST_TAG))
+            //check if this item has the blacklist tag, and if it does, don't increase its stack size
+        else if (((ItemStack) (Object) this).is(BiggerStacks.BLACKLIST_TAG))
             return;
 
         if (returnInfo.getReturnValue() != 1)

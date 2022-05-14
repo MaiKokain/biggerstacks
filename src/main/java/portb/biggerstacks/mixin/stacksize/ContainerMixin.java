@@ -10,6 +10,6 @@ public interface ContainerMixin extends Container
     @Override
     default int getMaxStackSize()
     {
-        return AutoSidedConfig.maxStackSize();
+        return AutoSidedConfig.getMaxStackSize();
     }
 }

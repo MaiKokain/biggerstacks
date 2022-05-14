@@ -16,6 +16,6 @@ public class GenericItemHandlerBuilderMixin
     @Inject(method = "<init>", at = @At("TAIL"), require = 0)
     private void fixDefaultSlotLimit(GenericTileEntity te, Supplier<?> factorySupplier, CallbackInfo ci)
     {
-        ((BuilderAccessor) this).setSlotLimit(AutoSidedConfig.maxStackSize());
+        ((BuilderAccessor) this).setSlotLimit(AutoSidedConfig.getMaxStackSize());
     }
 }

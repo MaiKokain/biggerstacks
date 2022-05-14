@@ -16,7 +16,7 @@ public class IOBusPartMixin
         if (AutoSidedConfig.increaseTransferRate() && returnInfo.getReturnValue() != 1)
         {
             returnInfo.cancel();
-            returnInfo.setReturnValue(returnInfo.getReturnValue() * AutoSidedConfig.maxStackSize() / 64);
+            returnInfo.setReturnValue(returnInfo.getReturnValue() * AutoSidedConfig.getMaxStackSize() / 64);
         }
     }
 

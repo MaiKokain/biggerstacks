@@ -15,6 +15,6 @@ public class TabsCapabilityMixin
                     remap = false)
     private int increaseMaxStackSize(int constant)
     {
-        return AutoSidedConfig.maxStackSize();
+        return AutoSidedConfig.getMaxStackSize();
     }
 }

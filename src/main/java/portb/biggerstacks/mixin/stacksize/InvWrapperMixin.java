@@ -18,7 +18,7 @@ public class InvWrapperMixin
 
         if (value == 64)
         {
-            return AutoSidedConfig.maxStackSize();
+            return AutoSidedConfig.getMaxStackSize();
         }
 
         return value;

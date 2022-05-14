@@ -15,6 +15,6 @@ public class ItemGridHandlerMixin
                     require = 0)
     private int biggerStackExtract(int value)
     {
-        return AutoSidedConfig.maxStackSize();
+        return AutoSidedConfig.getMaxStackSize();
     }
 }

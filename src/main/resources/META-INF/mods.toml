@@ -6,8 +6,8 @@ license = "GNU LGPLv3"
 modId = "biggerstacks"
 version = "${file.jarVersion}"
 displayName = "Bigger Stacks"
-logoFile="BiggerStacks.png"
-authors="PORTB"
+logoFile = "BiggerStacks.png"
+authors = "PORTB"
 description = '''
 Allows increasing stack sizes past 64 up to MAXINT (about 2 billion)
 '''
