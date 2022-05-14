@@ -31,6 +31,7 @@ public class BiggerStacks
     public static final ArrayList<Class<?>> IGNORED_CLASSES = new ArrayList<>();
 
     public static final TagKey<Item> BLACKLIST_TAG = ItemTags.create(new ResourceLocation(Constants.MOD_ID, "blacklist"));
+    public static final TagKey<Item> WHITELIST_TAG = ItemTags.create(new ResourceLocation(Constants.MOD_ID, "whitelist"));
 
     private static final DecimalFormat TOOLTIP_NUMBER_FORMAT = new DecimalFormat("###,###,###,###,###,###");
 
@@ -74,7 +75,6 @@ public class BiggerStacks
                          .registerConfig(ModConfig.Type.CLIENT, LocalConfig.INSTANCE.SPEC, Constants.MOD_ID + "-local.toml");
         ModLoadingContext.get()
                          .registerConfig(ModConfig.Type.SERVER, ServerConfig.INSTANCE.SPEC, Constants.MOD_ID + "-server.toml");
-        //Items.DIRT.
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
