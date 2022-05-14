@@ -6,4 +6,9 @@ package portb.biggerstacks.config;
 public class LocalConfig extends ServerConfig
 {
     public final static LocalConfig INSTANCE = new LocalConfig();
+
+    LocalConfig()
+    {
+        super(false);
+    }
 }
