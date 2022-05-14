@@ -39,7 +39,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', 'biggerstacks'
 
-            args(["--username", "Herobrine" + String.format("%4d", System.nanoTime() % 1000)])
+            args(["--username", "Dev###"])
 
             mods {
                 biggerstacks {
