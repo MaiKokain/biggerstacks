@@ -18,16 +18,16 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.18-3.0'
+version = '1.16.5-3.0'
 group = 'PORTB'
 archivesBaseName = 'biggerstacks'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 
 minecraft {
-    mappings channel: 'official', version: '1.18.2'
+    mappings channel: 'official', version: '1.16.5'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -111,13 +111,6 @@ repositories {
         name 'DVS1 Maven FS'
         url 'https://dvs1.progwml6.com/files/maven'
     }
-    maven { //Refined storage
-        url = uri("https://maven.pkg.github.com/refinedmods/refinedstorage")
-        credentials {
-            username = "github_is_stupid"
-            password = "\u0067hp_oGjcDFCn8jeTzIj" + /*why do i have to put this here?*/"4Ke9pLoEVtpnZMP4VQgaX"
-        }
-    }
     maven { //Applied energy sticks 2
         url = uri("https://maven.pkg.github.com/AppliedEnergistics/Applied-Energistics-2")
         credentials {
@@ -134,44 +127,37 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.51'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.35'
 
     //@formatter:off
-    var jei             = "mezz.jei:jei-1.18.2:9.7.0.194"
-    var rs              = "com.refinedmods:refinedstorage:1.10.2"
-    var ae2             = "appeng:appliedenergistics2:11.0.0-alpha.5"
-    var ie              = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.2-8.0.2-pre.9"
-    var ct              = "com.blamejared.crafttweaker:CraftTweaker-forge-1.18.2:9.1.134" //used for testing blacklist/whitelist tag
-
     def cm = "curse.maven"
 
-    var cyclic                 = "${cm}:Cyclic-239286:3819253"                 //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
-    var mcJtyLib               = "${cm}:McJtyLib-233105:3825684"               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
-    var rftoolsBase            = "${cm}:RFToolsBase-326041:3825686"            //https://www.curseforge.com/minecraft/mc-mods/rftools-base/files
-    var rftoolsStorage         = "${cm}:RFToolsStorage-350006:3771412"         //https://www.curseforge.com/minecraft/mc-mods/rftools-storage/files
-    var rftoolsUtility         = "${cm}:RFToolsUtility-342466:3813656"         //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
-    var xnet                   = "${cm}:XNet-260912:3813662"                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
-    var dimStorage             = "${cm}:DimStorage-353882:3737321"             //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
-    var prettyPipes            = "${cm}:PrettyPipes-376737:3798343"            //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
-    var colossalChests         = "${cm}:ColossalChests-237875:3830851"         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files (deobf version)
-    var cyclopsCore            = "${cm}:CyclopsCore-232758:3832120"            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files (deobf version)
-    var modularRouters         = "${cm}:ModularRouters-250294:3776175"         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
-    var playerTabs             = "${cm}:PlayerTabs-618102:3772581"             //https://www.curseforge.com/minecraft/mc-mods/player-tabs/files/
-    var bonsaiTrees            = "${cm}:BonsaiTrees-278993:3677571"            //https://www.curseforge.com/minecraft/mc-mods/bonsai-trees/files/
-    var libnonymous            = "${cm}:Libnonymous-357557:3677573"            //https://www.curseforge.com/minecraft/mc-mods/libnonymous/files/
-    var sophisticatedBackpacks = "${cm}:SophisticatedBackpacks-422301:3830234" //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
-    var sophisticatedCore      = "${cm}:SophisticatedCore-618298:3830180"      //https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files
+    var jei                     = "mezz.jei:jei-1.16.5:7.7.1.152"
+    var ae2                     = "appeng:appliedenergistics2:8.4.7"
+    var ie                      = "blusunrize.immersiveengineering:ImmersiveEngineering:1.16.5-5.1.0-148"
+    var ct                      = "com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.2.511" //used for testing blacklist/whitelist tag
 
-    //var configMenus = "${cm}:ConfigMenus-544048:3671318"
-    //var betterModsButton = "${cm}:BetterModsButton-541584:3773500"
+    var refinedStorage         = "$cm:RefinedStorage-243076:3807951"         //https://www.curseforge.com/minecraft/mc-mods/refined-storage/files/
+    var cyclic                 = "$cm:Cyclic-239286:3717822"                 //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
+    var mcJtyLib               = "$cm:McJtyLib-233105:3813653"               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
+    var rftoolsBase            = "$cm:RFToolsBase-326041:3813654"            //https://www.curseforge.com/minecraft/mc-mods/rftools-base/files
+    var rftoolsStorage         = "$cm:RFToolsStorage-350006:3771411"         //https://www.curseforge.com/minecraft/mc-mods/rftools-storage/files
+    var rftoolsUtility         = "$cm:RFToolsUtility-342466:3813656"         //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
+    var xnet                   = "$cm:XNet-260912:3813662"                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
+    var dimStorage             = "$cm:DimStorage-353882:3335450"             //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
+    var prettyPipes            = "$cm:PrettyPipes-376737:3724799"            //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
+    var colossalChests         = "$cm:ColossalChests-237875:3474923"         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files
+    var cyclopsCore            = "$cm:CyclopsCore-232758:3796009"            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files
+    var modularRouters         = "$cm:ModularRouters-250294:3622942"         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
+    var sophisticatedBackpacks = "$cm:SophisticatedBackpacks-422301:3699214" //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
     //@formatter:on
 
     implementation fg.deobf(jei)
-    implementation fg.deobf(rs) { transitive false }
     implementation fg.deobf(ae2)
     implementation fg.deobf(ie)
     implementation fg.deobf(ct)
 
+    implementation fg.deobf(refinedStorage)
     implementation fg.deobf(modularRouters)
     implementation fg.deobf(cyclic)
     implementation fg.deobf(mcJtyLib)
@@ -181,16 +167,9 @@ dependencies {
     implementation fg.deobf(xnet)
     implementation fg.deobf(dimStorage)
     implementation fg.deobf(prettyPipes)
-    implementation fg.deobf(playerTabs)
-    implementation colossalChests
-    implementation cyclopsCore
-    implementation fg.deobf(bonsaiTrees)
-    implementation fg.deobf(libnonymous)
-    implementation fg.deobf(sophisticatedCore)
+    implementation fg.deobf(colossalChests)
+    implementation fg.deobf(cyclopsCore)
     implementation fg.deobf(sophisticatedBackpacks)
-
-    //implementation fg.deobf(betterModsButton)
-    //implementation fg.deobf(configMenus)
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
