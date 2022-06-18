@@ -12,7 +12,7 @@
         "ItemMixin",
         "ItemStackAccessor",
         "ItemStackMixin",
-        "compat.ae2.IOBusPartMixin",
+        /*"compat.ae2.IOBusPartMixin",
         "compat.colossalchests.BlockEntityColossalChestMixin",
         "compat.colossalchests.BlockEntityUncolossalChestMixin",
         "compat.colossalchests.ContainerColossalChestMixin",
@@ -34,7 +34,7 @@
         "compat.rftools.GenericItemHandlerMixin",
         "compat.rftools.GlobalStorageItemWrapperMixin",
         "compat.sophisticatedbackpacks.StorageContainerMenuBaseMixin",
-        "compat.xnet.XNetCompat",
+        "compat.xnet.XNetCompat",*/
         "stacksize.ContainerMixin",
         "stacksize.InvWrapperMixin",
         "stacksize.ItemStackHandlerMixin",

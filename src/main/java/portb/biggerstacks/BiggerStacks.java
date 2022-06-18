@@ -1,8 +1,7 @@
 package portb.biggerstacks;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -57,7 +56,7 @@ public class BiggerStacks
         IGNORED_CLASSES.add(ServerboundMovePlayerPacket.Rot.class);
         IGNORED_CLASSES.add(ServerboundMovePlayerPacket.StatusOnly.class);
 
-        IGNORED_CLASSES.add(ClientboundAddMobPacket.class);
+        //IGNORED_CLASSES.add(ClientboundAddMobPacket.class);
         IGNORED_CLASSES.add(ClientboundSectionBlocksUpdatePacket.class);
         IGNORED_CLASSES.add(ClientboundUpdateAttributesPacket.class);
         IGNORED_CLASSES.add(ClientboundSetChunkCacheCenterPacket.class);
@@ -94,9 +93,10 @@ public class BiggerStacks
         {
             event.getToolTip()
                  .add(1,
-                      new TranslatableComponent("biggerstacks.exact.count",
-                                                new TextComponent(TOOLTIP_NUMBER_FORMAT.format(stack.getCount())).withStyle(
-                                                        ChatFormatting.DARK_AQUA)).withStyle(ChatFormatting.GRAY));
+                      Component.translatable("biggerstacks.exact.count",
+                                             Component.literal(TOOLTIP_NUMBER_FORMAT.format(stack.getCount()))
+                                                      .withStyle(ChatFormatting.DARK_AQUA))
+                               .withStyle(ChatFormatting.GRAY));
         }
     }
 }
