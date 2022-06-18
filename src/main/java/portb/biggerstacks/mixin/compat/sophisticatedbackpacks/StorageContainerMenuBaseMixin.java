@@ -9,8 +9,12 @@ import portb.biggerstacks.config.AutoSidedConfig;
 @Mixin(value = StorageContainerMenuBase.class)
 public class StorageContainerMenuBaseMixin
 {
-    @ModifyConstant(method = "calculateMaxCountForStack", constant = @Constant(intValue = 64), require = 0, remap = false)
-    private static int increaseStackSize(int val){
+    @ModifyConstant(method = "calculateMaxCountForStack",
+                    constant = @Constant(intValue = 64),
+                    require = 0,
+                    remap = false)
+    private static int increaseStackSize(int val)
+    {
         return AutoSidedConfig.getMaxStackSize();
     }
 }
