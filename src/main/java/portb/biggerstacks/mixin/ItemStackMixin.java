@@ -17,11 +17,12 @@ public class ItemStackMixin
     @Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true)
     private void biggerMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
+        var item = ((ItemStack) (Object) this);
         //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
-        if (AutoSidedConfig.isUsingWhitelist() && !((ItemStack) (Object) this).is(BiggerStacks.WHITELIST_TAG))
+        if (AutoSidedConfig.isUsingWhitelist() && !item.is(BiggerStacks.WHITELIST_TAG))
             return;
-            //check if this item has the blacklist tag, and if it does, don't increase its stack size
-        else if (((ItemStack) (Object) this).is(BiggerStacks.BLACKLIST_TAG))
+        //check if this item has the blacklist tag, and if it does, don't increase its stack size
+        else if (item.is(BiggerStacks.BLACKLIST_TAG))
             return;
 
         if (returnInfo.getReturnValue() != 1)
