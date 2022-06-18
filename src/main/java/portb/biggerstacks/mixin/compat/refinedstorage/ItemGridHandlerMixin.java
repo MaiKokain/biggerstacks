@@ -9,7 +9,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 @Mixin(ItemGridHandler.class)
 public class ItemGridHandlerMixin
 {
-    @ModifyConstant(method = "onExtract(Lnet/minecraft/server/level/ServerPlayer;Ljava/util/UUID;II)V",
+    @ModifyConstant(method = "onExtract(Lnet/minecraft/entity/player/ServerPlayerEntity;Ljava/util/UUID;II)V",
                     constant = @Constant(intValue = 64),
                     remap = false,
                     require = 0)

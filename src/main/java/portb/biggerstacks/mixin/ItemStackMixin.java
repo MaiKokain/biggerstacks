@@ -1,7 +1,8 @@
 package portb.biggerstacks.mixin;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,12 +18,12 @@ public class ItemStackMixin
     @Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true)
     private void biggerMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
-        var item = ((ItemStack) (Object) this);
+        Item item = ((ItemStack) (Object) this).getItem();
         //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
-        if (AutoSidedConfig.isUsingWhitelist() && !item.is(BiggerStacks.WHITELIST_TAG))
+        if (AutoSidedConfig.isUsingWhitelist() && !BiggerStacks.WHITELIST_TAG.contains(item))
             return;
             //check if this item has the blacklist tag, and if it does, don't increase its stack size
-        else if (item.is(BiggerStacks.BLACKLIST_TAG))
+        else if (BiggerStacks.BLACKLIST_TAG.contains(item))
             return;
 
         if (returnInfo.getReturnValue() != 1)
@@ -33,18 +34,18 @@ public class ItemStackMixin
     }
 
     @Redirect(method = "save",
-              at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/CompoundTag;putByte(Ljava/lang/String;B)V"))
-    private void saveBigStack(CompoundTag tag, String key, byte p_128346_)
+              at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/CompoundNBT;putByte(Ljava/lang/String;B)V"))
+    private void saveBigStack(CompoundNBT tag, String key, byte p_128346_)
     {
         int count = ((ItemStack) (Object) this).getCount();
         tag.putInt(key, count);
     }
 
-    @Redirect(method = "<init>(Lnet/minecraft/nbt/CompoundTag;)V",
+    @Redirect(method = "<init>(Lnet/minecraft/nbt/CompoundNBT;)V",
               at = @At(value = "FIELD",
-                       target = "Lnet/minecraft/world/item/ItemStack;count:I",
+                       target = "Lnet/minecraft/item/ItemStack;count:I",
                        opcode = Opcodes.PUTFIELD))
-    private void readBigStack(ItemStack instance, int value, CompoundTag tag)
+    private void readBigStack(ItemStack instance, int value, CompoundNBT tag)
     {
         ((ItemStackAccessor) (Object) instance).accessSetCount(tag.getInt("Count"));
     }

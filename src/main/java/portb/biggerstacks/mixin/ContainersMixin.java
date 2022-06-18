@@ -1,12 +1,13 @@
 package portb.biggerstacks.mixin;
 
-import net.minecraft.world.Containers;
+import net.minecraft.block.ChestBlock;
+import net.minecraft.inventory.InventoryHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import portb.biggerstacks.config.AutoSidedConfig;
 
-@Mixin(Containers.class)
+@Mixin(InventoryHelper.class)
 public class ContainersMixin
 {
     @ModifyConstant(method = "dropItemStack", constant = {@Constant(intValue = 21), @Constant(intValue = 10)})

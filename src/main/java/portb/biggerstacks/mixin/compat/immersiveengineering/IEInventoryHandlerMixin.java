@@ -17,7 +17,7 @@ public class IEInventoryHandlerMixin
               require = 0)
     private int fixSlotLimit(IIEInventory inventory, int slot)
     {
-        var limit = inventory.getSlotLimit(slot);
+        int limit = inventory.getSlotLimit(slot);
 
         if (limit == 64)
         {

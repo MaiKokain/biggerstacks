@@ -9,7 +9,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 @Mixin(ContainerColossalChest.class)
 public class ContainerColossalChestMixin
 {
-    @ModifyConstant(method = "<init>(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/FriendlyByteBuf;)V",
+    @ModifyConstant(method = "<init>(ILnet/minecraft/entity/player/PlayerInventory;Lnet/minecraft/network/PacketBuffer;)V",
                     constant = @Constant(intValue = 64),
                     remap = false,
                     require = 0)

@@ -14,7 +14,7 @@ public class InvWrapperMixin
               remap = false)
     private int fixMaxStackSize(InvWrapper instance, int slot)
     {
-        var value = instance.getSlotLimit(slot);
+        int value = instance.getSlotLimit(slot);
 
         if (value == 64)
         {
