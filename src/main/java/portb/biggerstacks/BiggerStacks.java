@@ -1,14 +1,15 @@
 package portb.biggerstacks;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.network.protocol.game.*;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.Tags.IOptionalNamedTag;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,46 +27,10 @@ import java.util.ArrayList;
 @Mod(Constants.MOD_ID)
 public class BiggerStacks
 {
-    public static final ArrayList<Class<?>> IGNORED_CLASSES = new ArrayList<>();
-
-    public static final TagKey<Item> BLACKLIST_TAG = ItemTags.create(new ResourceLocation(Constants.MOD_ID,
-                                                                                          "blacklist"));
-    public static final TagKey<Item> WHITELIST_TAG = ItemTags.create(new ResourceLocation(Constants.MOD_ID,
-                                                                                          "whitelist"));
+    public static final IOptionalNamedTag<Item> BLACKLIST_TAG = ItemTags.createOptional(new ResourceLocation(Constants.MOD_ID, "blacklist"));
+    public static final IOptionalNamedTag<Item> WHITELIST_TAG = ItemTags.createOptional(new ResourceLocation(Constants.MOD_ID,"whitelist"));
 
     private static final DecimalFormat TOOLTIP_NUMBER_FORMAT = new DecimalFormat("###,###,###,###,###,###");
-
-    //for debugging every packet sent ever
-    static
-    {
-        IGNORED_CLASSES.add(ClientboundMoveEntityPacket.Rot.class);
-        IGNORED_CLASSES.add(ClientboundMoveEntityPacket.PosRot.class);
-        IGNORED_CLASSES.add(ClientboundMoveEntityPacket.Pos.class);
-        IGNORED_CLASSES.add(ClientboundTeleportEntityPacket.class);
-        IGNORED_CLASSES.add(ClientboundEntityEventPacket.class);
-        IGNORED_CLASSES.add(ClientboundRotateHeadPacket.class);
-        IGNORED_CLASSES.add(ClientboundSetEntityMotionPacket.class);
-        IGNORED_CLASSES.add(ClientboundLevelChunkWithLightPacket.class);
-        IGNORED_CLASSES.add(ClientboundSetEntityDataPacket.class);
-        IGNORED_CLASSES.add(ClientboundBlockUpdatePacket.class);
-        IGNORED_CLASSES.add(ClientboundSetTimePacket.class);
-        IGNORED_CLASSES.add(ClientboundRemoveEntitiesPacket.class);
-
-        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.class);
-        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.Pos.class);
-        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.PosRot.class);
-        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.Rot.class);
-        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.StatusOnly.class);
-
-        IGNORED_CLASSES.add(ClientboundAddMobPacket.class);
-        IGNORED_CLASSES.add(ClientboundSectionBlocksUpdatePacket.class);
-        IGNORED_CLASSES.add(ClientboundUpdateAttributesPacket.class);
-        IGNORED_CLASSES.add(ClientboundSetChunkCacheCenterPacket.class);
-        IGNORED_CLASSES.add(ClientboundLightUpdatePacket.class);
-        IGNORED_CLASSES.add(ClientboundKeepAlivePacket.class);
-        IGNORED_CLASSES.add(ServerboundKeepAlivePacket.class);
-        IGNORED_CLASSES.add(ClientboundForgetLevelChunkPacket.class);
-    }
 
     public BiggerStacks()
     {
@@ -80,6 +45,7 @@ public class BiggerStacks
                          .registerConfig(ModConfig.Type.SERVER,
                                          ServerConfig.INSTANCE.SPEC,
                                          Constants.MOD_ID + "-server.toml");
+
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -88,15 +54,15 @@ public class BiggerStacks
         if (!ClientConfig.enableNumberShortening.get())
             return;
 
-        var stack = event.getItemStack();
+        ItemStack stack = event.getItemStack();
 
         if (stack.getCount() > Constants.ONE_THOUSAND)
         {
             event.getToolTip()
                  .add(1,
-                      new TranslatableComponent("biggerstacks.exact.count",
-                                                new TextComponent(TOOLTIP_NUMBER_FORMAT.format(stack.getCount())).withStyle(
-                                                        ChatFormatting.DARK_AQUA)).withStyle(ChatFormatting.GRAY));
+                      new TranslationTextComponent("biggerstacks.exact.count",
+                                                   new StringTextComponent(TOOLTIP_NUMBER_FORMAT.format(stack.getCount())).withStyle(
+                                                        TextFormatting.DARK_AQUA)).withStyle(TextFormatting.GRAY));
         }
     }
 }

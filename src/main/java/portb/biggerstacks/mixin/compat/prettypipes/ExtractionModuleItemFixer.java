@@ -19,7 +19,7 @@ public class ExtractionModuleItemFixer
               remap = false)
     private int fixMaxExtractionRate(ExtractionModuleItem instance)
     {
-        var rate = ((ExtractionModuleItemAccessor) instance).getMaxExtractionRate();
+        int rate = ((ExtractionModuleItemAccessor) instance).getMaxExtractionRate();
 
         if (!AutoSidedConfig.increaseTransferRate())
             return rate;

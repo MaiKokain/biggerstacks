@@ -1,6 +1,6 @@
 package portb.biggerstacks.mixin;
 
-import net.minecraft.world.item.Item;
+import net.minecraft.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,7 +14,7 @@ public class ItemMixin
     @Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true)
     private void biggerMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
     {
-        var item = ((Item) (Object) this).getDefaultInstance();
+        Item item = ((Item) (Object) this);
 
         //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
         if (AutoSidedConfig.isUsingWhitelist() && !item.is(BiggerStacks.WHITELIST_TAG))

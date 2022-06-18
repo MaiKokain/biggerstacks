@@ -19,7 +19,7 @@ public class RetrievalModuleItemFixer
               remap = false)
     private int fixMaxExtractionRate(RetrievalModuleItem instance)
     {
-        var rate = ((RetrievalModuleItemAccessor) instance).getMaxExtractionRate();
+        int rate = ((RetrievalModuleItemAccessor) instance).getMaxExtractionRate();
 
         if (!AutoSidedConfig.increaseTransferRate())
             return rate;

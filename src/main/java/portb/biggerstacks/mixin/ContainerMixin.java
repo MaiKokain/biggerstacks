@@ -1,17 +1,17 @@
 package portb.biggerstacks.mixin;
 
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.inventory.container.Container;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Mixin(AbstractContainerMenu.class)
-public class AbstractContainerMenuMixin
+@Mixin(Container.class)
+public class ContainerMixin
 {
     //the game gives you the bigger half in the mouse when you split a stack, but the way it does this produces a integer overflow when the stack is MAXINT items
     @ModifyArg(method = "doClick",
                at = @At(value = "INVOKE",
-                        target = "Lnet/minecraft/world/inventory/Slot;tryRemove(IILnet/minecraft/world/entity/player/Player;)Ljava/util/Optional;"),
+                        target = "Lnet/minecraft/inventory/container/Slot;remove(I)Lnet/minecraft/item/ItemStack;"),
                index = 0)
     private int preventIntegerOverflow(int value)
     {

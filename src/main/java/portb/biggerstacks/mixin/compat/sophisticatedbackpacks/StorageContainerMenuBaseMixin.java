@@ -1,12 +1,12 @@
 package portb.biggerstacks.mixin.compat.sophisticatedbackpacks;
 
-import net.p3pp3rf1y.sophisticatedcore.common.gui.StorageContainerMenuBase;
+import net.p3pp3rf1y.sophisticatedbackpacks.common.gui.BackpackContainer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import portb.biggerstacks.config.AutoSidedConfig;
 
-@Mixin(value = StorageContainerMenuBase.class)
+@Mixin(value = BackpackContainer.class)
 public class StorageContainerMenuBaseMixin
 {
     @ModifyConstant(method = "calculateMaxCountForStack",
