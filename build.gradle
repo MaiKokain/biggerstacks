@@ -103,7 +103,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     mavenCentral()
 
-    maven {    // IE
+    maven { // IE & CT
         name = "BlameJared"
         url = "https://maven.blamejared.com/"
     }
