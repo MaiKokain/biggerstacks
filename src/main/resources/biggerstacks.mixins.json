@@ -34,6 +34,7 @@
         "compat.rftools.GenericItemHandlerMixin",
         "compat.rftools.GlobalStorageItemWrapperMixin",
         "compat.xnet.XNetCompat",
+        "compat.sophisticatedbackpacks.StorageContainerMenuBaseMixin",
         "stacksize.ContainerMixin",
         "stacksize.InvWrapperMixin",
         "stacksize.ItemStackHandlerMixin",
