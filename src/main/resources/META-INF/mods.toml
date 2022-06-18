@@ -9,7 +9,7 @@ displayName = "Bigger Stacks"
 logoFile = "BiggerStacks.png"
 authors = "PORTB"
 description = '''
-Allows increasing stack sizes past 64 up to half of MAXINT (about 1 billion)
+Allows increasing stack sizes past 64 up to MAXINT/2 (about 1 billion)
 '''
 
 [[dependencies.biggerstacks]]

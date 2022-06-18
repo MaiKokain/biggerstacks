@@ -30,11 +30,11 @@ minecraft {
     mappings channel: 'official', version: '1.18.2'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-    
+
     runs {
         client {
             workingDirectory project.file('run')
-            
+
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', 'biggerstacks'
@@ -50,7 +50,7 @@ minecraft {
 
         server {
             workingDirectory project.file('serverrun')
-            
+
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', 'biggerstacks'
@@ -103,7 +103,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     mavenCentral()
 
-    maven {	// IE
+    maven {    // IE
         name = "BlameJared"
         url = "https://maven.blamejared.com/"
     }
@@ -115,7 +115,7 @@ repositories {
         url = uri("https://maven.pkg.github.com/refinedmods/refinedstorage")
         credentials {
             username = "github_is_stupid"
-            password = "\u0067hp_oGjcDFCn8jeTzIj" + /*why do i have to put this here?*/ "4Ke9pLoEVtpnZMP4VQgaX"
+            password = "\u0067hp_oGjcDFCn8jeTzIj" + /*why do i have to put this here?*/"4Ke9pLoEVtpnZMP4VQgaX"
         }
     }
     maven { //Applied energy sticks 2

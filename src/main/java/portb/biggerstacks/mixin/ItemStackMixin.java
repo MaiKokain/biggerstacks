@@ -21,7 +21,7 @@ public class ItemStackMixin
         //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
         if (AutoSidedConfig.isUsingWhitelist() && !item.is(BiggerStacks.WHITELIST_TAG))
             return;
-        //check if this item has the blacklist tag, and if it does, don't increase its stack size
+            //check if this item has the blacklist tag, and if it does, don't increase its stack size
         else if (item.is(BiggerStacks.BLACKLIST_TAG))
             return;
 
