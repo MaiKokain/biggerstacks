@@ -149,8 +149,8 @@ dependencies {
     var mcJtyLib               = "${cm}:McJtyLib-233105:3825684"               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
     var rftoolsBase            = "${cm}:RFToolsBase-326041:3825686"            //https://www.curseforge.com/minecraft/mc-mods/rftools-base/files
     var rftoolsStorage         = "${cm}:RFToolsStorage-350006:3771412"         //https://www.curseforge.com/minecraft/mc-mods/rftools-storage/files
-    var rftoolsUtility         = "${cm}:RFToolsUtility-342466:3813656"         //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
-    var xnet                   = "${cm}:XNet-260912:3813662"                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
+    var rftoolsUtility         = "${cm}:RFToolsUtility-342466:3813647"         //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
+    var xnet                   = "${cm}:XNet-260912:3711553"                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
     var dimStorage             = "${cm}:DimStorage-353882:3737321"             //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
     var prettyPipes            = "${cm}:PrettyPipes-376737:3798343"            //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
     var colossalChests         = "${cm}:ColossalChests-237875:3830851"         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files (deobf version)
