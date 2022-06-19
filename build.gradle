@@ -145,22 +145,22 @@ dependencies {
 
     def cm = "curse.maven"
 
-    var cyclic                 = "${cm}:Cyclic-239286:3819253"                 //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
-    var mcJtyLib               = "${cm}:McJtyLib-233105:3825684"               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
-    var rftoolsBase            = "${cm}:RFToolsBase-326041:3825686"            //https://www.curseforge.com/minecraft/mc-mods/rftools-base/files
-    var rftoolsStorage         = "${cm}:RFToolsStorage-350006:3771412"         //https://www.curseforge.com/minecraft/mc-mods/rftools-storage/files
-    var rftoolsUtility         = "${cm}:RFToolsUtility-342466:3813647"         //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
-    var xnet                   = "${cm}:XNet-260912:3711553"                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
-    var dimStorage             = "${cm}:DimStorage-353882:3737321"             //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
-    var prettyPipes            = "${cm}:PrettyPipes-376737:3798343"            //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
-    var colossalChests         = "${cm}:ColossalChests-237875:3768513"         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files (deobf version)
-    var cyclopsCore            = "${cm}:CyclopsCore-232758:3832120"            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files (deobf version)
-    var modularRouters         = "${cm}:ModularRouters-250294:3776175"         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
-    var playerTabs             = "${cm}:PlayerTabs-618102:3772581"             //https://www.curseforge.com/minecraft/mc-mods/player-tabs/files/
-    var bonsaiTrees            = "${cm}:BonsaiTrees-278993:3677571"            //https://www.curseforge.com/minecraft/mc-mods/bonsai-trees/files/
-    var libnonymous            = "${cm}:Libnonymous-357557:3677573"            //https://www.curseforge.com/minecraft/mc-mods/libnonymous/files/
-    var sophisticatedBackpacks = "${cm}:SophisticatedBackpacks-422301:3830234" //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
-    var sophisticatedCore      = "${cm}:SophisticatedCore-618298:3830180"      //https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files
+    var cyclic                 = "$cm:Cyclic-239286:3819253"                 //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
+    var mcJtyLib               = "$cm:McJtyLib-233105:3825684"               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
+    var rftoolsBase            = "$cm:RFToolsBase-326041:3825686"            //https://www.curseforge.com/minecraft/mc-mods/rftools-base/files
+    var rftoolsStorage         = "$cm:RFToolsStorage-350006:3771412"         //https://www.curseforge.com/minecraft/mc-mods/rftools-storage/files
+    var rftoolsUtility         = "$cm:RFToolsUtility-342466:3813647"         //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
+    var xnet                   = "$cm:XNet-260912:3711553"                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
+    var dimStorage             = "$cm:DimStorage-353882:3737321"             //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
+    var prettyPipes            = "$cm:PrettyPipes-376737:3798343"            //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
+    var colossalChests         = "$cm:ColossalChests-237875:3768513"         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files (deobf version)
+    var cyclopsCore            = "$cm:CyclopsCore-232758:3832120"            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files (deobf version)
+    var modularRouters         = "$cm:ModularRouters-250294:3776175"         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
+    var playerTabs             = "$cm:PlayerTabs-618102:3772581"             //https://www.curseforge.com/minecraft/mc-mods/player-tabs/files/
+    var bonsaiTrees            = "$cm:BonsaiTrees-278993:3677571"            //https://www.curseforge.com/minecraft/mc-mods/bonsai-trees/files/
+    var libnonymous            = "$cm:Libnonymous-357557:3677573"            //https://www.curseforge.com/minecraft/mc-mods/libnonymous/files/
+    var sophisticatedBackpacks = "$cm:SophisticatedBackpacks-422301:3830234" //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
+    var sophisticatedCore      = "$cm:SophisticatedCore-618298:3830180"      //https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files
 
     //var configMenus = "${cm}:ConfigMenus-544048:3671318"
     //var betterModsButton = "${cm}:BetterModsButton-541584:3773500"
