@@ -18,7 +18,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.18-3.1'
+version = "$shortMinecraftVersion-$modVersion"
 group = 'PORTB'
 archivesBaseName = 'biggerstacks'
 
@@ -27,7 +27,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 
 minecraft {
-    mappings channel: 'official', version: '1.18.2'
+    mappings channel: 'official', version: minecraftVersion
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -134,79 +134,55 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.51'
+    minecraft "net.minecraftforge:forge:$minecraftVersion-$forgeVersion"
 
-    //@formatter:off
-    def cm = "curse.maven"
+    def cm= "curse.maven"
 
-    var jei                     = "mezz.jei:jei-1.18.2:9.7.0.194"
-    var rs                      = "com.refinedmods:refinedstorage:1.10.2"
-    var ae2                     = "appeng:appliedenergistics2:11.0.0-alpha.5"
-    var ie                      = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.2-8.0.2-pre.9"
-    var ct                      = "com.blamejared.crafttweaker:CraftTweaker-forge-1.18.2:9.1.155" //used for testing blacklist/whitelist tag
+    //
+    // Dependencies used for compatibility/testing
+    //
+    [
+        "mezz.jei:jei-1.18.2:9.7.0.194",
+        "appeng:appliedenergistics2:11.1.3",
+        "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.2-8.0.2-pre.9",
+        "com.blamejared.crafttweaker:CraftTweaker-forge-1.18.2:9.1.155", //used for testing blacklist/whitelist tag
 
-    var cyclic                 = "$cm:Cyclic-239286:3819253"                 //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
-    var mcJtyLib               = "$cm:McJtyLib-233105:3825684"               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
-    var rftoolsBase            = "$cm:RFToolsBase-326041:3825686"            //https://www.curseforge.com/minecraft/mc-mods/rftools-base/files
-    var rftoolsStorage         = "$cm:RFToolsStorage-350006:3771412"         //https://www.curseforge.com/minecraft/mc-mods/rftools-storage/files
-    var rftoolsUtility         = "$cm:RFToolsUtility-342466:3813647"         //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
-    var xnet                   = "$cm:XNet-260912:3711553"                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
-    var dimStorage             = "$cm:DimStorage-353882:3737321"             //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
-    var prettyPipes            = "$cm:PrettyPipes-376737:3798343"            //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
-    var colossalChests         = "$cm:ColossalChests-237875:3768513"         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files (deobf version)
-    var cyclopsCore            = "$cm:CyclopsCore-232758:3832120"            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files (deobf version)
-    var modularRouters         = "$cm:ModularRouters-250294:3776175"         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
-    var playerTabs             = "$cm:PlayerTabs-618102:3772581"             //https://www.curseforge.com/minecraft/mc-mods/player-tabs/files/
-    var bonsaiTrees            = "$cm:BonsaiTrees-278993:3677571"            //https://www.curseforge.com/minecraft/mc-mods/bonsai-trees/files/
-    var libnonymous            = "$cm:Libnonymous-357557:3677573"            //https://www.curseforge.com/minecraft/mc-mods/libnonymous/files/
-    var sophisticatedBackpacks = "$cm:SophisticatedBackpacks-422301:3830234" //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
-    var sophisticatedCore      = "$cm:SophisticatedCore-618298:3830180"      //https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/
-    var mekanism               = "$cm:Mekansim-268560:3833669"               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
-    var cofhCore               = "$cm:CofhCore-69162:3838025"                //https://www.curseforge.com/minecraft/mc-mods/cofh-core/files/
-    var thermalExpansion       = "$cm:ThermalExpansion-69163:3837868"        //https://www.curseforge.com/minecraft/mc-mods/thermal-expansion/files/ (probably has a maven, can't be bothered)
-    var thermalFoundation      = "$cm:ThermalFoundation-222880:3837827"      //https://www.curseforge.com/minecraft/mc-mods/thermal-foundation/files/
-    var thermalCultivation     = "$cm:ThermalCultivation-271835:3837822"     //https://www.curseforge.com/minecraft/mc-mods/thermal-cultivation/files/
-    var thermalInnovation      = "$cm:ThermalInnovation-291737:3837829"      //https://www.curseforge.com/minecraft/mc-mods/thermal-innovation/files/
-    var thermalLocomotion      = "$cm:ThermalLocomotion-406959:3837831"      //https://www.curseforge.com/minecraft/mc-mods/thermal-locomotion/files/
-    var thermalIntegration     = "$cm:ThermalIntegration-626708:3837830"     //https://www.curseforge.com/minecraft/mc-mods/thermal-integration/files/
+        "$cm:Cyclic-239286:3819253",                 //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
+        "$cm:McJtyLib-233105:3825684",               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
+        "$cm:RFToolsBase-326041:3825686",            //https://www.curseforge.com/minecraft/mc-mods/rftools-base/files
+        "$cm:RFToolsStorage-350006:3771412",         //https://www.curseforge.com/minecraft/mc-mods/rftools-storage/files
+        "$cm:RFToolsUtility-342466:3813647",         //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
+        "$cm:XNet-260912:3711553",                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
+        "$cm:DimStorage-353882:3737321",             //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
+        "$cm:PrettyPipes-376737:3798343",            //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
+        "$cm:ColossalChests-237875:3768512",         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files
+        "$cm:CyclopsCore-232758:3832119",            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files
+        "$cm:ModularRouters-250294:3776175",         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
+        "$cm:PlayerTabs-618102:3772581",             //https://www.curseforge.com/minecraft/mc-mods/player-tabs/files/
+        "$cm:BonsaiTrees-278993:3677571",            //https://www.curseforge.com/minecraft/mc-mods/bonsai-trees/files/
+        "$cm:Libnonymous-357557:3677573",            //https://www.curseforge.com/minecraft/mc-mods/libnonymous/files/
+        "$cm:SophisticatedBackpacks-422301:3830234", //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
+        "$cm:SophisticatedCore-618298:3830180",      //https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/
+        "$cm:Mekansim-268560:3833669",               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
+        "$cm:CofhCore-69162:3838025",                //https://www.curseforge.com/minecraft/mc-mods/cofh-core/files/
+        "$cm:ThermalExpansion-69163:3837868",        //https://www.curseforge.com/minecraft/mc-mods/thermal-expansion/files/ (probably has a maven, can't be bothered)
+        "$cm:ThermalFoundation-222880:3837827",      //https://www.curseforge.com/minecraft/mc-mods/thermal-foundation/files/
+        "$cm:ThermalCultivation-271835:3837822",     //https://www.curseforge.com/minecraft/mc-mods/thermal-cultivation/files/
+        "$cm:ThermalInnovation-291737:3837829",      //https://www.curseforge.com/minecraft/mc-mods/thermal-innovation/files/
+        "$cm:ThermalLocomotion-406959:3837831",      //https://www.curseforge.com/minecraft/mc-mods/thermal-locomotion/files/
+        "$cm:ThermalIntegration-626708:3837830",     //https://www.curseforge.com/minecraft/mc-mods/thermal-integration/files/
+        "$cm:Quark-243121:3800462",                  //https://www.curseforge.com/minecraft/mc-mods/quark/files/
+        "$cm:QuarkOddities-301051:3575623",          //https://www.curseforge.com/minecraft/mc-mods/quark-oddities/files/
+        "$cm:AutoRegLib-250363:3642382",             //https://www.curseforge.com/minecraft/mc-mods/autoreglib/files/
+        "$cm:ConfigMenus-544048:3671318",            //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
+        "$cm:BetterModsButton-541584:3773500"        //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
+    ].forEach{ dep -> implementation fg.deobf(dep) }
 
-    var configMenus = "${cm}:ConfigMenus-544048:3671318"
-    var betterModsButton = "${cm}:BetterModsButton-541584:3773500"
-    //@formatter:on
+    implementation fg.deobf("com.refinedmods:refinedstorage:1.10.2") { transitive false }
 
-    implementation fg.deobf(jei)
-    implementation fg.deobf(rs) { transitive false }
-    implementation fg.deobf(ae2)
-    implementation fg.deobf(ie)
-    implementation fg.deobf(ct)
-
-    implementation fg.deobf(modularRouters)
-    implementation fg.deobf(cyclic)
-    implementation fg.deobf(mcJtyLib)
-    implementation fg.deobf(rftoolsUtility)
-    implementation fg.deobf(rftoolsBase)
-    implementation fg.deobf(rftoolsStorage)
-    implementation fg.deobf(xnet)
-    implementation fg.deobf(dimStorage)
-    implementation fg.deobf(prettyPipes)
-    implementation fg.deobf(playerTabs)
-    implementation colossalChests
-    implementation cyclopsCore
-    implementation fg.deobf(bonsaiTrees)
-    implementation fg.deobf(libnonymous)
-    implementation fg.deobf(sophisticatedCore)
-    implementation fg.deobf(sophisticatedBackpacks)
-    implementation fg.deobf(mekanism)
-    implementation fg.deobf(betterModsButton)
-    implementation fg.deobf(configMenus)
-    implementation fg.deobf(cofhCore)
-    implementation fg.deobf(thermalExpansion)
-    implementation fg.deobf(thermalCultivation)
-    implementation fg.deobf(thermalIntegration)
-    implementation fg.deobf(thermalInnovation)
-    implementation fg.deobf(thermalFoundation)
-    implementation fg.deobf(thermalLocomotion)
-
+    //
+    // Mixin annotation processor
+    //
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
