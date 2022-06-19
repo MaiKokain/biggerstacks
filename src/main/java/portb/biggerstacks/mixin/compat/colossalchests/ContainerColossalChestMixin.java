@@ -13,7 +13,7 @@ public class ContainerColossalChestMixin
                     constant = @Constant(intValue = 64),
                     remap = false,
                     require = 0)
-    private static int increaseStackSize(int value)
+    private static int increaseStackLimit(int value)
     {
         return AutoSidedConfig.getMaxStackSize();
     }

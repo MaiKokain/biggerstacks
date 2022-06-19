@@ -12,7 +12,7 @@ public class GenericItemHandlerMixin
 {
     //todo: this is like the 3rd time you've written this for the same method
     @Inject(method = "getSlotLimit", at = @At("RETURN"), require = 0, remap = false, cancellable = true)
-    private void fixSlotLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
+    private void increaseStackLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
     {
         returnInfo.cancel();
         returnInfo.setReturnValue(AutoSidedConfig.getMaxStackSize());

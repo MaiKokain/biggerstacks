@@ -16,7 +16,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 public class ItemStackMixin
 {
     @Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true)
-    private void biggerMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
+    private void increaseStackLimit(CallbackInfoReturnable<Integer> returnInfo)
     {
         Item item = ((ItemStack) (Object) this).getItem();
 

@@ -14,12 +14,8 @@ public class ModularRouterBlockEntityMixin
     private int increaseMaxStackUpgrades(int constant)
     {
         if (AutoSidedConfig.increaseTransferRate())
-        {
             return ModularRoutersHelper.getMaxStackUpgrades();
-        }
         else
-        {
             return constant;
-        }
     }
 }

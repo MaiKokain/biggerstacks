@@ -10,7 +10,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 public class CompiledModuleMixin
 {
     @ModifyConstant(method = "getItemsPerTick", constant = @Constant(intValue = 64), remap = false, require = 0)
-    private int increaseMaxTransferRate(int value)
+    private int increaseTransferRate(int value)
     {
         if (AutoSidedConfig.increaseTransferRate())
             return AutoSidedConfig.getMaxStackSize();

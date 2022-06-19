@@ -17,15 +17,11 @@ public class XNetCompat
                     constant = @Constant(intValue = 64),
                     require = 0,
                     remap = false)
-    private int increaseMaxExtractAmount(int value)
+    private int increaseTransferRate(int value)
     {
         if (AutoSidedConfig.increaseTransferRate())
-        {
             return AutoSidedConfig.getMaxStackSize();
-        }
         else
-        {
             return value;
-        }
     }
 }
