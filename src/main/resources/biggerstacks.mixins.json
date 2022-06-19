@@ -34,6 +34,8 @@
         "compat.rftools.GlobalStorageItemWrapperMixin",
         "compat.sophisticatedbackpacks.StorageContainerMenuBaseMixin",
         "compat.xnet.XNetCompat",
+        "compat.mekanism.BasicInventorySlotMixin",
+        "compat.mekanism.QIOCraftingWindowMixin",
         "stacksize.IInventoryMixin",
         "stacksize.InvWrapperMixin",
         "stacksize.ItemStackHandlerMixin",
