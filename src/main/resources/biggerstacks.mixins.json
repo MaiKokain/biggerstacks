@@ -39,6 +39,8 @@
         "compat.mekanism.TileEntityQIOFilterHandlerMixin",
         "compat.mekanism.TileEntityLogisticalSorterMixin",
         "compat.quark.ProxiedItemStackHandlerMixin",
+        "compat.quark.ChestPassengerMixin",
+        "compat.quark.ChuteBlockEntityMixin",
         "compat.xnet.XNetCompat",
         "stacksize.ContainerMixin",
         "stacksize.InvWrapperMixin",
