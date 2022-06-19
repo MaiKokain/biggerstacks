@@ -16,12 +16,19 @@ public class ItemMixin
     {
         Item item = ((Item) (Object) this);
 
-        //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
-        if (AutoSidedConfig.isUsingWhitelist() && !item.is(BiggerStacks.WHITELIST_TAG))
-            return;
-            //check if this item has the blacklist tag, and if it does, don't increase its stack size
-        else if (item.is(BiggerStacks.BLACKLIST_TAG))
-            return;
+        try
+        {
+            //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
+            if (AutoSidedConfig.isUsingWhitelist() && !item.is(BiggerStacks.WHITELIST_TAG))
+                return;
+                //check if this item has the blacklist tag, and if it does, don't increase its stack size
+            else if (item.is(BiggerStacks.BLACKLIST_TAG))
+                return;
+        }
+        catch (IllegalStateException e)
+        {
+            System.err.println("Tags are not bound at this time! Assuming all items are whitelisted");
+        }
 
         if (returnInfo.getReturnValue() != 1)
         {
