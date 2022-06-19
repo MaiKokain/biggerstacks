@@ -15,14 +15,12 @@ public class IEInventoryHandlerMixin
                        target = "Lblusunrize/immersiveengineering/common/util/inventory/IIEInventory;getSlotLimit(I)I"),
               remap = false,
               require = 0)
-    private int fixSlotLimit(IIEInventory inventory, int slot)
+    private int increaseSlotLimit(IIEInventory inventory, int slot)
     {
         var limit = inventory.getSlotLimit(slot);
 
         if (limit == 64)
-        {
             return AutoSidedConfig.getMaxStackSize();
-        }
 
         return limit;
     }

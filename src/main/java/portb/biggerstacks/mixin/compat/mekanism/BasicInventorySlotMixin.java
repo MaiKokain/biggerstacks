@@ -15,7 +15,7 @@ public class BasicInventorySlotMixin
                     require = 0,
                     remap = false,
                     argsOnly = true)
-    private static int increaseStackSize(int value)
+    private static int increaseStackLimit(int value)
     {
         if (value != 1)
             return (value / 64) * AutoSidedConfig.getMaxStackSize();

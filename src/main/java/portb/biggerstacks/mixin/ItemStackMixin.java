@@ -14,8 +14,10 @@ import portb.biggerstacks.config.AutoSidedConfig;
 @Mixin(ItemStack.class)
 public class ItemStackMixin
 {
-    @Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true)
-    private void biggerMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
+    @Inject(method = "getMaxStackSize",
+            at = @At("RETURN"),
+            cancellable = true)
+    private void increaseStackLimit(CallbackInfoReturnable<Integer> returnInfo)
     {
         var item = ((ItemStack) (Object) this);
         //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size

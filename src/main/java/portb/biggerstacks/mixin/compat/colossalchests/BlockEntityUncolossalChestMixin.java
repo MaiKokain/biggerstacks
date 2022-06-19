@@ -10,7 +10,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 public class BlockEntityUncolossalChestMixin
 {
     @ModifyConstant(method = "<init>", constant = @Constant(intValue = 64), remap = false, require = 0)
-    private int increaseStackSize(int val)
+    private int increaseStackLimit(int val)
     {
         return AutoSidedConfig.getMaxStackSize();
     }

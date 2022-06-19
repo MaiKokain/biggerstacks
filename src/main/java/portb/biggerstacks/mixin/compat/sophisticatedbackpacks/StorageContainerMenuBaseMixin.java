@@ -13,7 +13,7 @@ public class StorageContainerMenuBaseMixin
                     constant = @Constant(intValue = 64),
                     require = 0,
                     remap = false)
-    private static int increaseStackSize(int val)
+    private static int increaseStackLimit(int val)
     {
         return AutoSidedConfig.getMaxStackSize();
     }
