@@ -34,6 +34,8 @@
         "compat.rftools.GlobalStorageItemWrapperMixin",
         "compat.sophisticatedbackpacks.StorageContainerMenuBaseMixin",
         "compat.quark.ProxiedItemStackHandlerMixin",
+        "compat.quark.ChuteTileEntityMixin",
+        "compat.quark.ChestPassengerEntityMixin",
         "compat.xnet.XNetCompat",
         "compat.mekanism.QIOCraftingWindowMixin",
         "compat.mekanism.BasicInventorySlotMixin",
