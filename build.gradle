@@ -151,6 +151,15 @@ dependencies {
     var modularRouters         = "$cm:ModularRouters-250294:3622942"         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
     var sophisticatedBackpacks = "$cm:SophisticatedBackpacks-422301:3699214" //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
     var mekanism               = "$cm:Mekanism-268560:3659389"               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
+    var cofhCore               = "$cm:CofhCore-69162:3788884"                //https://www.curseforge.com/minecraft/mc-mods/cofh-core/files/
+    var thermalExpansion       = "$cm:ThermalExpansion-69163:3788892"        //https://www.curseforge.com/minecraft/mc-mods/thermal-expansion/files/ (probably has a maven, can't be bothered)
+    var thermalFoundation      = "$cm:ThermalFoundation-222880:3788893"      //https://www.curseforge.com/minecraft/mc-mods/thermal-foundation/files/
+    var thermalCultivation     = "$cm:ThermalCultivation-271835:3788891"     //https://www.curseforge.com/minecraft/mc-mods/thermal-cultivation/files/
+    var thermalInnovation      = "$cm:ThermalInnovation-291737:3788896"      //https://www.curseforge.com/minecraft/mc-mods/thermal-innovation/files/
+    var thermalLocomotion      = "$cm:ThermalLocomotion-406959:3788895"      //https://www.curseforge.com/minecraft/mc-mods/thermal-locomotion/files/
+
+    var configMenu             = "$cm:ConfigMenu-544048:3520850"             //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
+    var betterModsButton       = "$cm:BetterModsButton-541584:3519038"       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
     //@formatter:on
 
     implementation fg.deobf(jei)
@@ -172,6 +181,15 @@ dependencies {
     implementation fg.deobf(cyclopsCore)
     implementation fg.deobf(sophisticatedBackpacks)
     implementation fg.deobf(mekanism)
+    implementation fg.deobf(cofhCore)
+    implementation fg.deobf(thermalExpansion)
+    implementation fg.deobf(thermalCultivation)
+    implementation fg.deobf(thermalFoundation)
+    implementation fg.deobf(thermalLocomotion)
+    implementation fg.deobf(thermalInnovation)
+
+    implementation fg.deobf(configMenu)
+    implementation fg.deobf(betterModsButton)
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
