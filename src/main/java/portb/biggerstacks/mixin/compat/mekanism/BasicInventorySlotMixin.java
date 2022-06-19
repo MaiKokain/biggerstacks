@@ -13,6 +13,7 @@ public class BasicInventorySlotMixin
                     at = @At(value = "HEAD"),
                     ordinal = 0,
                     require = 0,
+                    remap = false,
                     argsOnly = true)
     private static int increaseStackSize(int value)
     {
