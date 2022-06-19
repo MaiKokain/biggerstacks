@@ -18,7 +18,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.18-3.0'
+version = '1.18-3.1'
 group = 'PORTB'
 archivesBaseName = 'biggerstacks'
 
@@ -137,13 +137,13 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.51'
 
     //@formatter:off
-    var jei             = "mezz.jei:jei-1.18.2:9.7.0.194"
-    var rs              = "com.refinedmods:refinedstorage:1.10.2"
-    var ae2             = "appeng:appliedenergistics2:11.0.0-alpha.5"
-    var ie              = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.2-8.0.2-pre.9"
-    var ct              = "com.blamejared.crafttweaker:CraftTweaker-forge-1.18.2:9.1.134" //used for testing blacklist/whitelist tag
-
     def cm = "curse.maven"
+
+    var jei                     = "mezz.jei:jei-1.18.2:9.7.0.194"
+    var rs                      = "com.refinedmods:refinedstorage:1.10.2"
+    var ae2                     = "appeng:appliedenergistics2:11.0.0-alpha.5"
+    var ie                      = "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.2-8.0.2-pre.9"
+    var ct                      = "com.blamejared.crafttweaker:CraftTweaker-forge-1.18.2:9.1.155" //used for testing blacklist/whitelist tag
 
     var cyclic                 = "$cm:Cyclic-239286:3819253"                 //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
     var mcJtyLib               = "$cm:McJtyLib-233105:3825684"               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
@@ -160,10 +160,11 @@ dependencies {
     var bonsaiTrees            = "$cm:BonsaiTrees-278993:3677571"            //https://www.curseforge.com/minecraft/mc-mods/bonsai-trees/files/
     var libnonymous            = "$cm:Libnonymous-357557:3677573"            //https://www.curseforge.com/minecraft/mc-mods/libnonymous/files/
     var sophisticatedBackpacks = "$cm:SophisticatedBackpacks-422301:3830234" //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
-    var sophisticatedCore      = "$cm:SophisticatedCore-618298:3830180"      //https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files
+    var sophisticatedCore      = "$cm:SophisticatedCore-618298:3830180"      //https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/
+    var mekanism               = "$cm:Mekansim-268560:3833669"               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
 
-    //var configMenus = "${cm}:ConfigMenus-544048:3671318"
-    //var betterModsButton = "${cm}:BetterModsButton-541584:3773500"
+    var configMenus = "${cm}:ConfigMenus-544048:3671318"
+    var betterModsButton = "${cm}:BetterModsButton-541584:3773500"
     //@formatter:on
 
     implementation fg.deobf(jei)
@@ -188,9 +189,9 @@ dependencies {
     implementation fg.deobf(libnonymous)
     implementation fg.deobf(sophisticatedCore)
     implementation fg.deobf(sophisticatedBackpacks)
-
-    //implementation fg.deobf(betterModsButton)
-    //implementation fg.deobf(configMenus)
+    implementation fg.deobf(mekanism)
+    implementation fg.deobf(betterModsButton)
+    implementation fg.deobf(configMenus)
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
