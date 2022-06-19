@@ -150,6 +150,7 @@ dependencies {
     var cyclopsCore            = "$cm:CyclopsCore-232758:3796009"            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files
     var modularRouters         = "$cm:ModularRouters-250294:3622942"         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
     var sophisticatedBackpacks = "$cm:SophisticatedBackpacks-422301:3699214" //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
+    var mekanism               = "$cm:Mekanism-268560:3659389"               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
     //@formatter:on
 
     implementation fg.deobf(jei)
@@ -170,6 +171,7 @@ dependencies {
     implementation fg.deobf(colossalChests)
     implementation fg.deobf(cyclopsCore)
     implementation fg.deobf(sophisticatedBackpacks)
+    implementation fg.deobf(mekanism)
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
