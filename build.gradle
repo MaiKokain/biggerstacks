@@ -153,7 +153,7 @@ dependencies {
     var xnet                   = "${cm}:XNet-260912:3711553"                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
     var dimStorage             = "${cm}:DimStorage-353882:3737321"             //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
     var prettyPipes            = "${cm}:PrettyPipes-376737:3798343"            //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
-    var colossalChests         = "${cm}:ColossalChests-237875:3830851"         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files (deobf version)
+    var colossalChests         = "${cm}:ColossalChests-237875:3768513"         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files (deobf version)
     var cyclopsCore            = "${cm}:CyclopsCore-232758:3832120"            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files (deobf version)
     var modularRouters         = "${cm}:ModularRouters-250294:3776175"         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
     var playerTabs             = "${cm}:PlayerTabs-618102:3772581"             //https://www.curseforge.com/minecraft/mc-mods/player-tabs/files/
