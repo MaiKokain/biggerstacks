@@ -10,7 +10,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 public class QIOCraftingWindowMixin
 {
     @ModifyConstant(method = "calculateMaxCraftAmount", constant = @Constant(intValue = 64), require = 0, remap = false)
-    private int increaseMaxStackSize(int val)
+    private int increaseStackLimit(int val)
     {
         return AutoSidedConfig.getMaxStackSize();
     }

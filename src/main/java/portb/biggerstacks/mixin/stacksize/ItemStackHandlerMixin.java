@@ -11,7 +11,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 public class ItemStackHandlerMixin
 {
     @Inject(method = "getSlotLimit", at = @At("RETURN"), cancellable = true, remap = false)
-    private void increaseSlotLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
+    private void increaseStackLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
     {
         if (returnInfo.getReturnValue() == 64)
         {
