@@ -38,6 +38,7 @@
         "compat.mekanism.BasicInventorySlotMixin",
         "compat.mekanism.TileEntityQIOFilterHandlerMixin",
         "compat.mekanism.TileEntityLogisticalSorterMixin",
+        "compat.quark.ProxiedItemStackHandlerMixin",
         "compat.xnet.XNetCompat",
         "stacksize.ContainerMixin",
         "stacksize.InvWrapperMixin",
