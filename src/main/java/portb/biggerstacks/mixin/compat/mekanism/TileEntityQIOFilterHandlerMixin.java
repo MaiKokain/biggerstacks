@@ -9,7 +9,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 @Mixin(value = TileEntityQIOFilterHandler.class, remap = false)
 public class TileEntityQIOFilterHandlerMixin
 {
-    @ModifyConstant(method = "getMaxTransitCount", constant = @Constant(intValue = 64))
+    @ModifyConstant(method = "getMaxTransitCount", constant = @Constant(intValue = 64), require = 0)
     private int increaseTransferRate(int val){
         if(AutoSidedConfig.increaseTransferRate())
             return AutoSidedConfig.getMaxStackSize();
@@ -17,7 +17,7 @@ public class TileEntityQIOFilterHandlerMixin
             return val;
     }
 
-    @ModifyConstant(method = "getMaxTransitCount", constant = @Constant(intValue = 32))
+    @ModifyConstant(method = "getMaxTransitCount", constant = @Constant(intValue = 32), require = 0)
     private int increaseUpgradeTransferRate(int val){
         if(AutoSidedConfig.increaseTransferRate())
             return AutoSidedConfig.getMaxStackSize() / 2;
