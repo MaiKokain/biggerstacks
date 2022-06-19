@@ -26,9 +26,9 @@ public class FriendlyByteBufMixin
     }
 
     @ModifyVariable(method = "readItem", at = @At("STORE"), ordinal = 1)
-    private int change(int value)
+    private int readStackItemCount(int value)
     {
-        //actually read the count here
+        //actually read the item count here
         return ((FriendlyByteBuf) (Object) this).readInt();
     }
 }

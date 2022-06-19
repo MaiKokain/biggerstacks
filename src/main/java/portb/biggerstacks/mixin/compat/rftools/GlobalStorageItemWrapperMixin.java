@@ -11,7 +11,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 public class GlobalStorageItemWrapperMixin
 {
     @Inject(method = "getSlotLimit", at = @At("RETURN"), remap = false, require = 0, cancellable = true)
-    private void fixSlotLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
+    private void increaseStackLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
     {
         if (returnInfo.getReturnValue() == 64)
         {

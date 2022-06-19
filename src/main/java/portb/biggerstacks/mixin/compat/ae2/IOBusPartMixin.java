@@ -11,7 +11,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 public class IOBusPartMixin
 {
     @Inject(method = "getOperationsPerTick", at = @At("RETURN"), cancellable = true, require = 0, remap = false)
-    private void scaleOperationsPerTick(CallbackInfoReturnable<Integer> returnInfo)
+    private void increaseTransferRate(CallbackInfoReturnable<Integer> returnInfo)
     {
         if (AutoSidedConfig.increaseTransferRate() && returnInfo.getReturnValue() != 1)
         {

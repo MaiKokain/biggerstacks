@@ -11,7 +11,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 public class UpgradeItemHandlerMixin
 {
     @Inject(method = "getStackInteractCount", at = @At("RETURN"), cancellable = true, require = 0, remap = false)
-    private void fixStackInteractCount(CallbackInfoReturnable<Integer> returnInfo)
+    private void increaseTransferRate(CallbackInfoReturnable<Integer> returnInfo)
     {
         if (returnInfo.getReturnValue() == 64 && AutoSidedConfig.increaseTransferRate())
         {

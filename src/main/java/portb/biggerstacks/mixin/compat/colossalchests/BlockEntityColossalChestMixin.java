@@ -13,7 +13,7 @@ public class BlockEntityColossalChestMixin
                     constant = @Constant(intValue = 64),
                     remap = false,
                     require = 0)
-    private int increaseStackSize(int value)
+    private int increaseStackLimit(int value)
     {
         return AutoSidedConfig.getMaxStackSize();
     }

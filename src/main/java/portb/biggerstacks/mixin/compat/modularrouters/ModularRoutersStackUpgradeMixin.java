@@ -11,7 +11,9 @@ import portb.biggerstacks.util.ModularRoutersHelper;
 @Mixin(StackUpgrade.class)
 public class ModularRoutersStackUpgradeMixin
 {
-    @Inject(method = "getStackLimit", at = @At("RETURN"), remap = false, require = 0, cancellable = true)
+    @Inject(method = "getStackLimit", at = @At("RETURN"),
+            remap = false, require = 0,
+            cancellable = true)
     private void increaseStackLimit(int slot, CallbackInfoReturnable<Integer> returnInfo)
     {
         if (AutoSidedConfig.increaseTransferRate())

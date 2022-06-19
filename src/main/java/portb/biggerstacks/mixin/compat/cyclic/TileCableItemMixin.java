@@ -12,8 +12,10 @@ import portb.biggerstacks.config.AutoSidedConfig;
 @Mixin(value = TileCableItem.class, remap = false)
 public class TileCableItemMixin
 {
-    @Inject(method = "<init>", at = @At("TAIL"), require = 0)
-    private void fixExtractQty(CallbackInfo callbackInfo)
+    @Inject(method = "<init>",
+            at = @At("TAIL"),
+            require = 0)
+    private void increaseExtractQty(CallbackInfo callbackInfo)
     {
         //may need a world restart to take effect properly
         //as far as i can tell, this isn't actually changed anywhere,
@@ -23,16 +25,14 @@ public class TileCableItemMixin
             ((TileCableItemAccessor) this).setExtractQty(AutoSidedConfig.getMaxStackSize());
     }
 
-    @ModifyConstant(method = "normalFlow", constant = @Constant(intValue = 64), require = 0)
-    private int increaseNormalFlow(int value)
+    @ModifyConstant(method = "normalFlow",
+                    constant = @Constant(intValue = 64),
+                    require = 0)
+    private int increaseTransferRate(int value)
     {
         if (AutoSidedConfig.increaseTransferRate())
-        {
             return AutoSidedConfig.getMaxStackSize();
-        }
         else
-        {
             return value;
-        }
     }
 }

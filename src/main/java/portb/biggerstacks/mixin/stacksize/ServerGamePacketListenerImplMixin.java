@@ -11,7 +11,7 @@ public class ServerGamePacketListenerImplMixin
 {
     //for some reason it's hard coded to disallow giving more than 64 items in CREATIVE mode.
     @ModifyConstant(method = "handleSetCreativeModeSlot", constant = @Constant(intValue = 64))
-    private int handleBiggerStackLimit(int value)
+    private int increaseStackLimit(int value)
     {
         return AutoSidedConfig.getMaxStackSize();
     }

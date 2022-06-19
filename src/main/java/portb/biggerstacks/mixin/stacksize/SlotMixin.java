@@ -11,7 +11,7 @@ import portb.biggerstacks.config.AutoSidedConfig;
 public class SlotMixin
 {
     @Inject(method = "getMaxStackSize()I", at = @At("RETURN"), cancellable = true)
-    private void fixMaxStackSize(CallbackInfoReturnable<Integer> returnInfo)
+    private void increaseStackLimit(CallbackInfoReturnable<Integer> returnInfo)
     {
         if (returnInfo.getReturnValue() == 64)
         {

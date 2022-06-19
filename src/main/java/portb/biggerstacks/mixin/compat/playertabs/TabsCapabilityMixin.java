@@ -13,7 +13,7 @@ public class TabsCapabilityMixin
                     method = {"saveInvToCurrTab", "writeTabToInv"},
                     constant = @Constant(intValue = 64),
                     remap = false)
-    private int increaseMaxStackSize(int constant)
+    private int increaseStackSize(int constant)
     {
         return AutoSidedConfig.getMaxStackSize();
     }

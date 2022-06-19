@@ -15,10 +15,9 @@ public class AbstractContainerMenuMixin
                index = 0)
     private int preventIntegerOverflow(int value)
     {
+        //noinspection NumericOverflow
         if (value == (Integer.MAX_VALUE + 1) / 2)
-        {
             return Integer.MAX_VALUE / 2 + 1;
-        }
 
         return value;
     }

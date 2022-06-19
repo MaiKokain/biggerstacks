@@ -10,7 +10,7 @@ import vazkii.quark.content.automation.block.be.ChuteBlockEntity;
 public class ChuteBlockEntityMixin
 {
     @ModifyConstant(method = "getSlotLimit(I)I", constant = @Constant(intValue = 64), remap = false, require = 0)
-    private int increaseSlotLimit(int val)
+    private int increaseStackLimit(int val)
     {
         return AutoSidedConfig.getMaxStackSize();
     }

@@ -20,12 +20,8 @@ public class XNetCompat
     private int increaseMaxExtractAmount(int value)
     {
         if (AutoSidedConfig.increaseTransferRate())
-        {
             return AutoSidedConfig.getMaxStackSize();
-        }
         else
-        {
             return value;
-        }
     }
 }
