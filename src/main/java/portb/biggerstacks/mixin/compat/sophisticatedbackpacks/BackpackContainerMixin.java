@@ -52,10 +52,14 @@ public abstract class BackpackContainerMixin
               remap = false)
     private int calculateMaxCountForStack(int slotLimit, ItemStack stack)
     {
+        //This prevents overstacking blacklisted items - blacklisted items will only have a max stack size of 64 (or less),
+        // while the slot will have a higher stack limit, which would cause overstacking.
+        int slotLimitOrMaxStackSize = Math.min(slotLimit, stack.getMaxStackSize());
+
         //consider the original max stack size of 64 if the item is blacklisted, else just use the new increased one
         int globalMaxStackSize = ((ItemExtension)stack.getItem()).hasStackSizeBeenIncreased() ? AutoSidedConfig.getMaxStackSize() : 64;
 
         //switch order of multiplication and division to prevent integer rounding to 0
-        return slotLimit * stack.getMaxStackSize() / globalMaxStackSize;
+        return slotLimitOrMaxStackSize * stack.getMaxStackSize() / globalMaxStackSize;
     }
 }
