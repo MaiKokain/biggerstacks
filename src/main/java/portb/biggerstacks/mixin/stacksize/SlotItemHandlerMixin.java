@@ -1,6 +1,6 @@
 package portb.biggerstacks.mixin.stacksize;
 
-import fuzs.configmenusforge.lib.core.ModLoaderEnvironment;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.items.SlotItemHandler;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.StorageInventorySlot;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,7 +18,7 @@ public class SlotItemHandlerMixin
     {
         //Do not change slot size for sophisticated backpacks as it causes issues with overstacking.
         //noinspection ConstantConditions
-        if(ModLoaderEnvironment.isModLoaded(Constants.SOPHISTICATED_BACKPACKS) && ((Object)this) instanceof StorageInventorySlot)
+        if(ModList.get().isLoaded(Constants.SOPHISTICATED_BACKPACKS) && ((Object)this) instanceof StorageInventorySlot)
             return;
 
         if (returnInfo.getReturnValue() == 64)
