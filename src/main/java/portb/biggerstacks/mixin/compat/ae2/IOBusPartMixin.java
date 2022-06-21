@@ -10,7 +10,11 @@ import portb.biggerstacks.config.AutoSidedConfig;
 @Mixin(ImportBusPart.class)
 public class IOBusPartMixin
 {
-    @Inject(method = "calculateMaximumAmountToImport", at = @At("RETURN"), cancellable = true, require = 0, remap = false)
+    @Inject(method = "calculateMaximumAmountToImport",
+            at = @At("RETURN"),
+            cancellable = true,
+            require = 0,
+            remap = false)
     private void increaseTransferRate(CallbackInfoReturnable<Integer> returnInfo)
     {
         if (AutoSidedConfig.increaseTransferRate() && returnInfo.getReturnValue() != 1)
