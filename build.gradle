@@ -150,15 +150,7 @@ dependencies {
         "$cm:CyclopsCore-232758:3796009",            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files
         "$cm:ModularRouters-250294:3622942",         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
         "$cm:Mekanism-268560:3659389",               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
-        "$cm:CofhCore-69162:3788884",                //https://www.curseforge.com/minecraft/mc-mods/cofh-core/files/
-        "$cm:ThermalExpansion-69163:3788892",        //https://www.curseforge.com/minecraft/mc-mods/thermal-expansion/files/ (probably has a maven, can't be bothered)
-        "$cm:ThermalFoundation-222880:3788893",      //https://www.curseforge.com/minecraft/mc-mods/thermal-foundation/files/
-        "$cm:ThermalCultivation-271835:3788891",     //https://www.curseforge.com/minecraft/mc-mods/thermal-cultivation/files/
-        "$cm:ThermalInnovation-291737:3788896",      //https://www.curseforge.com/minecraft/mc-mods/thermal-innovation/files/
-        "$cm:ThermalLocomotion-406959:3788895",      //https://www.curseforge.com/minecraft/mc-mods/thermal-locomotion/files/
         "$cm:Quark-243121:3642325",                  //https://www.curseforge.com/minecraft/mc-mods/quark/files/
-        "$cm:QuarkOddities-301051:3088871",          //https://www.curseforge.com/minecraft/mc-mods/quark-oddities/files/
-        "$cm:AutoRegLib-250363:3326041",             //https://www.curseforge.com/minecraft/mc-mods/autoreglib/files/
     ].forEach { dep -> compileOnly dep}
 
     //
@@ -167,8 +159,6 @@ dependencies {
     //
     [
         "mezz.jei:jei-1.16.5:7.7.1.152",
-
-        "com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.2.511", //used for testing blacklist/whitelist tag
 
         "$cm:SophisticatedBackpacks-422301:3699214", //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
         "$cm:TinkersConstruct-74072:3695126",        //https://www.curseforge.com/minecraft/mc-mods/tinkers-construct/files/
@@ -180,6 +170,7 @@ dependencies {
     // Runtime only dependencies
     //
     [
+        "com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.2.511", //used for testing blacklist/whitelist tag
         "$cm:ConfigMenu-544048:3520850",             //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
         "$cm:BetterModsButton-541584:3519038",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
     ].forEach { dep -> runtimeOnly fg.deobf(dep) }
