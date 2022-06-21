@@ -10,6 +10,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags.IOptionalNamedTag;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -52,6 +54,7 @@ public class BiggerStacks
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
+    @OnlyIn(Dist.CLIENT)
     public void showExactItemStackCount(ItemTooltipEvent event)
     {
         if (!ClientConfig.enableNumberShortening.get())
