@@ -8,6 +8,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(BackpackInventorySlot.class)
 public interface BackpackInventorySlotAccessor
 {
-    @Accessor("inventoryHandler")
+    @Accessor(value = "inventoryHandler", remap = false)
     BackpackInventoryHandler accessInventoryHandler();
 }
