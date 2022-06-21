@@ -13,6 +13,9 @@ public class SlotItemHandlerMixin
     @Inject(method = "getMaxStackSize()I", at = @At("RETURN"), cancellable = true)
     private void increaseStackLimit(CallbackInfoReturnable<Integer> returnInfo)
     {
+        //Unlike in 1.18, we do not need to check if the container is a sophisticated backpack because it is implemented
+        // differently and never calls this method.
+
         if (returnInfo.getReturnValue() == 64)
         {
             returnInfo.cancel();
