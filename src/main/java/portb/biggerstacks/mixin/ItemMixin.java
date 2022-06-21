@@ -6,8 +6,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.BiggerStacks;
-import portb.biggerstacks.util.ItemExtension;
 import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.ItemExtension;
 
 @Mixin(Item.class)
 public class ItemMixin implements ItemExtension
@@ -46,19 +46,20 @@ public class ItemMixin implements ItemExtension
     @Override
     public int getOriginalMaxStackSize()
     {
-        if(originalMaxStackSize == null)
+        if (originalMaxStackSize == null)
             //noinspection deprecation,ResultOfMethodCallIgnored
-            ((Item)(Object)this).getMaxStackSize();
+            ((Item) (Object) this).getMaxStackSize();
 
         //noinspection ConstantConditions
         return originalMaxStackSize;
     }
 
     @Override
-    public boolean hasStackSizeBeenIncreased() {
+    public boolean hasStackSizeBeenIncreased()
+    {
         try
         {
-            @SuppressWarnings("ConstantConditions") Item item = (Item)(Object)this;
+            @SuppressWarnings("ConstantConditions") Item item = (Item) (Object) this;
 
             //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
             if (AutoSidedConfig.isUsingWhitelist() && !item.is(BiggerStacks.WHITELIST_TAG))

@@ -2,12 +2,9 @@ package portb.biggerstacks.mixin.client;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.fonts.Font;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.client.gui.GuiUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -80,13 +77,13 @@ public class ItemRendererMixin
         double extraYOffset = scale == 1 ? 0 : 1.5 / (scale);
 
         matrixStack.translate(-(x + 19 - 2 - width),
-                            -(y + 6 + 3),
-                            0); //translate back to 0,0 for easier accounting for scaling
+                              -(y + 6 + 3),
+                              0); //translate back to 0,0 for easier accounting for scaling
 
         matrixStack.translate( //i just messed around until i found something that felt right
-                             (x + 19 - 2 - extraXOffset - width * scale) / scale,
-                             (y + 6 + 3) / scale - (9 - 9 / scale) - extraYOffset, //this is stupid
-                             0
+                               (x + 19 - 2 - extraXOffset - width * scale) / scale,
+                               (y + 6 + 3) / scale - (9 - 9 / scale) - extraYOffset, //this is stupid
+                               0
         );
     }
 

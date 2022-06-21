@@ -2,10 +2,7 @@ package portb.biggerstacks;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagRegistry;
-import net.minecraft.tags.TagRegistryManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -25,16 +22,15 @@ import portb.biggerstacks.config.LocalConfig;
 import portb.biggerstacks.config.ServerConfig;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.function.Supplier;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Constants.MOD_ID)
 public class BiggerStacks
 {
-    public static final IOptionalNamedTag<Item> BLACKLIST_TAG = ItemTags.createOptional(new ResourceLocation(Constants.MOD_ID, "blacklist"));
-    public static final IOptionalNamedTag<Item> WHITELIST_TAG = ItemTags.createOptional(new ResourceLocation(Constants.MOD_ID, "whitelist"));
+    public static final IOptionalNamedTag<Item> BLACKLIST_TAG = ItemTags.createOptional(new ResourceLocation(Constants.MOD_ID,
+                                                                                                             "blacklist"));
+    public static final IOptionalNamedTag<Item> WHITELIST_TAG = ItemTags.createOptional(new ResourceLocation(Constants.MOD_ID,
+                                                                                                             "whitelist"));
 
     private static final DecimalFormat TOOLTIP_NUMBER_FORMAT = new DecimalFormat("###,###,###,###,###,###");
 
@@ -68,7 +64,7 @@ public class BiggerStacks
                  .add(1,
                       new TranslationTextComponent("biggerstacks.exact.count",
                                                    new StringTextComponent(TOOLTIP_NUMBER_FORMAT.format(stack.getCount())).withStyle(
-                                                        TextFormatting.DARK_AQUA)).withStyle(TextFormatting.GRAY));
+                                                           TextFormatting.DARK_AQUA)).withStyle(TextFormatting.GRAY));
         }
     }
 }
