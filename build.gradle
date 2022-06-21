@@ -135,44 +135,44 @@ dependencies {
     // Compile only dependencies
     //
     [
-        "appeng:appliedenergistics2:8.4.7",
-        "blusunrize.immersiveengineering:ImmersiveEngineering:1.16.5-5.1.0-148",
-        "$cm:RefinedStorage-243076:3807951",         //https://www.curseforge.com/minecraft/mc-mods/refined-storage/files/
-        "$cm:Cyclic-239286:3717822",                 //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
-        "$cm:McJtyLib-233105:3813653",               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
-        "$cm:RFToolsBase-326041:3813654",            //https://www.curseforge.com/minecraft/mc-mods/rftools-base/files
-        "$cm:RFToolsStorage-350006:3771411",         //https://www.curseforge.com/minecraft/mc-mods/rftools-storage/files
-        "$cm:RFToolsUtility-342466:3813656",         //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
-        "$cm:XNet-260912:3813662",                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
-        "$cm:DimStorage-353882:3335450",             //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
-        "$cm:PrettyPipes-376737:3724799",            //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
-        "$cm:ColossalChests-237875:3474923",         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files
-        "$cm:CyclopsCore-232758:3796009",            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files
-        "$cm:ModularRouters-250294:3622942",         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
-        "$cm:Mekanism-268560:3659389",               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
-        "$cm:Quark-243121:3642325",                  //https://www.curseforge.com/minecraft/mc-mods/quark/files/
-    ].forEach { dep -> compileOnly dep}
+            "appeng:appliedenergistics2:8.4.7",
+            "blusunrize.immersiveengineering:ImmersiveEngineering:1.16.5-5.1.0-148",
+            "$cm:RefinedStorage-243076:3807951",         //https://www.curseforge.com/minecraft/mc-mods/refined-storage/files/
+            "$cm:Cyclic-239286:3717822",                 //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
+            "$cm:McJtyLib-233105:3813653",               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
+            "$cm:RFToolsBase-326041:3813654",            //https://www.curseforge.com/minecraft/mc-mods/rftools-base/files
+            "$cm:RFToolsStorage-350006:3771411",         //https://www.curseforge.com/minecraft/mc-mods/rftools-storage/files
+            "$cm:RFToolsUtility-342466:3813656",         //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
+            "$cm:XNet-260912:3813662",                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
+            "$cm:DimStorage-353882:3335450",             //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
+            "$cm:PrettyPipes-376737:3724799",            //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
+            "$cm:ColossalChests-237875:3474923",         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files
+            "$cm:CyclopsCore-232758:3796009",            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files
+            "$cm:ModularRouters-250294:3622942",         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
+            "$cm:Mekanism-268560:3659389",               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
+            "$cm:Quark-243121:3642325",                  //https://www.curseforge.com/minecraft/mc-mods/quark/files/
+            "$cm:AutoRegLib-250363:3326041",             //https://www.curseforge.com/minecraft/mc-mods/autoreglib/files/
+    ].forEach { dep -> compileOnly fg.deobf(dep) }
 
     //
     // Implementation dependencies
     // Used for compatibility/testing
     //
     [
-        "mezz.jei:jei-1.16.5:7.7.1.152",
+            "mezz.jei:jei-1.16.5:7.7.1.152",
 
-        "$cm:SophisticatedBackpacks-422301:3699214", //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
-        "$cm:TinkersConstruct-74072:3695126",        //https://www.curseforge.com/minecraft/mc-mods/tinkers-construct/files/
-        "$cm:Mantle-74924:3631982",                  //https://www.curseforge.com/minecraft/mc-mods/mantle/files/
-
-    ].forEach{ dep -> implementation fg.deobf(dep) }
+            "$cm:SophisticatedBackpacks-422301:3699214", //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
+            "$cm:TinkersConstruct-74072:3695126",        //https://www.curseforge.com/minecraft/mc-mods/tinkers-construct/files/
+            "$cm:Mantle-74924:3631982",                  //https://www.curseforge.com/minecraft/mc-mods/mantle/files/
+    ].forEach { dep -> implementation fg.deobf(dep) }
 
     //
     // Runtime only dependencies
     //
     [
-        "com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.2.511", //used for testing blacklist/whitelist tag
-        "$cm:ConfigMenu-544048:3520850",             //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
-        "$cm:BetterModsButton-541584:3519038",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
+            "com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.2.511", //used for testing blacklist/whitelist tag
+            "$cm:ConfigMenu-544048:3520850",             //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
+            "$cm:BetterModsButton-541584:3519038",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
     ].forEach { dep -> runtimeOnly fg.deobf(dep) }
 
     //
