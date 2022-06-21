@@ -132,14 +132,11 @@ dependencies {
     def cm = "curse.maven"
 
     //
-    // Dependencies used for compatibility/testing
+    // Compile only dependencies
     //
     [
-        "mezz.jei:jei-1.16.5:7.7.1.152",
         "appeng:appliedenergistics2:8.4.7",
         "blusunrize.immersiveengineering:ImmersiveEngineering:1.16.5-5.1.0-148",
-        "com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.2.511", //used for testing blacklist/whitelist tag
-
         "$cm:RefinedStorage-243076:3807951",         //https://www.curseforge.com/minecraft/mc-mods/refined-storage/files/
         "$cm:Cyclic-239286:3717822",                 //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
         "$cm:McJtyLib-233105:3813653",               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
@@ -152,7 +149,6 @@ dependencies {
         "$cm:ColossalChests-237875:3474923",         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files
         "$cm:CyclopsCore-232758:3796009",            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files
         "$cm:ModularRouters-250294:3622942",         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
-        "$cm:SophisticatedBackpacks-422301:3699214", //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
         "$cm:Mekanism-268560:3659389",               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
         "$cm:CofhCore-69162:3788884",                //https://www.curseforge.com/minecraft/mc-mods/cofh-core/files/
         "$cm:ThermalExpansion-69163:3788892",        //https://www.curseforge.com/minecraft/mc-mods/thermal-expansion/files/ (probably has a maven, can't be bothered)
@@ -163,9 +159,30 @@ dependencies {
         "$cm:Quark-243121:3642325",                  //https://www.curseforge.com/minecraft/mc-mods/quark/files/
         "$cm:QuarkOddities-301051:3088871",          //https://www.curseforge.com/minecraft/mc-mods/quark-oddities/files/
         "$cm:AutoRegLib-250363:3326041",             //https://www.curseforge.com/minecraft/mc-mods/autoreglib/files/
+    ].forEach { dep -> compileOnly dep}
+
+    //
+    // Implementation dependencies
+    // Used for compatibility/testing
+    //
+    [
+        "mezz.jei:jei-1.16.5:7.7.1.152",
+
+        "com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.2.511", //used for testing blacklist/whitelist tag
+
+        "$cm:SophisticatedBackpacks-422301:3699214", //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
+        "$cm:TinkersConstruct-74072:3695126",        //https://www.curseforge.com/minecraft/mc-mods/tinkers-construct/files/
+        "$cm:Mantle-74924:3631982",                  //https://www.curseforge.com/minecraft/mc-mods/mantle/files/
+
+    ].forEach{ dep -> implementation fg.deobf(dep) }
+
+    //
+    // Runtime only dependencies
+    //
+    [
         "$cm:ConfigMenu-544048:3520850",             //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
         "$cm:BetterModsButton-541584:3519038",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
-    ].forEach{ dep -> implementation fg.deobf(dep) }
+    ].forEach { dep -> runtimeOnly fg.deobf(dep) }
 
     //
     // Annotation processor
