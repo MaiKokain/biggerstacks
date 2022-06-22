@@ -15,7 +15,8 @@ public class ExploderMixin
      * mod is used to increase the stack size to 100, it will compress into a single stack of 100.
      */
     @ModifyConstant(method = "finish", constant = @Constant(intValue = 64), remap = false)
-    private static int increaseStackLimit(int val){
+    private static int increaseStackLimit(int val)
+    {
         return AutoSidedConfig.getMaxStackSize();
     }
 }

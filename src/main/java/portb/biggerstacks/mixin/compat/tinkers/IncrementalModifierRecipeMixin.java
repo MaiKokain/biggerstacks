@@ -13,7 +13,8 @@ public class IncrementalModifierRecipeMixin
      * I'm not sure what the function where this is located actually does, but it is related to the maximum stack size.
      */
     @ModifyConstant(method = "addIngredients", constant = @Constant(intValue = 64), remap = false)
-    private static int increaseStackLimit(int val){
+    private static int increaseStackLimit(int val)
+    {
         return AutoSidedConfig.getMaxStackSize();
     }
 }

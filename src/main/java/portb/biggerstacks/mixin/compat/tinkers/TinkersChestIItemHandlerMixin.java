@@ -13,7 +13,8 @@ public class TinkersChestIItemHandlerMixin
      * Increases stack limit for tinker's chest to 1/4th of the maximum stack size
      */
     @ModifyConstant(method = "getSlotLimit", constant = @Constant(intValue = 16), remap = false)
-    private int increaseStackLimit(int val){
+    private int increaseStackLimit(int val)
+    {
         return AutoSidedConfig.getMaxStackSize() / 4;
     }
 }
