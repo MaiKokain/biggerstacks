@@ -1,6 +1,5 @@
 package portb.biggerstacks.mixin.compat.quark;
 
-import net.minecraft.inventory.IInventory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;

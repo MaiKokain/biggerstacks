@@ -13,7 +13,8 @@ public class HeaterItemHandlerMixin
      * Increases slot size for the seared heater
      */
     @ModifyConstant(method = "<init>", constant = @Constant(intValue = 64))
-    private static int increaseStackLimit(int val){
+    private static int increaseStackLimit(int val)
+    {
         return AutoSidedConfig.getMaxStackSize();
     }
 }
