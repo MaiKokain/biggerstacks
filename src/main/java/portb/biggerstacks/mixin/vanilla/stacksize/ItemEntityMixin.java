@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin;
+package portb.biggerstacks.mixin.vanilla.stacksize;
 
 import net.minecraft.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
