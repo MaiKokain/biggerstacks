@@ -95,6 +95,8 @@ public class BiggerStacks
 
         if (stack.getCount() > Constants.ONE_THOUSAND)
         {
+            //god this is ugly
+            //java moment
             event.getToolTip()
                  .add(1,
                       new TranslatableComponent("biggerstacks.exact.count",
