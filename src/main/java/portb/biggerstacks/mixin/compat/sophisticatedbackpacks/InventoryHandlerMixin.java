@@ -12,12 +12,14 @@ import portb.biggerstacks.config.AutoSidedConfig;
 public class InventoryHandlerMixin
 {
     @ModifyVariable(method = "setSlotLimit", at = @At("HEAD"), ordinal = 0, remap = false, argsOnly = true)
-    private int scaleSlotLimit(int slotLimit){
+    private int scaleSlotLimit(int slotLimit)
+    {
         return slotLimit * AutoSidedConfig.getMaxStackSize() / 64;
     }
 
     @ModifyConstant(method = "setSlotLimit", constant = @Constant(intValue = 64), remap = false)
-    private int increaseStackLimit(int val){
+    private int increaseStackLimit(int val)
+    {
         return AutoSidedConfig.getMaxStackSize();
     }
 }
