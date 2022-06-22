@@ -58,7 +58,8 @@
         "stacksize.ItemStackHandlerMixin",
         "stacksize.ServerGamePacketListenerImplMixin",
         "stacksize.SlotItemHandlerMixin",
-        "stacksize.SlotMixin"
+        "stacksize.SlotMixin",
+        "ItemEntityMixin"
     ],
     "client": [
         "client.ItemRendererMixin"
