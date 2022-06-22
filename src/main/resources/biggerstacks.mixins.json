@@ -5,6 +5,7 @@
     "compatibilityLevel": "JAVA_8",
     "refmap": "biggerstacks.refmap.json",
     "mixins": [
+        "ItemEntityMixin",
         "ContainerMixin",
         "ContainersMixin",
         "FriendlyByteBufMixin",
