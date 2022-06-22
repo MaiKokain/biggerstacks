@@ -12,8 +12,10 @@ public class ItemEntityMixin
     /**
      * Allows items on the ground larger than 64 to merge into 1 stack.
      */
-    @ModifyConstant(method = "merge(Lnet/minecraft/world/entity/item/ItemEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V", constant = @Constant(intValue = 64))
-    private static int increaseStackLimit(int val){
+    @ModifyConstant(method = "merge(Lnet/minecraft/world/entity/item/ItemEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V",
+                    constant = @Constant(intValue = 64))
+    private static int increaseStackLimit(int val)
+    {
         return AutoSidedConfig.getMaxStackSize();
     }
 }

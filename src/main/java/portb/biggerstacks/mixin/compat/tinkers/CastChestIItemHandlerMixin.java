@@ -13,7 +13,8 @@ public class CastChestIItemHandlerMixin
      * Increases stack limit for cast chest to 1/16th of the maximum stack size
      */
     @ModifyConstant(method = "getSlotLimit", constant = @Constant(intValue = 4), remap = false)
-    private int increaseStackLimit(int val){
+    private int increaseStackLimit(int val)
+    {
         return AutoSidedConfig.getMaxStackSize() / 16;
     }
 }

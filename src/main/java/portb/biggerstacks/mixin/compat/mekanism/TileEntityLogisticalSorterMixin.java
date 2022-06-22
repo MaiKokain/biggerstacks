@@ -10,8 +10,9 @@ import portb.biggerstacks.config.AutoSidedConfig;
 public class TileEntityLogisticalSorterMixin
 {
     @ModifyConstant(method = "onUpdateServer", constant = @Constant(intValue = 64), require = 0, remap = false)
-    private int increaseTransferRate(int val) {
-        if(AutoSidedConfig.increaseTransferRate())
+    private int increaseTransferRate(int val)
+    {
+        if (AutoSidedConfig.increaseTransferRate())
             return AutoSidedConfig.getMaxStackSize();
         else
             return val;
