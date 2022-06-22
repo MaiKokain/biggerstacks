@@ -35,7 +35,7 @@
         "compat.rftools.GenericItemHandlerMixin",
         "compat.rftools.GlobalStorageItemWrapperMixin",
         "compat.sophisticatedbackpacks.BackpackContainerMixin",
-        "compat.sophisticatedbackpacks.BackpackInventorySlotAccessor",
+        "compat.sophisticatedbackpacks.InventoryHandlerMixin",
         "compat.sophisticatedbackpacks.InventorySorterMixin",
         "compat.tinkers.CastChestIItemHandlerMixin",
         "compat.tinkers.ExploderMixin",
