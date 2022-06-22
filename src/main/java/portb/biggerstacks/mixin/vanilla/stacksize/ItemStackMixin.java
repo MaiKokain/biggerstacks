@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin;
+package portb.biggerstacks.mixin.vanilla.stacksize;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
@@ -14,6 +14,9 @@ import portb.biggerstacks.config.AutoSidedConfig;
 @Mixin(ItemStack.class)
 public class ItemStackMixin
 {
+    /**
+     * Increases the maximum stack size
+     */
     @Inject(method = "getMaxStackSize",
             at = @At("RETURN"),
             cancellable = true)
@@ -34,6 +37,10 @@ public class ItemStackMixin
         }
     }
 
+    /**
+     * Saves the stack size as an int instead of a byte.
+     * This will cause the stack to be deleted if the world is loaded without this mod installed.
+     */
     @Redirect(method = "save",
               at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/CompoundTag;putByte(Ljava/lang/String;B)V"))
     private void saveBigStack(CompoundTag tag, String key, byte p_128346_)
@@ -42,6 +49,10 @@ public class ItemStackMixin
         tag.putInt(key, count);
     }
 
+    /**
+     * Reads the stack size as an int instead of a byte
+     * This will cause the stack to be deleted if the world is loaded without this mod installed.
+     */
     @Redirect(method = "<init>(Lnet/minecraft/nbt/CompoundTag;)V",
               at = @At(value = "FIELD",
                        target = "Lnet/minecraft/world/item/ItemStack;count:I",
