@@ -19,7 +19,8 @@ public class ModifierRemovalRecipeAndCreativeSlotRecipeMixin
             constant = @Constant(intValue = 64),
             remap = false
     )
-    private int increaseStackLimit(int val) {
+    private int increaseStackLimit(int val)
+    {
         return AutoSidedConfig.getMaxStackSize();
     }
 

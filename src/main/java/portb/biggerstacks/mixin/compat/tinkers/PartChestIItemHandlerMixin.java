@@ -13,7 +13,8 @@ public class PartChestIItemHandlerMixin
      * Increases stack limit for part chest to 1/8th of the maximum stack size
      */
     @ModifyConstant(method = "getSlotLimit", constant = @Constant(intValue = 8), remap = false)
-    private int increaseStackLimit(int val) {
+    private int increaseStackLimit(int val)
+    {
         return AutoSidedConfig.getMaxStackSize() / 8;
     }
 }

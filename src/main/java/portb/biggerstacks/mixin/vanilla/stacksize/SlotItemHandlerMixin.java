@@ -18,7 +18,8 @@ public class SlotItemHandlerMixin
     {
         //Do not change slot size for sophisticated backpacks as it causes issues with overstacking.
         //noinspection ConstantConditions
-        if(ModList.get().isLoaded(Constants.SOPHISTICATED_BACKPACKS) && ((Object)this) instanceof StorageInventorySlot)
+        if (ModList.get()
+                   .isLoaded(Constants.SOPHISTICATED_BACKPACKS) && ((Object) this) instanceof StorageInventorySlot)
             return;
 
         if (returnInfo.getReturnValue() == 64)

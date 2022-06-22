@@ -10,7 +10,8 @@ import vazkii.quark.content.management.entity.ChestPassenger;
 public class ChestPassengerMixin
 {
     @ModifyConstant(method = "getMaxStackSize", constant = @Constant(intValue = 64), remap = false, require = 0)
-    private int increaseStackLimit(int val){
+    private int increaseStackLimit(int val)
+    {
         return AutoSidedConfig.getMaxStackSize();
     }
 }

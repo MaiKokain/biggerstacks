@@ -39,25 +39,23 @@ public class ItemMixin implements ItemExtension
     @Override
     public int getOriginalMaxStackSize()
     {
-        if(originalMaxStackSize == null)
+        if (originalMaxStackSize == null)
             //noinspection deprecation,ResultOfMethodCallIgnored
-            ((Item)(Object)this).getMaxStackSize();
+            ((Item) (Object) this).getMaxStackSize();
 
         //noinspection ConstantConditions
         return originalMaxStackSize;
     }
 
     @Override
-    public boolean hasStackSizeBeenIncreased() {
-        @SuppressWarnings("ConstantConditions") var item = ((Item)(Object)this).getDefaultInstance();
+    public boolean hasStackSizeBeenIncreased()
+    {
+        @SuppressWarnings("ConstantConditions") var item = ((Item) (Object) this).getDefaultInstance();
 
         //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
         if (AutoSidedConfig.isUsingWhitelist() && !item.is(BiggerStacks.WHITELIST_TAG))
             return false;
             //check if this item has the blacklist tag, and if it does, don't increase its stack size
-        else if (item.is(BiggerStacks.BLACKLIST_TAG))
-            return false;
-
-        return true;
+        else return !item.is(BiggerStacks.BLACKLIST_TAG);
     }
 }

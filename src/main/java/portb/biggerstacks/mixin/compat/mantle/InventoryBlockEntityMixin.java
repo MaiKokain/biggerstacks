@@ -11,8 +11,10 @@ import slimeknights.mantle.block.entity.InventoryBlockEntity;
 public class InventoryBlockEntityMixin
 {
     @Inject(method = "getMaxStackSize", at = @At("RETURN"), require = 0, cancellable = true)
-    private void increaseStackLimit(CallbackInfoReturnable<Integer> cir){
-        if(cir.getReturnValue() == 64){
+    private void increaseStackLimit(CallbackInfoReturnable<Integer> cir)
+    {
+        if (cir.getReturnValue() == 64)
+        {
             cir.cancel();
             cir.setReturnValue(AutoSidedConfig.getMaxStackSize());
         }
