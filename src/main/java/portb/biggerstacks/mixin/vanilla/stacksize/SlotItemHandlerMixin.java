@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin.stacksize;
+package portb.biggerstacks.mixin.vanilla.stacksize;
 
 import net.minecraftforge.items.SlotItemHandler;
 import org.spongepowered.asm.mixin.Mixin;

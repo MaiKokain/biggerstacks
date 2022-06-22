@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin;
+package portb.biggerstacks.mixin.vanilla;
 
 import net.minecraft.inventory.InventoryHelper;
 import org.spongepowered.asm.mixin.Mixin;

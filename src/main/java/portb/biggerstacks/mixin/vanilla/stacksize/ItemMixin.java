@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin;
+package portb.biggerstacks.mixin.vanilla.stacksize;
 
 import net.minecraft.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +17,7 @@ public class ItemMixin implements ItemExtension
     @Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true)
     private void increaseStackLimit(CallbackInfoReturnable<Integer> returnInfo)
     {
-        //Store the original stack size of the item
+        //Store the original stack size of the item before increasing it
         originalMaxStackSize = returnInfo.getReturnValue();
 
         Item item = ((Item) (Object) this);
