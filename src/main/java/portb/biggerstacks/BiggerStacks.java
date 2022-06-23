@@ -4,9 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,25 +26,29 @@ import java.text.DecimalFormat;
 public class BiggerStacks
 {
     public static final IOptionalNamedTag<Item> BLACKLIST_TAG = ItemTags.createOptional(new ResourceLocation(Constants.MOD_ID,
-                                                                                                             "blacklist"));
+                                                                                                             "blacklist"
+    ));
     public static final IOptionalNamedTag<Item> WHITELIST_TAG = ItemTags.createOptional(new ResourceLocation(Constants.MOD_ID,
-                                                                                                             "whitelist"));
+                                                                                                             "whitelist"
+    ));
 
     private static final DecimalFormat TOOLTIP_NUMBER_FORMAT = new DecimalFormat("###,###,###,###,###,###");
 
     public BiggerStacks()
     {
         MinecraftForge.EVENT_BUS.register(this);
-        ModLoadingContext.get()
-                         .registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
-        ModLoadingContext.get()
-                         .registerConfig(ModConfig.Type.CLIENT,
-                                         LocalConfig.INSTANCE.SPEC,
-                                         Constants.MOD_ID + "-local.toml");
-        ModLoadingContext.get()
-                         .registerConfig(ModConfig.Type.SERVER,
-                                         ServerConfig.INSTANCE.SPEC,
-                                         Constants.MOD_ID + "-server.toml");
+
+        ModLoadingContext context = ModLoadingContext.get();
+
+        context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
+        context.registerConfig(ModConfig.Type.CLIENT,
+                               LocalConfig.INSTANCE.SPEC,
+                               Constants.MOD_ID + "-local.toml"
+        );
+        context.registerConfig(ModConfig.Type.SERVER,
+                               ServerConfig.INSTANCE.SPEC,
+                               Constants.MOD_ID + "-server.toml"
+        );
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -60,11 +62,13 @@ public class BiggerStacks
 
         if (stack.getCount() > Constants.ONE_THOUSAND)
         {
-            event.getToolTip()
-                 .add(1,
-                      new TranslationTextComponent("biggerstacks.exact.count",
-                                                   new StringTextComponent(TOOLTIP_NUMBER_FORMAT.format(stack.getCount())).withStyle(
-                                                           TextFormatting.DARK_AQUA)).withStyle(TextFormatting.GRAY));
+            String                    countString    = TOOLTIP_NUMBER_FORMAT.format(stack.getCount());
+            IFormattableTextComponent countComponent = new StringTextComponent(countString).withStyle(TextFormatting.DARK_AQUA);
+            TextComponent             tooltip        = new TranslationTextComponent("biggerstacks.exact.count",
+                                                                                    countComponent
+            );
+
+            event.getToolTip().add(1, tooltip.withStyle(TextFormatting.GRAY));
         }
     }
 }
