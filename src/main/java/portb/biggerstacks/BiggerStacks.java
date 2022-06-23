@@ -3,7 +3,6 @@ package portb.biggerstacks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.network.protocol.game.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -22,62 +21,60 @@ import portb.biggerstacks.config.LocalConfig;
 import portb.biggerstacks.config.ServerConfig;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Constants.MOD_ID)
 public class BiggerStacks
 {
-    public static final ArrayList<Class<?>> IGNORED_CLASSES = new ArrayList<>();
+//    public static final ArrayList<Class<?>> IGNORED_CLASSES = new ArrayList<>();
 
     public static final TagKey<Item> BLACKLIST_TAG = ItemTags.create(new ResourceLocation(Constants.MOD_ID,
-                                                                                          "blacklist"));
+            "blacklist"));
     public static final TagKey<Item> WHITELIST_TAG = ItemTags.create(new ResourceLocation(Constants.MOD_ID,
-                                                                                          "whitelist"));
+            "whitelist"));
 
     private static final DecimalFormat TOOLTIP_NUMBER_FORMAT = new DecimalFormat("###,###,###,###,###,###");
 
     //for debugging every packet sent ever
-    static
-    {
-        IGNORED_CLASSES.add(ClientboundMoveEntityPacket.Rot.class);
-        IGNORED_CLASSES.add(ClientboundMoveEntityPacket.PosRot.class);
-        IGNORED_CLASSES.add(ClientboundMoveEntityPacket.Pos.class);
-        IGNORED_CLASSES.add(ClientboundTeleportEntityPacket.class);
-        IGNORED_CLASSES.add(ClientboundEntityEventPacket.class);
-        IGNORED_CLASSES.add(ClientboundRotateHeadPacket.class);
-        IGNORED_CLASSES.add(ClientboundSetEntityMotionPacket.class);
-        IGNORED_CLASSES.add(ClientboundLevelChunkWithLightPacket.class);
-        IGNORED_CLASSES.add(ClientboundSetEntityDataPacket.class);
-        IGNORED_CLASSES.add(ClientboundBlockUpdatePacket.class);
-        IGNORED_CLASSES.add(ClientboundSetTimePacket.class);
-        IGNORED_CLASSES.add(ClientboundRemoveEntitiesPacket.class);
+//    static
+//    {
+//        IGNORED_CLASSES.add(ClientboundMoveEntityPacket.Rot.class);
+//        IGNORED_CLASSES.add(ClientboundMoveEntityPacket.PosRot.class);
+//        IGNORED_CLASSES.add(ClientboundMoveEntityPacket.Pos.class);
+//        IGNORED_CLASSES.add(ClientboundTeleportEntityPacket.class);
+//        IGNORED_CLASSES.add(ClientboundEntityEventPacket.class);
+//        IGNORED_CLASSES.add(ClientboundRotateHeadPacket.class);
+//        IGNORED_CLASSES.add(ClientboundSetEntityMotionPacket.class);
+//        IGNORED_CLASSES.add(ClientboundLevelChunkWithLightPacket.class);
+//        IGNORED_CLASSES.add(ClientboundSetEntityDataPacket.class);
+//        IGNORED_CLASSES.add(ClientboundBlockUpdatePacket.class);
+//        IGNORED_CLASSES.add(ClientboundSetTimePacket.class);
+//        IGNORED_CLASSES.add(ClientboundRemoveEntitiesPacket.class);
+//
+//        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.class);
+//        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.Pos.class);
+//        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.PosRot.class);
+//        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.Rot.class);
+//        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.StatusOnly.class);
+//
+//        IGNORED_CLASSES.add(ClientboundAddMobPacket.class);
+//        IGNORED_CLASSES.add(ClientboundSectionBlocksUpdatePacket.class);
+//        IGNORED_CLASSES.add(ClientboundUpdateAttributesPacket.class);
+//        IGNORED_CLASSES.add(ClientboundSetChunkCacheCenterPacket.class);
+//        IGNORED_CLASSES.add(ClientboundLightUpdatePacket.class);
+//        IGNORED_CLASSES.add(ClientboundKeepAlivePacket.class);
+//        IGNORED_CLASSES.add(ServerboundKeepAlivePacket.class);
+//        IGNORED_CLASSES.add(ClientboundForgetLevelChunkPacket.class);
+//    }
 
-        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.class);
-        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.Pos.class);
-        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.PosRot.class);
-        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.Rot.class);
-        IGNORED_CLASSES.add(ServerboundMovePlayerPacket.StatusOnly.class);
-
-        IGNORED_CLASSES.add(ClientboundAddMobPacket.class);
-        IGNORED_CLASSES.add(ClientboundSectionBlocksUpdatePacket.class);
-        IGNORED_CLASSES.add(ClientboundUpdateAttributesPacket.class);
-        IGNORED_CLASSES.add(ClientboundSetChunkCacheCenterPacket.class);
-        IGNORED_CLASSES.add(ClientboundLightUpdatePacket.class);
-        IGNORED_CLASSES.add(ClientboundKeepAlivePacket.class);
-        IGNORED_CLASSES.add(ServerboundKeepAlivePacket.class);
-        IGNORED_CLASSES.add(ClientboundForgetLevelChunkPacket.class);
-    }
-
-    public BiggerStacks()
-    {
+    public BiggerStacks() {
         MinecraftForge.EVENT_BUS.register(this);
         ModLoadingContext.get()
-                         .registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
+                .registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
         ModLoadingContext.get()
-                         .registerConfig(ModConfig.Type.CLIENT,
-                                         LocalConfig.INSTANCE.SPEC,
-                                         Constants.MOD_ID + "-local.toml");
+                .registerConfig(ModConfig.Type.CLIENT,
+                        LocalConfig.INSTANCE.SPEC,
+                        Constants.MOD_ID + "-local.toml");
         ModLoadingContext.get()
                          .registerConfig(ModConfig.Type.SERVER,
                                          ServerConfig.INSTANCE.SPEC,
