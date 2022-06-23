@@ -48,6 +48,7 @@
         "compat.xnet.XNetCompat",
         "vanilla.ContainersMixin",
         "vanilla.FriendlyByteBufMixin",
+        "vanilla.stacksize.BundleItemMixin",
         "vanilla.stacksize.ContainerMixin",
         "vanilla.stacksize.InvWrapperMixin",
         "vanilla.stacksize.ItemEntityMixin",
