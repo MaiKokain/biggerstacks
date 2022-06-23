@@ -7,14 +7,18 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import portb.biggerstacks.config.AutoSidedConfig;
 
 @Mixin(BundleItem.class)
-public class BundleItemMixin {
+public class BundleItemMixin
+{
     @ModifyConstant(method = "getFullnessDisplay", constant = @Constant(floatValue = 64.0f))
-    private static float increaseFloatStackLimit(float value) {
+    private static float increaseFloatStackLimit(float value)
+    {
         return (float) AutoSidedConfig.getMaxStackSize();
     }
 
-    @ModifyConstant(method = {"overrideStackedOnOther", "getBarWidth", "getWeight", "appendHoverText", "add"}, constant = @Constant(intValue = 64))
-    private static int increaseStackLimit(int value) {
+    @ModifyConstant(method = {"overrideStackedOnOther", "getBarWidth", "getWeight", "appendHoverText", "add"},
+                    constant = @Constant(intValue = 64))
+    private static int increaseStackLimit(int value)
+    {
         return AutoSidedConfig.getMaxStackSize();
     }
 }
