@@ -171,6 +171,8 @@ dependencies {
     //
     [
         "mezz.jei:jei-1.18.2:9.7.0.194",
+        "$cm:ShetiPhianCore-71738:3832652",          //https://www.curseforge.com/minecraft/mc-mods/shetiphiancore/files/
+        "$cm:Terraqueous-244870:3765423",            //https://www.curseforge.com/minecraft/mc-mods/terraqueous/files/
     ].forEach{ dep -> implementation fg.deobf(dep) }
 
     //
@@ -180,6 +182,7 @@ dependencies {
         "com.blamejared.crafttweaker:CraftTweaker-forge-1.18.2:9.1.155", //used for testing blacklist/whitelist tag
         "$cm:ConfigMenus-544048:3671318",            //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
         "$cm:BetterModsButton-541584:3773500",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
+
     ].forEach { dep -> runtimeOnly fg.deobf(dep) }
 
     //
