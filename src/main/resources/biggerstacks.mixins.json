@@ -33,6 +33,7 @@
         "compat.rftools.GenericItemHandlerBuilderMixin",
         "compat.rftools.GenericItemHandlerMixin",
         "compat.rftools.GlobalStorageItemWrapperMixin",
+        "compat.sheiphiancore.InventoryInternalMixin",
         "compat.sophisticatedbackpacks.BackpackContainerMixin",
         "compat.sophisticatedbackpacks.InventoryHandlerMixin",
         "compat.sophisticatedbackpacks.InventorySorterMixin",
