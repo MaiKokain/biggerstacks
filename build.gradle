@@ -152,6 +152,9 @@ dependencies {
             "$cm:Mekanism-268560:3659389",               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
             "$cm:Quark-243121:3642325",                  //https://www.curseforge.com/minecraft/mc-mods/quark/files/
             "$cm:AutoRegLib-250363:3326041",             //https://www.curseforge.com/minecraft/mc-mods/autoreglib/files/
+            "$cm:SophisticatedBackpacks-422301:3699214", //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
+            "$cm:TinkersConstruct-74072:3695126",        //https://www.curseforge.com/minecraft/mc-mods/tinkers-construct/files/
+            "$cm:Mantle-74924:3631982",                  //https://www.curseforge.com/minecraft/mc-mods/mantle/files/
     ].forEach { dep -> compileOnly fg.deobf(dep) }
 
     //
@@ -160,10 +163,6 @@ dependencies {
     //
     [
             "mezz.jei:jei-1.16.5:7.7.1.152",
-
-            "$cm:SophisticatedBackpacks-422301:3699214", //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
-            "$cm:TinkersConstruct-74072:3695126",        //https://www.curseforge.com/minecraft/mc-mods/tinkers-construct/files/
-            "$cm:Mantle-74924:3631982",                  //https://www.curseforge.com/minecraft/mc-mods/mantle/files/
     ].forEach { dep -> implementation fg.deobf(dep) }
 
     //
