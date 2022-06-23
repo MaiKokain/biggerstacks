@@ -23,8 +23,8 @@ import static portb.biggerstacks.Constants.*;
 @Mixin(ItemRenderer.class)
 public class ItemRendererMixin
 {
-    private static final DecimalFormat BILLION_FORMAT = new DecimalFormat("#.##B");
-    private static final DecimalFormat MILLION_FORMAT = new DecimalFormat("#.##M");
+    private static final DecimalFormat BILLION_FORMAT  = new DecimalFormat("#.##B");
+    private static final DecimalFormat MILLION_FORMAT  = new DecimalFormat("#.##M");
     private static final DecimalFormat THOUSAND_FORMAT = new DecimalFormat("#.##K");
 
     @Redirect(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/FontRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
@@ -71,19 +71,22 @@ public class ItemRendererMixin
             locals = LocalCapture.CAPTURE_FAILHARD)
     private void translateStackBack(FontRenderer font, ItemStack itemStack, int x, int y, String _a, CallbackInfo ci, MatrixStack matrixStack, String countString, IRenderTypeBuffer.Impl renderTypeBuffer)
     {
-        int width = font.width(countString);
-        double scale = calculateStringScale(font, countString);
+        int    width        = font.width(countString);
+        double scale        = calculateStringScale(font, countString);
         double extraXOffset = scale == 1 ? 0 : 1 / (scale * 2);
         double extraYOffset = scale == 1 ? 0 : 1.5 / (scale);
 
+        //translate back to 0,0 for easier accounting for scaling
         matrixStack.translate(-(x + 19 - 2 - width),
                               -(y + 6 + 3),
-                              0); //translate back to 0,0 for easier accounting for scaling
+                              0
+        );
 
-        matrixStack.translate( //i just messed around until i found something that felt right
-                               (x + 19 - 2 - extraXOffset - width * scale) / scale,
-                               (y + 6 + 3) / scale - (9 - 9 / scale) - extraYOffset, //this is stupid
-                               0
+        //i just messed around until i found something that felt right
+        matrixStack.translate(
+                (x + 19 - 2 - extraXOffset - width * scale) / scale,
+                (y + 6 + 3) / scale - (9 - 9 / scale) - extraYOffset, //this is stupid
+                0
         );
     }
 

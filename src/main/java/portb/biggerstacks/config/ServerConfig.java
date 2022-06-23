@@ -8,11 +8,11 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
  */
 public class ServerConfig
 {
-    public final static ServerConfig INSTANCE = new ServerConfig(true);
-    public final ForgeConfigSpec SPEC;
-    public final ForgeConfigSpec.IntValue maxStackCount;
-    public final ForgeConfigSpec.BooleanValue increaseTransferRate;
-    public final ForgeConfigSpec.BooleanValue useWhitelistTag;
+    public final static ServerConfig                 INSTANCE = new ServerConfig(true);
+    public final        ForgeConfigSpec              SPEC;
+    public final        ForgeConfigSpec.IntValue     maxStackCount;
+    public final        ForgeConfigSpec.BooleanValue increaseTransferRate;
+    public final        ForgeConfigSpec.BooleanValue useWhitelistTag;
 
     ServerConfig(boolean isOnlyForDedicatedServer)
     {
@@ -32,7 +32,9 @@ public class ServerConfig
 
         maxStackCount = builder.comment(
                 "Maximum stack size for items. Items that are able to stack more than 1 item (i.e. swords, tools, etc) are not effected, stack size for everything else is raised to this value.",
-                "The maximum theoretical limit is " + Integer.MAX_VALUE + ". However, to prevent funny integer overflows, I have limited the max stack size to " + (Integer.MAX_VALUE / 2) + ".",
+                "The maximum theoretical limit is " + Integer.MAX_VALUE +
+                        ". However, to prevent funny integer overflows, I have limited the max stack size to " +
+                        (Integer.MAX_VALUE / 2) + ".",
                 "I don't recommend setting it that high, as things could still break. You have been warned.",
                 "Anything below 10 million should be pretty safe.",
                 "Some mods may need a world restart for changes to take effect."
