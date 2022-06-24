@@ -16,7 +16,8 @@ public abstract class InventoryInternalMixin
     private static int increaseStackLimit(int val)
     {
         if (val != 1)
-            return val * AutoSidedConfig.getMaxStackSize() / 64;
+            //Avoid potentially returning 0 with math.max
+            return Math.max(1, val * AutoSidedConfig.getMaxStackSize() / 64);
         else
             return val;
     }

@@ -15,8 +15,10 @@ public class IOBusPartMixin
     {
         if (AutoSidedConfig.increaseTransferRate() && returnInfo.getReturnValue() != 1)
         {
+            //Avoid potentially returning 0 with math.max
+            var increasedRate = Math.max(1, returnInfo.getReturnValue() * AutoSidedConfig.getMaxStackSize() / 64);
             returnInfo.cancel();
-            returnInfo.setReturnValue(returnInfo.getReturnValue() * AutoSidedConfig.getMaxStackSize() / 64);
+            returnInfo.setReturnValue(increasedRate);
         }
     }
 
