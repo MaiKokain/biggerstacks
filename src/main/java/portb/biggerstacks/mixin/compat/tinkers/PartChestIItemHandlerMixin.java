@@ -15,6 +15,7 @@ public class PartChestIItemHandlerMixin
     @ModifyConstant(method = "getSlotLimit", constant = @Constant(intValue = 8), remap = false)
     private int increaseStackLimit(int val)
     {
-        return AutoSidedConfig.getMaxStackSize() / 8;
+        //Avoid potentially returning 0 with math.max
+        return Math.max(1, AutoSidedConfig.getMaxStackSize() / 8);
     }
 }

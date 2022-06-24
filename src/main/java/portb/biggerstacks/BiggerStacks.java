@@ -1,6 +1,5 @@
 package portb.biggerstacks;
 
-import jdk.internal.org.objectweb.asm.ClassReader;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.ItemTags;

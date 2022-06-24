@@ -22,7 +22,8 @@ public class TileEntityQIOFilterHandlerMixin
     private int increaseUpgradeTransferRate(int val)
     {
         if (AutoSidedConfig.increaseTransferRate())
-            return AutoSidedConfig.getMaxStackSize() / 2;
+            //Avoid potentially returning 0 with math.max
+            return Math.max(1, AutoSidedConfig.getMaxStackSize() / 2);
         else
             return val;
     }

@@ -6,6 +6,7 @@ public class PrettyPipesHelper
 {
     public static int calculateExtractionRate(int originalRate)
     {
-        return (int) Math.round(originalRate * (AutoSidedConfig.getMaxStackSize() / 64.0));
+        //Avoid potentially returning 0 with math.max
+        return (int) Math.max(1, Math.round(originalRate * (AutoSidedConfig.getMaxStackSize() / 64.0)));
     }
 }

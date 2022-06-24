@@ -12,6 +12,7 @@ public class ContainersMixin
     @ModifyConstant(method = "dropItemStack", constant = {@Constant(intValue = 21), @Constant(intValue = 10)})
     private static int scaleDroppedItemStackSize(int value)
     {
-        return value * AutoSidedConfig.getMaxStackSize() / 64;
+        //Avoid potentially returning 0 with math.max
+        return Math.max(value * AutoSidedConfig.getMaxStackSize() / 64, 1);
     }
 }
