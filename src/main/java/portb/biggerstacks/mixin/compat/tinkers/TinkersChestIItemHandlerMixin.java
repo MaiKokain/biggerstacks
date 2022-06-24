@@ -15,6 +15,7 @@ public class TinkersChestIItemHandlerMixin
     @ModifyConstant(method = "getSlotLimit", constant = @Constant(intValue = 16), remap = false)
     private int increaseStackLimit(int val)
     {
-        return AutoSidedConfig.getMaxStackSize() / 4;
+        //Avoid potentially returning 0 with math.max
+        return Math.max(1, AutoSidedConfig.getMaxStackSize() / 4);
     }
 }

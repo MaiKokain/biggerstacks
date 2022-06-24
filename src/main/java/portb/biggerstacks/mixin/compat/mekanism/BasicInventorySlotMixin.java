@@ -18,7 +18,8 @@ public class BasicInventorySlotMixin
     private static int increaseStackLimit(int value)
     {
         if (value != 1)
-            return (value / 64) * AutoSidedConfig.getMaxStackSize();
+            //Avoid potentially returning 0 with math.max
+            return Math.max(1, (value / 64) * AutoSidedConfig.getMaxStackSize());
         else
             return 1;
     }
