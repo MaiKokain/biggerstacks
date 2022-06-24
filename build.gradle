@@ -165,6 +165,7 @@ dependencies {
             "mezz.jei:jei-1.16.5:7.7.1.152",
             "$cm:ShetiPhianCore-71738:3832649",          //https://www.curseforge.com/minecraft/mc-mods/shetiphiancore/files/
             "$cm:Terraqueous-244870:3750150",            //https://www.curseforge.com/minecraft/mc-mods/terraqueous/files/
+            "$cm:NoTreePunching-289043:3590179"          //https://www.curseforge.com/minecraft/mc-mods/no-tree-punching/files/
 
     ].forEach { dep -> implementation fg.deobf(dep) }
 
