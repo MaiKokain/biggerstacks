@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin.compat.sophisticatedbackpacks;
+package portb.biggerstacks.mixin.compat.sophisticatedcore;
 
 import net.p3pp3rf1y.sophisticatedcore.common.gui.StorageContainerMenuBase;
 import org.spongepowered.asm.mixin.Mixin;

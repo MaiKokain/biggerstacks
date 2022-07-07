@@ -5,6 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.StackSizeHelper;
 
 @Mixin(InvWrapper.class)
 public class InvWrapperMixin
@@ -14,11 +15,6 @@ public class InvWrapperMixin
               remap = false)
     private int increaseStackLimit(InvWrapper instance, int slot)
     {
-        var value = instance.getSlotLimit(slot);
-
-        if (value == 64)
-            return AutoSidedConfig.getMaxStackSize();
-
-        return value;
+        return StackSizeHelper.scaleSlotLimit(instance.getSlotLimit(slot));
     }
 }

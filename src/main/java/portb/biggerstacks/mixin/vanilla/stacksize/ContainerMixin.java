@@ -3,6 +3,7 @@ package portb.biggerstacks.mixin.vanilla.stacksize;
 import net.minecraft.world.Container;
 import org.spongepowered.asm.mixin.Mixin;
 import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.StackSizeHelper;
 
 @Mixin(Container.class)
 public interface ContainerMixin extends Container
@@ -15,6 +16,6 @@ public interface ContainerMixin extends Container
     @Override
     default int getMaxStackSize()
     {
-        return AutoSidedConfig.getMaxStackSize();
+        return StackSizeHelper.getNewSlotLimit();
     }
 }
