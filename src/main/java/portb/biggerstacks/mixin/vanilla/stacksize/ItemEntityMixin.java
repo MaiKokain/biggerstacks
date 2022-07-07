@@ -4,7 +4,7 @@ import net.minecraft.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.StackSizeHelper;
 
 @Mixin(ItemEntity.class)
 public class ItemEntityMixin
@@ -16,6 +16,6 @@ public class ItemEntityMixin
                     constant = @Constant(intValue = 64))
     private static int increaseStackLimit(int val)
     {
-        return AutoSidedConfig.getMaxStackSize();
+        return StackSizeHelper.getNewStackSize();
     }
 }

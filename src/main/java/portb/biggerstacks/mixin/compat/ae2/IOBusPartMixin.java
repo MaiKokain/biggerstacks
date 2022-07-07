@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.StackSizeHelper;
 
 @Mixin(ImportBusPart.class)
 public class IOBusPartMixin
@@ -17,13 +18,8 @@ public class IOBusPartMixin
             remap = false)
     private void increaseTransferRate(CallbackInfoReturnable<Integer> returnInfo)
     {
-        if (AutoSidedConfig.increaseTransferRate() && returnInfo.getReturnValue() != 1)
-        {
-            //Avoid potentially returning 0 with math.max
-            int increasedRate = Math.max(1, returnInfo.getReturnValue() * AutoSidedConfig.getMaxStackSize() / 64);
-            returnInfo.cancel();
-            returnInfo.setReturnValue(increasedRate);
-        }
+        if (AutoSidedConfig.increaseTransferRate())
+            StackSizeHelper.scaleSlotLimit(returnInfo);
     }
 
 }

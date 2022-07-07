@@ -4,7 +4,7 @@ import com.refinedmods.refinedstorage.apiimpl.network.grid.handler.ItemGridHandl
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.StackSizeHelper;
 
 @Mixin(ItemGridHandler.class)
 public class ItemGridHandlerMixin
@@ -15,6 +15,6 @@ public class ItemGridHandlerMixin
                     require = 0)
     private int increaseStackLimit(int value)
     {
-        return AutoSidedConfig.getMaxStackSize();
+        return StackSizeHelper.getNewStackSize();
     }
 }

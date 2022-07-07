@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.BiggerStacks;
 import portb.biggerstacks.config.AutoSidedConfig;
 import portb.biggerstacks.util.ItemExtension;
+import portb.biggerstacks.util.StackSizeHelper;
 
 @Mixin(Item.class)
 public class ItemMixin implements ItemExtension
@@ -35,7 +36,7 @@ public class ItemMixin implements ItemExtension
         {
             System.err.println("Tags are not bound at this time! Assuming all items are whitelisted");
         }
-
+    
         if (returnInfo.getReturnValue() != 1)
         {
             returnInfo.cancel();

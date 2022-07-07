@@ -5,6 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.StackSizeHelper;
 
 @Mixin(value = TileEntityQIOFilterHandler.class, remap = false)
 public class TileEntityQIOFilterHandlerMixin
@@ -13,7 +14,7 @@ public class TileEntityQIOFilterHandlerMixin
     private int increaseTransferRate(int val)
     {
         if (AutoSidedConfig.increaseTransferRate())
-            return AutoSidedConfig.getMaxStackSize();
+            return StackSizeHelper.increaseTransferRate(val);
         else
             return val;
     }
@@ -22,8 +23,7 @@ public class TileEntityQIOFilterHandlerMixin
     private int increaseUpgradeTransferRate(int val)
     {
         if (AutoSidedConfig.increaseTransferRate())
-            //Avoid potentially returning 0 with math.max
-            return Math.max(1, AutoSidedConfig.getMaxStackSize() / 2);
+            return StackSizeHelper.scaleTransferRate(val, false);
         else
             return val;
     }
