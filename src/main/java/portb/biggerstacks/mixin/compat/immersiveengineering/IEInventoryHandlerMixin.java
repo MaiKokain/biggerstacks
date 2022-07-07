@@ -5,7 +5,7 @@ import blusunrize.immersiveengineering.common.util.inventory.IIEInventory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.StackSizeHelper;
 
 @Mixin(IEInventoryHandler.class)
 public class IEInventoryHandlerMixin
@@ -17,11 +17,6 @@ public class IEInventoryHandlerMixin
               require = 0)
     private int increaseStackLimit(IIEInventory inventory, int slot)
     {
-        int limit = inventory.getSlotLimit(slot);
-
-        if (limit == 64)
-            return AutoSidedConfig.getMaxStackSize();
-
-        return limit;
+        return StackSizeHelper.scaleSlotLimit(inventory.getSlotLimit(slot));
     }
 }

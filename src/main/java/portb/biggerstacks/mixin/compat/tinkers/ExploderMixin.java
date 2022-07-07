@@ -3,7 +3,7 @@ package portb.biggerstacks.mixin.compat.tinkers;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.StackSizeHelper;
 import slimeknights.tconstruct.gadgets.Exploder;
 
 @Mixin(Exploder.class)
@@ -17,6 +17,6 @@ public class ExploderMixin
     @ModifyConstant(method = "finish", constant = @Constant(intValue = 64), remap = false)
     private static int increaseStackLimit(int val)
     {
-        return AutoSidedConfig.getMaxStackSize();
+        return StackSizeHelper.getNewStackSize();
     }
 }

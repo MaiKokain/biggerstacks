@@ -8,6 +8,6 @@ public class ModularRoutersHelper
     {
         //this needs precision, and is only done once per opening the gui
         //Avoid potentially returning 0 with math.max
-        return (int) Math.max(1, Math.ceil(Math.log(AutoSidedConfig.getMaxStackSize()) / Math.log(2)));
+        return (int) Math.max(1, Math.ceil(Math.log(StackSizeHelper.getNewSlotLimit()) / Math.log(2)));
     }
 }
