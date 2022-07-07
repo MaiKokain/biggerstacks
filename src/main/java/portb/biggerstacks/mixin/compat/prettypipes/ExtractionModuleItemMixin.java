@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import portb.biggerstacks.config.AutoSidedConfig;
-import portb.biggerstacks.util.PrettyPipesHelper;
+import portb.biggerstacks.util.StackSizeHelper;
 
 @Mixin(ExtractionModuleItem.class)
 public class ExtractionModuleItemMixin
@@ -19,18 +19,11 @@ public class ExtractionModuleItemMixin
               remap = false)
     private int increaseTransferRate(ExtractionModuleItem instance)
     {
-        var rate = ((ExtractionModuleItemAccessor) instance).getMaxExtractionRate();
-
-        if (!AutoSidedConfig.increaseTransferRate())
-            return rate;
-
-        if (rate == 1)
-        {
-            return 1;
-        }
+        int rate = ((ExtractionModuleItemAccessor) instance).getMaxExtractionRate();
+    
+        if (AutoSidedConfig.increaseTransferRate())
+            return StackSizeHelper.scaleTransferRate(rate, false);
         else
-        {
-            return PrettyPipesHelper.calculateExtractionRate(rate);
-        }
+            return rate;
     }
 }

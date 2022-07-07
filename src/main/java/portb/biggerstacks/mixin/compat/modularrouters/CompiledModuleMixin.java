@@ -5,6 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.StackSizeHelper;
 
 @Mixin(CompiledModule.class)
 public class CompiledModuleMixin
@@ -13,7 +14,7 @@ public class CompiledModuleMixin
     private int increaseTransferRate(int value)
     {
         if (AutoSidedConfig.increaseTransferRate())
-            return AutoSidedConfig.getMaxStackSize();
+            return StackSizeHelper.increaseTransferRate(value);
         else
             return value;
     }

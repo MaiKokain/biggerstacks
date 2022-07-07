@@ -2,6 +2,7 @@ package portb.biggerstacks.mixin.compat.tinkers;
 
 import org.spongepowered.asm.mixin.Mixin;
 import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.util.StackSizeHelper;
 import slimeknights.tconstruct.library.tools.capability.ToolInventoryCapability;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
@@ -14,6 +15,6 @@ public interface IInventoryModifierMixin extends ToolInventoryCapability.IInvent
     @Override
     default int getSlotLimit(IToolStackView tool, int slot)
     {
-        return AutoSidedConfig.getMaxStackSize();
+        return StackSizeHelper.getNewSlotLimit();
     }
 }
