@@ -5,6 +5,9 @@
     "compatibilityLevel": "JAVA_8",
     "refmap": "biggerstacks.refmap.json",
     "mixins": [
+        "compat.ae2.AppEngInternalInventoryMixin",
+        "compat.ae2.ContainerAdapterMixin",
+        "compat.ae2.InternalInventoryMixin",
         "compat.ae2.IOBusPartMixin",
         "compat.colossalchests.BlockEntityColossalChestMixin",
         "compat.colossalchests.BlockEntityUncolossalChestMixin",
@@ -62,7 +65,8 @@
         "vanilla.stacksize.SlotMixin"
     ],
     "client": [
-        "client.ItemRendererMixin"
+        "client.ItemRendererMixin",
+        "compat.ae2.AEBaseScreenMixin"
     ],
     "injectors": {
         "defaultRequire": 1
