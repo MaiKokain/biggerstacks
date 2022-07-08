@@ -163,6 +163,7 @@ dependencies {
             "$cm:TinkersConstruct-74072:3829979",        //https://www.curseforge.com/minecraft/mc-mods/tinkers-construct/files/
             "$cm:Mantle-74924:3829975",                  //https://www.curseforge.com/minecraft/mc-mods/mantle/files/
             "$cm:ShetiPhianCore-71738:3832652",          //https://www.curseforge.com/minecraft/mc-mods/shetiphiancore/files/
+            "$cm:LazierAe2-489843:3818398",              //https://www.curseforge.com/minecraft/mc-mods/lazierae2/files
     ].forEach { dep -> compileOnly fg.deobf(dep) }
     compileOnly fg.deobf("com.refinedmods:refinedstorage:1.10.2") { transitive false }
 
@@ -178,7 +179,6 @@ dependencies {
     // Runtime only dependencies
     //
     [
-            "com.blamejared.crafttweaker:CraftTweaker-forge-1.18.2:9.1.155", //used for testing blacklist/whitelist tag
             "$cm:ConfigMenus-544048:3671318",            //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
             "$cm:BetterModsButton-541584:3773500",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
     ].forEach { dep -> runtimeOnly fg.deobf(dep) }
