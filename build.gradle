@@ -176,6 +176,7 @@ dependencies {
             "sophisticatedcore:sophisticatedcore:1.18.2-0.3.6.-alpha:deobf",
             "com.buuz135:industrial-foregoing:1.18.2-3.3.1.4:deobf",
             "com.hrznstudio:titanium:1.18.2-3.5.6:deobf",
+            "org.squiddev:cc-tweaked-1.18.2:1.100.8:deobf",
     ].forEach { dep -> compileOnly(dep) }
 
     //
@@ -190,10 +191,10 @@ dependencies {
     //
     // Runtime only dependencies
     //
-    [
-            "$cm:ConfigMenus-544048:3671318",            //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
-            "$cm:BetterModsButton-541584:3773500",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
-    ].forEach { dep -> runtimeOnly fg.deobf(dep) }
+//    [
+//            "$cm:ConfigMenus-544048:3671318",            //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
+//            "$cm:BetterModsButton-541584:3773500",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
+//    ].forEach { dep -> runtimeOnly fg.deobf(dep) }
 
     //
     // Annotation processor
