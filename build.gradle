@@ -163,7 +163,6 @@ dependencies {
             "de.ellpeck.prettypipes:PrettyPipes:1.10.4:deobf",
             "com.lothrazar.cyclic:Cyclic:1.18.2-1.7.2:deobf",
             "slimeknights.mantle:Mantle:1.18.2-1.9.DEV.6cb98c6:deobf",
-            "com.buuz135:industrial-foregoing:1.18.2-3.3.1.4:deobf",
             "edivad.dimstorage:DimStorage-1.18.2:6.1.0:deobf",
             "vazkii.quark:Quark:3.2-359:deobf",
             "slimeknights.tconstruct:TConstruct:1.18.2-3.5.1.DEV.5dfa77d74:deobf",
@@ -175,8 +174,10 @@ dependencies {
             "com.github.mcjty:xnet:1.18-4.0.5:deobf",
             "sophisticatedbackpacks:sophisticatedbackpacks:1.18.2-3.17.9.-alpha:deobf",
             "sophisticatedcore:sophisticatedcore:1.18.2-0.3.6.-alpha:deobf",
-
+            "com.buuz135:industrial-foregoing:1.18.2-3.3.1.4:deobf",
+            "com.hrznstudio:titanium:1.18.2-3.5.6:deobf",
     ].forEach { dep -> compileOnly(dep) }
+
     //
     // Implementation dependencies
     // Used for compatibility/testing
@@ -184,6 +185,7 @@ dependencies {
     [
             "mezz.jei:jei-1.18.2:9.7.0.194",
     ].forEach { dep -> implementation fg.deobf(dep) }
+
 
     //
     // Runtime only dependencies
