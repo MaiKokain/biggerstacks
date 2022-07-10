@@ -102,6 +102,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     mavenCentral()
+    mavenLocal()
 
     maven { // IE & CT
         name = "BlameJared"
@@ -138,26 +139,33 @@ dependencies {
             "appeng:appliedenergistics2:8.4.7",
             "blusunrize.immersiveengineering:ImmersiveEngineering:1.16.5-5.1.0-148",
             "$cm:RefinedStorage-243076:3807951",         //https://www.curseforge.com/minecraft/mc-mods/refined-storage/files/
-            "$cm:Cyclic-239286:3717822",                 //https://www.curseforge.com/minecraft/mc-mods/cyclic/files
-            "$cm:McJtyLib-233105:3813653",               //https://www.curseforge.com/minecraft/mc-mods/mcjtylib/files (mcjty probably has a maven but i can't be bothered + if it aint broke dont fix it)
-            "$cm:RFToolsBase-326041:3813654",            //https://www.curseforge.com/minecraft/mc-mods/rftools-base/files
-            "$cm:RFToolsStorage-350006:3771411",         //https://www.curseforge.com/minecraft/mc-mods/rftools-storage/files
-            "$cm:RFToolsUtility-342466:3813656",         //https://www.curseforge.com/minecraft/mc-mods/rftools-utility/files
-            "$cm:XNet-260912:3813662",                   //https://www.curseforge.com/minecraft/mc-mods/xnet/files
-            "$cm:DimStorage-353882:3335450",             //https://www.curseforge.com/minecraft/mc-mods/dimstorage/files
-            "$cm:PrettyPipes-376737:3724799",            //https://www.curseforge.com/minecraft/mc-mods/pretty-pipes/files
-            "$cm:ColossalChests-237875:3474923",         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files
-            "$cm:CyclopsCore-232758:3796009",            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files
-            "$cm:ModularRouters-250294:3622942",         //https://www.curseforge.com/minecraft/mc-mods/modular-routers/files
             "$cm:Mekanism-268560:3659389",               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
-            "$cm:Quark-243121:3642325",                  //https://www.curseforge.com/minecraft/mc-mods/quark/files/
-            "$cm:AutoRegLib-250363:3326041",             //https://www.curseforge.com/minecraft/mc-mods/autoreglib/files/
-            "$cm:SophisticatedBackpacks-422301:3699214", //https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/
-            "$cm:TinkersConstruct-74072:3695126",        //https://www.curseforge.com/minecraft/mc-mods/tinkers-construct/files/
-            "$cm:Mantle-74924:3631982",                  //https://www.curseforge.com/minecraft/mc-mods/mantle/files/
             "$cm:ShetiPhianCore-71738:3832649",          //https://www.curseforge.com/minecraft/mc-mods/shetiphiancore/files/
     ].forEach { dep -> compileOnly fg.deobf(dep) }
 
+    [
+            "$cm:CyclopsCore-232758:3796010",            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files
+            "$cm:ColossalChests-237875:3474924",         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files
+            //
+            // Maven local
+            //
+            "com.lothrazar.cyclic:Cyclic:1.16.5-1.5.17:deobf",
+            "vazkii.quark:Quark:r2.4-323:deobf",
+            "com.github.mcjty:rftoolsbase:1.16-2.1.5:deobf",
+            "com.github.mcjty:rftoolsstorage:1.16-2.0.19:deobf",
+            "com.github.mcjty:mcjtylib:1.16-5.1.8:deobf",
+            "com.github.mcjty:xnet:1.16-3.0.17:deobf",
+            "com.github.mcjty:rftoolsutility:1.16-3.1.16:deobf",
+            "me.desht:modular-routers:1.16.5-7.5.3-CUSTOM:deobf",
+            "edivad.dimstorage:DimStorage-1.16.5:4.4.1:deobf",
+            "de.ellpeck.prettypipes:PrettyPipes:1.9.8:deobf",
+            "slimeknights.tconstruct:TConstruct:1.16.5-3.3.4.DEV.5424fac0a:deobf",
+            "slimeknights.mantle:Mantle:1.16.5-1.6.DEV.e3377ec:deobf",
+            "com.hrznstudio:titanium:1.16.5-3.2.8.7:deobf",
+            "com.buuz135:industrial-foregoing:1.18.2-3.3.1.4:deobf",
+            "org.squiddev:cc-tweaked-1.16.5:1.100.8:deobf",
+            "sophisticatedbackpacks:sophisticatedbackpacks:1.16.5-3.15.15.-alpha:deobf",
+    ].forEach { dep -> compileOnly(dep) }
     //
     // Implementation dependencies
     // Used for compatibility/testing
