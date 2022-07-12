@@ -9,6 +9,8 @@
         "compat.ae2.AppEngInternalInventoryMixin",
         "compat.ae2.CondenseItemHandlerMixin",
         "compat.ae2.IOBusPartMixin",
+        "compat.cctweaked.DefaultInventoryMixin",
+        "compat.cctweaked.TurtleAPIMixin",
         "compat.colossalchests.BlockEntityColossalChestMixin",
         "compat.colossalchests.BlockEntityUncolossalChestMixin",
         "compat.colossalchests.ContainerColossalChestMixin",
