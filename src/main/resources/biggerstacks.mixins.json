@@ -5,6 +5,9 @@
     "compatibilityLevel": "JAVA_8",
     "refmap": "biggerstacks.refmap.json",
     "mixins": [
+        "compat.ae2.AppEngInternalAEInventoryMixin",
+        "compat.ae2.AppEngInternalInventoryMixin",
+        "compat.ae2.CondenseItemHandlerMixin",
         "compat.ae2.IOBusPartMixin",
         "compat.colossalchests.BlockEntityColossalChestMixin",
         "compat.colossalchests.BlockEntityUncolossalChestMixin",
@@ -12,6 +15,7 @@
         "compat.cyclic.TileCableItemAccessor",
         "compat.cyclic.TileCableItemMixin",
         "compat.immersiveengineering.IEInventoryHandlerMixin",
+        "compat.lazierae2.InventoryHandlerMixin",
         "compat.mantle.InventoryBlockEntityMixin",
         "compat.mekanism.BasicInventorySlotMixin",
         "compat.mekanism.QIOCraftingWindowMixin",
@@ -60,7 +64,8 @@
         "vanilla.stacksize.SlotMixin"
     ],
     "client": [
-        "client.ItemRendererMixin"
+        "client.ItemRendererMixin",
+        "compat.ae2.AEBaseScreenMixin"
     ],
     "injectors": {
         "defaultRequire": 1
