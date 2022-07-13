@@ -143,10 +143,10 @@ dependencies {
     // Compile only dependencies
     //
     [
-            "appeng:appliedenergistics2:11.1.3",                                       //can't be bothered
-            "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.2-8.0.2-pre.9", //wont' build
-            "$cm:Mekansim-268560:3833669",                                             //can't be bothered https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
-            "$cm:ShetiPhianCore-71738:3832652",                                        //closed source https://www.curseforge.com/minecraft/mc-mods/shetiphiancore/files/
+            "appeng:appliedenergistics2:11.1.3",
+            "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.2-8.0.2-pre.9",
+            "$cm:Mekansim-268560:3833669",                                             //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
+            "$cm:ShetiPhianCore-71738:3832652",                                        //https://www.curseforge.com/minecraft/mc-mods/shetiphiancore/files/
     ].forEach { dep -> compileOnly fg.deobf(dep) }
 
     compileOnly fg.deobf("com.refinedmods:refinedstorage:1.10.2") { transitive false }
@@ -154,10 +154,7 @@ dependencies {
     [
             "$cm:ColossalChests-237875:3768513", //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files (deobf)
             "$cm:CyclopsCore-232758:3832120",    //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files (deobf)
-
-            //
-            // Maven local
-            //
+            // Maven local deps
             "wolforce.playertabs:playertabs:1.0:deobf",
             "com.almostreliable.lazierae2:lazierae2:1.18.2-3.0.2:deobf",
             "de.ellpeck.prettypipes:PrettyPipes:1.10.4:deobf",
@@ -183,18 +180,18 @@ dependencies {
     // Implementation dependencies
     // Used for compatibility/testing
     //
-    [
-            "mezz.jei:jei-1.18.2:9.7.0.194",
-    ].forEach { dep -> implementation fg.deobf(dep) }
-
+    //[
+    //].forEach { dep -> implementation fg.deobf(dep) }
 
     //
     // Runtime only dependencies
     //
-//    [
-//            "$cm:ConfigMenus-544048:3671318",            //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
-//            "$cm:BetterModsButton-541584:3773500",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
-//    ].forEach { dep -> runtimeOnly fg.deobf(dep) }
+    [
+            "com.blamejared.crafttweaker:CraftTweaker-forge-1.18.2:9.1.164",
+            "mezz.jei:jei-1.18.2:9.7.0.194",
+            //"$cm:ConfigMenus-544048:3671318",            //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
+            //"$cm:BetterModsButton-541584:3773500",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
+    ].forEach { dep -> runtimeOnly fg.deobf(dep) }
 
     //
     // Annotation processor
