@@ -21,7 +21,6 @@ import portb.biggerstacks.config.ServerConfig;
 
 import java.text.DecimalFormat;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(Constants.MOD_ID)
 public class BiggerStacks
 {

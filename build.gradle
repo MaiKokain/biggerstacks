@@ -134,6 +134,7 @@ dependencies {
 
     //
     // Compile only dependencies
+    // Non-deobf jars
     //
     [
             "appeng:appliedenergistics2:8.4.7",
@@ -141,14 +142,18 @@ dependencies {
             "$cm:RefinedStorage-243076:3807951",         //https://www.curseforge.com/minecraft/mc-mods/refined-storage/files/
             "$cm:Mekanism-268560:3659389",               //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
             "$cm:ShetiPhianCore-71738:3832649",          //https://www.curseforge.com/minecraft/mc-mods/shetiphiancore/files/
+            "$cm:IndustrialForegoing-266515:3446262",    //https://www.curseforge.com/minecraft/mc-mods/industrial-foregoing/files/
+            "$cm:Titanium-287342:3346366",               //https://www.curseforge.com/minecraft/mc-mods/titanium/files/
     ].forEach { dep -> compileOnly fg.deobf(dep) }
 
+    //
+    // Compile only dependencies
+    // Deobf jars only
+    //
     [
             "$cm:CyclopsCore-232758:3796010",            //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files
             "$cm:ColossalChests-237875:3474924",         //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files
-            //
-            // Maven local
-            //
+            //maven local repos
             "com.lothrazar.cyclic:Cyclic:1.16.5-1.5.17:deobf",
             "vazkii.quark:Quark:r2.4-323:deobf",
             "com.github.mcjty:rftoolsbase:1.16-2.1.5:deobf",
@@ -161,26 +166,27 @@ dependencies {
             "de.ellpeck.prettypipes:PrettyPipes:1.9.8:deobf",
             "slimeknights.tconstruct:TConstruct:1.16.5-3.3.4.DEV.5424fac0a:deobf",
             "slimeknights.mantle:Mantle:1.16.5-1.6.DEV.e3377ec:deobf",
-            "com.hrznstudio:titanium:1.16.5-3.2.8.7:deobf",
-            "com.buuz135:industrial-foregoing:1.18.2-3.3.1.4:deobf",
-            "org.squiddev:cc-tweaked-1.16.5:1.100.8:deobf",
             "sophisticatedbackpacks:sophisticatedbackpacks:1.16.5-3.15.15.-alpha:deobf",
+            "com.almostreliable.lazierae2:lazierae2:1.16.5-2.0.4",
+            "org.squiddev:cc-tweaked-1.16.5:1.100.8:deobf",
     ].forEach { dep -> compileOnly(dep) }
+
     //
     // Implementation dependencies
-    // Used for compatibility/testing
+    // Used for testing
     //
-    [
-            "mezz.jei:jei-1.16.5:7.7.1.152",
-    ].forEach { dep -> implementation fg.deobf(dep) }
+    //[
+    //].forEach { dep -> implementation fg.deobf(dep) }
+
 
     //
     // Runtime only dependencies
     //
     [
             "com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.2.511", //used for testing blacklist/whitelist tag
-            "$cm:ConfigMenu-544048:3520850",             //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
-            "$cm:BetterModsButton-541584:3519038",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
+            "mezz.jei:jei-1.16.5:7.7.1.152",
+            //"$cm:ConfigMenu-544048:3520850",             //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
+            //"$cm:BetterModsButton-541584:3519038",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
     ].forEach { dep -> runtimeOnly fg.deobf(dep) }
 
     //
@@ -193,11 +199,9 @@ jar {
     manifest {
         attributes([
                 "Specification-Title"     : "biggerstacks",
-                //"Specification-Vendor"    : "biggerstackssareus",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Specification-Version"   : "1",
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion.get(),
-                //"Implementation-Vendor"   : "biggerstackssareus",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

@@ -13,7 +13,8 @@ public abstract class InventoryInternalMixin
     @ModifyVariable(method = "<init>(Lnet/minecraft/tileentity/TileEntity;Ljava/lang/String;IILjava/lang/String;Lshetiphian/core/common/inventory/IContainerCallback;)V",
                     at = @At("HEAD"),
                     ordinal = 1,
-                    argsOnly = true)
+                    argsOnly = true,
+                    remap = false)
     private static int increaseStackLimit(int val)
     {
         return StackSizeHelper.scaleSlotLimit(val);
