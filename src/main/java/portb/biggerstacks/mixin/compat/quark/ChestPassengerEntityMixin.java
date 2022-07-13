@@ -10,7 +10,7 @@ import vazkii.quark.content.management.entity.ChestPassengerEntity;
 @Mixin(ChestPassengerEntity.class)
 public abstract class ChestPassengerEntityMixin
 {
-    @ModifyConstant(method = "getMaxStackSize", constant = @Constant(intValue = 64), require = 0)
+    @ModifyConstant(method = "getInventoryStackLimit", constant = @Constant(intValue = 64), require = 0, remap = false)
     private int increaseStackLimit(int val)
     {
         return StackSizeHelper.getNewSlotLimit();

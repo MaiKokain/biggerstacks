@@ -10,7 +10,7 @@ import slimeknights.mantle.tileentity.InventoryTileEntity;
 @Mixin(InventoryTileEntity.class)
 public class InventoryBlockEntityMixin
 {
-    @Inject(method = "getMaxStackSize", at = @At("RETURN"), require = 0, cancellable = true)
+    @Inject(method = "getInventoryStackLimit", at = @At("RETURN"), require = 0, cancellable = true, remap = false)
     private void increaseStackLimit(CallbackInfoReturnable<Integer> cir)
     {
         StackSizeHelper.scaleSlotLimit(cir);
