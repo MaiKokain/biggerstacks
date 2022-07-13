@@ -16,7 +16,7 @@ public abstract class BackpackContainerMixin
     @ModifyConstant(method = "calculateMaxCountForStack", constant = @Constant(intValue = 64), remap = false)
     private static int increaseStackLimit(int val)
     {
-        return StackSizeHelper.getNewStackSize();
+        return StackSizeHelper.getNewSlotLimit();
     }
     
     @Redirect(method = "mergeItemStack(Lnet/minecraft/world/item/ItemStack;IIZZZ)Z",

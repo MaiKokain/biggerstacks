@@ -10,19 +10,6 @@ import portb.biggerstacks.util.StackSizeHelper;
 @Mixin(InventoryHandler.class)
 public class InventoryHandlerMixin
 {
-    //@ModifyVariable(method = "setSlotLimit", at = @At("HEAD"), ordinal = 0, remap = false, argsOnly = true)
-    private int scaleSlotLimit(int slotLimit)
-    {
-        //Avoid potentially returning 0 with math.max
-        return StackSizeHelper.scaleSlotLimit(slotLimit);
-    }
-    
-    //@ModifyConstant(method = "setSlotLimit", constant = @Constant(intValue = 64), remap = false)
-    private int increaseStackLimit(int val)
-    {
-        return StackSizeHelper.getNewStackSize();
-    }
-    
     @Inject(method = "getStackLimit", at = @At("RETURN"), cancellable = true, remap = false)
     private void increaseStackLimit(CallbackInfoReturnable<Integer> cir)
     {
