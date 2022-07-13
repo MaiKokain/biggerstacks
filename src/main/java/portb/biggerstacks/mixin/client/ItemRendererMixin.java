@@ -23,8 +23,8 @@ import static portb.biggerstacks.Constants.*;
 @Mixin(ItemRenderer.class)
 public class ItemRendererMixin
 {
-    private static final DecimalFormat BILLION_FORMAT = new DecimalFormat("#.##B");
-    private static final DecimalFormat MILLION_FORMAT = new DecimalFormat("#.##M");
+    private static final DecimalFormat BILLION_FORMAT  = new DecimalFormat("#.##B");
+    private static final DecimalFormat MILLION_FORMAT  = new DecimalFormat("#.##M");
     private static final DecimalFormat THOUSAND_FORMAT = new DecimalFormat("#.##K");
 
     @Redirect(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
@@ -33,7 +33,7 @@ public class ItemRendererMixin
     {
         if (ClientConfig.enableNumberShortening.get())
         {
-            BigDecimal decimal = new BigDecimal(count).round(new MathContext(3)); //pinnacle of over engineering
+            var decimal = new BigDecimal(count).round(new MathContext(3)); //pinnacle of over engineering
 
             var value = decimal.doubleValue();
 
@@ -58,7 +58,7 @@ public class ItemRendererMixin
     private void pushStack(Font font, ItemStack tesselator, int x, int y, String j, CallbackInfo ci, PoseStack posestack, String countString)
     {
         posestack.pushPose();
-        float scale = (float) calculateStringScale(font, countString);
+        var scale = (float) calculateStringScale(font, countString);
 
         posestack.scale(scale, scale, 1);
     }
@@ -71,25 +71,28 @@ public class ItemRendererMixin
             locals = LocalCapture.CAPTURE_FAILHARD)
     private void translateStackBack(Font font, ItemStack itemStack, int x, int y, String _a, CallbackInfo ci, PoseStack posestack, String countString, MultiBufferSource.BufferSource multibuffersource$buffersource)
     {
-        int width = font.width(countString);
-        double scale = calculateStringScale(font, countString);
-        double extraXOffset = scale == 1 ? 0 : 1 / (scale * 2);
-        double extraYOffset = scale == 1 ? 0 : 1.5 / (scale);
+        var width        = font.width(countString);
+        var scale        = calculateStringScale(font, countString);
+        var extraXOffset = scale == 1 ? 0 : 1 / (scale * 2);
+        var extraYOffset = scale == 1 ? 0 : 1.5 / (scale);
 
+        //translate back to 0,0 for easier accounting for scaling
         posestack.translate(-(x + 19 - 2 - width),
                             -(y + 6 + 3),
-                            0); //translate back to 0,0 for easier accounting for scaling
+                            0
+        );
 
-        posestack.translate( //i just messed around until i found something that felt right
-                             (x + 19 - 2 - extraXOffset - width * scale) / scale,
-                             (y + 6 + 3) / scale - (9 - 9 / scale) - extraYOffset, //this is stupid
-                             0
+        //i just messed around until i found something that felt right
+        posestack.translate(
+                (x + 19 - 2 - extraXOffset - width * scale) / scale,
+                (y + 6 + 3) / scale - (9 - 9 / scale) - extraYOffset, //this is stupid
+                0
         );
     }
 
     private double calculateStringScale(Font font, String countString)
     {
-        int width = font.width(countString);
+        var width = font.width(countString);
 
         if (width < 16)
             return 1.0;
