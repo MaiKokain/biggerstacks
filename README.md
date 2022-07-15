@@ -38,14 +38,14 @@ publishing {
 }
 ```
 
-3. Find the mod on github and clone it
-4. Open the build.gradle of the repo and find the `publishing` task and replace it
+2. Find the mod on github and clone it
+3. Open the build.gradle of the repo and find the `publishing` task and replace it
    with: `apply from: "${System.getProperty("user.home")}/documents/publish.gradle"`
-5. If it doesn't have a publishing block, just put that snippet at the end of the build.gradle
-6. Make sure that the `maven-publish` plugin is applied (any repo with a publishing block will have it applied already)
-7. Run `cmd /c "gradlew publishToMavenLocal"`, or if you need **Java 8**, run cmd
+4. If it doesn't have a publishing block, just put that snippet at the end of the build.gradle
+5. Make sure that the `maven-publish` plugin is applied (any repo with a publishing block will have it applied already)
+6. Run `cmd /c "gradlew publishToMavenLocal"`, or if you need **Java 8**, run cmd
    /c `gradlew -Dorg.gradle.java.home=C:\PROGRA~1\ECLIPS~1\jdk-8.0.322.6-hotspot publishToMavenLocal"`
-8. If you need the path to your java directory, use `DIR /X` to get the directory without spaces (it will have a `~` in
+7. If you need the path to your java directory, use `DIR /X` to get the directory without spaces (it will have a `~` in
    it)
 
 😕
