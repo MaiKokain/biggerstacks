@@ -50,7 +50,7 @@ public class FriendlyByteBufMixin
     /**
      * See {@link #doNothing(FriendlyByteBuf)}
      */
-    @ModifyVariable(method = "readItem", at = @At("STORE"), ordinal = 1)
+    @ModifyVariable(method = "readItem", at = @At("STORE"), ordinal = 0)
     private int readStackItemCount(int value)
     {
         //actually read the item count here
