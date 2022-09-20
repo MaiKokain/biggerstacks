@@ -2,7 +2,7 @@
 
 Allows increasing stack sizes past 64 up to MAXINT/2 (about 1 billion)
 
-## How to build other mods for maven local
+<!-- ## How to build other mods for maven local
 
 1. Create a file in your documents folder and put this in it:
 
@@ -48,5 +48,4 @@ publishing {
 7. If you need the path to your java directory, use `DIR /X` to get the directory without spaces (it will have a `~` in
    it)
 
-😕
-
+-->
