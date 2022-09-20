@@ -28,13 +28,6 @@ public class BiggerStacks
 {
     public final static Logger LOGGER = LogUtils.getLogger();
     
-    public static final  TagKey<Item>  BLACKLIST_TAG         = ItemTags.create(new ResourceLocation(Constants.MOD_ID,
-                                                                                                    "blacklist"
-    ));
-    public static final  TagKey<Item>  WHITELIST_TAG         = ItemTags.create(new ResourceLocation(Constants.MOD_ID,
-                                                                                                    "whitelist"
-    ));
-
     public BiggerStacks()
     {
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
