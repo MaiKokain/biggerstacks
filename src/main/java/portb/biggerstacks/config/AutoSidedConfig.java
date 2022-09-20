@@ -25,11 +25,6 @@ public class AutoSidedConfig
         return getConfigInstance().maxStackCount.get();
     }
 
-    public static boolean isUsingWhitelist()
-    {
-        return getConfigInstance().useWhitelistTag.get();
-    }
-
     private static ServerConfig getConfigInstance()
     {
         if (isPlayingOnRemoteServer())
