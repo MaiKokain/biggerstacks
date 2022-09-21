@@ -1,8 +1,10 @@
 package portb.biggerstacks.mixin.vanilla.stacksize;
 
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,6 +13,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.BiggerStacks;
 import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.config.StackSizeRules;
+import portb.biggerstacks.configlib.ItemProperties;
+import portb.biggerstacks.util.StackSizeHelper;
+
+import java.util.stream.Collectors;
+
+import static portb.biggerstacks.BiggerStacks.LOGGER;
 
 @Mixin(ItemStack.class)
 public class ItemStackMixin
@@ -22,25 +31,36 @@ public class ItemStackMixin
     private void increaseStackLimit(CallbackInfoReturnable<Integer> returnInfo)
     {
         Item item = ((ItemStack) (Object) this).getItem();
-
-        try
+    
+        if(StackSizeRules.getRuleSet() != null)
         {
-            //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
-            if (AutoSidedConfig.isUsingWhitelist() && !item.is(BiggerStacks.WHITELIST_TAG))
-                return;
-                //check if this item has the blacklist tag, and if it does, don't increase its stack size
-            else if (item.is(BiggerStacks.BLACKLIST_TAG))
-                return;
+        
+            StackSizeRules.getRuleSet().determineStackSizeForItem(new ItemProperties(
+                                                                          item.getRegistryName().getNamespace(),
+                                                                          item.getRegistryName().toString(),
+                                                                          item.getItemCategory() != null ? item.getItemCategory().toString() : null,
+                                                                          returnInfo.getReturnValue(),
+                                                                          item.isEdible(),
+                                                                          (item instanceof BlockItem),
+                                                                          item.canBeDepleted(),
+                                                                          item.getTags().stream().map(ResourceLocation::toString).collect(Collectors.toList())
+                                                                  )
+                          )
+                          .ifPresent((stackSize) -> {
+                              returnInfo.cancel();
+                              //cap max stack size to the global max
+                              returnInfo.setReturnValue(Math.min(stackSize, AutoSidedConfig.getMaxStackSize()));
+                          });
         }
-        catch (IllegalStateException e)
+        else
         {
-            System.err.println("Tags are not bound at this time! Assuming all items are whitelisted");
-        }
-
-        if (returnInfo.getReturnValue() != 1)
-        {
-            returnInfo.cancel();
-            returnInfo.setReturnValue(AutoSidedConfig.getMaxStackSize());
+            LOGGER.warn("Stack size ruleset is somehow null, using fallback logic");
+        
+            if(returnInfo.getReturnValue() > 1)
+            {
+                returnInfo.cancel();
+                returnInfo.setReturnValue(StackSizeHelper.getNewStackSize());
+            }
         }
     }
 
