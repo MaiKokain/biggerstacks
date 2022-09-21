@@ -59,22 +59,14 @@ public class StackSizeHelper
     public static int scaleTransferRate(int originalRate, boolean respectSingle){
         if(originalRate == 1 && respectSingle)
             return 1;
-        
-        //don't increase rate if using whitelist
-        if(AutoSidedConfig.isUsingWhitelist())
-            return originalRate;
-        else
-            return Math.max(1, originalRate * AutoSidedConfig.getMaxStackSize() / 64);
+    
+        return Math.max(1, originalRate * AutoSidedConfig.getMaxStackSize() / 64);
     }
     
     public static int increaseTransferRate(int originalRate){
         if(originalRate == 1)
             return 1;
         
-        //don't increase rate if using whitelist
-        if(AutoSidedConfig.isUsingWhitelist())
-            return originalRate;
-        else
-            return Math.max(1, AutoSidedConfig.getMaxStackSize());
+        return Math.max(1, AutoSidedConfig.getMaxStackSize());
     }
 }

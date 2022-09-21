@@ -59,7 +59,6 @@
         "vanilla.stacksize.ContainerMixin",
         "vanilla.stacksize.InvWrapperMixin",
         "vanilla.stacksize.ItemEntityMixin",
-        "vanilla.stacksize.ItemMixin",
         "vanilla.stacksize.ItemStackAccessor",
         "vanilla.stacksize.ItemStackHandlerMixin",
         "vanilla.stacksize.ItemStackMixin",
