@@ -3,6 +3,7 @@ package portb.biggerstacks.mixin.vanilla.stacksize;
 import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import org.objectweb.asm.Opcodes;
 import org.slf4j.Logger;
@@ -46,7 +47,9 @@ public class ItemStackMixin
                                                                           item.isEdible(),
                                                                           (item instanceof BlockItem),
                                                                           item.canBeDepleted(),
-                                                                          itemstack.getTags().map((tag) -> tag.location().toString()).toList()
+                                                                          item instanceof BucketItem,
+                                                                          itemstack.getTags().map((tag) -> tag.location().toString()).toList(),
+                                                                          item.getClass()
                                                                   )
                           )
                           .ifPresent((stackSize) -> {
