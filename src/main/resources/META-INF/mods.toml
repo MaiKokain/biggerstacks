@@ -13,7 +13,7 @@ description = '''Allows increasing stack sizes past 64 up to MAXINT/2 (about 1 b
 [[dependencies.biggerstacks]]
 modId = "forge"
 mandatory = true
-versionRange = "[40,)"
+versionRange = "[40.1.44,)"
 ordering = "NONE"
 side = "BOTH"
 
