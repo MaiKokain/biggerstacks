@@ -1,6 +1,7 @@
 package portb.biggerstacks.mixin.vanilla.stacksize;
 
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -11,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import portb.biggerstacks.BiggerStacks;
 import portb.biggerstacks.config.AutoSidedConfig;
 import portb.biggerstacks.config.StackSizeRules;
 import portb.biggerstacks.configlib.ItemProperties;
@@ -43,7 +43,9 @@ public class ItemStackMixin
                                                                           item.isEdible(),
                                                                           (item instanceof BlockItem),
                                                                           item.canBeDepleted(),
-                                                                          item.getTags().stream().map(ResourceLocation::toString).collect(Collectors.toList())
+                                                                          item instanceof BucketItem,
+                                                                          item.getTags().stream().map(ResourceLocation::toString).collect(Collectors.toList()),
+                                                                          item.getClass()
                                                                   )
                           )
                           .ifPresent((stackSize) -> {
