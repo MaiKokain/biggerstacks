@@ -1,6 +1,7 @@
 package portb.biggerstacks.mixin.vanilla.stacksize;
 
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -38,7 +39,9 @@ public class ItemMixin
                                                                           item.isEdible(),
                                                                           (item instanceof BlockItem),
                                                                           item.canBeDepleted(),
-                                                                          itemstack.getTags().map((tag) -> tag.location().toString()).toList()
+                                                                          item instanceof BucketItem,
+                                                                          itemstack.getTags().map((tag) -> tag.location().toString()).toList(),
+                                                                          item.getClass()
                                                                   )
                           )
                           .ifPresent((stackSize) -> {
