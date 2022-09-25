@@ -28,7 +28,7 @@ public class StackSizeHelper
      * @return 64 if stack size has been lowered (to account for possible blacklisted/whitelisted items) or the scaled stack size. If the original slot has a limit of 1, 1 is returned.
      */
     public static int scaleSlotLimit(int original){
-        int newStackSize = AutoSidedConfig.getMaxStackSize();
+        int newStackSize = AutoSidedConfig.getGlobalMaxStackSize();
         
         //don't scale slots that are only meant to hold a single item
         if(original == 1)
@@ -48,7 +48,7 @@ public class StackSizeHelper
      * @return The new stack size. If the new stack size would be lower than
      */
     public static int getNewSlotLimit(){
-        return Math.max(AutoSidedConfig.getMaxStackSize(), 64);
+        return Math.max(AutoSidedConfig.getGlobalMaxStackSize(), 64);
     }
   
     public static void scaleTransferRate(CallbackInfoReturnable<Integer> callbackInfoReturnable, boolean respectSingle){
@@ -60,21 +60,13 @@ public class StackSizeHelper
         if(originalRate == 1 && respectSingle)
             return 1;
         
-        //don't increase rate if using whitelist
-        if(AutoSidedConfig.isUsingWhitelist())
-            return originalRate;
-        else
-            return Math.max(1, originalRate * AutoSidedConfig.getMaxStackSize() / 64);
+        return Math.max(1, originalRate * AutoSidedConfig.getGlobalMaxStackSize() / 64);
     }
     
     public static int increaseTransferRate(int originalRate){
         if(originalRate == 1)
             return 1;
         
-        //don't increase rate if using whitelist
-        if(AutoSidedConfig.isUsingWhitelist())
-            return originalRate;
-        else
-            return Math.max(1, AutoSidedConfig.getMaxStackSize());
+        return Math.max(1, AutoSidedConfig.getGlobalMaxStackSize());
     }
 }
