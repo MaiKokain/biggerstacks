@@ -24,7 +24,6 @@ public class ClientEvents
     
     /**
      * Shows item count on the tooltip
-     * @param event
      */
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -47,8 +46,6 @@ public class ClientEvents
     
     /**
      * Unloads the ruleset when the client disconnects from a world/server
-     *
-     * @param event
      */
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent

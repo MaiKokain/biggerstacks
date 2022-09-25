@@ -11,7 +11,6 @@ public class CommonEvents
 {
     /**
      * Registers network packets
-     * @param event
      */
     @SubscribeEvent
     public static void serverStarting(FMLCommonSetupEvent event)

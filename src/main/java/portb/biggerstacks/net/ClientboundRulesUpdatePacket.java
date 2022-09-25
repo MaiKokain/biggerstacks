@@ -13,7 +13,6 @@ public class ClientboundRulesUpdatePacket
     
     /**
      * Used for play to client
-     * @param rules
      */
     public ClientboundRulesUpdatePacket(RuleSet rules)
     {

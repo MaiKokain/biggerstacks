@@ -23,7 +23,6 @@ public class ServerEvents
     
     /**
      * Creates a ServerLifecycleHandler that manages config updates
-     * @param event
      */
     @SubscribeEvent
     public static void serverStarting(ServerAboutToStartEvent event)
@@ -35,7 +34,6 @@ public class ServerEvents
     
     /**
      * Unregisters the handler
-     * @param event
      */
     @SubscribeEvent
     public static void serverStopping(ServerStoppingEvent event)
