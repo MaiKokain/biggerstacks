@@ -134,6 +134,17 @@ repositories {
     }
 }
 
+configurations {
+    library
+    implementation.extendsFrom library
+}
+
+minecraft.runs.all {
+    lazyToken('minecraft_classpath') {
+        configurations.library.copyRecursive().resolve().collect { it.absolutePath }.join(File.pathSeparator)
+    }
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:$minecraftVersion-$forgeVersion"
 
@@ -183,6 +194,12 @@ dependencies {
     [
     ].forEach { dep -> implementation fg.deobf(dep) }
 
+    library "portb:BiggerStacksConfigLib:1.3"
+    library("com.thoughtworks.xstream:xstream:1.4.19"){
+        //we do not want xstream's built in parser. We will use stax.
+        exclude group: 'io.github.x-stream', module: 'mxparser'
+    }
+
 
     //
     // Runtime only dependencies
@@ -200,6 +217,9 @@ dependencies {
 }
 
 jar {
+    // Include all of the jars from the bundled configuration in our jar
+    from configurations.library.asFileTree.files.collect { zipTree(it) }
+
     manifest {
         attributes([
                 "Specification-Title"     : "biggerstacks",

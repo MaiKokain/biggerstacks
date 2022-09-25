@@ -1,15 +1,22 @@
 package portb.biggerstacks.mixin.vanilla.stacksize;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import portb.biggerstacks.BiggerStacks;
 import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.config.StackSizeRules;
+import portb.biggerstacks.configlib.ItemProperties;
+import portb.biggerstacks.util.StackSizeHelper;
+
+import static portb.biggerstacks.BiggerStacks.LOGGER;
 
 @Mixin(ItemStack.class)
 public class ItemStackMixin
@@ -22,21 +29,45 @@ public class ItemStackMixin
             cancellable = true)
     private void increaseStackLimit(CallbackInfoReturnable<Integer> returnInfo)
     {
-        var item = ((ItemStack) (Object) this);
-        //if whitelist is enabled and the item isn't whitelisted, don't increase its stack size
-        if (AutoSidedConfig.isUsingWhitelist() && !item.is(BiggerStacks.WHITELIST_TAG))
-            return;
-            //check if this item has the blacklist tag, and if it does, don't increase its stack size
-        else if (item.is(BiggerStacks.BLACKLIST_TAG))
-            return;
-
-        if (returnInfo.getReturnValue() != 1)
+        @SuppressWarnings("ConstantConditions") var itemstack = ((ItemStack) (Object) this);
+        var                                         item      = itemstack.getItem();
+        
+        if (StackSizeRules.getRuleSet() != null)
         {
-            returnInfo.cancel();
-            returnInfo.setReturnValue(AutoSidedConfig.getMaxStackSize());
+            var itemKey = ForgeRegistries.ITEMS.getKey(item);
+            
+            StackSizeRules.getRuleSet().determineStackSizeForItem(
+                                  new ItemProperties(
+                                          itemKey.getNamespace(),
+                                          itemKey.toString(),
+                                          item.getItemCategory() != null ? item.getItemCategory().toString() : null,
+                                          returnInfo.getReturnValue(),
+                                          item.isEdible(),
+                                          (item instanceof BlockItem),
+                                          item.canBeDepleted(),
+                                          item instanceof BucketItem,
+                                          itemstack.getTags().map((tag) -> tag.location().toString()).toList(),
+                                          item.getClass()
+                                  )
+                          )
+                          .ifPresent((stackSize) -> {
+                              returnInfo.cancel();
+                              //cap max stack size to the global max
+                              returnInfo.setReturnValue(Math.min(stackSize, AutoSidedConfig.getGlobalMaxStackSize()));
+                          });
+        }
+        else
+        {
+            LOGGER.warn("Stack size ruleset is somehow null, using fallback logic");
+            
+            if (returnInfo.getReturnValue() > 1)
+            {
+                returnInfo.cancel();
+                returnInfo.setReturnValue(StackSizeHelper.getNewStackSize());
+            }
         }
     }
-
+    
     /**
      * Saves the stack size as an int instead of a byte.
      * This will cause the stack to be deleted if the world is loaded without this mod installed.
@@ -48,7 +79,7 @@ public class ItemStackMixin
         int count = ((ItemStack) (Object) this).getCount();
         tag.putInt(key, count);
     }
-
+    
     /**
      * Reads the stack size as an int instead of a byte
      * This will cause the stack to be deleted if the world is loaded without this mod installed.
@@ -61,5 +92,5 @@ public class ItemStackMixin
     {
         ((ItemStackAccessor) (Object) instance).accessSetCount(tag.getInt("Count"));
     }
-
+    
 }

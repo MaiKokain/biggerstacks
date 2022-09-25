@@ -20,14 +20,9 @@ public class AutoSidedConfig
         return getConfigInstance().increaseTransferRate.get();
     }
 
-    public static int getMaxStackSize()
+    public static int getGlobalMaxStackSize()
     {
         return getConfigInstance().maxStackCount.get();
-    }
-
-    public static boolean isUsingWhitelist()
-    {
-        return getConfigInstance().useWhitelistTag.get();
     }
 
     private static ServerConfig getConfigInstance()
