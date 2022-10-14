@@ -20,9 +20,9 @@ public class AutoSidedConfig
         return getConfigInstance().increaseTransferRate.get();
     }
 
-    public static int getMaxStackSize()
+    public static int getGlobalMaxStackSize()
     {
-        return getConfigInstance().maxStackCount.get();
+        return getConfigInstance().globalMaxStackSize.get();
     }
 
     private static ServerConfig getConfigInstance()

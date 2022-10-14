@@ -32,40 +32,40 @@ public class ItemStackMixin
     {
         Item item = ((ItemStack) (Object) this).getItem();
     
-        if(StackSizeRules.getRuleSet() != null)
+        if (StackSizeRules.getRuleSet() != null)
         {
-        
-            StackSizeRules.getRuleSet().determineStackSizeForItem(new ItemProperties(
-                                                                          item.getRegistryName().getNamespace(),
-                                                                          item.getRegistryName().toString(),
-                                                                          item.getItemCategory() != null ? item.getItemCategory().toString() : null,
-                                                                          returnInfo.getReturnValue(),
-                                                                          item.isEdible(),
-                                                                          (item instanceof BlockItem),
-                                                                          item.canBeDepleted(),
-                                                                          item instanceof BucketItem,
-                                                                          item.getTags().stream().map(ResourceLocation::toString).collect(Collectors.toList()),
-                                                                          item.getClass()
-                                                                  )
+            StackSizeRules.getRuleSet().determineStackSizeForItem(
+                                  new ItemProperties(
+                                          item.getRegistryName().getNamespace(),
+                                          item.getRegistryName().toString(),
+                                          item.getItemCategory() != null ? item.getItemCategory().toString() : null,
+                                          returnInfo.getReturnValue(),
+                                          item.isEdible(),
+                                          (item instanceof BlockItem),
+                                          item.canBeDepleted(),
+                                          item instanceof BucketItem,
+                                          item.getTags().stream().map(ResourceLocation::toString).collect(Collectors.toList()),
+                                          item.getClass()
+                                  )
                           )
                           .ifPresent((stackSize) -> {
                               returnInfo.cancel();
                               //cap max stack size to the global max
-                              returnInfo.setReturnValue(Math.min(stackSize, AutoSidedConfig.getMaxStackSize()));
+                              returnInfo.setReturnValue(Math.min(stackSize, AutoSidedConfig.getGlobalMaxStackSize()));
                           });
         }
         else
         {
             LOGGER.warn("Stack size ruleset is somehow null, using fallback logic");
-        
-            if(returnInfo.getReturnValue() > 1)
+    
+            if (returnInfo.getReturnValue() > 1)
             {
                 returnInfo.cancel();
                 returnInfo.setReturnValue(StackSizeHelper.getNewStackSize());
             }
         }
     }
-
+    
     /**
      * Saves the stack size as an int instead of a byte.
      * This will cause the stack to be deleted if the world is loaded without this mod installed.
@@ -77,7 +77,7 @@ public class ItemStackMixin
         int count = ((ItemStack) (Object) this).getCount();
         tag.putInt(key, count);
     }
-
+    
     /**
      * Reads the stack size as an int instead of a byte
      * This will cause the stack to be deleted if the world is loaded without this mod installed.
@@ -90,5 +90,5 @@ public class ItemStackMixin
     {
         ((ItemStackAccessor) (Object) instance).accessSetCount(tag.getInt("Count"));
     }
-
+    
 }

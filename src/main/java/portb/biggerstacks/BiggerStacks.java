@@ -1,41 +1,28 @@
 package portb.biggerstacks;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.*;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.Tags.IOptionalNamedTag;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.LocalConfig;
 import portb.biggerstacks.config.ServerConfig;
-import org.apache.logging.log4j.LogManager;
 import portb.biggerstacks.configlib.ConfigLib;
 import portb.biggerstacks.configlib.MyLogger;
 import portb.biggerstacks.event.ClientEvents;
 import portb.biggerstacks.event.CommonEvents;
 import portb.biggerstacks.event.ServerEvents;
 
-import java.text.DecimalFormat;
 import java.util.Optional;
 
 @Mod(Constants.MOD_ID)
 public class BiggerStacks
 {
     public final static Logger LOGGER = LogManager.getLogger();
-
-    private static final DecimalFormat TOOLTIP_NUMBER_FORMAT = new DecimalFormat("###,###,###,###,###,###");
 
     public BiggerStacks()
     {
