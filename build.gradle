@@ -185,6 +185,7 @@ dependencies {
             //"com.buuz135:industrial-foregoing:1.18.2-3.3.1.4:deobf",               //https://github.com/InnovativeOnlineIndustries/Industrial-Foregoing.git
             //"com.hrznstudio:titanium:1.18.2-3.5.6:deobf",                          //https://github.com/InnovativeOnlineIndustries/Titanium.git
             "org.squiddev:cc-tweaked-1.18.2:1.100.8:deobf",                          //https://github.com/cc-tweaked/CC-Tweaked.git
+            "com.mrcrayfish:backpacked:2.1.10-1.19:deobf"
     ].forEach { dep -> compileOnly(dep) }
 
     //
