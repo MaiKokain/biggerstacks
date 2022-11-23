@@ -18,6 +18,7 @@ import portb.biggerstacks.util.StackSizeHelper;
 
 import static portb.biggerstacks.BiggerStacks.LOGGER;
 
+//fixme i'm almost certain this isn't needed.
 @Mixin(Item.class)
 public class ItemMixin
 {

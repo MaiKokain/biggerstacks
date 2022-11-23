@@ -6,6 +6,7 @@ import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -16,9 +17,11 @@ import portb.biggerstacks.util.CallingClassUtil;
 import portb.configlib.ItemProperties;
 import portb.biggerstacks.util.StackSizeHelper;
 
+import javax.annotation.Nullable;
+
 import static portb.biggerstacks.BiggerStacks.LOGGER;
 
-//fixme delete this file if it isn't needed. I don't know/can't remember why I removed for a release it then added it back later almost 2 months ago.
+
 @Mixin(ItemStack.class)
 public class ItemStackMixin
 {
@@ -77,7 +80,13 @@ public class ItemStackMixin
     private void saveBigStack(CompoundTag tag, String key, byte p_128346_)
     {
         int count = ((ItemStack) (Object) this).getCount();
+        
         tag.putInt(key, count);
+        
+        //todo: alternate way of saving item count that is more compatible with vanilla. activate in next next release so that people can go back to the version that doesn't use asm fancyness if they find problems with it
+        //tag.putByte("Count", (byte)Math.min(count, Byte.MAX_VALUE));
+        //if(count > Byte.MAX_VALUE)
+        //tag.putInt("BigCount", count);
     }
     
     /**
@@ -91,6 +100,13 @@ public class ItemStackMixin
     private void readBigStack(ItemStack instance, int value, CompoundTag tag)
     {
         ((ItemStackAccessor) (Object) instance).accessSetCount(tag.getInt("Count"));
+        
+        //todo: activate in next release too
+//        if(tag.contains("BigCount"))
+//            accessor.accessSetCount(tag.getInt("BigCount"));
+//        else
+//            accessor.accessSetCount(tag.getByte("Count"));
+    
     }
     
 }
