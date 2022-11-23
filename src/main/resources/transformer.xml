@@ -1,0 +1,61 @@
+<!--    TODO CHECK IMMERSIVE ENGINEERING + MEKANISM WORKS PROPERLY!!!!!! -->
+
+<transformers>
+    <class path="net/minecraft/world/Container" transformChildren="true">
+        <method name="getMaxStackSize" transformer="slotLimit" debug=""/>
+        <method name="m_6893_" transformer="slotLimit" debug=""/>
+    </class>
+
+    <class path="net/minecraftforge/items/IItemHandler" transformChildren="true">
+        <method name="getSlotLimit" transformer="slotLimit" debug=""/>
+        <blacklist>net/p3pp3rf1y/sophisticatedcore/inventory/InventoryHandler</blacklist>
+        <!-- <blacklist>appeng/menu/slot/AppEngSlot</blacklist> -->
+    </class>
+
+    <class path="net/minecraft/world/inventory/Slot" transformChildren="true">
+        <method name="getMaxStackSize" transformer="slotLimit" debug=""/>
+        <method name="m_5866_" transformer="slotLimit" debug=""/>
+        <method name="m_6641_" transformer="slotLimit" debug=""/>
+        <blacklist>net/p3pp3rf1y/sophisticatedcore/common/gui/StorageInventorySlot</blacklist>
+    </class>
+
+    <class path="mekanism/common/inventory/slot/BasicInventorySlot" transformChildren="true">
+        <method name="getLimit" transformer="slotLimit"/>
+    </class>
+
+    <class path="wolforce/playertabs/TabsCapability" transformChildren="false">
+        <method name="saveInvToCurrTab" transformer="replace64"/>
+        <method name="writeTabToInv" transformer="replace64"/>
+    </class>
+    <class path="dan200/computercraft/shared.turtle/apis/TurtleAPI" transformChildren="false">
+        <method name="checkCount" transformer="replace64"/>
+        <method name="getItemSpace" transformer="replace64"/>
+    </class>
+
+    <class path="mekanism/common/content/qio/QIOCraftingWindow" transformChildren="false">
+        <method name="calculateMaxCraftAmount" transformer="replace64"/>
+    </class>
+
+<!--    transfer rate -->
+<!--    <class path="mekanism/common/tile/TileEntityLogisticalSorter" transformChildren="false">-->
+<!--        <method name="onUpdateServer" transformer="replace64"/>-->
+<!--    </class>-->
+
+    <class path="com/refinedmods/refinedstorage/apiimpl/network/grid/handler/ItemGridHandler" transformChildren="false">
+        <method name="onExtract" transformer="replace64"/>
+    </class>
+
+<!--    <class path="" transformChildren="false">-->
+<!--        <method name="" transformer="replace64"/>-->
+<!--    </class>-->
+
+<!--    <class path="" transformChildren="false">-->
+<!--        <method name="" transformer="replace64"/>-->
+<!--    </class>-->
+
+<!--    <class path="" transformChildren="false">-->
+<!--        <method name="" transformer="replace64"/>-->
+<!--    </class>-->
+
+
+</transformers>
