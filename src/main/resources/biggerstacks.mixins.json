@@ -29,9 +29,9 @@
         "vanilla.ContainersMixin",
         "vanilla.FriendlyByteBufMixin",
         "vanilla.stacksize.ItemEntityMixin",
-        "vanilla.stacksize.ItemMixin",
+//        "vanilla.stacksize.ItemMixin",
         "vanilla.stacksize.ItemStackAccessor",
-        "vanilla.stacksize.ItemStackHandlerMixin",
+        "vanilla.stacksize.ItemStackMixin",
         "vanilla.stacksize.ServerGamePacketListenerImplMixin"
     ],
     "client": [
