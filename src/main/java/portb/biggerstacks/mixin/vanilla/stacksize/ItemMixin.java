@@ -1,14 +1,14 @@
 package portb.biggerstacks.mixin.vanilla.stacksize;
 
-import net.minecraft.nbt.CompoundTag;
+import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import org.objectweb.asm.Opcodes;
+import org.apache.logging.log4j.LogManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.AutoSidedConfig;
 import portb.biggerstacks.config.StackSizeRules;
@@ -18,9 +18,8 @@ import portb.biggerstacks.util.StackSizeHelper;
 
 import static portb.biggerstacks.BiggerStacks.LOGGER;
 
-//fixme delete this file if it isn't needed. I don't know/can't remember why I removed for a release it then added it back later almost 2 months ago.
-@Mixin(ItemStack.class)
-public class ItemStackMixin
+@Mixin(Item.class)
+public class ItemMixin
 {
     /**
      * Increases the maximum stack size
@@ -30,8 +29,9 @@ public class ItemStackMixin
             cancellable = true)
     private void increaseStackLimit(CallbackInfoReturnable<Integer> returnInfo)
     {
-        @SuppressWarnings("ConstantConditions") var itemstack = ((ItemStack) (Object) this);
-        var                                         item      = itemstack.getItem();
+        //System.out.println("SOMEONE IS USING DEPRECATED API!!!!!!!!!!!!!!!!!!!!!!!!!!!!! REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        var                                         item      = ((Item) (Object) this);
+        @SuppressWarnings("ConstantConditions") var itemstack = item.getDefaultInstance();
         
         if (StackSizeRules.getRuleSet() != null)
         {
@@ -68,29 +68,5 @@ public class ItemStackMixin
         }
     }
     
-    /**
-     * Saves the stack size as an int instead of a byte.
-     * This will cause the stack to be deleted if the world is loaded without this mod installed.
-     */
-    @Redirect(method = "save",
-              at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/CompoundTag;putByte(Ljava/lang/String;B)V"))
-    private void saveBigStack(CompoundTag tag, String key, byte p_128346_)
-    {
-        int count = ((ItemStack) (Object) this).getCount();
-        tag.putInt(key, count);
-    }
-    
-    /**
-     * Reads the stack size as an int instead of a byte
-     * This will cause the stack to be deleted if the world is loaded without this mod installed.
-     */
-    @Redirect(method = "<init>(Lnet/minecraft/nbt/CompoundTag;)V",
-              at = @At(value = "FIELD",
-                       target = "Lnet/minecraft/world/item/ItemStack;count:I",
-                       opcode = Opcodes.PUTFIELD))
-    private void readBigStack(ItemStack instance, int value, CompoundTag tag)
-    {
-        ((ItemStackAccessor) (Object) instance).accessSetCount(tag.getInt("Count"));
-    }
-    
+
 }

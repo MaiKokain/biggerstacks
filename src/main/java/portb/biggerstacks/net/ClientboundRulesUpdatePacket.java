@@ -2,7 +2,7 @@ package portb.biggerstacks.net;
 
 import net.minecraft.network.FriendlyByteBuf;
 import portb.biggerstacks.config.StackSizeRules;
-import portb.biggerstacks.configlib.xml.RuleSet;
+import portb.configlib.xml.RuleSet;
 
 /**
  * Packet sent to clients when the config file is updated

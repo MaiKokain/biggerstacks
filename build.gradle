@@ -150,77 +150,58 @@ dependencies {
 
     def cm = "curse.maven"
 
-    //
-    // Compile only dependencies
-    //
-    [
-            "appeng:appliedenergistics2:11.1.3",
-            "blusunrize.immersiveengineering:ImmersiveEngineering:1.18.2-8.0.2-pre.9",
-            "$cm:Mekansim-268560:3833669",                                             //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
-            "$cm:ShetiPhianCore-71738:3832652",                                        //https://www.curseforge.com/minecraft/mc-mods/shetiphiancore/files/
-    ].forEach { dep -> compileOnly fg.deobf(dep) }
-
-    compileOnly fg.deobf("com.refinedmods:refinedstorage:1.10.2") { transitive false }
 
     //
     // CompileOnly deps that do not need fg.debof
     //
-    [
-            "$cm:ColossalChests-237875:3768513", //https://www.curseforge.com/minecraft/mc-mods/colossal-chests/files (deobf)
-            "$cm:CyclopsCore-232758:3832120",    //https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files (deobf)
+    compileOnly(
             // Maven local deps
-            "wolforce.playertabs:playertabs:1.0:deobf",
-            "com.almostreliable.lazierae2:lazierae2:1.18.2-3.0.2:deobf",
             "de.ellpeck.prettypipes:PrettyPipes:1.10.4:deobf",
             "com.lothrazar.cyclic:Cyclic:1.18.2-1.7.2:deobf",
-            "slimeknights.mantle:Mantle:1.18.2-1.9.DEV.6cb98c6:deobf",
-            "edivad.dimstorage:DimStorage-1.18.2:6.1.0:deobf",
-            "vazkii.quark:Quark:3.2-359:deobf",
-            "slimeknights.tconstruct:TConstruct:1.18.2-3.5.1.DEV.5dfa77d74:deobf",
             "me.desht:modular-routers-1.18.1:9.0.2-CUSTOM:deobf",
-            "com.github.mcjty:rftoolsstorage:1.18-3.0.8:deobf",
-            "com.github.mcjty:rftoolsbase:1.18-3.0.9:deobf",
-            "com.github.mcjty:rftoolsutility:1.18-4.0.16:deobf",
-            "com.github.mcjty:mcjtylib:1.18-6.0.15:deobf",
+            "slimeknights.tconstruct:TConstruct:1.18.2-3.5.1.DEV.5dfa77d74:deobf",
             "com.github.mcjty:xnet:1.18-4.0.5:deobf",
-            "sophisticatedbackpacks:sophisticatedbackpacks:1.18.2-3.17.9.-alpha:deobf",
-            "sophisticatedcore:sophisticatedcore:1.18.2-0.3.6.-alpha:deobf",
-            "com.buuz135:industrial-foregoing:1.18.2-3.3.1.4:deobf",
-            "com.hrznstudio:titanium:1.18.2-3.5.6:deobf",
-            "org.squiddev:cc-tweaked-1.18.2:1.100.8:deobf",
-    ].forEach { dep -> compileOnly(dep) }
+            "appeng:appliedenergistics2:11.1.3",
+            "sophisticatedbackpacks:sophisticatedbackpacks:1.18.2-3.18.29.:deobf",
+            "sophisticatedcore:sophisticatedcore:1.18.2-0.5.15.-alpha:deobf",
+            "$cm:Mekansim-268560:3833669", //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
+            fg.deobf("com.refinedmods:refinedstorage:1.10.2") { transitive false }
+    )
+
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.0.194")
 
     //
-    // Implementation dependencies
-    // Used for testing
-//    [
-//
-//    ].forEach { dep -> implementation fg.deobf(dep) }
-
+    // Libraries
     //
-    // Runtime only dependencies
-    //
-    [
-            "com.blamejared.crafttweaker:CraftTweaker-forge-1.18.2:9.1.164",
-            "mezz.jei:jei-1.18.2:9.7.0.194",
-            //"$cm:ConfigMenus-544048:3671318",            //https://www.curseforge.com/minecraft/mc-mods/config-menus-forge/files/
-            //"$cm:BetterModsButton-541584:3773500",       //https://www.curseforge.com/minecraft/mc-mods/better-mods-button/files/
-    ].forEach { dep -> runtimeOnly fg.deobf(dep) }
 
-    library "portb:BiggerStacksConfigLib:1.3"
+    library("portb:BiggerStacksConfigLib:1.4", "portb:BiggerStacksTransformerLib:1.0-SNAPSHOT", "portb:SimpleLoggerWrapper:1.0");
+
     library("com.thoughtworks.xstream:xstream:1.4.19"){
         //we do not want xstream's built in parser. We will use stax.
         exclude group: 'io.github.x-stream', module: 'mxparser'
     }
-    //
-    // Annotation processor
-    //
+
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
 jar {
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
     // Include all of the jars from the bundled configuration in our jar
-    from configurations.library.asFileTree.files.collect { zipTree(it) }
+    from(configurations.library.asFileTree.files.collect { zipTree(it).matching {
+        //try to reduce bloat from classes I never use
+        exclude("**/com/thoughtworks/xstream/io/json/**")
+        exclude("**/com/thoughtworks/xstream/io/binary/**")
+        exclude("**/com/thoughtworks/xstream/io/xml/Sax*.class")
+        exclude("**/com/thoughtworks/xstream/io/xml/Xpp*.class")
+        exclude("**/com/thoughtworks/xstream/io/xml/Dom*.class")
+        exclude("**/com/thoughtworks/xstream/io/xml/JDom*.class")
+        exclude("**/com/thoughtworks/xstream/io/xml/KXml*.class")
+
+        exclude("**/com/thoughtworks/xstream/converters/javabean/**")
+    } })
+
 
     manifest {
         attributes([
