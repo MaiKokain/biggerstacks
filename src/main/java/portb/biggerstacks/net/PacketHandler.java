@@ -15,10 +15,9 @@ import java.util.function.Supplier;
  */
 public class PacketHandler
 {
-    private static final String PROTOCOL_VERSION = "1";
-    public final static ResourceLocation CHANNEL_NAME = new ResourceLocation(Constants.MOD_ID, "rules");
-    
-    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
+    public final static  ResourceLocation CHANNEL_NAME     = new ResourceLocation(Constants.MOD_ID, "rules");
+    private static final String           PROTOCOL_VERSION = "1";
+    public static final  SimpleChannel    INSTANCE         = NetworkRegistry.newSimpleChannel(
             CHANNEL_NAME,
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,
@@ -46,7 +45,7 @@ public class PacketHandler
                 .consumer(PacketHandler::handleUpdate)
                 .add();
     }
-
+    
     
     private static boolean handleHandshake(ClientboundRulesHandshakePacket packet, Supplier<NetworkEvent.Context> ctx)
     {

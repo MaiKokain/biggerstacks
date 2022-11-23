@@ -25,7 +25,7 @@ public class TileCableItemMixin
         if (AutoSidedConfig.increaseTransferRate())
             ((TileCableItemAccessor) this).setExtractQty(StackSizeHelper.increaseTransferRate(64));
     }
-
+    
     @ModifyConstant(method = "normalFlow",
                     constant = @Constant(intValue = 64),
                     require = 0)

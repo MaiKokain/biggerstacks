@@ -14,10 +14,10 @@ public class GenericStackInvMixin
     @Inject(method = "getCapacity", at = @At("RETURN"), cancellable = true, remap = false)
     private void increaseStackCapacity(AEKeyType space, CallbackInfoReturnable<Long> cir)
     {
-        if(space == AEKeyType.items())
+        if (space == AEKeyType.items())
         {
             cir.cancel();
-            cir.setReturnValue((long)StackSizeHelper.getNewSlotLimit());
+            cir.setReturnValue((long) StackSizeHelper.getNewSlotLimit());
         }
     }
 }

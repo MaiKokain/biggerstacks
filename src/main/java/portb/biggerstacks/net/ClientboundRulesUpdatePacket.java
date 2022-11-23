@@ -1,7 +1,6 @@
 package portb.biggerstacks.net;
 
 import net.minecraft.network.FriendlyByteBuf;
-import portb.biggerstacks.config.StackSizeRules;
 import portb.configlib.xml.RuleSet;
 
 /**

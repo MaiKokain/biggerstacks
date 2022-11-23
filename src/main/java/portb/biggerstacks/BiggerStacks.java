@@ -9,14 +9,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import portb.slw.MyLoggerFactory;
 import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.LocalConfig;
 import portb.biggerstacks.config.ServerConfig;
-import portb.configlib.ConfigLib;
 import portb.biggerstacks.event.ClientEvents;
 import portb.biggerstacks.event.CommonEvents;
 import portb.biggerstacks.event.ServerEvents;
+import portb.configlib.ConfigLib;
+import portb.slw.MyLoggerFactory;
 
 @Mod(Constants.MOD_ID)
 public class BiggerStacks
@@ -28,7 +28,7 @@ public class BiggerStacks
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
         MinecraftForge.EVENT_BUS.register(CommonEvents.class);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MinecraftForge.EVENT_BUS.register(ClientEvents.class));
-    
+        
         ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(ConfigLib.class));
         
         registerConfigs();
@@ -37,7 +37,7 @@ public class BiggerStacks
     private void registerConfigs()
     {
         var context = ModLoadingContext.get();
-    
+        
         context.registerConfig(ModConfig.Type.CLIENT,
                                ClientConfig.SPEC,
                                Constants.MOD_ID + "-client.toml"

@@ -6,7 +6,6 @@ import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -14,10 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.AutoSidedConfig;
 import portb.biggerstacks.config.StackSizeRules;
 import portb.biggerstacks.util.CallingClassUtil;
-import portb.configlib.ItemProperties;
 import portb.biggerstacks.util.StackSizeHelper;
-
-import javax.annotation.Nullable;
+import portb.configlib.ItemProperties;
 
 import static portb.biggerstacks.BiggerStacks.LOGGER;
 
@@ -61,7 +58,8 @@ public class ItemStackMixin
         }
         else
         {
-            LOGGER.warn("Stack size ruleset is somehow null, using fallback logic. Called from " + CallingClassUtil.getCallerClassName());
+            LOGGER.warn("Stack size ruleset is somehow null, using fallback logic. Called from " +
+                                CallingClassUtil.getCallerClassName());
             
             if (returnInfo.getReturnValue() > 1)
             {

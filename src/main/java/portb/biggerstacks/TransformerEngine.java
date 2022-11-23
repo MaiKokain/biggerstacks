@@ -8,18 +8,22 @@ import org.objectweb.asm.tree.ClassNode;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
-import portb.slw.MyLoggerFactory;
 import portb.biggerstacks.config.AutoSidedConfig;
+import portb.slw.MyLoggerFactory;
 import portb.transformerlib.TransformerLib;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class TransformerEngine implements IMixinConfigPlugin
 {
-    static {
+    static
+    {
         EnumSet<ILaunchPluginService.Phase> NONE          = EnumSet.noneOf(ILaunchPluginService.Phase.class);
         EnumSet<ILaunchPluginService.Phase> BEFORE        = EnumSet.of(ILaunchPluginService.Phase.BEFORE);
         LaunchPluginHandler                 launchPlugins = getPrivateField(Launcher.INSTANCE, "launchPlugins");
@@ -29,7 +33,7 @@ public class TransformerEngine implements IMixinConfigPlugin
         TransformerLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(TransformerLib.class));
         //library needs to know how to get the maximum stack size
         TransformerLib.setGlobalStackLimitSupplier(AutoSidedConfig::getGlobalMaxStackSize);
-    
+        
         try (InputStream stream = TransformerEngine.class.getResourceAsStream("/transformer.xml"))
         {
             TransformerLib.loadTransformers(new String(stream.readAllBytes(), StandardCharsets.UTF_8));
@@ -38,8 +42,9 @@ public class TransformerEngine implements IMixinConfigPlugin
         {
             throw new RuntimeException(e);
         }
-    
-        plugins.put("biggerstacks_transformer", new ILaunchPluginService() {
+        
+        plugins.put("biggerstacks_transformer", new ILaunchPluginService()
+        {
             @Override
             public String name()
             {
@@ -58,21 +63,24 @@ public class TransformerEngine implements IMixinConfigPlugin
             @Override
             public int processClassWithFlags(Phase phase, ClassNode classNode, Type classType, String reason)
             {
-                if(phase == Phase.AFTER)
+                if (phase == Phase.AFTER)
                     return ComputeFlags.NO_REWRITE;
-    
+                
                 return TransformerLib.handleTransformation(classNode) ? ComputeFlags.COMPUTE_MAXS : ComputeFlags.NO_REWRITE;
             }
             
         });
     }
     
-    private static <T> T getPrivateField(Object obj, String fieldName){
-        try{
+    private static <T> T getPrivateField(Object obj, String fieldName)
+    {
+        try
+        {
             var field = obj.getClass().getDeclaredField(fieldName);
             field.setAccessible(true);
-            return (T)field.get(obj);
-        } catch (NoSuchFieldException | IllegalAccessException e)
+            return (T) field.get(obj);
+        }
+        catch (NoSuchFieldException | IllegalAccessException e)
         {
             throw new RuntimeException(e);
         }

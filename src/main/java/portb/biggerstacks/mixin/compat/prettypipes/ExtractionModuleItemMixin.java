@@ -20,7 +20,7 @@ public class ExtractionModuleItemMixin
     private int increaseTransferRate(ExtractionModuleItem instance)
     {
         int rate = ((ExtractionModuleItemAccessor) instance).getMaxExtractionRate();
-    
+        
         if (AutoSidedConfig.increaseTransferRate())
             return StackSizeHelper.scaleTransferRate(rate, false);
         else
