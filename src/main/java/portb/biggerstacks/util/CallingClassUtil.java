@@ -1,16 +1,15 @@
 package portb.biggerstacks.util;
 
-import net.minecraft.world.item.Item;
-
 public class CallingClassUtil
 {
     public static String getCallerClassName()
     {
         for (StackTraceElement element : Thread.currentThread().getStackTrace())
         {
-            if (!element.getClassName().equals(Item.class.getName()) &&
-                        !element.getClassName().startsWith("java.lang.Thread"))
-                return element.getClassName();
+            String className = element.getClassName();
+            if (!className.startsWith("net.minecraft") && !className.startsWith("java.lang.Thread") &&
+                        !className.startsWith("portb"))
+                return className + " [" + element.getFileName() + ":" + element.getLineNumber() + "]";
         }
         
         return null;

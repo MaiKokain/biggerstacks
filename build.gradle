@@ -146,7 +146,6 @@ dependencies {
 
     def cm = "curse.maven"
 
-
     //
     // CompileOnly deps that do not need fg.debof
     //
@@ -158,7 +157,6 @@ dependencies {
             "slimeknights.tconstruct:TConstruct:1.18.2-3.5.1.DEV.5dfa77d74:deobf",
             "com.github.mcjty:xnet:1.18-4.0.5:deobf",
             "appeng:appliedenergistics2:11.1.3",
-            "sophisticatedbackpacks:sophisticatedbackpacks:1.18.2-3.18.29.:deobf",
             "sophisticatedcore:sophisticatedcore:1.18.2-0.5.15.-alpha:deobf",
             "$cm:Mekansim-268560:3833669", //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
             fg.deobf("com.refinedmods:refinedstorage:1.10.2") { transitive false }
@@ -166,13 +164,15 @@ dependencies {
 
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.0.194")
 
+    //runtimeOnly "sophisticatedbackpacks:sophisticatedbackpacks:1.18.2-3.18.29.:deobf"
+
     //
     // Libraries
     //
 
-    library("portb:BiggerStacksConfigLib:1.4", "portb:BiggerStacksTransformerLib:1.0-SNAPSHOT", "portb:SimpleLoggerWrapper:1.0");
+    library("portb:BiggerStacksConfigLib:1.4", "portb:BiggerStacksTransformerLib:1.0-SNAPSHOT", "portb:SimpleLoggerWrapper:1.0")
 
-    library("com.thoughtworks.xstream:xstream:1.4.19"){
+    library("com.thoughtworks.xstream:xstream:1.4.19") {
         //we do not want xstream's built in parser. We will use stax.
         exclude group: 'io.github.x-stream', module: 'mxparser'
     }
