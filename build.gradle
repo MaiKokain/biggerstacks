@@ -18,6 +18,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
+//core version-configlib version-transformerlib version
 version = "$shortMinecraftVersion-$modVersion"
 group = 'portb'
 archivesBaseName = 'biggerstacks'
@@ -170,7 +171,7 @@ dependencies {
     // Libraries
     //
 
-    library("portb:BiggerStacksConfigLib:1.4", "portb:BiggerStacksTransformerLib:1.0-SNAPSHOT", "portb:SimpleLoggerWrapper:1.0")
+    library("portb:BiggerStacksConfigLib:$configLibVersion", "portb:BiggerStacksTransformerLib:$transformerLibVersion", "portb:SimpleLoggerWrapper:$simpleLoggerWrapperVersion")
 
     library("com.thoughtworks.xstream:xstream:1.4.19") {
         //we do not want xstream's built in parser. We will use stax.
@@ -201,11 +202,14 @@ jar {
 
     manifest {
         attributes([
-                "Specification-Title"     : "biggerstacks",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion.get(),
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Specification-Title"        : "biggerstacks",
+                "Specification-Version"      : "1",
+                "Implementation-Title"       : project.name,
+                "Implementation-Version"     : project.jar.archiveVersion.get(),
+                "Implementation-Timestamp"   : new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "TransformerLib-Version"     : transformerLibVersion,
+                "ConfigLib-Version"          : configLibVersion,
+                "SimpleLoggerWrapper-Version": simpleLoggerWrapperVersion
         ])
     }
 }
