@@ -23,3 +23,11 @@ mandatory = true
 versionRange = "[1.18.2,1.19)"
 ordering = "NONE"
 side = "BOTH"
+
+#SC has had code changes, require a version that will work properly
+[[dependencies.biggerstacks]]
+modId = "sophisticatedcore"
+mandatory = false
+versionRange = "[1.18.2-0.5.26,)"
+ordering = "NONE"
+side = "BOTH"
