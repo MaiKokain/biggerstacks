@@ -3,14 +3,13 @@
     "minVersion": "0.8",
     "package": "portb.biggerstacks.mixin",
     "compatibilityLevel": "JAVA_8",
+    "plugin": "portb.biggerstacks.TransformerEngine",
     "refmap": "biggerstacks.refmap.json",
     "mixins": [
+        "compat.ae2.GenericStackInvMixin",
+        "compat.ae2.InternalInventoryMixin",
+        "compat.ae2.IOBusPartMixin",
         "compat.backpacked.MessageUpdateBackpackMixin",
-        "compat.cctweaked.DefaultInventoryMixin",
-        "compat.cctweaked.TurtleAPIMixin",
-        "compat.colossalchests.BlockEntityColossalChestMixin",
-        "compat.colossalchests.BlockEntityUncolossalChestMixin",
-        "compat.colossalchests.ContainerColossalChestMixin",
         "compat.modularrouters.CompiledModuleMixin",
         "compat.modularrouters.ModularRouterBlockEntityMixin",
         "compat.modularrouters.ModularRoutersStackUpgradeMixin",
@@ -18,27 +17,19 @@
         "compat.prettypipes.ExtractionModuleItemMixin",
         "compat.prettypipes.RetrievalModuleItemAccessor",
         "compat.prettypipes.RetrievalModuleItemMixin",
-        "compat.quark.ChuteBlockEntityMixin",
-        "compat.quark.ProxiedItemStackHandlerMixin",
         "compat.sophisticatedcore.BackpackContainerMixin",
         "compat.sophisticatedcore.InventoryHandlerMixin",
         "compat.sophisticatedcore.InventorySorterMixin",
         "vanilla.ContainersMixin",
         "vanilla.FriendlyByteBufMixin",
         "vanilla.stacksize.BundleItemMixin",
-        "vanilla.stacksize.ContainerMixin",
-        "vanilla.stacksize.InvWrapperMixin",
         "vanilla.stacksize.ItemEntityMixin",
         "vanilla.stacksize.ItemStackAccessor",
-        "vanilla.stacksize.ItemStackHandlerMixin",
         "vanilla.stacksize.ItemStackMixin",
-        "vanilla.stacksize.ServerGamePacketListenerImplMixin",
-        "vanilla.stacksize.SlotItemHandlerMixin",
-        "vanilla.stacksize.SlotMixin"
+        "vanilla.stacksize.ServerGamePacketListenerImplMixin"
     ],
     "client": [
-        "client.ItemRendererMixin"
-        //"compat.ae2.AEBaseScreenMixin"
+        "client.ItemRendererMixin",
     ],
     "injectors": {
         "defaultRequire": 1

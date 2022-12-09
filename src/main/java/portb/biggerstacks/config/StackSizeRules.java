@@ -1,6 +1,6 @@
 package portb.biggerstacks.config;
 
-import portb.biggerstacks.configlib.xml.RuleSet;
+import portb.configlib.xml.RuleSet;
 
 public class StackSizeRules
 {

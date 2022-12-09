@@ -13,11 +13,6 @@ import portb.biggerstacks.util.StackSizeHelper;
 @Mixin(StorageContainerMenuBase.class)
 public abstract class BackpackContainerMixin
 {
-    @ModifyConstant(method = "calculateMaxCountForStack", constant = @Constant(intValue = 64), remap = false)
-    private static int increaseStackLimit(int val)
-    {
-        return StackSizeHelper.getNewSlotLimit();
-    }
     
     @Redirect(method = "mergeItemStack(Lnet/minecraft/world/item/ItemStack;IIZZZ)Z",
               at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/Slot;getMaxStackSize()I"))

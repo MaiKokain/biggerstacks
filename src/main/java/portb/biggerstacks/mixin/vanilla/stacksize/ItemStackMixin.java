@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.AutoSidedConfig;
 import portb.biggerstacks.config.StackSizeRules;
-import portb.biggerstacks.configlib.ItemProperties;
+import portb.configlib.ItemProperties;
 import portb.biggerstacks.util.StackSizeHelper;
 
 import static portb.biggerstacks.BiggerStacks.LOGGER;

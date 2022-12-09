@@ -18,14 +18,15 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.LocalConfig;
 import portb.biggerstacks.config.ServerConfig;
-import portb.biggerstacks.configlib.ConfigLib;
-import portb.biggerstacks.configlib.MyLogger;
 import portb.biggerstacks.event.ClientEvents;
 import portb.biggerstacks.event.CommonEvents;
 import portb.biggerstacks.event.ServerEvents;
+import portb.configlib.ConfigLib;
+import portb.slw.MyLoggerFactory;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -43,54 +44,20 @@ public class BiggerStacks
         MinecraftForge.EVENT_BUS.register(CommonEvents.class);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MinecraftForge.EVENT_BUS.register(ClientEvents.class));
     
-        ConfigLib.LOGGER = Optional.of(new MyLogger(){
-        
-            final Logger logger = LogUtils.getLogger();
-        
-            @Override
-            public void info(String s)
-            {
-                logger.info(s);
-            }
-        
-            @Override
-            public void debug(String s)
-            {
-                logger.debug(s);
-            }
-        
-            @Override
-            public void error(String s)
-            {
-                logger.error(s);
-            }
-        
-            @Override
-            public void error(String s, Throwable throwable)
-            {
-                logger.error(s, throwable);
-            }
-        
-            @Override
-            public void warn(String s)
-            {
-                logger.warn(s);
-            }
-        });
+        ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(ConfigLib.class));
         
         registerConfigs();
     }
     
     private static void registerConfigs()
     {
-        ModLoadingContext.get()
-                         .registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
-        ModLoadingContext.get()
-                         .registerConfig(ModConfig.Type.CLIENT,
+        ModLoadingContext context = ModLoadingContext.get();
+    
+        context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
+        context.registerConfig(ModConfig.Type.CLIENT,
                                          LocalConfig.INSTANCE.SPEC,
                                          Constants.MOD_ID + "-local.toml");
-        ModLoadingContext.get()
-                         .registerConfig(ModConfig.Type.SERVER,
+        context.registerConfig(ModConfig.Type.SERVER,
                                          ServerConfig.INSTANCE.SPEC,
                                          Constants.MOD_ID + "-server.toml");
     }

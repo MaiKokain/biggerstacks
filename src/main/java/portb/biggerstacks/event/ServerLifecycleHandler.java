@@ -7,18 +7,18 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.network.PacketDistributor;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.config.StackSizeRules;
-import portb.biggerstacks.configlib.ConfigFileWatcher;
-import portb.biggerstacks.configlib.ConfigLib;
-import portb.biggerstacks.configlib.xml.RuleSet;
 import portb.biggerstacks.net.ClientboundRulesUpdatePacket;
 import portb.biggerstacks.net.PacketHandler;
+import portb.configlib.ConfigFileWatcher;
+import portb.configlib.ConfigLib;
+import portb.configlib.xml.RuleSet;
 
 import java.nio.file.Path;
 
 public class ServerLifecycleHandler
 {
     private static final Path xmlFile = FMLPaths.CONFIGDIR.get().resolve(Constants.RULESET_FILE_NAME);
-    private boolean stopped = false;
+    private       boolean           stopped = false;
     private final ConfigFileWatcher watcher = new ConfigFileWatcher(xmlFile);
     
     /**

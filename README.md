@@ -2,7 +2,7 @@
 
 Allows increasing stack sizes past 64 up to MAXINT/2 (about 1 billion)
 
-## How to build other mods for maven local
+<!--## How to build other mods for maven local
 
 1. Create a file in your documents folder and put this in it:
 
@@ -46,7 +46,5 @@ publishing {
 6. Run `cmd /c "gradlew publishToMavenLocal"`, or if you need **Java 8**, run cmd
    /c `gradlew -Dorg.gradle.java.home=C:\PROGRA~1\ECLIPS~1\jdk-8.0.322.6-hotspot publishToMavenLocal"`
 7. If you need the path to your java directory, use `DIR /X` to get the directory without spaces (it will have a `~` in
-   it)
-
-😕
+   it)-->
 
