@@ -10,7 +10,6 @@ public class ServerConfig
 {
     public final static ServerConfig                 INSTANCE = new ServerConfig(true);
     public final        ForgeConfigSpec              SPEC;
-    public final        ForgeConfigSpec.IntValue     maxStackCount;
     public final        ForgeConfigSpec.BooleanValue increaseTransferRate;
 
     ServerConfig(boolean isOnlyForDedicatedServer)
@@ -29,13 +28,6 @@ public class ServerConfig
 
         builder.push("biggerstacks");
     
-        maxStackCount = builder.comment(
-                "Maximum global stack size for items.",
-                "Rules will not increase the stack size higher than this limit",
-                "Don't set this ridiculously high, as things could break. You have been warned.",
-                "Anything below 10 million should be pretty safe."
-        ).defineInRange("Max global stack size", 999, 1, Integer.MAX_VALUE / 2);
-
         increaseTransferRate = builder.comment(
                 "Whether to increase max transfer rate of some mods to the new stack limit/t.",
                 "E.g. if max stack limit is 1000, it will become 1000 items per tick (where applicable).",

@@ -11,10 +11,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import portb.biggerstacks.config.AutoSidedConfig;
 import portb.biggerstacks.config.StackSizeRules;
-import portb.configlib.ItemProperties;
 import portb.biggerstacks.util.StackSizeHelper;
+import portb.configlib.ItemProperties;
 
 import static portb.biggerstacks.BiggerStacks.LOGGER;
 
@@ -52,8 +51,7 @@ public class ItemStackMixin
                           )
                           .ifPresent((stackSize) -> {
                               returnInfo.cancel();
-                              //cap max stack size to the global max
-                              returnInfo.setReturnValue(Math.min(stackSize, AutoSidedConfig.getGlobalMaxStackSize()));
+                              returnInfo.setReturnValue(stackSize);
                           });
         }
         else

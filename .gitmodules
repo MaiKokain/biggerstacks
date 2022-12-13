@@ -1,0 +1,26 @@
+[submodule "submodules/Applied-Energistics-2"]
+	path = submodules/Applied-Energistics-2
+	url = https://github.com/AppliedEnergistics/Applied-Energistics-2.git
+	branch = forge/1.19.2
+[submodule "submodules/refinedstorage"]
+	path = submodules/refinedstorage
+	url = https://github.com/refinedmods/refinedstorage.git
+[submodule "submodules/Mekanism"]
+	path = submodules/Mekanism
+	url = https://github.com/mekanism/Mekanism.git
+	branch = 1.19.x
+[submodule "submodules/PrettyPipes"]
+	path = submodules/PrettyPipes
+	url = https://github.com/Ellpeck/PrettyPipes.git
+[submodule "submodules/Backpacked"]
+	path = submodules/Backpacked
+	url = https://github.com/MrCrayfish/Backpacked.git
+	branch = 1.19.X
+[submodule "submodules/ModularRouters"]
+	path = submodules/ModularRouters
+	url = https://github.com/desht/ModularRouters
+	branch = MC1.19.2-master
+[submodule "submodules/SophisticatedCore"]
+	path = submodules/SophisticatedCore
+	url = https://github.com/P3pp3rF1y/SophisticatedCore.git
+	branch = 1.19.x

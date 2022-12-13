@@ -19,12 +19,8 @@ public class AutoSidedConfig
     {
         return getConfigInstance().increaseTransferRate.get();
     }
-
-    public static int getGlobalMaxStackSize()
-    {
-        return getConfigInstance().maxStackCount.get();
-    }
-
+    
+    
     private static ServerConfig getConfigInstance()
     {
         if (isPlayingOnRemoteServer())

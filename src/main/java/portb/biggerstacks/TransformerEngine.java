@@ -8,7 +8,7 @@ import org.objectweb.asm.tree.ClassNode;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
-import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.config.StackSizeRules;
 import portb.slw.MyLoggerFactory;
 import portb.transformerlib.TransformerLib;
 
@@ -32,7 +32,7 @@ public class TransformerEngine implements IMixinConfigPlugin
         //don't create the logger in BiggerStacks class constructor. It is called way too late.
         TransformerLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(TransformerLib.class));
         //library needs to know how to get the maximum stack size
-        TransformerLib.setGlobalStackLimitSupplier(AutoSidedConfig::getGlobalMaxStackSize);
+        TransformerLib.setGlobalStackLimitSupplier(StackSizeRules::getMaxStackSize);
         
         try (InputStream stream = TransformerEngine.class.getResourceAsStream("/transformer.xml"))
         {
