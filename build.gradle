@@ -179,9 +179,9 @@ dependencies {
     //
     // REI and related crap
     //
-    runtimeOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:9.1.577")
-    runtimeOnly fg.deobf("dev.architectury:architectury-forge:6.4.62")
-    runtimeOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:8.2.88")
+    runtimeOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:9.1.577"),
+            fg.deobf("dev.architectury:architectury-forge:6.4.62"),
+            fg.deobf("me.shedaniel.cloth:cloth-config-forge:8.2.88")
 }
 
 jar {
