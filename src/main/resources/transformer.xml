@@ -1,9 +1,9 @@
 <transformers>
-<!--    region vanilla stuff-->
-    <class path="net/minecraft/world/Container" transformChildren="true">
+    <!--    region vanilla stuff-->
+    <class path="net.minecraft.world.Container" transformChildren="true">
         <method name="getMaxStackSize" transformer="slotLimit"/>
         <method name="m_6893_" transformer="slotLimit"/>
-        <blacklist>net/minecraft/world/CompoundContainer</blacklist>
+        <!--        <blacklist>net/minecraft/world/CompoundContainer</blacklist>-->
     </class>
 
     <class path="net/minecraftforge/items/IItemHandler" transformChildren="true">
@@ -42,7 +42,7 @@
     </class>
 
     <!--    region ic2 classic. this will make upgrades stack past 64 in the machines. best way to fix that is to use rules to limit their stack size. -->
-    <class path="ic2.core.block.base.tiles.BaseInventoryTileEntity" transformChildren="true">
+    <class path="ic2.core.inventory.base.IHasInventory" transformChildren="true">
         <method name="getMaxStackSize" transformer="slotLimit"/>
     </class>
     <!--    endregion-->
