@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.StackSizeRules;
+import portb.biggerstacks.util.CallingClassUtil;
 import portb.biggerstacks.util.StackSizeHelper;
 import portb.configlib.ItemProperties;
 
@@ -56,8 +57,9 @@ public class ItemStackMixin
         }
         else
         {
-            LOGGER.warn("Stack size ruleset is somehow null, using fallback logic");
-            
+            LOGGER.warn("Stack size ruleset is somehow null, using fallback logic. Called from " +
+                                CallingClassUtil.getCallerClassName());
+    
             if (returnInfo.getReturnValue() > 1)
             {
                 returnInfo.cancel();
