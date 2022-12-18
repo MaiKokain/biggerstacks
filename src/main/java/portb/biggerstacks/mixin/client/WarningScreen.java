@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.StackSizeWarning;
 import portb.biggerstacks.config.ClientConfig;
+import portb.biggerstacks.config.LocalConfig;
 import portb.configlib.ConfigLib;
 
 @Mixin(WorldOpenFlows.class)
@@ -23,12 +24,12 @@ public abstract class WarningScreen
         {
             int max = ConfigLib.readRuleset(FMLPaths.CONFIGDIR.get().resolve(Constants.RULESET_FILE_NAME)).getMaxStacksize();
             //read config file and find max stack size
-            if (max > 10000)
+            if (max > 10000 || max > LocalConfig.INSTANCE.maxStackCount.get())
             {
                 StackSizeWarning.createWarningScreen(max, () -> {
-                    
+            
                     ClientConfig.stfuWarning.set(true);
-                    
+            
                     ((WorldFlowInvoker) instance).invokeDoLoadLevel(worldstem,
                                                                     exception,
                                                                     pld,
