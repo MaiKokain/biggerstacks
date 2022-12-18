@@ -1,24 +1,23 @@
 <transformers>
 <!--    region vanilla stuff-->
     <class path="net/minecraft/world/Container" transformChildren="true">
-        <method name="getMaxStackSize" transformer="slotLimit" debug="true"/>
+        <method name="getMaxStackSize" transformer="slotLimit"/>
         <method name="m_6893_" transformer="slotLimit"/>
         <blacklist>net/minecraft/world/CompoundContainer</blacklist>
     </class>
 
     <class path="net/minecraftforge/items/IItemHandler" transformChildren="true">
-        <method name="getSlotLimit" transformer="slotLimit" desc="(I)I" debug="true"/>
+        <method name="getSlotLimit" transformer="slotLimit" desc="(I)I"/>
         <!--      I don't remember what this does exactly. I think it was to preserve the behaviour of sophisticated stuff's stack upgrade system  -->
 
         <blacklist>net/p3pp3rf1y/sophisticatedcore/inventory/InventoryHandler</blacklist>
     </class>
 
     <class path="net/minecraft/world/inventory/Slot" transformChildren="true">
-        <method name="getMaxStackSize" transformer="slotLimit" desc="()I" debug="true"/>
+        <method name="getMaxStackSize" transformer="slotLimit" desc="()I"/>
         <method name="m_6641_" transformer="slotLimit"/>
         <!--      I don't remember what this does exactly. I think it was to preserve the behaviour of sophisticated stuff's stack upgrade system  -->
         <blacklist>net/p3pp3rf1y/sophisticatedcore/common/gui/StorageInventorySlot</blacklist>
-
     </class>
 
 <!--    endregion-->
