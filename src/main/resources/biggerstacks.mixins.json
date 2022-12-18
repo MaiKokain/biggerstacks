@@ -30,7 +30,9 @@
         "vanilla.stacksize.ServerGamePacketListenerImplMixin"
     ],
     "client": [
-        "client.ItemRendererMixin"
+        "client.ItemRendererMixin",
+        "client.WarningScreen",
+        "client.WorldFlowInvoker"
     ],
     "injectors": {
         "defaultRequire": 1
