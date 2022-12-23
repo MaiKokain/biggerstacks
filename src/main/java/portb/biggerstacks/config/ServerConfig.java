@@ -43,7 +43,7 @@ public class ServerConfig
     
         maxStackCount = builder.comment(
                 "DOES NOTHING. IGNORE THIS."
-        ).defineInRange("Max global stack size", 999, 1, Integer.MAX_VALUE / 2);
+        ).defineInRange("Max global stack size", 1, 1, Integer.MAX_VALUE / 2);
     
         builder.pop();
     
