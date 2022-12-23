@@ -30,10 +30,7 @@ public class ServerConfig
         builder.push("biggerstacks");
         
         globalMaxStackSize = builder.comment(
-                "Maximum global stack size for items.",
-                "Rules will not increase the stack size higher than this limit",
-                "Don't set this ridiculously high, as things could break. You have been warned.",
-                "Anything below 10 million should be pretty safe."
+                "IGNORE THIS. IT DOES NOTHING!!"
         ).defineInRange("Max global stack size", 999, 1, Integer.MAX_VALUE / 2);
         
         increaseTransferRate = builder.comment(

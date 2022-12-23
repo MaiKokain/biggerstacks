@@ -11,9 +11,11 @@ import portb.biggerstacks.net.ClientboundRulesUpdatePacket;
 import portb.biggerstacks.net.PacketHandler;
 import portb.configlib.ConfigFileWatcher;
 import portb.configlib.ConfigLib;
+import portb.configlib.xml.Rule;
 import portb.configlib.xml.RuleSet;
 
 import java.nio.file.Path;
+import java.util.List;
 
 public class ServerLifecycleHandler
 {
@@ -36,11 +38,24 @@ public class ServerLifecycleHandler
     
     void notifyClientsOfConfigChange(RuleSet ruleSet)
     {
+        //add any rules from other mods to the ruleset again
+        ruleSet.addRules(collectIMCRules());
+    
         //update our ruleset
         StackSizeRules.setRuleSet(ruleSet);
-        
+    
         //send new ruleset to clients
         PacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new ClientboundRulesUpdatePacket(ruleSet));
+    }
+    
+    private List<Rule> collectIMCRules()
+    {
+        return StackSizeRules.IMC_ADD_RULES_MESSAGES
+                       .stream()
+                       .flatMap(imcMessage -> ConfigLib.convertIMCMessageToRule(imcMessage.senderModId(),
+                                                                                imcMessage.messageSupplier().get()
+                       ))
+                       .toList();
     }
     
     @SubscribeEvent(priority = EventPriority.HIGH)

@@ -1,3 +1,5 @@
+import java.nio.file.Paths
+
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
@@ -13,6 +15,7 @@ buildscript {
 plugins {
     id 'eclipse'
     id 'maven-publish'
+    id 'portb.gradle.MinecraftSubmoduleDependencyPlugin' version "1.0"
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -142,31 +145,28 @@ minecraft.runs.all {
     }
 }
 
+submodules {
+    submodulesDirectory = Paths.get(rootDir.toString(), "submodules")
+
+    "Applied-Energistics-2" {
+        //disable spotless (it causes build errors because npm isn't installed)
+        customGradleCode = """
+         afterEvaluate{
+             tasks.spotlessJava.enabled = false
+             tasks.spotlessJavaCheck.enabled = false
+             tasks.spotlessJson.enabled = false
+         }
+        """.stripIndent()
+    }
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:$minecraftVersion-$forgeVersion"
 
     def cm = "curse.maven"
 
-    //
-    // CompileOnly deps that do not need fg.debof
-    //
-    compileOnly(
-            // Maven local deps
-            "de.ellpeck.prettypipes:PrettyPipes:1.10.4:deobf",
-            "com.lothrazar.cyclic:Cyclic:1.18.2-1.7.2:deobf",
-            "me.desht:modular-routers-1.18.1:9.0.2-CUSTOM:deobf",
-            "slimeknights.tconstruct:TConstruct:1.18.2-3.5.1.DEV.5dfa77d74:deobf",
-            "com.github.mcjty:xnet:1.18-4.0.5:deobf",
-            "appeng:appliedenergistics2:11.1.3",
-            "$cm:Mekansim-268560:3833669", //https://www.curseforge.com/minecraft/mc-mods/mekanism/files/
-            fg.deobf("com.refinedmods:refinedstorage:1.10.2") { transitive false }
-    )
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255")
 
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.0.194")
-
-    implementation "sophisticatedcore:sophisticatedcore:1.18.2-0.5.26.-alpha:deobf"
-
-    runtimeOnly "sophisticatedbackpacks:sophisticatedbackpacks:1.18.2-3.18.33.:deobf"
 
     //
     // Libraries
@@ -204,7 +204,6 @@ jar {
     manifest {
         attributes([
                 "Specification-Title"        : "biggerstacks",
-                "Specification-Version"      : "1",
                 "Implementation-Title"       : project.name,
                 "Implementation-Version"     : project.jar.archiveVersion.get(),
                 "Implementation-Timestamp"   : new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
