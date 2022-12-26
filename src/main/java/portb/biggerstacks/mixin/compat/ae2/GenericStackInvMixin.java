@@ -17,7 +17,7 @@ public class GenericStackInvMixin
         if (space == AEKeyType.items())
         {
             cir.cancel();
-            cir.setReturnValue((long) StackSizeHelper.getNewSlotLimit());
+            cir.setReturnValue((long) StackSizeHelper.getNewStackSize());
         }
     }
 }

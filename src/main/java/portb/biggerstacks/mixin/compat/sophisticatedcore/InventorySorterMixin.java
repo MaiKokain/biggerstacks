@@ -13,6 +13,6 @@ public class InventorySorterMixin
     //@ModifyConstant(method = "placeStack", constant = @Constant(intValue = 64), remap = false)
     private static int increaseStackLimit(int val)
     {
-        return StackSizeHelper.getNewSlotLimit();
+        return StackSizeHelper.getNewStackSize();
     }
 }

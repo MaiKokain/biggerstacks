@@ -12,6 +12,6 @@ public class ContainersMixin
     @ModifyConstant(method = "dropItemStack", constant = {@Constant(intValue = 21), @Constant(intValue = 10)})
     private static int scaleDroppedItemStackSize(int value)
     {
-        return StackSizeHelper.scaleMaxStackSize(value);
+        return StackSizeHelper.scaleSlotLimit(value);
     }
 }

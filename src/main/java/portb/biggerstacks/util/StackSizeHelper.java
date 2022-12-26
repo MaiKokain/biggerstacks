@@ -17,12 +17,7 @@ public class StackSizeHelper
     public static void scaleMaxStackSize(CallbackInfoReturnable<Integer> callbackInfoReturnable)
     {
         callbackInfoReturnable.cancel();
-        callbackInfoReturnable.setReturnValue(scaleMaxStackSize(callbackInfoReturnable.getReturnValue()));
-    }
-    
-    public static int scaleMaxStackSize(int original)
-    {
-        return scaleSlotLimit(original);
+        callbackInfoReturnable.setReturnValue(scaleSlotLimit(callbackInfoReturnable.getReturnValue()));
     }
     
     /**
@@ -34,27 +29,22 @@ public class StackSizeHelper
     public static int scaleSlotLimit(int original)
     {
         int newStackSize = StackSizeRules.getMaxStackSize();
-        
+    
         //don't scale slots that are only meant to hold a single item
         if (original == 1)
             return 1;
         else if (newStackSize < 64) //can't trust original to be the actual original value
             return 64;
-        
-        return Math.max(original, original * newStackSize / 64);
-    }
     
-    public static int getNewStackSize()
-    {
-        return getNewSlotLimit();
+        return Math.max(original, original * newStackSize / 64);
     }
     
     /**
      * Increases slot limit without regard for the original size
      *
-     * @return The new stack size. If the new stack size would be lower than
+     * @return The new stack size with a minimum value of 64
      */
-    public static int getNewSlotLimit()
+    public static int getNewStackSize()
     {
         return Math.max(StackSizeRules.getMaxStackSize(), 64);
     }
