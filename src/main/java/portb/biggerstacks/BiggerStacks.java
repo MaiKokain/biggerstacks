@@ -14,11 +14,11 @@ import org.slf4j.LoggerFactory;
 import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.LocalConfig;
 import portb.biggerstacks.config.ServerConfig;
-import portb.biggerstacks.config.StackSizeRules;
 import portb.biggerstacks.event.ClientEvents;
 import portb.biggerstacks.event.CommonEvents;
 import portb.biggerstacks.event.ServerEvents;
 import portb.configlib.ConfigLib;
+import portb.configlib.IMCAPI;
 import portb.slw.MyLoggerFactory;
 
 @Mod(Constants.MOD_ID)
@@ -41,7 +41,9 @@ public class BiggerStacks
     
     void processIMC(final InterModProcessEvent event)
     {
-        StackSizeRules.IMC_ADD_RULES_MESSAGES.addAll(event.getIMCStream().toList());
+        event.getIMCStream().forEach(imcMessage -> IMCAPI.addIMCRuleSupplier(imcMessage.senderModId(),
+                                                                             imcMessage.messageSupplier()
+        ));
     }
     
     private void registerConfigs()
@@ -61,5 +63,4 @@ public class BiggerStacks
                                Constants.MOD_ID + "-server.toml"
         );
     }
-    
 }

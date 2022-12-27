@@ -9,10 +9,7 @@ import portb.biggerstacks.net.ClientboundRulesUpdatePacket;
 import portb.biggerstacks.net.PacketHandler;
 import portb.configlib.ConfigFileWatcher;
 import portb.configlib.ConfigLib;
-import portb.configlib.xml.Rule;
 import portb.configlib.xml.RuleSet;
-
-import java.util.List;
 
 import static portb.biggerstacks.Constants.RULESET_FILE;
 
@@ -29,6 +26,7 @@ public class ServerLifecycleHandler
     {
         //read the ruleset file
         StackSizeRules.setRuleSet(ConfigLib.readRuleset(RULESET_FILE));
+    
         //configure and start the watcher
         watcher.setOnUpdateAction(this::notifyClientsOfConfigChange);
         watcher.start();
@@ -36,9 +34,6 @@ public class ServerLifecycleHandler
     
     void notifyClientsOfConfigChange(RuleSet ruleSet)
     {
-        //add any rules from other mods to the ruleset again
-        ruleSet.addRules(collectIMCRules());
-    
         //update our ruleset
         StackSizeRules.setRuleSet(ruleSet);
     
@@ -46,15 +41,6 @@ public class ServerLifecycleHandler
         PacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new ClientboundRulesUpdatePacket(ruleSet));
     }
     
-    private List<Rule> collectIMCRules()
-    {
-        return StackSizeRules.IMC_ADD_RULES_MESSAGES
-                       .stream()
-                       .flatMap(imcMessage -> ConfigLib.convertIMCMessageToRule(imcMessage.senderModId(),
-                                                                                imcMessage.messageSupplier().get()
-                       ))
-                       .toList();
-    }
     
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void serverStopping(ServerStoppingEvent event)
