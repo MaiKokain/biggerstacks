@@ -7,6 +7,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.StackSizeRules;
+import portb.biggerstacks.util.ConfigCommand;
 
 import java.text.DecimalFormat;
 
@@ -55,5 +57,16 @@ public class ClientEvents
         {
             StackSizeRules.setRuleSet(null);
         }
+    }
+    
+    /**
+     * Command is only registered for singleplayer. (this is not because it reaches across logical sides)
+     *
+     * @param event
+     */
+    @SubscribeEvent
+    public static void registerCommand(RegisterCommandsEvent event)
+    {
+        ConfigCommand.register(event);
     }
 }
