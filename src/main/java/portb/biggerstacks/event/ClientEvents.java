@@ -1,14 +1,14 @@
 package portb.biggerstacks.event;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.Util;
+import net.minecraft.network.chat.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -17,13 +17,32 @@ import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.StackSizeRules;
 import portb.biggerstacks.util.ConfigCommand;
 
+import java.nio.file.Files;
 import java.text.DecimalFormat;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Constants.MOD_ID)
 public class ClientEvents
 {
-    private static final DecimalFormat TOOLTIP_NUMBER_FORMAT = new DecimalFormat("###,###,###,###,###,###");
+    private final static Style         SETUP_COMMAND_SHORTCUT = Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+                                                                                                          "/biggerstacks quicksetup"
+    )).withColor(ChatFormatting.BLUE).withUnderlined(true);
+    private final static Style         WIKI_LINK              = Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,
+                                                                                                          "https://codeberg.org/PORTB/BiggerStacks/wiki"
+    )).withColor(ChatFormatting.BLUE).withUnderlined(true);
+    private final static Component     BULLET_POINT           = new TextComponent("\n> ").withStyle(ChatFormatting.WHITE);
+    private static final DecimalFormat TOOLTIP_NUMBER_FORMAT  = new DecimalFormat("###,###,###,###,###,###");
+    
+    /**
+     * Command is only registered for singleplayer. (this is not because it reaches across logical sides)
+     *
+     * @param event
+     */
+    @SubscribeEvent
+    public static void registerCommand(RegisterCommandsEvent event)
+    {
+        ConfigCommand.register(event);
+    }
     
     /**
      * Shows item count on the tooltip
@@ -58,14 +77,26 @@ public class ClientEvents
         }
     }
     
-    /**
-     * Command is only registered for singleplayer. (this is not because it reaches across logical sides)
-     *
-     * @param event
-     */
     @SubscribeEvent
-    public static void registerCommand(RegisterCommandsEvent event)
+    public static void warnIfNoRulesetExists(PlayerEvent.PlayerLoggedInEvent event)
     {
-        ConfigCommand.register(event);
+        if (!Files.exists(Constants.RULESET_FILE) && StackSizeRules.maxRegisteredItemStackSize == 64)
+        {
+            //can't be bothered to make language entries for this
+            event.getPlayer().sendMessage(
+                    new TextComponent(
+                            "Biggerstacks is installed, but you have not configured it and have no other mods that use it.")
+                            .append(BULLET_POINT)
+                            .append("Run ")
+                            .append(new TextComponent("/biggerstacks quicksetup").withStyle(SETUP_COMMAND_SHORTCUT))
+                            .append(" to configure it using a simple GUI")
+                            .append(BULLET_POINT)
+                            .append("Or click ")
+                            .append(new TextComponent("here").withStyle(WIKI_LINK))
+                            .append(" to see how to create a custom ruleset")
+                            .withStyle(ChatFormatting.GOLD),
+                    Util.NIL_UUID
+            );
+        }
     }
 }
