@@ -1,7 +1,6 @@
 package portb.biggerstacks.net;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
@@ -9,11 +8,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.config.StackSizeRules;
 import portb.biggerstacks.gui.ConfigureScreen;
-import portb.configlib.template.ConfigTemplate;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardOpenOption;
 import java.util.function.Supplier;
 
 /**
@@ -62,7 +57,7 @@ public class PacketHandler
         INSTANCE.messageBuilder(ServerboundCreateConfigTemplatePacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
                 .encoder(ServerboundCreateConfigTemplatePacket::encode)
                 .decoder(ServerboundCreateConfigTemplatePacket::new)
-                .consumer(PacketHandler::handleCreateConfigTemplate)
+                .consumer(ServerboundCreateConfigTemplatePacket::handleCreateConfigTemplate)
                 .add();
     }
     
@@ -81,36 +76,8 @@ public class PacketHandler
     
     private static boolean handleOpenScreenPacket(ClientboundConfigureScreenOpenPacket clientboundConfigureScreenOpenPacket, Supplier<NetworkEvent.Context> contextSupplier)
     {
-        //contextSupplier.get().getSender().level.isClientSide()
         //open the screen
         contextSupplier.get().enqueueWork(() -> ConfigureScreen.open(clientboundConfigureScreenOpenPacket));
         return true;
-    }
-    
-    private static void handleCreateConfigTemplate(ServerboundCreateConfigTemplatePacket serverboundCreateConfigTemplatePacket, Supplier<NetworkEvent.Context> contextSupplier)
-    {
-        //ignore the packet if on dedicated server
-        if (FMLEnvironment.dist.isDedicatedServer())
-        {
-            return;
-        }
-        
-        ConfigTemplate template = ConfigTemplate.generateTemplate(serverboundCreateConfigTemplatePacket);
-        
-        //todo
-        //ModList.get().isLoaded("ic2")
-        
-        try
-        {
-            Files.writeString(Constants.RULESET_FILE,
-                              template.toXML(),
-                              StandardOpenOption.CREATE,
-                              StandardOpenOption.TRUNCATE_EXISTING
-            );
-        }
-        catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
     }
 }

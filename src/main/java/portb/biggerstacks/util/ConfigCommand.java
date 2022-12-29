@@ -10,15 +10,23 @@ import org.slf4j.Logger;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.net.ClientboundConfigureScreenOpenPacket;
 import portb.biggerstacks.net.PacketHandler;
+import portb.biggerstacks.net.ServerboundCreateConfigTemplatePacket;
 import portb.configlib.template.ConfigTemplate;
 import portb.configlib.template.TemplateOptions;
 
 import java.nio.file.Files;
+import java.util.function.Supplier;
 
 public class ConfigCommand
 {
     public final static Logger LOGGER = LogUtils.getLogger();
     
+    /**
+     * Despite not reaching across logical sides, this command is intended to work only on singleplayer.
+     * See {@link portb.biggerstacks.net.ServerboundCreateConfigTemplatePacket#handleCreateConfigTemplate(ServerboundCreateConfigTemplatePacket, Supplier)}, where the packet the client sends to the server is ignored by a dedicated server
+     *
+     * @param event
+     */
     public static void register(RegisterCommandsEvent event)
     {
         var cmd = Commands.literal("biggerstacks").then(Commands.literal("quicksetup").executes(

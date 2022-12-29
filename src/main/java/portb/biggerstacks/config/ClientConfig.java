@@ -9,6 +9,7 @@ public class ClientConfig
 {
     public static final  ForgeConfigSpec              SPEC;
     public static final  ForgeConfigSpec.BooleanValue enableNumberShortening;
+    public static final  ForgeConfigSpec.BooleanValue stfuWarning;
     private static final ForgeConfigSpec.Builder      builder = new ForgeConfigSpec.Builder();
     
     static
@@ -16,7 +17,9 @@ public class ClientConfig
         builder.comment("Client configs");
         enableNumberShortening = builder.comment("Enable number shortening. E.g. 1000000 becomes 1M.")
                                         .define("Enable number shortening", true);
-        
+    
+        stfuWarning = builder.comment("Disables large stack size warning.").define("STFU Warning", false);
+    
         SPEC = builder.build();
     }
 }
