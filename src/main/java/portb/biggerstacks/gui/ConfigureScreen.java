@@ -7,7 +7,6 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -125,7 +124,7 @@ public class ConfigureScreen extends Screen
                                    relY + HEIGHT - 30,
                                    80,
                                    20,
-                                   CommonComponents.GUI_DONE,
+                                   new TranslatableComponent("biggerstacks.save"),
                                    this::onConfirmButtonClicked
         );
         

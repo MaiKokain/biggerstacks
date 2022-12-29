@@ -8,5 +8,6 @@
     "biggerstacks.normalbox.label": "Normal items",
     "biggerstacks.config.title": "Configure stack limit",
     "biggerstacks.player.expected": "Command must be run by a player",
-    "biggerstacks.overwrite.warn": "This will overwrite your custom rules file!"
+    "biggerstacks.overwrite.warn": "This will overwrite your custom rules file!",
+    "biggerstacks.save": "Save"
 }
