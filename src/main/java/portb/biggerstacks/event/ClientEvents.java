@@ -77,6 +77,11 @@ public class ClientEvents
         }
     }
     
+    /**
+     * Instructs the player on what to do if they haven't set the mod up yet
+     *
+     * @param event
+     */
     @SubscribeEvent
     public static void warnIfNoRulesetExists(PlayerEvent.PlayerLoggedInEvent event)
     {
