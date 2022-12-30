@@ -183,7 +183,7 @@ minecraft.runs.all {
 dependencies {
     minecraft "net.minecraftforge:forge:$minecraftVersion-$forgeVersion"
 
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.152")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.153")
 
     library("portb:BiggerStacksConfigLib:$configLibVersion", "portb:BiggerStacksTransformerLib:$transformerLibVersion", "portb:SimpleLoggerWrapper:$simpleLoggerWrapperVersion")
     library("com.thoughtworks.xstream:xstream:1.4.20") {
