@@ -28,9 +28,9 @@ public class WarningScreen
                                         max > LocalConfig.INSTANCE.maxStackCount.get()))
             {
                 HighStackSizeWarning.createWarningScreen(max, () -> {
-        
+                    
                     ClientConfig.stfuWarning.set(true);
-        
+                    
                     ((WorldFlowInvoker) instance).invokeDoLoadLevel(
                             worldstem,
                             exception,
@@ -39,11 +39,11 @@ public class WarningScreen
                             anotherBoolean
                     );
                 });
-    
+                
                 return;
             }
         }
-    
+        
         ((WorldFlowInvoker) instance).invokeDoLoadLevel(worldstem, exception, pld, packrepository, anotherBoolean);
     }
 }

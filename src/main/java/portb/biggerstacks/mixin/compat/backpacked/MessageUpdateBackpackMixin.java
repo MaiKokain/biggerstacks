@@ -11,7 +11,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class MessageUpdateBackpackMixin
 {
     //for some reason he uses writeVarInt and writeByte instead of writeItem to save the item to the buffer. Though readItem is used normally for decoding
-    @Redirect(method = "writeBackpack", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/FriendlyByteBuf;writeByte(I)Lio/netty/buffer/ByteBuf;"))
+    @Redirect(method = "writeBackpack",
+              at = @At(value = "INVOKE",
+                       target = "Lnet/minecraft/network/FriendlyByteBuf;writeByte(I)Lio/netty/buffer/ByteBuf;"))
     private ByteBuf writeIntInsteadOfByte(FriendlyByteBuf buf, int count)
     {
         buf.writeInt(count);

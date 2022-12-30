@@ -53,17 +53,19 @@ public class ClientEvents
     {
         if (!ClientConfig.enableNumberShortening.get())
             return;
-    
+        
         var stack = event.getItemStack();
-    
+        
         if (stack.getCount() > Constants.ONE_THOUSAND)
         {
             event.getToolTip()
                  .add(1,
                       Component.translatable("biggerstacks.exact.count",
                                              Component.literal(TOOLTIP_NUMBER_FORMAT.format(stack.getCount()))
-                                                      .withStyle(ChatFormatting.DARK_AQUA))
-                               .withStyle(ChatFormatting.GRAY));
+                                                      .withStyle(ChatFormatting.DARK_AQUA)
+                               )
+                               .withStyle(ChatFormatting.GRAY)
+                 );
         }
     }
     

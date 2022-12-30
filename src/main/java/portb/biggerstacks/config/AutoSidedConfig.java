@@ -14,7 +14,7 @@ public class AutoSidedConfig
     private AutoSidedConfig()
     {
     }
-
+    
     public static boolean increaseTransferRate()
     {
         return getConfigInstance().increaseTransferRate.get();
@@ -28,7 +28,7 @@ public class AutoSidedConfig
         else
             return LocalConfig.INSTANCE;
     }
-
+    
     private static boolean isPlayingOnRemoteServer()
     {
         if (FMLEnvironment.dist.isDedicatedServer())

@@ -4,7 +4,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import portb.biggerstacks.config.AutoSidedConfig;
 import portb.biggerstacks.util.StackSizeHelper;
 
 @Mixin(ItemEntity.class)

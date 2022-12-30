@@ -12,11 +12,11 @@ public class ServerConfig
     public final        ForgeConfigSpec              SPEC;
     public final        ForgeConfigSpec.IntValue     maxStackCount;
     public final        ForgeConfigSpec.BooleanValue increaseTransferRate;
-
+    
     ServerConfig(boolean isOnlyForDedicatedServer)
     {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-
+        
         if (isOnlyForDedicatedServer && !FMLEnvironment.dist.isDedicatedServer())
         {
             builder.comment(
@@ -26,9 +26,9 @@ public class ServerConfig
                     "IT IS ONLY USED WHEN HOSTING ON LAN"
             );
         }
-
+        
         builder.push("biggerstacks");
-    
+        
         increaseTransferRate = builder.comment(
                 "Whether to increase max transfer rate of some mods to the new stack limit/t.",
                 "E.g. if max stack limit is 1000, it will become 1000 items per tick (where applicable).",
@@ -40,13 +40,13 @@ public class ServerConfig
                 "- XNet can already extract a variable amount, but you will be able to go past 64 to the new maximum stack limit",
                 "- Cyclic still extracts 1 stack (more than 64 items) per tick, but the size of the stack is adjusted"
         ).define("Increase transfer rate", true);
-    
+        
         maxStackCount = builder.comment(
                 "DOES NOTHING. IGNORE THIS."
         ).defineInRange("Max global stack size", 1, 1, Integer.MAX_VALUE / 2);
-    
+        
         builder.pop();
-    
+        
         SPEC = builder.build();
     }
 }

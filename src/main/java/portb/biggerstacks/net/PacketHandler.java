@@ -16,9 +16,8 @@ import java.util.function.Supplier;
  */
 public class PacketHandler
 {
-    private static final String PROTOCOL_VERSION = "1";
-    public final static ResourceLocation CHANNEL_NAME = new ResourceLocation(Constants.MOD_ID, "rules");
-    
+    public final static  ResourceLocation CHANNEL_NAME     = new ResourceLocation(Constants.MOD_ID, "rules");
+    private static final String           PROTOCOL_VERSION = "1";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
             CHANNEL_NAME,
             () -> PROTOCOL_VERSION,
@@ -39,29 +38,29 @@ public class PacketHandler
                 .noResponse()
                 .consumerMainThread(PacketHandler::handleHandshake)
                 .add();
-    
+        
         INSTANCE.messageBuilder(ClientboundRulesUpdatePacket.class, index++, NetworkDirection.PLAY_TO_CLIENT)
                 .encoder(ClientboundRulesUpdatePacket::encode)
                 .decoder(ClientboundRulesUpdatePacket::new)
                 .noResponse()
                 .consumerMainThread(PacketHandler::handleUpdate)
                 .add();
-    
+        
         //these have to exist on the server or the mod will not be "compatible" with it according to forge
-    
+        
         INSTANCE.messageBuilder(ClientboundConfigureScreenOpenPacket.class, index++, NetworkDirection.PLAY_TO_CLIENT)
                 .encoder(ClientboundConfigureScreenOpenPacket::encode)
                 .decoder(ClientboundConfigureScreenOpenPacket::new)
                 .consumerMainThread(PacketHandler::handleOpenScreenPacket)
                 .add();
-    
+        
         INSTANCE.messageBuilder(ServerboundCreateConfigTemplatePacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
                 .encoder(ServerboundCreateConfigTemplatePacket::encode)
                 .decoder(ServerboundCreateConfigTemplatePacket::new)
                 .consumerNetworkThread(ServerboundCreateConfigTemplatePacket::handleCreateConfigTemplate)
                 .add();
     }
-
+    
     
     private static void handleHandshake(ClientboundRulesHandshakePacket packet, Supplier<NetworkEvent.Context> ctx)
     {

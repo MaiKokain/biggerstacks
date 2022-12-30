@@ -15,8 +15,8 @@ import static portb.biggerstacks.Constants.RULESET_FILE;
 
 public class ServerLifecycleHandler
 {
-    private       boolean           stopped = false;
     private final ConfigFileWatcher watcher = new ConfigFileWatcher(RULESET_FILE);
+    private       boolean           stopped = false;
     
     /**
      * Parses the config file and starts the file watcher
@@ -26,7 +26,7 @@ public class ServerLifecycleHandler
     {
         //read the ruleset file
         StackSizeRules.setRuleSet(ConfigLib.readRuleset(RULESET_FILE));
-    
+        
         //configure and start the watcher
         watcher.setOnUpdateAction(this::notifyClientsOfConfigChange);
         watcher.start();
@@ -54,7 +54,7 @@ public class ServerLifecycleHandler
     
     public void ensureStopped()
     {
-        if(!stopped)
+        if (!stopped)
         {
             watcher.stop();
             stopped = true;

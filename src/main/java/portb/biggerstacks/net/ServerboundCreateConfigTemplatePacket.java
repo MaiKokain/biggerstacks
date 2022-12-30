@@ -27,11 +27,6 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
         super(buf);
     }
     
-    public void encode(FriendlyByteBuf buf)
-    {
-        super.encode(buf);
-    }
-    
     static void handleCreateConfigTemplate(ServerboundCreateConfigTemplatePacket serverboundCreateConfigTemplatePacket, Supplier<NetworkEvent.Context> contextSupplier)
     {
         //ignore the packet if on dedicated server
@@ -71,5 +66,10 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
         {
             throw new RuntimeException(e);
         }
+    }
+    
+    public void encode(FriendlyByteBuf buf)
+    {
+        super.encode(buf);
     }
 }

@@ -32,19 +32,12 @@ public class BiggerStacks
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
         MinecraftForge.EVENT_BUS.register(CommonEvents.class);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-    
+        
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MinecraftForge.EVENT_BUS.register(ClientEvents.class));
-    
+        
         ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(ConfigLib.class));
-    
+        
         registerConfigs();
-    }
-    
-    void processIMC(final InterModProcessEvent event)
-    {
-        event.getIMCStream().forEach(imcMessage -> IMCAPI.addIMCRuleSupplier(imcMessage.senderModId(),
-                                                                             imcMessage.messageSupplier()
-        ));
     }
     
     private static void registerConfigs()
@@ -60,5 +53,12 @@ public class BiggerStacks
                                ServerConfig.INSTANCE.SPEC,
                                Constants.MOD_ID + "-server.toml"
         );
+    }
+    
+    void processIMC(final InterModProcessEvent event)
+    {
+        event.getIMCStream().forEach(imcMessage -> IMCAPI.addIMCRuleSupplier(imcMessage.senderModId(),
+                                                                             imcMessage.messageSupplier()
+        ));
     }
 }
