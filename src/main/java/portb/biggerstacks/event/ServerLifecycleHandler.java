@@ -1,7 +1,5 @@
 package portb.biggerstacks.event;
 
-import portb.biggerstacks.net.ClientboundRulesUpdatePacket;
-import portb.biggerstacks.net.PacketHandler;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
@@ -9,9 +7,11 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.fml.network.PacketDistributor;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.config.StackSizeRules;
-import portb.biggerstacks.configlib.ConfigFileWatcher;
-import portb.biggerstacks.configlib.ConfigLib;
-import portb.biggerstacks.configlib.xml.RuleSet;
+import portb.biggerstacks.net.ClientboundRulesUpdatePacket;
+import portb.biggerstacks.net.PacketHandler;
+import portb.configlib.ConfigFileWatcher;
+import portb.configlib.ConfigLib;
+import portb.configlib.xml.RuleSet;
 
 import java.nio.file.Path;
 

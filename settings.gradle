@@ -1,1 +1,7 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+    }
+}
+
 rootProject.name = 'BiggerStacks'

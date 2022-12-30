@@ -1,7 +1,7 @@
 package portb.biggerstacks.net;
 
 import io.netty.buffer.ByteBuf;
-import portb.biggerstacks.configlib.xml.RuleSet;
+import portb.configlib.xml.RuleSet;
 
 /**
  * Packet sent to clients when the config file is updated

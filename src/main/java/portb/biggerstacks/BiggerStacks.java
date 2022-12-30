@@ -11,13 +11,11 @@ import org.apache.logging.log4j.Logger;
 import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.LocalConfig;
 import portb.biggerstacks.config.ServerConfig;
-import portb.biggerstacks.configlib.ConfigLib;
-import portb.biggerstacks.configlib.MyLogger;
 import portb.biggerstacks.event.ClientEvents;
 import portb.biggerstacks.event.CommonEvents;
 import portb.biggerstacks.event.ServerEvents;
-
-import java.util.Optional;
+import portb.configlib.ConfigLib;
+import portb.slw.MyLoggerFactory;
 
 @Mod(Constants.MOD_ID)
 public class BiggerStacks
@@ -30,41 +28,11 @@ public class BiggerStacks
         MinecraftForge.EVENT_BUS.register(CommonEvents.class);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MinecraftForge.EVENT_BUS.register(ClientEvents.class));
     
-        ConfigLib.LOGGER = Optional.of(new MyLogger(){
-        
-            final Logger logger = LogManager.getLogger();
-        
-            @Override
-            public void info(String s)
-            {
-                logger.info(s);
-            }
-        
-            @Override
-            public void debug(String s)
-            {
-                logger.debug(s);
-            }
-        
-            @Override
-            public void error(String s)
-            {
-                logger.error(s);
-            }
-        
-            @Override
-            public void error(String s, Throwable throwable)
-            {
-                logger.error(s, throwable);
-            }
-        
-            @Override
-            public void warn(String s)
-            {
-                logger.warn(s);
-            }
-        });
-
+        ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(
+                //don't use slf4j! even though it works in dev, it doesn't exist at runtime in production environment!
+                LogManager.getLogger(ConfigLib.class)
+        );
+    
         registerConfigs();
     }
     

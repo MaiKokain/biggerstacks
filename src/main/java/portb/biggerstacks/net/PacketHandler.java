@@ -45,7 +45,7 @@ public class PacketHandler
                 .loginIndex(ReplyPacket::getLoginIndex, ReplyPacket::setLoginIndex)
                 .decoder((packetBuffer -> new ReplyPacket()))
                 .encoder((packet, packetBuffer) -> {})
-                .consumer(PacketHandler::handlePacketUsingReflectionHacks)
+                .consumer(PacketHandler::handleLoginPacketUsingReflectionHacks)
                 .add();
         
         INSTANCE.messageBuilder(ClientboundRulesUpdatePacket.class, index++, NetworkDirection.PLAY_TO_CLIENT)
@@ -72,7 +72,7 @@ public class PacketHandler
         return true;
     }
     
-    private static void handlePacketUsingReflectionHacks(ReplyPacket replyPacket, Supplier<NetworkEvent.Context> contextSupplier)
+    private static void handleLoginPacketUsingReflectionHacks(ReplyPacket replyPacket, Supplier<NetworkEvent.Context> contextSupplier)
     {
         //this is REALLY gross, but it works
         //removes the packet from the server's acknowledgement packet queue so the login process can continue
@@ -81,7 +81,7 @@ public class PacketHandler
         try
         {
             contextSupplier.get().setPacketHandled(true);
-        
+            
             //get the FMLHandshakeHandler attribute key so we can use it to get the handler from the context object
             Field attr = FMLNetworkConstants.class.getDeclaredField("FML_HANDSHAKE_HANDLER");
             attr.setAccessible(true);
