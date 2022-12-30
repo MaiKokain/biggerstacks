@@ -151,6 +151,10 @@ minecraft.runs.all {
 submodules {
     submodulesDirectory = Paths.get(rootDir.toString(), "submodules")
 
+    "*" {
+        runtime = false
+    }
+
     "Applied-Energistics-2" {
         //disable spotless (it causes build errors because npm isn't installed)
         customGradleCode = """
@@ -160,13 +164,13 @@ submodules {
              tasks.spotlessJson.enabled = false
          }
         """.stripIndent()
+
+        runtime = false
     }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:$minecraftVersion-$forgeVersion"
-
-    def cm = "curse.maven"
 
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255")
 
