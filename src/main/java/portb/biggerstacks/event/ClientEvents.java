@@ -18,7 +18,6 @@ import portb.biggerstacks.config.StackSizeRules;
 import portb.biggerstacks.util.ConfigCommand;
 
 import java.nio.file.Files;
-import java.text.DecimalFormat;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Constants.MOD_ID)
@@ -31,7 +30,6 @@ public class ClientEvents
                                                                                                           "https://codeberg.org/PORTB/BiggerStacks/wiki"
     )).withColor(ChatFormatting.BLUE).withUnderlined(true);
     private final static Component     BULLET_POINT           = new TextComponent("\n> ").withStyle(ChatFormatting.WHITE);
-    private static final DecimalFormat TOOLTIP_NUMBER_FORMAT  = new DecimalFormat("###,###,###,###,###,###");
     
     /**
      * Command is only registered for singleplayer. (this is not because it reaches across logical sides)
@@ -57,7 +55,7 @@ public class ClientEvents
         
         if (stack.getCount() > Constants.ONE_THOUSAND)
         {
-            String           countString    = TOOLTIP_NUMBER_FORMAT.format(stack.getCount());
+            String           countString    = Constants.TOOLTIP_NUMBER_FORMAT.format(stack.getCount());
             MutableComponent countComponent = new TextComponent(countString).withStyle(ChatFormatting.DARK_AQUA);
             var              tooltip        = new TranslatableComponent("biggerstacks.exact.count", countComponent);
             
@@ -90,11 +88,11 @@ public class ClientEvents
             //can't be bothered to make language entries for this
             event.getPlayer().sendMessage(
                     new TextComponent(
-                            "Biggerstacks is installed, but you have not configured it and have no other mods that use it.")
+                            "Biggerstacks is installed, but you have not configured it and there are no other mods installed that use it.")
                             .append(BULLET_POINT)
                             .append("Run ")
                             .append(new TextComponent("/biggerstacks quicksetup").withStyle(SETUP_COMMAND_SHORTCUT))
-                            .append(" to configure it using a simple GUI")
+                            .append(" and the mod will generate a simple ruleset for you")
                             .append(BULLET_POINT)
                             .append("Or click ")
                             .append(new TextComponent("here").withStyle(WIKI_LINK))

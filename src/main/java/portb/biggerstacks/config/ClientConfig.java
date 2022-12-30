@@ -18,7 +18,11 @@ public class ClientConfig
         enableNumberShortening = builder.comment("Enable number shortening. E.g. 1000000 becomes 1M.")
                                         .define("Enable number shortening", true);
     
-        stfuWarning = builder.comment("Disables large stack size warning.").define("STFU Warning", false);
+        stfuWarning = builder.comment(
+                "Disables warning for stack size that is potentially wrong due to behaviour changes.").define(
+                "STFU Warning",
+                false
+        );
     
         SPEC = builder.build();
     }

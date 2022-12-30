@@ -35,7 +35,11 @@
         "vanilla.stacksize.ServerGamePacketListenerImplMixin"
     ],
     "client": [
+        "client.CreateWorldScreenInvoker",
+        "client.CreateWorldScreenMixin",
         "client.ItemRendererMixin",
+        "client.WorldSelectionList$WorldListEntryInvoker",
+        "client.WorldSelectionListMixin",
         "compat.ae2.AEBaseScreenMixin"
     ],
     "injectors": {
