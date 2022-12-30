@@ -23,7 +23,6 @@
         "compat.refinedstorage.UpgradeItemHandlerMixin",
         "compat.sophisticatedcore.BackpackContainerMixin",
         "compat.sophisticatedcore.InventoryHandlerMixin",
-        "compat.sophisticatedcore.InventorySorterMixin",
         "compat.xnet.XNetCompat",
         "vanilla.ContainersMixin",
         "vanilla.FriendlyByteBufMixin",
