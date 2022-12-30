@@ -13,6 +13,6 @@ public interface InternalInventoryMixin extends InternalInventory
     @Override
     default int getSlotLimit(int slot)
     {
-        return StackSizeHelper.getNewSlotLimit();
+        return StackSizeHelper.getNewStackSize();
     }
 }
