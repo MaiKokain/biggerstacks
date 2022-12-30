@@ -1,7 +1,5 @@
 import portb.SubmodulesPlugin
 
-import java.nio.file.Paths
-
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
@@ -11,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath 'org.parchmentmc:librarian:1.+'
+        //classpath 'org.parchmentmc:librarian:1.+'
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
@@ -24,7 +22,7 @@ plugins {
 
 apply plugin: SubmodulesPlugin
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
+//apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
 version = "$shortMinecraftVersion-$modVersion"
@@ -36,7 +34,8 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 
 minecraft {
-    mappings channel: 'parchment', version: "$parchmentVersion-$minecraftVersion"
+    //mappings channel: 'parchment', version: "$parchmentVersion-$minecraftVersion"
+    mappings channel: 'official', version: minecraftVersion
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -121,7 +120,10 @@ repositories {
 //        }
 //    }
 
-    maven { url "https://maven.shedaniel.me" }
+    maven { // JEI
+        name 'DVS1 Maven FS'
+        url 'https://dvs1.progwml6.com/files/maven'
+    }
 }
 
 configurations {
@@ -139,26 +141,29 @@ minecraft.runs.all {
 // Submodule config
 //
 submodules {
-    submodulesDirectory = Paths.get(rootDir.toString(), "submodules")
+    submodulesDirectory = file("submodules")
 
-    "Applied-Energistics-2" {
-        //disable spotless (it causes build errors because npm isn't installed)
-        customGradleCode = """
-         afterEvaluate{
-             tasks.spotlessJava.enabled = false
-             tasks.spotlessJavaCheck.enabled = false
-             tasks.spotlessJson.enabled = false
-         }
-        """.stripIndent()
+    repos {
+        "Applied-Energistics-2" {
+            //disable spotless (it causes build errors because npm isn't installed)
+            customGradleCode = """
+                afterEvaluate{
+                    tasks.spotlessJava.enabled = false
+                    tasks.spotlessJavaCheck.enabled = false
+                    tasks.spotlessJson.enabled = false
+                }
+            """.stripIndent()
 
-        reobfTaskName = "reobfShadowJar"
-        jarTask = "shadowJar"
-        tasks = ["runData", "build"]
+            reobfTaskName = "reobfShadowJar"
+            jarTask = "shadowJar"
+            tasks = ["runData", "build"]
 
-        runtime = false
+            runtime = false
+        }
+
     }
 
-    "*" {
+    defaultOptions {
         runtime = false
     }
 }
@@ -185,12 +190,7 @@ dependencies {
     //
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    //
-    // REI and related crap
-    //
-    runtimeOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:9.1.577"),
-            fg.deobf("dev.architectury:architectury-forge:6.4.62"),
-            fg.deobf("me.shedaniel.cloth:cloth-config-forge:8.2.88")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.5.0.297")
 }
 
 jar {
