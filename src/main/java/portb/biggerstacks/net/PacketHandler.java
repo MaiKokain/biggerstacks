@@ -7,6 +7,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.config.StackSizeRules;
+import portb.biggerstacks.gui.ConfigureScreen;
 
 import java.util.function.Supplier;
 
@@ -38,12 +39,26 @@ public class PacketHandler
                 .noResponse()
                 .consumerMainThread(PacketHandler::handleHandshake)
                 .add();
-        
+    
         INSTANCE.messageBuilder(ClientboundRulesUpdatePacket.class, index++, NetworkDirection.PLAY_TO_CLIENT)
                 .encoder(ClientboundRulesUpdatePacket::encode)
                 .decoder(ClientboundRulesUpdatePacket::new)
                 .noResponse()
                 .consumerMainThread(PacketHandler::handleUpdate)
+                .add();
+    
+        //these have to exist on the server or the mod will not be "compatible" with it according to forge
+    
+        INSTANCE.messageBuilder(ClientboundConfigureScreenOpenPacket.class, index++, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(ClientboundConfigureScreenOpenPacket::encode)
+                .decoder(ClientboundConfigureScreenOpenPacket::new)
+                .consumerMainThread(PacketHandler::handleOpenScreenPacket)
+                .add();
+    
+        INSTANCE.messageBuilder(ServerboundCreateConfigTemplatePacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(ServerboundCreateConfigTemplatePacket::encode)
+                .decoder(ServerboundCreateConfigTemplatePacket::new)
+                .consumerNetworkThread(ServerboundCreateConfigTemplatePacket::handleCreateConfigTemplate)
                 .add();
     }
 
@@ -58,5 +73,12 @@ public class PacketHandler
     {
         StackSizeRules.setRuleSet(packet.getRules());
         ctx.get().setPacketHandled(true);
+    }
+    
+    private static boolean handleOpenScreenPacket(ClientboundConfigureScreenOpenPacket clientboundConfigureScreenOpenPacket, Supplier<NetworkEvent.Context> contextSupplier)
+    {
+        //open the screen
+        ConfigureScreen.open(clientboundConfigureScreenOpenPacket);
+        return true;
     }
 }
