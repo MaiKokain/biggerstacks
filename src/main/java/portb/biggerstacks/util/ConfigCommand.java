@@ -52,8 +52,6 @@ public class ConfigCommand
                         
                         var player = context.getSource().getPlayerOrException();
                         
-                        //player.getCommandSenderWorld().isClientSide
-                        
                         PacketHandler.INSTANCE.send(
                                 PacketDistributor.PLAYER.with(() -> player),
                                 new ClientboundConfigureScreenOpenPacket(

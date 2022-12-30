@@ -14,12 +14,6 @@ public class StackSizeHelper
         callbackInfoReturnable.setReturnValue(scaleSlotLimit(callbackInfoReturnable.getReturnValue()));
     }
     
-    public static void scaleMaxStackSize(CallbackInfoReturnable<Integer> callbackInfoReturnable)
-    {
-        callbackInfoReturnable.cancel();
-        callbackInfoReturnable.setReturnValue(scaleSlotLimit(callbackInfoReturnable.getReturnValue()));
-    }
-    
     /**
      * Scales the slot limit based on the original limit
      *

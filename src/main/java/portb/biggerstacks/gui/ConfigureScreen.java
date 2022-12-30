@@ -184,7 +184,6 @@ public class ConfigureScreen extends Screen
         int relX = (this.width - WIDTH) / 2;
         int relY = (this.height - HEIGHT) / 2;
         
-        //blit(pPoseStack, relX, relY, 0, WIDTH, HEIGHT, GUI_BG);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.enableBlend();
