@@ -18,7 +18,7 @@ public class HighStackSizeWarning
                 ChatFormatting.RED);
         Component msg = Component.literal("Biggerstacks no longer uses the global maximum stack limit config value.")
                                  .append("\nIt now gets the global max stack limit from the rule with the highest stack limit.")
-                                 .append("\n\nIf you did not intend for items to stack this high, please adjust your rules file,\nor run the ")
+                                 .append("\n\nIf you do not intend for items to stack this high, please adjust your rules file,\nor run the ")
                                  .append(Component.literal("\"/biggerstacks quicksetup\"").withStyle(Style.EMPTY.withColor(
                                          0xb4ffb3)))
                                  .append(" command (in a temporary world) to generate a new rules file.")
