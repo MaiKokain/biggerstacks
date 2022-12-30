@@ -23,13 +23,13 @@ import java.nio.file.Files;
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Constants.MOD_ID)
 public class ClientEvents
 {
-    private final static Style         SETUP_COMMAND_SHORTCUT = Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
-                                                                                                          "/biggerstacks quicksetup"
+    private final static Style     SETUP_COMMAND_SHORTCUT = Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+                                                                                                      "/biggerstacks quicksetup"
     )).withColor(ChatFormatting.BLUE).withUnderlined(true);
-    private final static Style         WIKI_LINK              = Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,
-                                                                                                          "https://codeberg.org/PORTB/BiggerStacks/wiki"
+    private final static Style     WIKI_LINK              = Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,
+                                                                                                      "https://codeberg.org/PORTB/BiggerStacks/wiki"
     )).withColor(ChatFormatting.BLUE).withUnderlined(true);
-    private final static Component     BULLET_POINT           = new TextComponent("\n> ").withStyle(ChatFormatting.WHITE);
+    private final static Component BULLET_POINT           = new TextComponent("\n> ").withStyle(ChatFormatting.WHITE);
     
     /**
      * Command is only registered for singleplayer. (this is not because it reaches across logical sides)

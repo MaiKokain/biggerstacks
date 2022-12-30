@@ -113,12 +113,12 @@ public class TransformerEngine implements IMixinConfigPlugin
         {
             String  modId       = matcher.group(1);
             boolean isModLoaded = FMLLoader.getLoadingModList().getModFileById(modId) != null;
-        
+    
             if (isModLoaded)
                 LOGGER.info(modId + " is installed, applying patches");
             else
                 LOGGER.debug(modId + " is NOT installed");
-        
+    
             return isModLoaded;
         }
         else

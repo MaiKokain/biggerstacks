@@ -21,19 +21,19 @@ import java.util.function.Consumer;
 
 public class ConfigureScreen extends Screen
 {
-    private static final int WIDTH  = 200;
-    private static final int HEIGHT = 180;
-    private final TemplateOptions previousOptions;
-    private final boolean         isAlreadyUsingCustomFile;
+    private static final int                               WIDTH  = 200;
+    private static final int                               HEIGHT = 180;
+    private final        TemplateOptions                   previousOptions;
+    private final        boolean                           isAlreadyUsingCustomFile;
     //private static final MultiLineLabel TITLE_LABEL    = MultiLineLabel.create(Minecraft.getInstance().font, new TranslatableComponent("biggerstacks.config.title"));
-    private MultiLineLabel OVERWRITE_WARNING_LABEL;
-    private MultiLineLabel POTIONS_BOX_LABEL;
-    private MultiLineLabel ENCH_BOOKS_BOX_LABEL;
-    private MultiLineLabel NORMAL_ITEMS_BOX_LABEL;
-    private EditBoxWithADifferentBorderColour potionsBox;
-    private EditBoxWithADifferentBorderColour enchBooksBox;
-    private EditBoxWithADifferentBorderColour normalItemsBox;
-    private Button                            confirmButton;
+    private              MultiLineLabel                    OVERWRITE_WARNING_LABEL;
+    private              MultiLineLabel                    POTIONS_BOX_LABEL;
+    private              MultiLineLabel                    ENCH_BOOKS_BOX_LABEL;
+    private              MultiLineLabel                    NORMAL_ITEMS_BOX_LABEL;
+    private              EditBoxWithADifferentBorderColour potionsBox;
+    private              EditBoxWithADifferentBorderColour enchBooksBox;
+    private              EditBoxWithADifferentBorderColour normalItemsBox;
+    private              Button                            confirmButton;
     
     protected ConfigureScreen(ClientboundConfigureScreenOpenPacket options)
     {
