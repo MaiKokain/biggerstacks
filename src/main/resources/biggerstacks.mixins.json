@@ -19,7 +19,6 @@
         "compat.prettypipes.RetrievalModuleItemMixin",
         "compat.sophisticatedcore.BackpackContainerMixin",
         "compat.sophisticatedcore.InventoryHandlerMixin",
-        "compat.sophisticatedcore.InventorySorterMixin",
         "vanilla.ContainersMixin",
         "vanilla.FriendlyByteBufMixin",
         "vanilla.ItemPropertiesMixin",
