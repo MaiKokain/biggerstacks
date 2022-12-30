@@ -3,8 +3,10 @@ package portb.biggerstacks;
 import cpw.mods.modlauncher.LaunchPluginHandler;
 import cpw.mods.modlauncher.Launcher;
 import cpw.mods.modlauncher.serviceapi.ILaunchPluginService;
+import net.minecraftforge.fml.loading.FMLLoader;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.ClassNode;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -19,9 +21,14 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TransformerEngine implements IMixinConfigPlugin
 {
+    private static final Logger  LOGGER                        = LoggerFactory.getLogger(TransformerEngine.class);
+    private static final Pattern MOD_ID_PACKAGE_TARGET_PATTERN = Pattern.compile("mixin\\.compat\\.([^.]+)\\.[^.]+$");
+    
     static
     {
         EnumSet<ILaunchPluginService.Phase> NONE          = EnumSet.noneOf(ILaunchPluginService.Phase.class);
@@ -100,7 +107,24 @@ public class TransformerEngine implements IMixinConfigPlugin
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName)
     {
-        return true;
+        Matcher matcher = MOD_ID_PACKAGE_TARGET_PATTERN.matcher(mixinClassName);
+    
+        if (matcher.find())
+        {
+            String  modId       = matcher.group(1);
+            boolean isModLoaded = FMLLoader.getLoadingModList().getModFileById(modId) != null;
+        
+            if (isModLoaded)
+                LOGGER.info(modId + " is installed, applying patches");
+            else
+                LOGGER.debug(modId + " is NOT installed");
+        
+            return isModLoaded;
+        }
+        else
+        {
+            return true;
+        }
     }
     
     @Override
