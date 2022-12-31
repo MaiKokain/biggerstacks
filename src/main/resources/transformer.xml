@@ -1,0 +1,27 @@
+<transformers>
+    <!--    region vanilla-->
+    <class path="net.minecraft.inventory.IInventory" transformChildren="true">
+        <method name="func_70297_j_" transformer="slotLimit"/>
+        <method name="getMaxStackSize" transformer="slotLimit"/>
+    </class>
+
+    <class path="net.minecraftforge.items.IItemHandler" transformChildren="true">
+        <method name="getSlotLimit" transformer="slotLimit" desc="(I)I"/>
+
+        <blacklist>net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.BackpackInventoryHandler</blacklist>
+    </class>
+
+    <class path="net.minecraft.inventory.container.Slot" transformChildren="true">
+        <method name="getMaxStackSize" transformer="slotLimit" desc="()I"/>
+        <method name="func_75219_a" transformer="slotLimit"/>
+
+        <blacklist>net.p3pp3rf1y.sophisticatedbackpacks.common.gui.BackpackInventorySlot</blacklist>
+    </class>
+    <!--    endregion-->
+
+    <!--    region mekanism-->
+    <class path="mekanism.api.inventory.IInventorySlot" transformChildren="true">
+        <method name="getLimit" transformer="slotLimit"/>
+    </class>
+    <!--    endregion-->
+</transformers>

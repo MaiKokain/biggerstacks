@@ -2,6 +2,7 @@
     "required": true,
     "minVersion": "0.8",
     "package": "portb.biggerstacks.mixin",
+    "plugin": "portb.biggerstacks.TransformerEngine",
     "compatibilityLevel": "JAVA_8",
     "refmap": "biggerstacks.refmap.json",
     "mixins": [
