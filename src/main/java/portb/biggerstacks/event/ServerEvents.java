@@ -15,6 +15,7 @@ public class ServerEvents
     
     /**
      * Creates a ServerLifecycleHandler that manages config updates
+     *
      * @param event
      */
     @SubscribeEvent
@@ -27,6 +28,7 @@ public class ServerEvents
     
     /**
      * Unregisters the handler
+     *
      * @param event
      */
     @SubscribeEvent

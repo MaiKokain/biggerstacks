@@ -26,7 +26,7 @@ public class ItemRendererMixin
     private static final DecimalFormat BILLION_FORMAT  = new DecimalFormat("#.##B");
     private static final DecimalFormat MILLION_FORMAT  = new DecimalFormat("#.##M");
     private static final DecimalFormat THOUSAND_FORMAT = new DecimalFormat("#.##K");
-
+    
     @Redirect(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/FontRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
               at = @At(value = "INVOKE", target = "Ljava/lang/String;valueOf(I)Ljava/lang/String;"))
     private String getStringForBigStackCount(int count)
@@ -34,9 +34,9 @@ public class ItemRendererMixin
         if (ClientConfig.enableNumberShortening.get())
         {
             BigDecimal decimal = new BigDecimal(count).round(new MathContext(3)); //pinnacle of over engineering
-
+            
             double value = decimal.doubleValue();
-
+            
             if (value >= ONE_BILLION)
                 return BILLION_FORMAT.format(value / ONE_BILLION);
             else if (value >= ONE_MILLION)
@@ -44,10 +44,10 @@ public class ItemRendererMixin
             else if (value > ONE_THOUSAND)
                 return THOUSAND_FORMAT.format(value / ONE_THOUSAND);
         }
-
+        
         return String.valueOf(count);
     }
-
+    
     //scale down fonts to fit
     @Surrogate
     @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/FontRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
@@ -59,10 +59,10 @@ public class ItemRendererMixin
     {
         matrixStack.pushPose();
         float scale = (float) calculateStringScale(font, countString);
-
+        
         matrixStack.scale(scale, scale, 1);
     }
-
+    
     //move the text to the correct place
     @Surrogate
     @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/FontRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
@@ -75,13 +75,13 @@ public class ItemRendererMixin
         double scale        = calculateStringScale(font, countString);
         double extraXOffset = scale == 1 ? 0 : 1 / (scale * 2);
         double extraYOffset = scale == 1 ? 0 : 1.5 / (scale);
-
+        
         //translate back to 0,0 for easier accounting for scaling
         matrixStack.translate(-(x + 19 - 2 - width),
                               -(y + 6 + 3),
                               0
         );
-
+        
         //i just messed around until i found something that felt right
         matrixStack.translate(
                 (x + 19 - 2 - extraXOffset - width * scale) / scale,
@@ -89,17 +89,17 @@ public class ItemRendererMixin
                 0
         );
     }
-
+    
     private double calculateStringScale(FontRenderer font, String countString)
     {
         int width = font.width(countString);
-
+        
         if (width < 16)
             return 1.0;
         else
             return 16.0 / width;
     }
-
+    
     @Surrogate
     @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/FontRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
             at = @At(value = "INVOKE",

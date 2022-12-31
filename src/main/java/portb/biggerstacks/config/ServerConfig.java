@@ -26,13 +26,13 @@ public class ServerConfig
                     "IT IS ONLY USED WHEN HOSTING ON LAN"
             );
         }
-    
+        
         builder.push("biggerstacks");
-    
+        
         globalMaxStackSize = builder.comment(
                 "IGNORE THIS. IT DOES NOTHING!!"
         ).defineInRange("Max global stack size", 999, 1, Integer.MAX_VALUE / 2);
-    
+        
         increaseTransferRate = builder.comment(
                 "Whether to increase max transfer rate of some mods to the new stack limit/t.",
                 "E.g. if max stack limit is 1000, it will become 1000 items per tick (where applicable).",
@@ -44,9 +44,9 @@ public class ServerConfig
                 "- XNet can already extract a variable amount, but you will be able to go past 64 to the new maximum stack limit",
                 "- Cyclic still extracts 1 stack (more than 64 items) per tick, but the size of the stack is adjusted"
         ).define("Increase transfer rate", true);
-
+        
         builder.pop();
-
+        
         SPEC = builder.build();
     }
 }

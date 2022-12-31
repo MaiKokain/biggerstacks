@@ -20,7 +20,7 @@ public class RetrievalModuleItemMixin
     private int increaseTransferRate(RetrievalModuleItem instance)
     {
         int rate = ((RetrievalModuleItemAccessor) instance).getMaxExtractionRate();
-
+        
         if (AutoSidedConfig.increaseTransferRate())
             return StackSizeHelper.scaleTransferRate(rate, false);
         else

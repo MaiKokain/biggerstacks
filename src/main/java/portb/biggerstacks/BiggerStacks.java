@@ -24,20 +24,20 @@ import portb.slw.MyLoggerFactory;
 public class BiggerStacks
 {
     public final static Logger LOGGER = LogManager.getLogger();
-
+    
     public BiggerStacks()
     {
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
         MinecraftForge.EVENT_BUS.register(CommonEvents.class);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-    
+        
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MinecraftForge.EVENT_BUS.register(ClientEvents.class));
-    
+        
         ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(
                 //don't use slf4j! even though it works in dev, it doesn't exist at runtime in production environment!
                 LogManager.getLogger(ConfigLib.class)
         );
-    
+        
         registerConfigs();
     }
     

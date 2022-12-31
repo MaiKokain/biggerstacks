@@ -11,6 +11,7 @@ public class CommonEvents
 {
     /**
      * Registers network packets
+     *
      * @param event
      */
     @SubscribeEvent

@@ -16,7 +16,7 @@ public class InventoryHandlerMixin
     {
         return StackSizeHelper.scaleSlotLimit(slotLimit);
     }
-
+    
     @ModifyConstant(method = "setSlotLimit", constant = @Constant(intValue = 64), remap = false)
     private int increaseStackLimit(int val)
     {

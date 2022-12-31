@@ -18,10 +18,9 @@ import java.util.function.Supplier;
  */
 public class PacketHandler
 {
-    private static final String           PROTOCOL_VERSION = "1";
     public final static  ResourceLocation CHANNEL_NAME     = new ResourceLocation(Constants.MOD_ID, "rules");
-    
-    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
+    private static final String           PROTOCOL_VERSION = "1";
+    public static final  SimpleChannel    INSTANCE         = NetworkRegistry.newSimpleChannel(
             CHANNEL_NAME,
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,
@@ -48,27 +47,27 @@ public class PacketHandler
                 .encoder((packet, packetBuffer) -> {})
                 .consumer(PacketHandler::handleLoginPacketUsingReflectionHacks)
                 .add();
-    
+        
         INSTANCE.messageBuilder(ClientboundRulesUpdatePacket.class, index++, NetworkDirection.PLAY_TO_CLIENT)
                 .encoder(ClientboundRulesUpdatePacket::encode)
                 .decoder(ClientboundRulesUpdatePacket::new)
                 .consumer(PacketHandler::handleUpdate)
                 .add();
-    
+        
         //these have to exist on the server or the mod will not be "compatible" with it according to forge
-    
+        
         INSTANCE.messageBuilder(ClientboundConfigureScreenOpenPacket.class, index++, NetworkDirection.PLAY_TO_CLIENT)
                 .encoder(ClientboundConfigureScreenOpenPacket::encode)
                 .decoder(ClientboundConfigureScreenOpenPacket::new)
                 .consumer(PacketHandler::handleOpenScreenPacket)
                 .add();
-    
+        
         INSTANCE.messageBuilder(ServerboundCreateConfigTemplatePacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
                 .encoder(ServerboundCreateConfigTemplatePacket::encode)
                 .decoder(ServerboundCreateConfigTemplatePacket::new)
                 .consumer(ServerboundCreateConfigTemplatePacket::handleCreateConfigTemplate)
                 .add();
-    
+        
     }
     
     private static void handleHandshake(ClientboundRulesHandshakePacket packet, Supplier<NetworkEvent.Context> ctx)
@@ -109,7 +108,7 @@ public class PacketHandler
             Field sentMessagesField = handler.getClass().getDeclaredField("sentMessages");
             sentMessagesField.setAccessible(true);
             @SuppressWarnings("unchecked") List<Integer> sentMessages = (List<Integer>) sentMessagesField.get(handler);
-    
+            
             //remove the packet from the acknowledgement queue
             sentMessages.removeIf(i -> i == replyPacket.getAsInt());
         }
@@ -131,14 +130,14 @@ public class PacketHandler
         //copied from FMLHandshakeMessages.LoginIndexedMessage
         private int loginIndex;
         
-        void setLoginIndex(final int loginIndex)
-        {
-            this.loginIndex = loginIndex;
-        }
-        
         int getLoginIndex()
         {
             return loginIndex;
+        }
+        
+        void setLoginIndex(final int loginIndex)
+        {
+            this.loginIndex = loginIndex;
         }
         
         @Override

@@ -21,5 +21,4 @@ public class IOBusPartMixin
         if (AutoSidedConfig.increaseTransferRate())
             StackSizeHelper.scaleSlotLimit(returnInfo);
     }
-
 }

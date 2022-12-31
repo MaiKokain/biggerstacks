@@ -165,7 +165,7 @@ public class ConfigureScreen extends Screen
                    centreOffset + relY + labelStartY + 60,
                    0xffffff
         );
-    
+        
         if (isAlreadyUsingCustomFile)
             renderCentered(
                     pPoseStack,
@@ -176,7 +176,7 @@ public class ConfigureScreen extends Screen
                     width / 2,
                     relY + 125
             );
-    
+        
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
     }
     
@@ -201,19 +201,6 @@ public class ConfigureScreen extends Screen
             );
             
             pY += 9;
-        }
-    }
-    
-    @OnlyIn(Dist.CLIENT)
-    static class TextWithWidth
-    {
-        final IReorderingProcessor text;
-        final int                  width;
-        
-        TextWithWidth(IReorderingProcessor pText, int pWidth)
-        {
-            this.text = pText;
-            this.width = pWidth;
         }
     }
     
@@ -278,5 +265,18 @@ public class ConfigureScreen extends Screen
                 confirmButton.active = false;
             }
         };
+    }
+    
+    @OnlyIn(Dist.CLIENT)
+    static class TextWithWidth
+    {
+        final IReorderingProcessor text;
+        final int                  width;
+        
+        TextWithWidth(IReorderingProcessor pText, int pWidth)
+        {
+            this.text = pText;
+            this.width = pWidth;
+        }
     }
 }

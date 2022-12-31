@@ -11,7 +11,7 @@ public class ClientConfig
     public static final  ForgeConfigSpec.BooleanValue enableNumberShortening;
     public static final  ForgeConfigSpec.BooleanValue stfuWarning;
     private static final ForgeConfigSpec.Builder      builder = new ForgeConfigSpec.Builder();
-
+    
     static
     {
         builder.comment("Client configs");
@@ -22,7 +22,7 @@ public class ClientConfig
                 "STFU Warning",
                 false
         );
-    
+        
         SPEC = builder.build();
     }
 }

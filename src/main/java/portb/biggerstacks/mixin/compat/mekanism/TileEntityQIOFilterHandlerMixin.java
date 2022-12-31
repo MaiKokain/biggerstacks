@@ -18,7 +18,7 @@ public class TileEntityQIOFilterHandlerMixin
         else
             return val;
     }
-
+    
     @ModifyConstant(method = "getMaxTransitCount", constant = @Constant(intValue = 32), require = 0)
     private int increaseUpgradeTransferRate(int val)
     {

@@ -31,7 +31,7 @@ public class ItemStackMixin
     private void increaseStackLimit(CallbackInfoReturnable<Integer> returnInfo)
     {
         Item item = ((ItemStack) (Object) this).getItem();
-    
+        
         if (StackSizeRules.getRuleSet() != null)
         {
             StackSizeRules.getRuleSet().determineStackSizeForItem(
@@ -57,7 +57,7 @@ public class ItemStackMixin
         {
             LOGGER.warn("Stack size ruleset is somehow null, using fallback logic. Called from " +
                                 CallingClassUtil.getCallerClassName());
-    
+            
             if (returnInfo.getReturnValue() > 1)
             {
                 returnInfo.cancel();

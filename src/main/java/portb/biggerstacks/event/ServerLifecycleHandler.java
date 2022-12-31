@@ -17,9 +17,9 @@ import java.nio.file.Path;
 
 public class ServerLifecycleHandler
 {
-    private static final Path xmlFile = FMLPaths.CONFIGDIR.get().resolve(Constants.RULESET_FILE_NAME);
-    private boolean stopped = false;
-    private final ConfigFileWatcher watcher = new ConfigFileWatcher(xmlFile);
+    private static final Path              xmlFile = FMLPaths.CONFIGDIR.get().resolve(Constants.RULESET_FILE_NAME);
+    private final        ConfigFileWatcher watcher = new ConfigFileWatcher(xmlFile);
+    private              boolean           stopped = false;
     
     /**
      * Parses the config file and starts the file watcher
@@ -56,7 +56,7 @@ public class ServerLifecycleHandler
     
     public void ensureStopped()
     {
-        if(!stopped)
+        if (!stopped)
         {
             watcher.stop();
             stopped = true;

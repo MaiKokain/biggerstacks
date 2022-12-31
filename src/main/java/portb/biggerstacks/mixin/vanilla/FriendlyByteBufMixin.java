@@ -25,7 +25,7 @@ public class FriendlyByteBufMixin
     {
         return instance.writeInt(count);
     }
-
+    
     /**
      * We can't change the return type of the method, so instead we return a dummy value and modify the variable later.
      * This is essentially what this mixin and {@link #readStackItemCount} does: <br>
@@ -46,7 +46,7 @@ public class FriendlyByteBufMixin
     {
         return 0; // do nothing, because we cannot change the return type of this method
     }
-
+    
     /**
      * See {@link #doNothing(PacketBuffer)}
      */

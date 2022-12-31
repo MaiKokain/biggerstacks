@@ -58,17 +58,17 @@ public class ClientEvents
     {
         if (!ClientConfig.enableNumberShortening.get())
             return;
-    
+        
         ItemStack stack = event.getItemStack();
-    
+        
         if (stack.getCount() > Constants.ONE_THOUSAND)
         {
             String                    countString    = TOOLTIP_NUMBER_FORMAT.format(stack.getCount());
             IFormattableTextComponent countComponent = new StringTextComponent(countString).withStyle(TextFormatting.DARK_AQUA);
-            TextComponent tooltip        = new TranslationTextComponent("biggerstacks.exact.count",
-                                                                        countComponent
+            TextComponent tooltip = new TranslationTextComponent("biggerstacks.exact.count",
+                                                                 countComponent
             );
-        
+            
             event.getToolTip().add(1, tooltip.withStyle(TextFormatting.GRAY));
         }
     }
