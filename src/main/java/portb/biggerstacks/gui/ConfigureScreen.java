@@ -8,6 +8,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.GuiUtils;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.net.ClientboundConfigureScreenOpenPacket;
@@ -17,6 +19,7 @@ import portb.configlib.template.TemplateOptions;
 
 import java.util.function.Consumer;
 
+@OnlyIn(Dist.CLIENT)
 public class ConfigureScreen extends Screen
 {
     private static final int                               WIDTH  = 200;
