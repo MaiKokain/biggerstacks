@@ -53,11 +53,11 @@ public class CreateWorldScreenMixin
                 HighStackSizeWarning.createWarningScreen(max, () -> {
                     ((CreateWorldScreenInvoker) this).invokeOnCreate();
                 });
+        
+                return;
             }
         }
-        else
-        {
-            ((CreateWorldScreenInvoker) this).invokeOnCreate();
-        }
+    
+        ((CreateWorldScreenInvoker) this).invokeOnCreate();
     }
 }
