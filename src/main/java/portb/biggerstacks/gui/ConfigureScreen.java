@@ -2,10 +2,14 @@ package portb.biggerstacks.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.util.text.*;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.gui.GuiUtils;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.net.ClientboundConfigureScreenOpenPacket;
@@ -13,18 +17,20 @@ import portb.biggerstacks.net.PacketHandler;
 import portb.biggerstacks.net.ServerboundCreateConfigTemplatePacket;
 import portb.configlib.template.TemplateOptions;
 
+import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class ConfigureScreen extends Screen
 {
-    private static final int                               WIDTH  = 200;
-    private static final int                               HEIGHT = 180;
-    private final        TemplateOptions                   previousOptions;
-    private final        boolean                           isAlreadyUsingCustomFile;
-    private              EditBoxWithADifferentBorderColour potionsBox;
-    private              EditBoxWithADifferentBorderColour enchBooksBox;
-    private              EditBoxWithADifferentBorderColour normalItemsBox;
-    private              Button                            confirmButton;
+    private static final int             WIDTH  = 200;
+    private static final int             HEIGHT = 180;
+    private final        TemplateOptions previousOptions;
+    private final        boolean         isAlreadyUsingCustomFile;
+    private              TextFieldWidget potionsBox;
+    private              TextFieldWidget enchBooksBox;
+    private              TextFieldWidget normalItemsBox;
+    private              Button          confirmButton;
     
     protected ConfigureScreen(ClientboundConfigureScreenOpenPacket options)
     {
@@ -159,17 +165,56 @@ public class ConfigureScreen extends Screen
                    centreOffset + relY + labelStartY + 60,
                    0xffffff
         );
-        
+    
         if (isAlreadyUsingCustomFile)
-            drawCenteredString(pPoseStack,
-                               font,
-                               new TranslationTextComponent("biggerstacks.overwrite.warn"),
-                               width / 2,
-                               relY + 125,
-                               0xffaaaa
+            renderCentered(
+                    pPoseStack,
+                    font,
+                    new TranslationTextComponent("biggerstacks.overwrite.warn").withStyle(
+                            Style.EMPTY.withColor(Color.fromRgb(0xffaaaa))),
+                    WIDTH,
+                    width / 2,
+                    relY + 125
             );
-        
+    
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
+    }
+    
+    public void renderCentered(MatrixStack matrixStack, FontRenderer pFont, IFormattableTextComponent pFormattedText, int maxWidth, int pWidth, int pY)
+    {
+        
+        List<TextWithWidth> widthList = pFont.split(pFormattedText,
+                                                    maxWidth
+        ).stream().map((text) -> new TextWithWidth(
+                text,
+                pFont.width(text)
+        )).collect(
+                Collectors.toList());
+        
+        for (TextWithWidth multilinelabel$textwithwidth : widthList)
+        {
+            pFont.drawShadow(matrixStack,
+                             multilinelabel$textwithwidth.text,
+                             (float) (pWidth - multilinelabel$textwithwidth.width / 2),
+                             (float) pY,
+                             0xffffff
+            );
+            
+            pY += 9;
+        }
+    }
+    
+    @OnlyIn(Dist.CLIENT)
+    static class TextWithWidth
+    {
+        final IReorderingProcessor text;
+        final int                  width;
+        
+        TextWithWidth(IReorderingProcessor pText, int pWidth)
+        {
+            this.text = pText;
+            this.width = pWidth;
+        }
     }
     
     @Override
@@ -219,7 +264,7 @@ public class ConfigureScreen extends Screen
         return true;
     }
     
-    private Consumer<String> verifyInputBoxNumber(EditBoxWithADifferentBorderColour editBox)
+    private Consumer<String> verifyInputBoxNumber(TextFieldWidget editBox)
     {
         return inputString -> {
             if (isEditBoxInputValid(inputString))
