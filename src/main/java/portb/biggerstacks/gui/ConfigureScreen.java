@@ -8,6 +8,8 @@ import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.ScreenUtils;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.net.ClientboundConfigureScreenOpenPacket;
@@ -17,6 +19,7 @@ import portb.configlib.template.TemplateOptions;
 
 import java.util.function.Consumer;
 
+@OnlyIn(Dist.CLIENT)
 public class ConfigureScreen extends Screen
 {
     private static final int             WIDTH  = 200;
@@ -180,7 +183,7 @@ public class ConfigureScreen extends Screen
     {
         int relX = (this.width - WIDTH) / 2;
         int relY = (this.height - HEIGHT) / 2;
-    
+        
         ScreenUtils.blitWithBorder(pPoseStack,
                                    Constants.CONFIG_GUI_BG,
                                    relX,

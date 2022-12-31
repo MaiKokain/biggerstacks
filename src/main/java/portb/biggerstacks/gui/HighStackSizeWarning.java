@@ -6,9 +6,12 @@ import net.minecraft.client.gui.screens.ConfirmScreen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.config.ClientConfig;
 
+@OnlyIn(Dist.CLIENT)
 public class HighStackSizeWarning
 {
     public static void createWarningScreen(int max, Runnable after)
