@@ -18,6 +18,7 @@ import portb.configlib.ConfigLib;
 import portb.configlib.template.ConfigTemplate;
 import portb.configlib.template.TemplateOptions;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.function.Supplier;
 
@@ -45,11 +46,11 @@ public class ConfigCommand
                             try
                             {
                                 template = ConfigTemplate.readParametersFromTemplate(new String(Files.readAllBytes(
-                                        Constants.RULESET_FILE)));
+                                        Constants.RULESET_FILE), StandardCharsets.UTF_8));
                             }
                             catch (Throwable e)
                             {
-                                LOGGER.debug("Error reading template file", e);
+                                LOGGER.warn("Error reading template file", e);
                                 hasCustomExistingFile = true;
                             }
                         }
