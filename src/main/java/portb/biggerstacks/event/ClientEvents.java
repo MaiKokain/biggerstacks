@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.StackSizeRules;
+import portb.biggerstacks.util.ConfigCommand;
 
 import java.nio.file.Files;
 
@@ -43,8 +44,7 @@ public class ClientEvents
     @SubscribeEvent
     public static void registerCommand(RegisterCommandsEvent event)
     {
-        //fixme
-//        ConfigCommand.register(event);
+        ConfigCommand.register(event);
     }
     
     /**

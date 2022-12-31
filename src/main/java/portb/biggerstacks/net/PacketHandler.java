@@ -6,6 +6,7 @@ import net.minecraftforge.fml.network.*;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.config.StackSizeRules;
+import portb.biggerstacks.gui.ConfigureScreen;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -47,14 +48,27 @@ public class PacketHandler
                 .encoder((packet, packetBuffer) -> {})
                 .consumer(PacketHandler::handleLoginPacketUsingReflectionHacks)
                 .add();
-        
+    
         INSTANCE.messageBuilder(ClientboundRulesUpdatePacket.class, index++, NetworkDirection.PLAY_TO_CLIENT)
                 .encoder(ClientboundRulesUpdatePacket::encode)
                 .decoder(ClientboundRulesUpdatePacket::new)
                 .consumer(PacketHandler::handleUpdate)
                 .add();
-        
-
+    
+        //these have to exist on the server or the mod will not be "compatible" with it according to forge
+    
+        INSTANCE.messageBuilder(ClientboundConfigureScreenOpenPacket.class, index++, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(ClientboundConfigureScreenOpenPacket::encode)
+                .decoder(ClientboundConfigureScreenOpenPacket::new)
+                .consumer(PacketHandler::handleOpenScreenPacket)
+                .add();
+    
+        INSTANCE.messageBuilder(ServerboundCreateConfigTemplatePacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(ServerboundCreateConfigTemplatePacket::encode)
+                .decoder(ServerboundCreateConfigTemplatePacket::new)
+                .consumer(ServerboundCreateConfigTemplatePacket::handleCreateConfigTemplate)
+                .add();
+    
     }
     
     private static void handleHandshake(ClientboundRulesHandshakePacket packet, Supplier<NetworkEvent.Context> ctx)
@@ -95,7 +109,7 @@ public class PacketHandler
             Field sentMessagesField = handler.getClass().getDeclaredField("sentMessages");
             sentMessagesField.setAccessible(true);
             @SuppressWarnings("unchecked") List<Integer> sentMessages = (List<Integer>) sentMessagesField.get(handler);
-
+    
             //remove the packet from the acknowledgement queue
             sentMessages.removeIf(i -> i == replyPacket.getAsInt());
         }
@@ -105,20 +119,31 @@ public class PacketHandler
         }
     }
     
-    static class ReplyPacket implements IntSupplier {
+    private static boolean handleOpenScreenPacket(ClientboundConfigureScreenOpenPacket clientboundConfigureScreenOpenPacket, Supplier<NetworkEvent.Context> contextSupplier)
+    {
+        //open the screen
+        contextSupplier.get().enqueueWork(() -> ConfigureScreen.open(clientboundConfigureScreenOpenPacket));
+        return true;
+    }
+    
+    static class ReplyPacket implements IntSupplier
+    {
         //copied from FMLHandshakeMessages.LoginIndexedMessage
         private int loginIndex;
-    
-        void setLoginIndex(final int loginIndex) {
+        
+        void setLoginIndex(final int loginIndex)
+        {
             this.loginIndex = loginIndex;
         }
-    
-        int getLoginIndex() {
+        
+        int getLoginIndex()
+        {
             return loginIndex;
         }
-    
+        
         @Override
-        public int getAsInt() {
+        public int getAsInt()
+        {
             return getLoginIndex();
         }
     }
