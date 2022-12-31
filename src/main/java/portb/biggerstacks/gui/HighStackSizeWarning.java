@@ -3,9 +3,12 @@ package portb.biggerstacks.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.ConfirmScreen;
 import net.minecraft.util.text.*;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.config.ClientConfig;
 
+@OnlyIn(Dist.CLIENT)
 public class HighStackSizeWarning
 {
     public static void createWarningScreen(int max, Runnable after)

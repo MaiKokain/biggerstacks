@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+@OnlyIn(Dist.CLIENT)
 public class ConfigureScreen extends Screen
 {
     private static final int             WIDTH  = 200;
