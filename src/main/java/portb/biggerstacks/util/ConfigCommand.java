@@ -50,7 +50,7 @@ public class ConfigCommand
                             }
                             catch (Throwable e)
                             {
-                                LOGGER.warn("Error reading template file", e);
+                                LOGGER.debug("Error reading template file", e);
                                 hasCustomExistingFile = true;
                             }
                         }
