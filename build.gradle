@@ -34,7 +34,8 @@ println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty '
 minecraft {
     mappings channel: 'parchment', version: "$parchmentVersion-$minecraftVersion"
 
-    //accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    // Currently, this location cannot be changed from the default.
 
     runs {
         client {
@@ -151,6 +152,7 @@ submodules {
                 }
             """.stripIndent()
 
+            tasks = ["runData", "build"]
             runtime = true
         }
     }
@@ -159,10 +161,8 @@ submodules {
 dependencies {
     minecraft "net.minecraftforge:forge:$minecraftVersion-$forgeVersion"
 
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255")
-
     //
-    // Libraries
+    // Embedded libraries
     //
 
     library("portb:BiggerStacksConfigLib:$configLibVersion", "portb:BiggerStacksTransformerLib:$transformerLibVersion", "portb:SimpleLoggerWrapper:$simpleLoggerWrapperVersion")
@@ -172,7 +172,13 @@ dependencies {
         exclude group: 'io.github.x-stream', module: 'mxparser'
     }
 
+    //
+    // Mixin
+    //
+
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255")
 }
 
 jar {
