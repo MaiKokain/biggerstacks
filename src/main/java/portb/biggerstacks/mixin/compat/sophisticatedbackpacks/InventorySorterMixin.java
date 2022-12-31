@@ -4,7 +4,6 @@ import net.p3pp3rf1y.sophisticatedbackpacks.util.InventorySorter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import portb.biggerstacks.config.AutoSidedConfig;
 import portb.biggerstacks.util.StackSizeHelper;
 
 /**
@@ -16,6 +15,6 @@ public class InventorySorterMixin
     @ModifyConstant(method = "placeStack", constant = @Constant(intValue = 64), remap = false)
     private static int increaseStackLimit(int val)
     {
-        return StackSizeHelper.getNewSlotLimit();
+        return StackSizeHelper.getNewStackSize();
     }
 }

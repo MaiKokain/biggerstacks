@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin.compat.ae2;
+package portb.biggerstacks.mixin.compat.appliedenergistics2;
 
 import appeng.client.gui.AEBaseScreen;
 import org.spongepowered.asm.mixin.Mixin;

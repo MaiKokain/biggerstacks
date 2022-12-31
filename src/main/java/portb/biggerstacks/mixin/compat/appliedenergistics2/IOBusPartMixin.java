@@ -1,4 +1,4 @@
-package portb.biggerstacks.mixin.compat.ae2;
+package portb.biggerstacks.mixin.compat.appliedenergistics2;
 
 import appeng.parts.automation.ImportBusPart;
 import org.spongepowered.asm.mixin.Mixin;

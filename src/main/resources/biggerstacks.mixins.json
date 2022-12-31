@@ -5,7 +5,7 @@
     "compatibilityLevel": "JAVA_8",
     "refmap": "biggerstacks.refmap.json",
     "mixins": [
-        "compat.ae2.IOBusPartMixin",
+        "compat.appliedenergistics2.IOBusPartMixin",
         "compat.cyclic.TileCableItemAccessor",
         "compat.cyclic.TileCableItemMixin",
         "compat.mekanism.TileEntityLogisticalSorterMixin",
@@ -25,16 +25,19 @@
         "compat.xnet.XNetCompat",
         "vanilla.ContainersMixin",
         "vanilla.FriendlyByteBufMixin",
-        "vanilla.stacksize.ContainerMixin",
-        "vanilla.stacksize.InvWrapperMixin",
+        "vanilla.ItemPropertiesMixin",
         "vanilla.stacksize.ItemEntityMixin",
         "vanilla.stacksize.ItemStackAccessor",
         "vanilla.stacksize.ItemStackMixin",
         "vanilla.stacksize.ServerGamePacketListenerImplMixin"
     ],
     "client": [
+        "client.CreateWorldScreenInvoker",
+        "client.CreateWorldScreenMixin",
         "client.ItemRendererMixin",
-        "compat.ae2.AEBaseScreenMixin"
+        "client.WorldSelectionList$WorldListEntryInvoker",
+        "client.WorldSelectionListMixin",
+        "compat.appliedenergistics2.AEBaseScreenMixin"
     ],
     "injectors": {
         "defaultRequire": 1
