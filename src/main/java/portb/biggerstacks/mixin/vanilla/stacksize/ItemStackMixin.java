@@ -49,7 +49,6 @@ public class ItemStackMixin
                           )
                           .ifPresent((stackSize) -> {
                               returnInfo.cancel();
-                              //cap max stack size to the global max
                               returnInfo.setReturnValue(stackSize);
                           });
         }
