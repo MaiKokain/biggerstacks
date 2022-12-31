@@ -14,6 +14,7 @@ import portb.biggerstacks.net.ServerboundCreateConfigTemplatePacket;
 import portb.configlib.template.ConfigTemplate;
 import portb.configlib.template.TemplateOptions;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.function.Supplier;
 
@@ -41,7 +42,7 @@ public class ConfigCommand
                             try
                             {
                                 template = ConfigTemplate.readParametersFromTemplate(new String(Files.readAllBytes(
-                                        Constants.RULESET_FILE)));
+                                        Constants.RULESET_FILE), StandardCharsets.UTF_8));
                             }
                             catch (Throwable e)
                             {
