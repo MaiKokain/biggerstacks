@@ -29,11 +29,8 @@
         "vanilla.stacksize.InvWrapperMixin",
         "vanilla.stacksize.ItemEntityMixin",
         "vanilla.stacksize.ItemStackAccessor",
-        "vanilla.stacksize.ItemStackHandlerMixin",
         "vanilla.stacksize.ItemStackMixin",
-        "vanilla.stacksize.ServerGamePacketListenerImplMixin",
-        "vanilla.stacksize.SlotItemHandlerMixin",
-        "vanilla.stacksize.SlotMixin"
+        "vanilla.stacksize.ServerGamePacketListenerImplMixin"
     ],
     "client": [
         "client.ItemRendererMixin",
