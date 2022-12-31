@@ -1,12 +1,11 @@
 package portb.biggerstacks.gui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraftforge.client.gui.ScreenUtils;
@@ -20,19 +19,18 @@ import java.util.function.Consumer;
 
 public class ConfigureScreen extends Screen
 {
-    private static final int                               WIDTH  = 200;
-    private static final int                               HEIGHT = 180;
-    private final        TemplateOptions                   previousOptions;
-    private final        boolean                           isAlreadyUsingCustomFile;
-    //private static final MultiLineLabel TITLE_LABEL    = MultiLineLabel.create(Minecraft.getInstance().font, Component.translatable("biggerstacks.config.title"));
-    private              MultiLineLabel                    OVERWRITE_WARNING_LABEL;
-    private              MultiLineLabel                    POTIONS_BOX_LABEL;
-    private              MultiLineLabel                    ENCH_BOOKS_BOX_LABEL;
-    private              MultiLineLabel                    NORMAL_ITEMS_BOX_LABEL;
-    private              EditBoxWithADifferentBorderColour potionsBox;
-    private              EditBoxWithADifferentBorderColour enchBooksBox;
-    private              EditBoxWithADifferentBorderColour normalItemsBox;
-    private              Button                            confirmButton;
+    private static final int             WIDTH  = 200;
+    private static final int             HEIGHT = 180;
+    private final        TemplateOptions previousOptions;
+    private final        boolean         isAlreadyUsingCustomFile;
+    private              MultiLineLabel  OVERWRITE_WARNING_LABEL;
+    private              MultiLineLabel  POTIONS_BOX_LABEL;
+    private              MultiLineLabel  ENCH_BOOKS_BOX_LABEL;
+    private              MultiLineLabel  NORMAL_ITEMS_BOX_LABEL;
+    private              EditBox         potionsBox;
+    private              EditBox         enchBooksBox;
+    private              EditBox         normalItemsBox;
+    private              Button          confirmButton;
     
     protected ConfigureScreen(ClientboundConfigureScreenOpenPacket options)
     {
@@ -182,14 +180,20 @@ public class ConfigureScreen extends Screen
     {
         int relX = (this.width - WIDTH) / 2;
         int relY = (this.height - HEIGHT) / 2;
-        
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.setShaderTexture(0, Constants.CONFIG_GUI_BG);
-        
-        ScreenUtils.blitWithBorder(pPoseStack, relX, relY, 0, 0, WIDTH, HEIGHT, 256, 256, 4, 200);
+    
+        ScreenUtils.blitWithBorder(pPoseStack,
+                                   Constants.CONFIG_GUI_BG,
+                                   relX,
+                                   relY,
+                                   0,
+                                   0,
+                                   WIDTH,
+                                   HEIGHT,
+                                   256,
+                                   256,
+                                   4,
+                                   200
+        );
     }
     
     void onConfirmButtonClicked(Button button)
@@ -218,7 +222,7 @@ public class ConfigureScreen extends Screen
         return true;
     }
     
-    private Consumer<String> verifyInputBoxNumber(EditBoxWithADifferentBorderColour editBox)
+    private Consumer<String> verifyInputBoxNumber(EditBox editBox)
     {
         return inputString -> {
             if (isEditBoxInputValid(inputString))
