@@ -22,7 +22,6 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
-//core version-configlib version-transformerlib version
 version = "$shortMinecraftVersion-$modVersion"
 group = 'portb'
 archivesBaseName = 'biggerstacks'
