@@ -6,6 +6,8 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import portb.biggerstacks.config.ClientConfig;
@@ -15,6 +17,7 @@ import portb.biggerstacks.event.ClientEvents;
 import portb.biggerstacks.event.CommonEvents;
 import portb.biggerstacks.event.ServerEvents;
 import portb.configlib.ConfigLib;
+import portb.configlib.IMCAPI;
 import portb.slw.MyLoggerFactory;
 
 @Mod(Constants.MOD_ID)
@@ -26,6 +29,8 @@ public class BiggerStacks
     {
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
         MinecraftForge.EVENT_BUS.register(CommonEvents.class);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+    
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MinecraftForge.EVENT_BUS.register(ClientEvents.class));
     
         ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(
@@ -36,10 +41,17 @@ public class BiggerStacks
         registerConfigs();
     }
     
+    void processIMC(final InterModProcessEvent event)
+    {
+        event.getIMCStream().forEach(imcMessage -> IMCAPI.addIMCRuleSupplier(imcMessage.getSenderModId(),
+                                                                             imcMessage.getMessageSupplier()
+        ));
+    }
+    
     private void registerConfigs()
     {
         ModLoadingContext context = ModLoadingContext.get();
-    
+        
         context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
         context.registerConfig(ModConfig.Type.CLIENT,
                                LocalConfig.INSTANCE.SPEC,
