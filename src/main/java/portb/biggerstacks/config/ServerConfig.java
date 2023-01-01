@@ -31,7 +31,7 @@ public class ServerConfig
         
         globalMaxStackSize = builder.comment(
                 "IGNORE THIS. IT DOES NOTHING!!"
-        ).defineInRange("Max global stack size", 999, 1, Integer.MAX_VALUE / 2);
+        ).defineInRange("Max global stack size", 1, 1, Integer.MAX_VALUE / 2);
         
         increaseTransferRate = builder.comment(
                 "Whether to increase max transfer rate of some mods to the new stack limit/t.",
