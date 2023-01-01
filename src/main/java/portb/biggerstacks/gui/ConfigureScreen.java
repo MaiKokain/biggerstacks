@@ -27,9 +27,6 @@ public class ConfigureScreen extends Screen
     private final        TemplateOptions previousOptions;
     private final        boolean         isAlreadyUsingCustomFile;
     private              MultiLineLabel  OVERWRITE_WARNING_LABEL;
-    private              MultiLineLabel  POTIONS_BOX_LABEL;
-    private              MultiLineLabel  ENCH_BOOKS_BOX_LABEL;
-    private              MultiLineLabel  NORMAL_ITEMS_BOX_LABEL;
     private              EditBox         potionsBox;
     private              EditBox         enchBooksBox;
     private              EditBox         normalItemsBox;
@@ -81,9 +78,6 @@ public class ConfigureScreen extends Screen
                                                                 Style.EMPTY.withColor(0xffaaaa)),
                                                         WIDTH
         );
-        POTIONS_BOX_LABEL = MultiLineLabel.create(font, Component.translatable("biggerstacks.potsbox.label"));
-        ENCH_BOOKS_BOX_LABEL = MultiLineLabel.create(font, Component.translatable("biggerstacks.enchbox.label"));
-        NORMAL_ITEMS_BOX_LABEL = MultiLineLabel.create(font, Component.translatable("biggerstacks.normalbox.label"));
         
         normalItemsBox = new EditBoxWithADifferentBorderColour(
                 font,
@@ -142,7 +136,7 @@ public class ConfigureScreen extends Screen
         renderBackground(pPoseStack, 0);
         
         int relX = (this.width - WIDTH) / 2, relY = (this.height - HEIGHT) / 2;
-        
+    
         drawCenteredString(pPoseStack,
                            font,
                            Component.translatable("biggerstacks.config.title"),
@@ -150,31 +144,37 @@ public class ConfigureScreen extends Screen
                            relY + 10,
                            0xffffff
         );
-        
+    
         int centreOffset = (20 - font.lineHeight) / 2;
         int labelStartX  = 20, labelStartY = 30;
-        NORMAL_ITEMS_BOX_LABEL.renderLeftAligned(pPoseStack,
-                                                 relX + labelStartX,
-                                                 centreOffset + relY + labelStartY,
-                                                 font.lineHeight,
-                                                 0xffffff
+    
+        drawString(pPoseStack,
+                   font,
+                   Component.translatable("biggerstacks.normalbox.label"),
+                   relX + labelStartX,
+                   centreOffset + relY + labelStartY,
+                   0xffffff
         );
-        POTIONS_BOX_LABEL.renderLeftAligned(pPoseStack,
-                                            relX + labelStartX,
-                                            centreOffset + relY + labelStartY + 30,
-                                            font.lineHeight,
-                                            0xffffff
+    
+        drawString(pPoseStack,
+                   font,
+                   Component.translatable("biggerstacks.potsbox.label"),
+                   relX + labelStartX,
+                   centreOffset + relY + labelStartY + 30,
+                   0xffffff
         );
-        ENCH_BOOKS_BOX_LABEL.renderLeftAligned(pPoseStack,
-                                               relX + labelStartX,
-                                               centreOffset + relY + labelStartY + 60,
-                                               font.lineHeight,
-                                               0xffffff
+    
+        drawString(pPoseStack,
+                   font,
+                   Component.translatable("biggerstacks.enchbox.label"),
+                   relX + labelStartX,
+                   centreOffset + relY + labelStartY + 60,
+                   0xffffff
         );
-        
+    
         if (isAlreadyUsingCustomFile)
             OVERWRITE_WARNING_LABEL.renderCentered(pPoseStack, width / 2, relY + 125);
-        
+    
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
     }
     
