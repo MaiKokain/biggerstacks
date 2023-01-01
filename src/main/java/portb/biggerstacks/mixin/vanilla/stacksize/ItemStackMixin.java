@@ -1,6 +1,7 @@
 package portb.biggerstacks.mixin.vanilla.stacksize;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
@@ -70,27 +71,39 @@ public class ItemStackMixin
     
     /**
      * Saves the stack size as an int instead of a byte.
-     * This will cause the stack to be deleted if the world is loaded without this mod installed.
+     * Attempts to maintain some vanilla compatibility
      */
     @Redirect(method = "save",
               at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/CompoundTag;putByte(Ljava/lang/String;B)V"))
     private void saveBigStack(CompoundTag tag, String key, byte p_128346_)
     {
         int count = ((ItemStack) (Object) this).getCount();
-        tag.putInt(key, count);
+    
+        tag.putByte("Count", (byte) Math.min(count, Byte.MAX_VALUE));
+    
+        if (count > Byte.MAX_VALUE)
+            tag.putInt("BigCount", count);
     }
     
     /**
      * Reads the stack size as an int instead of a byte
-     * This will cause the stack to be deleted if the world is loaded without this mod installed.
+     * Attempts to maintain some vanilla compatibility
      */
+    @SuppressWarnings("DataFlowIssue")
     @Redirect(method = "<init>(Lnet/minecraft/nbt/CompoundTag;)V",
               at = @At(value = "FIELD",
                        target = "Lnet/minecraft/world/item/ItemStack;count:I",
                        opcode = Opcodes.PUTFIELD))
     private void readBigStack(ItemStack instance, int value, CompoundTag tag)
     {
-        ((ItemStackAccessor) (Object) instance).accessSetCount(tag.getInt("Count"));
+        ItemStackAccessor accessor = ((ItemStackAccessor) (Object) instance);
+        
+        if (tag.contains("BigCount"))
+            accessor.accessSetCount(tag.getInt("BigCount"));
+        else if (tag.getTagType("Count") == Tag.TAG_INT)
+            accessor.accessSetCount(tag.getInt("Count"));
+        else
+            accessor.accessSetCount(tag.getByte("Count"));
     }
     
 }
