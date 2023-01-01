@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.net;
 
 import net.minecraft.resources.ResourceLocation;
@@ -38,22 +45,22 @@ public class PacketHandler
                 .noResponse()
                 .consumer(PacketHandler::handleHandshake)
                 .add();
-    
+        
         INSTANCE.messageBuilder(ClientboundRulesUpdatePacket.class, index++, NetworkDirection.PLAY_TO_CLIENT)
                 .encoder(ClientboundRulesUpdatePacket::encode)
                 .decoder(ClientboundRulesUpdatePacket::new)
                 .noResponse()
                 .consumer(PacketHandler::handleUpdate)
                 .add();
-    
+        
         //these have to exist on the server or the mod will not be "compatible" with it according to forge
-    
+        
         INSTANCE.messageBuilder(ClientboundConfigureScreenOpenPacket.class, index++, NetworkDirection.PLAY_TO_CLIENT)
                 .encoder(ClientboundConfigureScreenOpenPacket::encode)
                 .decoder(ClientboundConfigureScreenOpenPacket::new)
                 .consumer(PacketHandler::handleOpenScreenPacket)
                 .add();
-    
+        
         INSTANCE.messageBuilder(ServerboundCreateConfigTemplatePacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
                 .encoder(ServerboundCreateConfigTemplatePacket::encode)
                 .decoder(ServerboundCreateConfigTemplatePacket::new)

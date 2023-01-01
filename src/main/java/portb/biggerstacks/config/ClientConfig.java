@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -17,13 +24,13 @@ public class ClientConfig
         builder.comment("Client configs");
         enableNumberShortening = builder.comment("Enable number shortening. E.g. 1000000 becomes 1M.")
                                         .define("Enable number shortening", true);
-    
+        
         stfuWarning = builder.comment(
                 "Disables warning for stack size that is potentially wrong due to behaviour changes.").define(
                 "STFU Warning",
                 false
         );
-    
+        
         SPEC = builder.build();
     }
 }

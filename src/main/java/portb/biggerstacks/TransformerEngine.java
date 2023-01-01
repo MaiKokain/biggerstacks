@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks;
 
 import cpw.mods.modlauncher.LaunchPluginHandler;
@@ -108,17 +115,17 @@ public class TransformerEngine implements IMixinConfigPlugin
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName)
     {
         Matcher matcher = MOD_ID_PACKAGE_TARGET_PATTERN.matcher(mixinClassName);
-    
+        
         if (matcher.find())
         {
             String  modId       = matcher.group(1);
             boolean isModLoaded = FMLLoader.getLoadingModList().getModFileById(modId) != null;
-    
+            
             if (isModLoaded)
                 LOGGER.info(modId + " is installed, applying patches");
             else
                 LOGGER.debug(modId + " is NOT installed");
-    
+            
             return isModLoaded;
         }
         else

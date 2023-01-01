@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.event;
 
 import net.minecraftforge.event.server.ServerStoppingEvent;
@@ -26,7 +33,7 @@ public class ServerLifecycleHandler
     {
         //read the ruleset file
         StackSizeRules.setRuleSet(ConfigLib.readRuleset(RULESET_FILE));
-    
+        
         //configure and start the watcher
         watcher.setOnUpdateAction(this::notifyClientsOfConfigChange);
         watcher.start();
@@ -36,7 +43,7 @@ public class ServerLifecycleHandler
     {
         //update our ruleset
         StackSizeRules.setRuleSet(ruleSet);
-    
+        
         //send new ruleset to clients
         PacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new ClientboundRulesUpdatePacket(ruleSet));
     }

@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.gui;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -137,7 +144,7 @@ public class ConfigureScreen extends Screen
         renderBackground(pPoseStack, 0);
         
         int relX = (this.width - WIDTH) / 2, relY = (this.height - HEIGHT) / 2;
-    
+        
         drawCenteredString(pPoseStack,
                            font,
                            new TranslatableComponent("biggerstacks.config.title"),
@@ -145,10 +152,10 @@ public class ConfigureScreen extends Screen
                            relY + 10,
                            0xffffff
         );
-    
+        
         int centreOffset = (20 - font.lineHeight) / 2;
         int labelStartX  = 20, labelStartY = 30;
-    
+        
         drawString(pPoseStack,
                    font,
                    new TranslatableComponent("biggerstacks.normalbox.label"),
@@ -156,7 +163,7 @@ public class ConfigureScreen extends Screen
                    centreOffset + relY + labelStartY,
                    0xffffff
         );
-    
+        
         drawString(pPoseStack,
                    font,
                    new TranslatableComponent("biggerstacks.potsbox.label"),
@@ -164,7 +171,7 @@ public class ConfigureScreen extends Screen
                    centreOffset + relY + labelStartY + 30,
                    0xffffff
         );
-    
+        
         drawString(pPoseStack,
                    font,
                    new TranslatableComponent("biggerstacks.enchbox.label"),
@@ -172,10 +179,10 @@ public class ConfigureScreen extends Screen
                    centreOffset + relY + labelStartY + 60,
                    0xffffff
         );
-    
+        
         if (isAlreadyUsingCustomFile)
             OVERWRITE_WARNING_LABEL.renderCentered(pPoseStack, width / 2, relY + 125);
-    
+        
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
     }
     
@@ -184,7 +191,7 @@ public class ConfigureScreen extends Screen
     {
         int relX = (this.width - WIDTH) / 2;
         int relY = (this.height - HEIGHT) / 2;
-    
+        
         GuiUtils.drawContinuousTexturedBox(pPoseStack,
                                            Constants.CONFIG_GUI_BG,
                                            relX,

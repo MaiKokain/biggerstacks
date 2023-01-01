@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.mixin.vanilla.stacksize;
 
 import net.minecraft.nbt.CompoundTag;
@@ -77,9 +84,9 @@ public class ItemStackMixin
     private void saveBigStack(CompoundTag tag, String key, byte p_128346_)
     {
         int count = ((ItemStack) (Object) this).getCount();
-    
+        
         tag.putByte("Count", (byte) Math.min(count, Byte.MAX_VALUE));
-    
+        
         if (count > Byte.MAX_VALUE)
             tag.putInt("BigCount", count);
     }

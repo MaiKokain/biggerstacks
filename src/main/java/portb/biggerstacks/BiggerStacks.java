@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks;
 
 import com.mojang.logging.LogUtils;
@@ -31,11 +38,11 @@ public class BiggerStacks
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
         MinecraftForge.EVENT_BUS.register(CommonEvents.class);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-    
+        
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MinecraftForge.EVENT_BUS.register(ClientEvents.class));
-    
+        
         ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(ConfigLib.class));
-    
+        
         registerConfigs();
     }
     

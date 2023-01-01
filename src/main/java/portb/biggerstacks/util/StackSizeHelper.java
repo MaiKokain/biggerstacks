@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.util;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -23,13 +30,13 @@ public class StackSizeHelper
     public static int scaleSlotLimit(int original)
     {
         int newStackSize = StackSizeRules.getMaxStackSize();
-    
+        
         //don't scale slots that are only meant to hold a single item
         if (original == 1)
             return 1;
         else if (newStackSize < 64) //can't trust original to be the actual original value
             return 64;
-    
+        
         return Math.max(original, original * newStackSize / 64);
     }
     
@@ -55,7 +62,7 @@ public class StackSizeHelper
     {
         if (originalRate == 1 && respectSingle)
             return 1;
-    
+        
         return Math.max(1, originalRate * StackSizeRules.getMaxStackSize() / 64);
     }
     
@@ -63,7 +70,7 @@ public class StackSizeHelper
     {
         if (originalRate == 1)
             return 1;
-    
+        
         return Math.max(1, StackSizeRules.getMaxStackSize());
     }
 }

@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.mixin.client;
 
 import net.minecraft.client.gui.components.Button;
@@ -53,11 +60,11 @@ public class CreateWorldScreenMixin
                 HighStackSizeWarning.createWarningScreen(max, () -> {
                     ((CreateWorldScreenInvoker) this).invokeOnCreate();
                 });
-    
+                
                 return;
             }
         }
-    
+        
         ((CreateWorldScreenInvoker) this).invokeOnCreate();
     }
 }
