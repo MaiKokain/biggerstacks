@@ -26,7 +26,7 @@ public class CreateWorldScreenMixin
      * @author PORTB
      * @reason Shows warning for users who may have been relying on stack size cap before update. The method is only 1 function call and injecting and cancelling or redirecting is basically the same as overwriting at that point
      */
-    @Overwrite(remap = false)
+    @Overwrite
     void lambda$init$13(Button b)
     {
         wrapOnCreate();
