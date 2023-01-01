@@ -191,15 +191,12 @@ public class ConfigureScreen extends Screen
     
     public void renderCentered(MatrixStack matrixStack, FontRenderer pFont, IFormattableTextComponent pFormattedText, int maxWidth, int pWidth, int pY)
     {
-        
-        List<TextWithWidth> widthList = pFont.split(pFormattedText,
-                                                    maxWidth
-        ).stream().map((text) -> new TextWithWidth(
+    
+        List<TextWithWidth> widthList = pFont.split(pFormattedText, maxWidth).stream().map((text) -> new TextWithWidth(
                 text,
                 pFont.width(text)
-        )).collect(
-                Collectors.toList());
-        
+        )).collect(Collectors.toList());
+    
         for (TextWithWidth textWithWidth : widthList)
         {
             pFont.drawShadow(matrixStack,
