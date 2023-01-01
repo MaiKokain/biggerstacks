@@ -23,5 +23,33 @@
     <class path="mekanism.api.inventory.IInventorySlot" transformChildren="true">
         <method name="getLimit" transformer="slotLimit"/>
     </class>
+
+    <class path="mekanism.common.content.qio.QIOCraftingWindow" transformChildren="false">
+        <method name="calculateMaxCraftAmount" transformer="replace64"/>
+    </class>
     <!--    endregion-->
+
+    <!--    Fix the amount that is extracted from the terminal -->
+    <class path="com.refinedmods.refinedstorage.apiimpl.network.grid.handler.ItemGridHandler" transformChildren="false">
+        <method name="onExtract" transformer="replace64"
+                desc="(Lnet/minecraft/server/level/ServerPlayer;Ljava/util/UUID;II)V"/>
+    </class>
+
+    <!--    Fix the max item count for computercraft -->
+    <class path="dan200.computercraft.shared.turtle.apis.TurtleAPI" transformChildren="false">
+        <method name="checkCount" transformer="replace64"/>
+        <method name="getItemSpace" transformer="replace64"/>
+    </class>
+
+    <!--    <class path="appeng.tile.inventory.AppEngInternalInventory" transformChildren="true">-->
+    <!--        <method name="getSlotLimit" transformer="slotLimit"/>-->
+    <!--    </class>-->
+
+    <class path="appeng.tile.inventory.AppEngInternalAEInventory" transformChildren="true">
+        <method name="getSlotLimit" transformer="slotLimit" desc="(I)I"/>
+    </class>
+
+    <class path="slimeknights.tconstruct.gadgets.Exploder" transformChildren="false">
+        <method name="finish" transformer="replace64"/>
+    </class>
 </transformers>
