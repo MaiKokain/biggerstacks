@@ -200,15 +200,15 @@ public class ConfigureScreen extends Screen
         )).collect(
                 Collectors.toList());
         
-        for (TextWithWidth multilinelabel$textwithwidth : widthList)
+        for (TextWithWidth textWithWidth : widthList)
         {
             pFont.drawShadow(matrixStack,
-                             multilinelabel$textwithwidth.text,
-                             (float) (pWidth - multilinelabel$textwithwidth.width / 2),
+                             textWithWidth.text,
+                             (float) (pWidth - textWithWidth.width / 2),
                              (float) pY,
                              0xffffff
             );
-            
+    
             pY += 9;
         }
     }
