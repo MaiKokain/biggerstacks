@@ -11,6 +11,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.GuiUtils;
+import org.lwjgl.glfw.GLFW;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.net.ClientboundConfigureScreenOpenPacket;
 import portb.biggerstacks.net.PacketHandler;
@@ -199,24 +200,43 @@ public class ConfigureScreen extends Screen
         );
     }
     
-    void onConfirmButtonClicked(Button button)
+    private void onConfirmButtonClicked(Button button)
     {
-        if (
-                isEditBoxInputValid(normalItemsBox.getValue())
-                        && isEditBoxInputValid(enchBooksBox.getValue())
-                        && isEditBoxInputValid(potionsBox.getValue())
-        )
+        if (isStateValid())
+            submit();
+    }
+    
+    @Override
+    public boolean keyPressed(int pKeyCode, int pScanCode, int pModifiers)
+    {
+        if (pKeyCode == GLFW.GLFW_KEY_ENTER && isStateValid())
         {
-            //send packet to server
-            PacketHandler.INSTANCE.sendToServer(new ServerboundCreateConfigTemplatePacket(
-                    Integer.parseInt(normalItemsBox.getValue()),
-                    Integer.parseInt(potionsBox.getValue()),
-                    Integer.parseInt(enchBooksBox.getValue())
-            ));
+            submit();
             
-            //close screen
-            Minecraft.getInstance().setScreen(null);
+            return true;
         }
+        
+        return super.keyPressed(pKeyCode, pScanCode, pModifiers);
+    }
+    
+    private boolean isStateValid()
+    {
+        return isEditBoxInputValid(normalItemsBox.getValue())
+                       && isEditBoxInputValid(enchBooksBox.getValue())
+                       && isEditBoxInputValid(potionsBox.getValue());
+    }
+    
+    private void submit()
+    {
+        //send packet to server
+        PacketHandler.INSTANCE.sendToServer(new ServerboundCreateConfigTemplatePacket(
+                Integer.parseInt(normalItemsBox.getValue()),
+                Integer.parseInt(potionsBox.getValue()),
+                Integer.parseInt(enchBooksBox.getValue())
+        ));
+        
+        //close screen
+        Minecraft.getInstance().setScreen(null);
     }
     
     @Override
