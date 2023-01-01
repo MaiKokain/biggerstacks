@@ -43,8 +43,7 @@ publishing {
    with: `apply from: "${System.getProperty("user.home")}/documents/publish.gradle"`
 4. If it doesn't have a publishing block, just put that snippet at the end of the build.gradle
 5. Make sure that the `maven-publish` plugin is applied (any repo with a publishing block will have it applied already)
-6. Run `cmd /c "gradlew publishToMavenLocal"`, or if you need **Java 8**, run cmd
-   /c `gradlew -Dorg.gradle.java.home=C:\PROGRA~1\ECLIPS~1\jdk-8.0.322.6-hotspot publishToMavenLocal"`
+6. Run `cmd /c "gradlew publishToMavenLocal"`, or if you need **Java 8**, run `cmd /c "gradlew -Dorg.gradle.java.home=C:\PROGRA~1\ECLIPS~1\jdk-8.0.322.6-hotspot publishToMavenLocal"`
 7. If you need the path to your java directory, use `DIR /X` to get the directory without spaces (it will have a `~` in
    it)
 
