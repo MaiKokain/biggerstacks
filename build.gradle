@@ -115,6 +115,7 @@ submodules {
     }
 
     repos {
+        //these mods use snapshot mapping (incompatible) and must be compiled with reobf enabled
         "Applied-Energistics-2" {
             gradleArgs = use_java_8
 
