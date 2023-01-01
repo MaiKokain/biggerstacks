@@ -18,7 +18,7 @@ public class PacketHandler
 {
     public final static  ResourceLocation CHANNEL_NAME     = new ResourceLocation(Constants.MOD_ID, "rules");
     private static final String           PROTOCOL_VERSION = "1";
-    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
+    public static final  SimpleChannel    INSTANCE         = NetworkRegistry.newSimpleChannel(
             CHANNEL_NAME,
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,

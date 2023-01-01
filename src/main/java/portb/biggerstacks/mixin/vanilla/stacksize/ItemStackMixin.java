@@ -78,9 +78,9 @@ public class ItemStackMixin
     private void saveBigStack(CompoundTag tag, String key, byte p_128346_)
     {
         int count = ((ItemStack) (Object) this).getCount();
-    
+        
         tag.putByte("Count", (byte) Math.min(count, Byte.MAX_VALUE));
-    
+        
         if (count > Byte.MAX_VALUE)
             tag.putInt("BigCount", count);
     }

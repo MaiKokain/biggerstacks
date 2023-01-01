@@ -137,7 +137,7 @@ public class ConfigureScreen extends Screen
         renderBackground(pPoseStack, 0);
         
         int relX = (this.width - WIDTH) / 2, relY = (this.height - HEIGHT) / 2;
-    
+        
         drawCenteredString(pPoseStack,
                            font,
                            Component.translatable("biggerstacks.config.title"),
@@ -145,10 +145,10 @@ public class ConfigureScreen extends Screen
                            relY + 10,
                            0xffffff
         );
-    
+        
         int centreOffset = (20 - font.lineHeight) / 2;
         int labelStartX  = 20, labelStartY = 30;
-    
+        
         drawString(pPoseStack,
                    font,
                    Component.translatable("biggerstacks.normalbox.label"),
@@ -156,7 +156,7 @@ public class ConfigureScreen extends Screen
                    centreOffset + relY + labelStartY,
                    0xffffff
         );
-    
+        
         drawString(pPoseStack,
                    font,
                    Component.translatable("biggerstacks.potsbox.label"),
@@ -164,7 +164,7 @@ public class ConfigureScreen extends Screen
                    centreOffset + relY + labelStartY + 30,
                    0xffffff
         );
-    
+        
         drawString(pPoseStack,
                    font,
                    Component.translatable("biggerstacks.enchbox.label"),
@@ -172,10 +172,10 @@ public class ConfigureScreen extends Screen
                    centreOffset + relY + labelStartY + 60,
                    0xffffff
         );
-    
+        
         if (isAlreadyUsingCustomFile)
             OVERWRITE_WARNING_LABEL.renderCentered(pPoseStack, width / 2, relY + 125);
-    
+        
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
     }
     
