@@ -45,8 +45,6 @@
     <!--    Fix the amount that is extracted from the terminal -->
     <class path="com.refinedmods.refinedstorage.apiimpl.network.grid.handler.ItemGridHandler" transformChildren="false">
         <method name="onExtract" transformer="replace64"
-                desc="(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item;II)V"/>
-        <method name="onExtract" transformer="replace64"
                 desc="(Lnet/minecraft/server/level/ServerPlayer;Ljava/util/UUID;II)V"/>
     </class>
 
@@ -58,6 +56,7 @@
     <class path="slimeknights.tconstruct.library.recipe.ModifierRemovalRecipe" transformChildren="false">
         <method name="shrinkToolSlotBy" transformer="replace64"/>
     </class>
+
     <class path="slimeknights.tconstruct.library.recipe.CreativeSlotRecipe" transformChildren="false">
         <method name="shrinkToolSlotBy" transformer="replace64"/>
     </class>
