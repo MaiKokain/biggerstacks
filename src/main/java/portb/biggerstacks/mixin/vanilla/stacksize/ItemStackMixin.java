@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.Constants;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -75,20 +76,32 @@ public class ItemStackMixin
     private void saveBigStack(CompoundNBT tag, String key, byte p_128346_)
     {
         int count = ((ItemStack) (Object) this).getCount();
-        tag.putInt(key, count);
+    
+        tag.putByte("Count", (byte) Math.min(count, Byte.MAX_VALUE));
+    
+        if (count > Byte.MAX_VALUE)
+            tag.putInt("BigCount", count);
     }
     
     /**
      * Reads the stack size as an int instead of a byte
-     * This will cause the stack to be deleted if the world is loaded without this mod installed.
+     * Attempts to maintain some vanilla compatibility
      */
+    @SuppressWarnings("DataFlowIssue")
     @Redirect(method = "<init>(Lnet/minecraft/nbt/CompoundNBT;)V",
               at = @At(value = "FIELD",
                        target = "Lnet/minecraft/item/ItemStack;count:I",
                        opcode = Opcodes.PUTFIELD))
     private void readBigStack(ItemStack instance, int value, CompoundNBT tag)
     {
-        ((ItemStackAccessor) (Object) instance).accessSetCount(tag.getInt("Count"));
+        ItemStackAccessor accessor = ((ItemStackAccessor) (Object) instance);
+        
+        if (tag.contains("BigCount"))
+            accessor.accessSetCount(tag.getInt("BigCount"));
+        else if (tag.getTagType("Count") == Constants.NBT.TAG_INT)
+            accessor.accessSetCount(tag.getInt("Count"));
+        else
+            accessor.accessSetCount(tag.getByte("Count"));
     }
     
 }
