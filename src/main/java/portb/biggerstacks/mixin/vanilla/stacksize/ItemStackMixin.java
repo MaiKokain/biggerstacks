@@ -41,7 +41,7 @@ public class ItemStackMixin
                                   new ItemProperties(
                                           itemKey.getNamespace(),
                                           itemKey.toString(),
-                                          item.getItemCategory() != null ? item.getItemCategory().toString() : null,
+                                          "idk lol",//item.cate() != null ? item.getItemCategory().toString() : null,
                                           returnInfo.getReturnValue(),
                                           item.isEdible(),
                                           (item instanceof BlockItem),

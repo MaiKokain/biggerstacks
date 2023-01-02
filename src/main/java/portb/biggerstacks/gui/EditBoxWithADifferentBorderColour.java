@@ -32,8 +32,8 @@ public class EditBoxWithADifferentBorderColour extends EditBox
             if (this.isBordered())
             {
                 int i = this.isFocused() ? -1 : BORDER_COLOUR;
-                fill(pPoseStack, this.x - 1, this.y - 1, this.x + this.width + 1, this.y + this.height + 1, i);
-                fill(pPoseStack, this.x, this.y, this.x + this.width, this.y + this.height, -16777216);
+                fill(pPoseStack, this.getX() - 1, this.getY() - 1, this.getX() + this.width + 1, this.getY() + this.height + 1, i);
+                fill(pPoseStack, this.getX(), this.getY(), this.getX() + this.width, this.getY() + this.height, -16777216);
             }
             
             int     i2    = this.isEditable ? this.textColor : this.textColorUneditable;
@@ -42,8 +42,8 @@ public class EditBoxWithADifferentBorderColour extends EditBox
             String  s     = this.font.plainSubstrByWidth(this.value.substring(this.displayPos), this.getInnerWidth());
             boolean flag  = j >= 0 && j <= s.length();
             boolean flag1 = this.isFocused() && this.frame / 6 % 2 == 0 && flag;
-            int     l     = this.bordered ? this.x + 4 : this.x;
-            int     i1    = this.bordered ? this.y + (this.height - 8) / 2 : this.y;
+            int     l     = this.bordered ? this.getX() + 4 : this.getX();
+            int     i1    = this.bordered ? this.getY() + (this.height - 8) / 2 : this.getY();
             int     j1    = l;
             if (k > s.length())
             {

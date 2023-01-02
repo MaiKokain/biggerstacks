@@ -179,7 +179,7 @@ dependencies {
             "portb:BiggerStacksTransformerLib:$transformerLibVersion",
             "portb:SimpleLoggerWrapper:$simpleLoggerWrapperVersion"
 
-    library("com.thoughtworks.xstream:xstream:1.4.19") {
+    library("com.thoughtworks.xstream:xstream:1.4.20") {
         //we do not want xstream's built in parser. We will use stax.
         exclude group: 'io.github.x-stream', module: 'mxparser'
     }
@@ -189,7 +189,7 @@ dependencies {
     //
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    runtimeOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.5.0.297")
+    //runtimeOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.5.0.297")
 }
 
 jar {

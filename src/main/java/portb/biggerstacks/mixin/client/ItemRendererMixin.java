@@ -52,7 +52,7 @@ public class ItemRendererMixin
     @Surrogate
     @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
             at = @At(value = "INVOKE",
-                     target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(DDD)V",
+                     target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(FFF)V",
                      shift = At.Shift.BEFORE),
             locals = LocalCapture.CAPTURE_FAILHARD)
     private void pushStack(Font font, ItemStack tesselator, int x, int y, String j, CallbackInfo ci, PoseStack posestack, String countString)
@@ -67,7 +67,7 @@ public class ItemRendererMixin
     @Surrogate
     @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
             at = @At(value = "INVOKE",
-                     target = "Lnet/minecraft/client/gui/Font;drawInBatch(Ljava/lang/String;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I"),
+                     target = "Lnet/minecraft/client/gui/Font;drawInBatch(Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I"),
             locals = LocalCapture.CAPTURE_FAILHARD)
     private void translateStackBack(Font font, ItemStack itemStack, int x, int y, String _a, CallbackInfo ci, PoseStack posestack, String countString, MultiBufferSource.BufferSource multibuffersource$buffersource)
     {
@@ -103,7 +103,7 @@ public class ItemRendererMixin
     @Surrogate
     @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
             at = @At(value = "INVOKE",
-                     target = "Lnet/minecraft/client/gui/Font;drawInBatch(Ljava/lang/String;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I",
+                     target = "Lnet/minecraft/client/gui/Font;drawInBatch(Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I",
                      shift = At.Shift.AFTER),
             locals = LocalCapture.CAPTURE_FAILHARD)
     private void popStack(Font font, ItemStack itemStack, int _a, int _b, String _c, CallbackInfo callbackInfo, PoseStack posestack, String s, MultiBufferSource.BufferSource bufferSource)

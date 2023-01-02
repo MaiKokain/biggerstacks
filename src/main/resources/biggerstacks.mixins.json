@@ -6,19 +6,6 @@
     "plugin": "portb.biggerstacks.TransformerEngine",
     "refmap": "biggerstacks.refmap.json",
     "mixins": [
-        "compat.ae2.GenericStackInvMixin",
-        "compat.ae2.InternalInventoryMixin",
-        "compat.ae2.IOBusPartMixin",
-        "compat.backpacked.MessageUpdateBackpackMixin",
-        "compat.modularrouters.CompiledModuleMixin",
-        "compat.modularrouters.ModularRouterBlockEntityMixin",
-        "compat.modularrouters.ModularRoutersStackUpgradeMixin",
-        "compat.prettypipes.ExtractionModuleItemAccessor",
-        "compat.prettypipes.ExtractionModuleItemMixin",
-        "compat.prettypipes.RetrievalModuleItemAccessor",
-        "compat.prettypipes.RetrievalModuleItemMixin",
-        "compat.sophisticatedcore.BackpackContainerMixin",
-        "compat.sophisticatedcore.InventoryHandlerMixin",
         "vanilla.ContainersMixin",
         "vanilla.FriendlyByteBufMixin",
         "vanilla.ItemPropertiesMixin",
@@ -32,8 +19,6 @@
         "client.CreateWorldScreenInvoker",
         "client.CreateWorldScreenMixin",
         "client.ItemRendererMixin",
-        "client.WorldFlowInvoker",
-        "client.WorldSelectionList$WorldListEntryInvoker",
         "client.WorldSelectionListMixin"
     ],
     "injectors": {

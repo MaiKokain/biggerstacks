@@ -19,6 +19,7 @@ import portb.biggerstacks.net.ServerboundCreateConfigTemplatePacket;
 import portb.configlib.template.TemplateOptions;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @OnlyIn(Dist.CLIENT)
 public class ConfigureScreen extends Screen
@@ -115,13 +116,17 @@ public class ConfigureScreen extends Screen
         potionsBox.setResponder(verifyInputBoxNumber(potionsBox));
         normalItemsBox.setResponder(verifyInputBoxNumber(normalItemsBox));
         
-        confirmButton = new Button(relX + (WIDTH - 80) / 2,
-                                   relY + HEIGHT - 30,
+        /*
+        * ,
+                                   ,
                                    80,
                                    20,
-                                   Component.translatable("biggerstacks.save"),
-                                   this::onConfirmButtonClicked
-        );
+                                   ,
+                                   ,
+                                   Supplier::get
+        * */
+        confirmButton = new Button.Builder(Component.translatable("biggerstacks.save"), this::onConfirmButtonClicked)
+                        .bounds(relX + (WIDTH - 80) / 2, relY + HEIGHT - 30, 80, 20).build();
         
         addRenderableWidget(normalItemsBox);
         addRenderableWidget(potionsBox);
