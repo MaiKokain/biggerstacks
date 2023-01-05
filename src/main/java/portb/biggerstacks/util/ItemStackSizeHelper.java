@@ -52,7 +52,7 @@ public class ItemStackSizeHelper
             if (returnInfo.getReturnValue() > 1)
             {
                 returnInfo.cancel();
-                returnInfo.setReturnValue(StackSizeHelper.getNewStackSize());
+                returnInfo.setReturnValue(SlotLimitHelper.getNewStackSize());
             }
         }
     }

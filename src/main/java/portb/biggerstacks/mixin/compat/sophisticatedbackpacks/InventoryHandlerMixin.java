@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import portb.biggerstacks.util.StackSizeHelper;
+import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(BackpackInventoryHandler.class)
 public class InventoryHandlerMixin
@@ -21,12 +21,12 @@ public class InventoryHandlerMixin
     @ModifyVariable(method = "setSlotLimit", at = @At("HEAD"), ordinal = 0, remap = false, argsOnly = true)
     private int scaleSlotLimit(int slotLimit)
     {
-        return StackSizeHelper.scaleSlotLimit(slotLimit);
+        return SlotLimitHelper.scaleSlotLimit(slotLimit);
     }
     
     @ModifyConstant(method = "setSlotLimit", constant = @Constant(intValue = 64), remap = false)
     private int increaseStackLimit(int val)
     {
-        return StackSizeHelper.getNewStackSize();
+        return SlotLimitHelper.getNewStackSize();
     }
 }
