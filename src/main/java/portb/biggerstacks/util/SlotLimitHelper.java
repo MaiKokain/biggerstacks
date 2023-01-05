@@ -1,9 +1,16 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.util;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.StackSizeRules;
 
-public class StackSizeHelper
+public class SlotLimitHelper
 {
     /**
      * Scales the slot limit based on the original value

@@ -1,8 +1,15 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.mixin.compat.ae2;
 
 import appeng.api.inventories.InternalInventory;
 import org.spongepowered.asm.mixin.Mixin;
-import portb.biggerstacks.util.StackSizeHelper;
+import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(InternalInventory.class)
 public interface InternalInventoryMixin extends InternalInventory
@@ -13,6 +20,6 @@ public interface InternalInventoryMixin extends InternalInventory
     @Override
     default int getSlotLimit(int slot)
     {
-        return StackSizeHelper.getNewStackSize();
+        return SlotLimitHelper.getNewStackSize();
     }
 }

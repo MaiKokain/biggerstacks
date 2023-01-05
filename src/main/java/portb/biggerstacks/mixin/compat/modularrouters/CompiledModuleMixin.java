@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.mixin.compat.modularrouters;
 
 import me.desht.modularrouters.logic.compiled.CompiledModule;
@@ -5,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import portb.biggerstacks.config.AutoSidedConfig;
-import portb.biggerstacks.util.StackSizeHelper;
+import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(CompiledModule.class)
 public class CompiledModuleMixin
@@ -14,7 +21,7 @@ public class CompiledModuleMixin
     private int increaseTransferRate(int value)
     {
         if (AutoSidedConfig.increaseTransferRate())
-            return StackSizeHelper.increaseTransferRate(value);
+            return SlotLimitHelper.increaseTransferRate(value);
         else
             return value;
     }

@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.mixin.compat.prettypipes;
 
 import de.ellpeck.prettypipes.pipe.modules.extraction.ExtractionModuleItem;
@@ -6,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import portb.biggerstacks.config.AutoSidedConfig;
-import portb.biggerstacks.util.StackSizeHelper;
+import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(ExtractionModuleItem.class)
 public class ExtractionModuleItemMixin
@@ -22,7 +29,7 @@ public class ExtractionModuleItemMixin
         int rate = ((ExtractionModuleItemAccessor) instance).getMaxExtractionRate();
         
         if (AutoSidedConfig.increaseTransferRate())
-            return StackSizeHelper.scaleTransferRate(rate, false);
+            return SlotLimitHelper.scaleTransferRate(rate, false);
         else
             return rate;
     }

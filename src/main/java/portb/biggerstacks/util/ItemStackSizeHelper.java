@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.util;
 
 import net.minecraft.world.item.BlockItem;
@@ -46,7 +53,7 @@ public class ItemStackSizeHelper
             if (returnInfo.getReturnValue() > 1)
             {
                 returnInfo.cancel();
-                returnInfo.setReturnValue(StackSizeHelper.getNewStackSize());
+                returnInfo.setReturnValue(SlotLimitHelper.getNewStackSize());
             }
         }
     }

@@ -1,10 +1,17 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.mixin.vanilla.stacksize;
 
 import net.minecraft.world.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import portb.biggerstacks.util.StackSizeHelper;
+import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(ItemEntity.class)
 public class ItemEntityMixin
@@ -16,6 +23,6 @@ public class ItemEntityMixin
                     constant = @Constant(intValue = 64))
     private static int increaseStackLimit(int val)
     {
-        return StackSizeHelper.getNewStackSize();
+        return SlotLimitHelper.getNewStackSize();
     }
 }
