@@ -31,3 +31,7 @@
 	url = https://github.com/P3pp3rF1y/SophisticatedCore.git
 	branch = 1.19.x
 	ignore = all
+[submodule "submodules/StorageDrawers"]
+	path = submodules/StorageDrawers
+	url = https://github.com/jaquadro/StorageDrawers.git
+	branch = 1.19

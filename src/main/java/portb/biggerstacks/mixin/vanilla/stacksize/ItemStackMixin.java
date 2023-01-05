@@ -2,25 +2,17 @@ package portb.biggerstacks.mixin.vanilla.stacksize;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import portb.biggerstacks.config.StackSizeRules;
-import portb.biggerstacks.util.CallingClassUtil;
-import portb.biggerstacks.util.StackSizeHelper;
-import portb.configlib.ItemProperties;
-
-import static portb.biggerstacks.BiggerStacks.LOGGER;
+import portb.biggerstacks.util.ItemStackSizeHelper;
 
 @Mixin(ItemStack.class)
-public class ItemStackMixin
+public abstract class ItemStackMixin
 {
     /**
      * Increases the maximum stack size
@@ -33,40 +25,7 @@ public class ItemStackMixin
         @SuppressWarnings("ConstantConditions") var itemstack = ((ItemStack) (Object) this);
         var                                         item      = itemstack.getItem();
         
-        if (StackSizeRules.getRuleSet() != null)
-        {
-            var itemKey = ForgeRegistries.ITEMS.getKey(item);
-            
-            StackSizeRules.getRuleSet().determineStackSizeForItem(
-                                  new ItemProperties(
-                                          itemKey.getNamespace(),
-                                          itemKey.toString(),
-                                          item.getItemCategory() != null ? item.getItemCategory().toString() : null,
-                                          returnInfo.getReturnValue(),
-                                          item.isEdible(),
-                                          (item instanceof BlockItem),
-                                          item.canBeDepleted(),
-                                          item instanceof BucketItem,
-                                          itemstack.getTags().map((tag) -> tag.location().toString()).toList(),
-                                          item.getClass()
-                                  )
-                          )
-                          .ifPresent((stackSize) -> {
-                              returnInfo.cancel();
-                              returnInfo.setReturnValue(stackSize);
-                          });
-        }
-        else
-        {
-            LOGGER.warn("Stack size ruleset is somehow null, using fallback logic. Called from " +
-                                CallingClassUtil.getCallerClassName());
-            
-            if (returnInfo.getReturnValue() > 1)
-            {
-                returnInfo.cancel();
-                returnInfo.setReturnValue(StackSizeHelper.getNewStackSize());
-            }
-        }
+        ItemStackSizeHelper.applyStackSizeToItem(itemstack, item, returnInfo);
     }
     
     /**
