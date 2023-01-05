@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import portb.biggerstacks.config.AutoSidedConfig;
-import portb.biggerstacks.util.StackSizeHelper;
+import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin({
         ItemConnectorSettings.class,
@@ -28,7 +28,7 @@ public class XNetCompat
     private int increaseMaxExtractAmount(int value)
     {
         if (AutoSidedConfig.increaseTransferRate())
-            return StackSizeHelper.increaseTransferRate(value);
+            return SlotLimitHelper.increaseTransferRate(value);
         else
             return value;
     }

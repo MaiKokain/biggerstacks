@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import portb.biggerstacks.config.AutoSidedConfig;
-import portb.biggerstacks.util.StackSizeHelper;
+import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(TileEntityLogisticalSorter.class)
 public class TileEntityLogisticalSorterMixin
@@ -21,7 +21,7 @@ public class TileEntityLogisticalSorterMixin
     private int increaseTransferRate(int val)
     {
         if (AutoSidedConfig.increaseTransferRate())
-            return StackSizeHelper.increaseTransferRate(val);
+            return SlotLimitHelper.increaseTransferRate(val);
         else
             return val;
     }

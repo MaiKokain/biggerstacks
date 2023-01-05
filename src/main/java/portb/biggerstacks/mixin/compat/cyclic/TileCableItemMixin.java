@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import portb.biggerstacks.config.AutoSidedConfig;
-import portb.biggerstacks.util.StackSizeHelper;
+import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(value = TileCableItem.class, remap = false)
 public class TileCableItemMixin
@@ -30,7 +30,7 @@ public class TileCableItemMixin
         //i think it's a legacy thing anyway, you used to be able to set the extract
         //rate in the gui, but that doesn't seem like an option anymore
         if (AutoSidedConfig.increaseTransferRate())
-            ((TileCableItemAccessor) this).setExtractQty(StackSizeHelper.increaseTransferRate(64));
+            ((TileCableItemAccessor) this).setExtractQty(SlotLimitHelper.increaseTransferRate(64));
     }
     
     @ModifyConstant(method = "normalFlow",
@@ -39,7 +39,7 @@ public class TileCableItemMixin
     private int increaseTransferRate(int value)
     {
         if (AutoSidedConfig.increaseTransferRate())
-            return StackSizeHelper.increaseTransferRate(value);
+            return SlotLimitHelper.increaseTransferRate(value);
         else
             return value;
     }

@@ -13,7 +13,7 @@ import net.p3pp3rf1y.sophisticatedcore.common.gui.StorageContainerMenuBase;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import portb.biggerstacks.util.StackSizeHelper;
+import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(StorageContainerMenuBase.class)
 public abstract class BackpackContainerMixin
@@ -25,7 +25,7 @@ public abstract class BackpackContainerMixin
         if (slot.container.getClass() == Inventory.class)
             //If the slot is an inventory slot, calling slot.getMaxStackSize() will end up increasing the stack size twice from 2 different mixins.
             //to avoid this, just call StackSizeHelper directly. Yes it's hacky but this whole stupid mod is just a massive crappy hack
-            return StackSizeHelper.getNewStackSize();
+            return SlotLimitHelper.getNewStackSize();
         else
             return slot.getMaxStackSize();
     }

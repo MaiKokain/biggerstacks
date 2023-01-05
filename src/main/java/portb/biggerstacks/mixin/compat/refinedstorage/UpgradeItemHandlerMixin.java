@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.AutoSidedConfig;
-import portb.biggerstacks.util.StackSizeHelper;
+import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(UpgradeItemHandler.class)
 public class UpgradeItemHandlerMixin
@@ -22,6 +22,6 @@ public class UpgradeItemHandlerMixin
     private void increaseTransferRate(CallbackInfoReturnable<Integer> returnInfo)
     {
         if (AutoSidedConfig.increaseTransferRate())
-            StackSizeHelper.scaleTransferRate(returnInfo, false);
+            SlotLimitHelper.scaleTransferRate(returnInfo, false);
     }
 }

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import portb.biggerstacks.util.StackSizeHelper;
+import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(GenericStackInv.class)
 public class GenericStackInvMixin
@@ -24,7 +24,7 @@ public class GenericStackInvMixin
         if (space == AEKeyType.items())
         {
             cir.cancel();
-            cir.setReturnValue((long) StackSizeHelper.getNewStackSize());
+            cir.setReturnValue((long) SlotLimitHelper.getNewStackSize());
         }
     }
 }
