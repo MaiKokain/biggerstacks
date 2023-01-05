@@ -28,6 +28,7 @@
         "vanilla.FriendlyByteBufMixin",
         "vanilla.ItemPropertiesMixin",
         "vanilla.stacksize.ItemEntityMixin",
+        "vanilla.stacksize.ItemMixin",
         "vanilla.stacksize.ItemStackAccessor",
         "vanilla.stacksize.ItemStackMixin",
         "vanilla.stacksize.ServerGamePacketListenerImplMixin"
