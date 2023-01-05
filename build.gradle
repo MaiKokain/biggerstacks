@@ -159,10 +159,6 @@ submodules {
 
             runtime = false
         }
-
-        "StorageDrawers" {
-            runtime = true
-        }
     }
 
     defaultOptions {
