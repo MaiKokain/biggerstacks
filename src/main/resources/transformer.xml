@@ -13,7 +13,7 @@
         <blacklist>net/p3pp3rf1y/sophisticatedcore/inventory/InventoryHandler</blacklist>
     </class>
 
-    <class path="net/minecraft/world/inventory/Slot" transformChildren="true">
+    <class path="net.minecraft.world.inventory.Slot" transformChildren="true">
         <method name="getMaxStackSize" transformer="slotLimit" desc="()I"/>
         <method name="m_6641_" transformer="slotLimit"/>
         <!--      I don't remember what this does exactly. I think it was to preserve the behaviour of sophisticated stuff's stack upgrade system  -->
