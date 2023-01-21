@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.util;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -5,6 +12,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.network.PacketDistributor;
 import org.slf4j.Logger;
 import portb.biggerstacks.Constants;
@@ -65,13 +73,16 @@ public class ConfigCommand
                     }
                     catch (CommandSyntaxException e)
                     {
-                        context.getSource().sendFailure(Component.translatable("biggerstacks.player.expected"));
+                        context.getSource().sendFailure(Component.literal("Command must be run by a player"));
                         return 0;
                     }
                     
                     return 1;
                 })
         );
+        
+        if (FMLEnvironment.dist.isDedicatedServer())
+            cmd.requires(commandSourceStack -> commandSourceStack.hasPermission(Constants.CHANGE_STACK_SIZE_COMMAND_PERMISSION_LEVEL));
         
         event.getDispatcher().register(cmd);
     }

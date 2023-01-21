@@ -1,6 +1,14 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.net;
 
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.network.NetworkEvent;
@@ -29,9 +37,13 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
     
     static void handleCreateConfigTemplate(ServerboundCreateConfigTemplatePacket serverboundCreateConfigTemplatePacket, Supplier<NetworkEvent.Context> contextSupplier)
     {
-        //ignore the packet if on dedicated server
         if (FMLEnvironment.dist.isDedicatedServer())
-            return;
+        {
+            ServerPlayer sender = contextSupplier.get().getSender();
+        
+            if (sender == null || !sender.hasPermissions(Constants.CHANGE_STACK_SIZE_COMMAND_PERMISSION_LEVEL))
+                return;
+        }
         
         ConfigTemplate template = ConfigTemplate.generateTemplate(serverboundCreateConfigTemplatePacket);
         
@@ -53,9 +65,10 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
         
         try
         {
-            //don't display warning anymore
-            ClientConfig.stfuWarning.set(true);
-            
+            if (!FMLEnvironment.dist.isDedicatedServer())
+                //don't display warning anymore
+                ClientConfig.stfuWarning.set(true);
+    
             Files.writeString(Constants.RULESET_FILE,
                               template.toXML(),
                               StandardOpenOption.CREATE,
@@ -64,6 +77,7 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
         }
         catch (IOException e)
         {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }

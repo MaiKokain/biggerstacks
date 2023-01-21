@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.event;
 
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -7,7 +14,7 @@ import portb.biggerstacks.Constants;
 import portb.biggerstacks.net.PacketHandler;
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class CommonEvents
+public class CommonModEvents
 {
     /**
      * Registers network packets
