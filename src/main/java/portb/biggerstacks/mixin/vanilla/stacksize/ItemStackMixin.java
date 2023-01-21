@@ -41,7 +41,7 @@ public class ItemStackMixin
                                   new ItemProperties(
                                           itemKey.getNamespace(),
                                           itemKey.toString(),
-                                          "idk lol",//item.cate() != null ? item.getItemCategory().toString() : null,
+                                          "", //fixme item categories work completely differently in 1.19.3. AFAIK the category property was not documented and it's pretty useless anyway.
                                           returnInfo.getReturnValue(),
                                           item.isEdible(),
                                           (item instanceof BlockItem),
