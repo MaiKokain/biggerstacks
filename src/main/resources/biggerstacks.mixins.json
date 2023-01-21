@@ -6,6 +6,7 @@
     "plugin": "portb.biggerstacks.TransformerEngine",
     "refmap": "biggerstacks.refmap.json",
     "mixins": [
+        "vanilla.AnvilMenuMixin",
         "vanilla.ContainersMixin",
         "vanilla.FriendlyByteBufMixin",
         "vanilla.ItemPropertiesMixin",
