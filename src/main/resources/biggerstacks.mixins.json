@@ -26,6 +26,7 @@
         "vanilla.ContainersMixin",
         "vanilla.FriendlyByteBufMixin",
         "vanilla.ItemPropertiesMixin",
+        "vanilla.RepairContainerMixin",
         "vanilla.stacksize.ItemEntityMixin",
         "vanilla.stacksize.ItemMixin",
         "vanilla.stacksize.ItemStackAccessor",
