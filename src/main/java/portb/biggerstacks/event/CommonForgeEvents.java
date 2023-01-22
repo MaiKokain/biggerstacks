@@ -50,6 +50,7 @@ public class CommonForgeEvents
     {
         if (!Files.exists(Constants.RULESET_FILE) && StackSizeRules.maxRegisteredItemStackSize == 64)
         {
+            //only show the message to players who can run the command
             if (FMLEnvironment.dist.isDedicatedServer() &&
                         !event.getEntity().hasPermissions(Constants.CHANGE_STACK_SIZE_COMMAND_PERMISSION_LEVEL))
                 return;
