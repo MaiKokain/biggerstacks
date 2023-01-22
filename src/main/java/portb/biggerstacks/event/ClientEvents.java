@@ -42,7 +42,7 @@ public class ClientEvents
         if (stack.getCount() > Constants.ONE_THOUSAND)
         {
             String                    countString    = TOOLTIP_NUMBER_FORMAT.format(stack.getCount());
-            IFormattableTextComponent countComponent = new StringTextComponent(countString).withStyle(TextFormatting.DARK_AQUA);
+            IFormattableTextComponent countComponent = new StringTextComponent(countString).withStyle(ClientConfig.getNumberColour());
             TextComponent tooltip = new TranslationTextComponent("biggerstacks.exact.count",
                                                                  countComponent
             );
