@@ -37,6 +37,7 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
     
     static void handleCreateConfigTemplate(ServerboundCreateConfigTemplatePacket serverboundCreateConfigTemplatePacket, Supplier<NetworkEvent.Context> contextSupplier)
     {
+        //If on a server, check that the player actually has permissions to do this
         if (FMLEnvironment.dist.isDedicatedServer())
         {
             ServerPlayer sender = contextSupplier.get().getSender();
@@ -77,7 +78,6 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
         }
         catch (IOException e)
         {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
