@@ -58,6 +58,4 @@ public class ClientEvents
             StackSizeRules.setRuleSet(null);
         }
     }
-    
-    
 }

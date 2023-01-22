@@ -12,7 +12,7 @@ import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.config.ServerConfig;
 import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(ExtractionModuleItem.class)
@@ -27,8 +27,8 @@ public class ExtractionModuleItemMixin
     private int increaseTransferRate(ExtractionModuleItem instance)
     {
         int rate = ((ExtractionModuleItemAccessor) instance).getMaxExtractionRate();
-        
-        if (AutoSidedConfig.increaseTransferRate())
+    
+        if (ServerConfig.get().increaseTransferRate.get())
             return SlotLimitHelper.scaleTransferRate(rate, false);
         else
             return rate;
