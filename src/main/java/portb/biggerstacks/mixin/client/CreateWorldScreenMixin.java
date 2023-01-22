@@ -51,15 +51,15 @@ public class CreateWorldScreenMixin
     {
         if (!ClientConfig.stfuWarning.get())
         {
-            int max = ConfigLib.readRuleset(FMLPaths.CONFIGDIR.get().resolve(Constants.RULESET_FILE_NAME)).getMaxStacksize();
+            int configMax = ServerConfig.LOCAL_INSTANCE.globalMaxStackSize.get();
+            int actualMax = ConfigLib.readRuleset(FMLPaths.CONFIGDIR.get().resolve(Constants.RULESET_FILE_NAME)).getMaxStacksize();
     
             //check if user may have been relying on value cap before update
-            if (ServerConfig.LOCAL_INSTANCE.globalMaxStackSize.get() != 1 &&
-                        max > ServerConfig.LOCAL_INSTANCE.globalMaxStackSize.get())
+            if (configMax != 1 && actualMax > configMax)
             {
-                HighStackSizeWarning.createWarningScreen(max, () -> {
-                    ((CreateWorldScreenInvoker) this).invokeOnCreate();
-                });
+                HighStackSizeWarning.createWarningScreen(actualMax,
+                                                         () -> ((CreateWorldScreenInvoker) this).invokeOnCreate()
+                );
         
                 return;
             }
