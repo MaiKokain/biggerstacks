@@ -9,10 +9,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import portb.biggerstacks.config.ClientConfig;
-import portb.biggerstacks.config.LocalConfig;
 import portb.biggerstacks.config.ServerConfig;
 import portb.biggerstacks.event.ClientEvents;
 import portb.biggerstacks.event.CommonEvents;
@@ -29,11 +29,12 @@ public class BiggerStacks
     
     public BiggerStacks()
     {
+        if (FMLEnvironment.dist.isClient())
+            MinecraftForge.EVENT_BUS.register(ClientEvents.class);
+        
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
         MinecraftForge.EVENT_BUS.register(CommonEvents.class);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-        
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MinecraftForge.EVENT_BUS.register(ClientEvents.class));
         
         ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(ConfigLib.class));
         
@@ -43,14 +44,18 @@ public class BiggerStacks
     private static void registerConfigs()
     {
         ModLoadingContext context = ModLoadingContext.get();
+    
+        if (FMLEnvironment.dist.isClient())
+        {
+            context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
+            context.registerConfig(ModConfig.Type.CLIENT,
+                                   ServerConfig.LOCAL_INSTANCE.SPEC,
+                                   Constants.MOD_ID + "-local.toml"
+            );
+        }
         
-        context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
-        context.registerConfig(ModConfig.Type.CLIENT,
-                               LocalConfig.INSTANCE.SPEC,
-                               Constants.MOD_ID + "-local.toml"
-        );
         context.registerConfig(ModConfig.Type.SERVER,
-                               ServerConfig.INSTANCE.SPEC,
+                               ServerConfig.SERVER_INSTANCE.SPEC,
                                Constants.MOD_ID + "-server.toml"
         );
     }

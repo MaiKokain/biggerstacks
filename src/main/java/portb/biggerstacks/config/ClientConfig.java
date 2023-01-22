@@ -1,10 +1,13 @@
 package portb.biggerstacks.config;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 /**
  * Config used for client-side only things, such as how stack numbers are rendered.
  */
+@OnlyIn(Dist.CLIENT)
 public class ClientConfig
 {
     public static final ForgeConfigSpec              SPEC;

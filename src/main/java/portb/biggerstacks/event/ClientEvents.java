@@ -22,6 +22,7 @@ import java.nio.file.Files;
 
 import static portb.biggerstacks.Constants.TOOLTIP_NUMBER_FORMAT;
 
+@OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Constants.MOD_ID)
 public class ClientEvents
 {
@@ -47,7 +48,6 @@ public class ClientEvents
     /**
      * Shows item count on the tooltip
      */
-    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent(priority = EventPriority.LOWEST)
     static public void showExactItemStackCount(ItemTooltipEvent event)
     {
@@ -72,7 +72,6 @@ public class ClientEvents
     /**
      * Unloads the ruleset when the client disconnects from a world/server
      */
-    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     static public void forgetRuleset(ClientPlayerNetworkEvent.LoggingOut event)
     {
