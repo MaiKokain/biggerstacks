@@ -13,6 +13,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Config used for client-side only things, such as how stack numbers are rendered.
@@ -54,12 +55,14 @@ public class ClientConfig
                 "STFU Warning",
                 false
         );
-        
-        numberColour = builder.comment("The colour of the exact number count tooltip shown on items.",
+    
+        numberColour = builder.comment("The colour of the exact count tooltip shown on items.",
                                        "Available colours (case insensitive):",
                                        String.join(",\n", NUMBER_FORMATTING_COLOURS.keySet().stream().sorted().toList())
         ).define("Exact count number colour", ChatFormatting.DARK_AQUA.getName(),
-                 value -> NUMBER_FORMATTING_COLOURS.containsKey(((String) value).toLowerCase())
+                 value -> NUMBER_FORMATTING_COLOURS.containsKey(Objects.requireNonNullElse((String) value,
+                                                                                           ""
+                 ).toLowerCase())
         );
         
         SPEC = builder.build();
