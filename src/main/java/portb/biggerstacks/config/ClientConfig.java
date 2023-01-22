@@ -20,10 +20,11 @@ import java.util.Objects;
  */
 public class ClientConfig
 {
+    private static final Map<String, ChatFormatting> NUMBER_FORMATTING_COLOURS = new HashMap<>();
+    
     public static final  ForgeConfigSpec                     SPEC;
     public static final  ForgeConfigSpec.BooleanValue        enableNumberShortening;
     public static final  ForgeConfigSpec.BooleanValue        stfuWarning;
-    private static final Map<String, ChatFormatting> NUMBER_FORMATTING_COLOURS = new HashMap<>();
     private static final ForgeConfigSpec.ConfigValue<String> numberColour;
     
     private static final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
