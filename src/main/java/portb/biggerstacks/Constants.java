@@ -7,6 +7,7 @@
 
 package portb.biggerstacks;
 
+import net.minecraft.commands.Commands;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.loading.FMLPaths;
 
@@ -27,4 +28,7 @@ public class Constants
                                                                                       "textures/gui/config_background.png"
     );
     public static final DecimalFormat    TOOLTIP_NUMBER_FORMAT = new DecimalFormat("###,###,###,###,###,###");
+    
+    public static final int CHANGE_STACK_SIZE_COMMAND_PERMISSION_LEVEL = Commands.LEVEL_OWNERS;
+    
 }

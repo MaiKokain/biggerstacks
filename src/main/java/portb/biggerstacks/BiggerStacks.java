@@ -22,7 +22,8 @@ import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.LocalConfig;
 import portb.biggerstacks.config.ServerConfig;
 import portb.biggerstacks.event.ClientEvents;
-import portb.biggerstacks.event.CommonEvents;
+import portb.biggerstacks.event.CommonForgeEvents;
+import portb.biggerstacks.event.CommonModEvents;
 import portb.biggerstacks.event.ServerEvents;
 import portb.configlib.ConfigLib;
 import portb.configlib.IMCAPI;
@@ -36,13 +37,14 @@ public class BiggerStacks
     public BiggerStacks()
     {
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
-        MinecraftForge.EVENT_BUS.register(CommonEvents.class);
+        MinecraftForge.EVENT_BUS.register(CommonModEvents.class);
+        MinecraftForge.EVENT_BUS.register(CommonForgeEvents.class);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-        
+    
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MinecraftForge.EVENT_BUS.register(ClientEvents.class));
-        
+    
         ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(ConfigLib.class));
-        
+    
         registerConfigs();
     }
     
