@@ -8,6 +8,8 @@
 package portb.biggerstacks.config;
 
 import net.minecraft.ChatFormatting;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.EnumSet;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 /**
  * Config used for client-side only things, such as how stack numbers are rendered.
  */
+@OnlyIn(Dist.CLIENT)
 public class ClientConfig
 {
     private static final Map<String, ChatFormatting> NUMBER_FORMATTING_COLOURS = new HashMap<>();

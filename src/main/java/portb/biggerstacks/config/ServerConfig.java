@@ -8,8 +8,6 @@
 package portb.biggerstacks.config;
 
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
@@ -18,8 +16,13 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
  */
 public class ServerConfig
 {
+    /**
+     * Used for dedicated servers
+     */
     public final static ServerConfig SERVER_INSTANCE = new ServerConfig(true);
-    @OnlyIn(Dist.CLIENT)
+    /**
+     * Used for singleplayer worlds
+     */
     public final static ServerConfig LOCAL_INSTANCE  = new ServerConfig(false);
     
     public final ForgeConfigSpec              SPEC;
@@ -30,7 +33,7 @@ public class ServerConfig
     {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
         
-        if (isOnlyForDedicatedServer && !FMLEnvironment.dist.isDedicatedServer())
+        if (isOnlyForDedicatedServer && FMLEnvironment.dist.isClient())
         {
             builder.comment(
                     "IGNORE THIS CONFIG FILE!!!!",

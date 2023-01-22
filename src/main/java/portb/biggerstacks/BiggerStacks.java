@@ -27,7 +27,6 @@ import portb.configlib.ConfigLib;
 import portb.configlib.IMCAPI;
 import portb.slw.MyLoggerFactory;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(Constants.MOD_ID)
 public class BiggerStacks
 {
@@ -35,7 +34,7 @@ public class BiggerStacks
     
     public BiggerStacks()
     {
-        if (!FMLEnvironment.dist.isDedicatedServer())
+        if (FMLEnvironment.dist.isClient())
             MinecraftForge.EVENT_BUS.register(ClientEvents.class);
     
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
@@ -52,10 +51,10 @@ public class BiggerStacks
     {
         ModLoadingContext context = ModLoadingContext.get();
     
-        context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
-    
-        if (!FMLEnvironment.dist.isDedicatedServer())
+        if (FMLEnvironment.dist.isClient())
         {
+            context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
+        
             context.registerConfig(ModConfig.Type.CLIENT,
                                    ServerConfig.LOCAL_INSTANCE.SPEC,
                                    Constants.MOD_ID + "-local.toml"
