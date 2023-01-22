@@ -127,7 +127,8 @@ public class TransformerEngine implements IMixinConfigPlugin
         }
         else
         {
-            return true;
+            return !mixinClassName.endsWith("RepairContainerMixin") ||
+                           FMLLoader.getLoadingModList().getModFileById("charm") == null;
         }
     }
     
