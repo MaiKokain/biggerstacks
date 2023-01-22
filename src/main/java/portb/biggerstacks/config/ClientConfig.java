@@ -28,8 +28,6 @@ public class ClientConfig
     public static final  ForgeConfigSpec.BooleanValue        stfuWarning;
     private static final ForgeConfigSpec.ConfigValue<String> numberColour;
     
-    private static final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-    
     public static ChatFormatting getNumberColour()
     {
         return NUMBER_FORMATTING_COLOURS.get(numberColour.get().toLowerCase());
@@ -37,6 +35,8 @@ public class ClientConfig
     
     static
     {
+        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+    
         EnumSet.complementOf(EnumSet.of(
                 ChatFormatting.STRIKETHROUGH,
                 ChatFormatting.BOLD,
@@ -45,7 +45,7 @@ public class ClientConfig
                 ChatFormatting.ITALIC,
                 ChatFormatting.OBFUSCATED
         )).forEach(chatFormatting -> NUMBER_FORMATTING_COLOURS.put(chatFormatting.getName(), chatFormatting));
-        
+    
         builder.comment("Client configs");
         
         enableNumberShortening = builder.comment("Enable number shortening. E.g. 1000000 becomes 1M.")
