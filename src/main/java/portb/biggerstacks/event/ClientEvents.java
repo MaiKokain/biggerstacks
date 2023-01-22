@@ -40,7 +40,7 @@ public class ClientEvents
         if (stack.getCount() > Constants.ONE_THOUSAND)
         {
             String           countString    = Constants.TOOLTIP_NUMBER_FORMAT.format(stack.getCount());
-            MutableComponent countComponent = new TextComponent(countString).withStyle(ChatFormatting.DARK_AQUA);
+            MutableComponent countComponent = new TextComponent(countString).withStyle(ClientConfig.getNumberColour());
             var              tooltip        = new TranslatableComponent("biggerstacks.exact.count", countComponent);
             
             event.getToolTip().add(1, tooltip.withStyle(ChatFormatting.GRAY));
