@@ -29,4 +29,6 @@ public class Constants
     public static final ResourceLocation CONFIG_GUI_BG = new ResourceLocation(Constants.MOD_ID,
                                                                               "textures/gui/config_background.png"
     );
+    
+    public static final int CHANGE_STACK_SIZE_COMMAND_PERMISSION_LEVEL = 4; //LEVEL_OWNERS
 }

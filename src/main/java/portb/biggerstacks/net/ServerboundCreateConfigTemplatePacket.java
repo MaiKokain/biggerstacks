@@ -8,6 +8,7 @@
 package portb.biggerstacks.net;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -37,9 +38,14 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
     
     static void handleCreateConfigTemplate(ServerboundCreateConfigTemplatePacket serverboundCreateConfigTemplatePacket, Supplier<NetworkEvent.Context> contextSupplier)
     {
-        //ignore the packet if on dedicated server
+        //If on a server, check that the player actually has permissions to do this
         if (FMLEnvironment.dist.isDedicatedServer())
-            return;
+        {
+            ServerPlayerEntity sender = contextSupplier.get().getSender();
+        
+            if (sender == null || !sender.hasPermissions(Constants.CHANGE_STACK_SIZE_COMMAND_PERMISSION_LEVEL))
+                return;
+        }
         
         ConfigTemplate template = ConfigTemplate.generateTemplate(serverboundCreateConfigTemplatePacket);
         
@@ -61,9 +67,10 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
         
         try
         {
-            //don't display warning anymore
-            ClientConfig.stfuWarning.set(true);
-            
+            if (!FMLEnvironment.dist.isDedicatedServer())
+                //don't display warning anymore
+                ClientConfig.stfuWarning.set(true);
+    
             Files.write(Constants.RULESET_FILE,
                         template.toXML().getBytes(StandardCharsets.UTF_8),
                         StandardOpenOption.CREATE,

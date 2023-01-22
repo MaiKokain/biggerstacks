@@ -14,6 +14,7 @@ import net.minecraft.command.Commands;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.network.PacketDistributor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -79,11 +80,15 @@ public class ConfigCommand
                         context.getSource().sendFailure(new TranslationTextComponent("biggerstacks.player.expected"));
                         return 0;
                     }
-                    
+    
                     return 1;
                 })
         );
-        
+    
+        //if on a server, require permissions
+        if (FMLEnvironment.dist.isDedicatedServer())
+            cmd.requires(commandSourceStack -> commandSourceStack.hasPermission(Constants.CHANGE_STACK_SIZE_COMMAND_PERMISSION_LEVEL));
+    
         event.getDispatcher().register(cmd);
     }
 }
