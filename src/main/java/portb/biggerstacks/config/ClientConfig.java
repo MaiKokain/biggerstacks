@@ -8,6 +8,8 @@
 package portb.biggerstacks.config;
 
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.EnumSet;
@@ -18,18 +20,20 @@ import java.util.stream.Collectors;
 /**
  * Config used for client-side only things, such as how stack numbers are rendered.
  */
+@OnlyIn(Dist.CLIENT)
 public class ClientConfig
 {
+    private static final Map<String, TextFormatting> NUMBER_FORMATTING_COLOURS = new HashMap<>();
+    
     public static final  ForgeConfigSpec                     SPEC;
     public static final  ForgeConfigSpec.BooleanValue        enableNumberShortening;
     public static final  ForgeConfigSpec.BooleanValue        stfuWarning;
-    private static final Map<String, TextFormatting> NUMBER_FORMATTING_COLOURS = new HashMap<>();
     private static final ForgeConfigSpec.ConfigValue<String> numberColour;
-    
-    private static final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
     
     static
     {
+        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        
         EnumSet.complementOf(EnumSet.of(
                 TextFormatting.STRIKETHROUGH,
                 TextFormatting.BOLD,

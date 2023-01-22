@@ -11,7 +11,7 @@ import mekanism.common.tile.TileEntityLogisticalSorter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.config.ServerConfig;
 import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin(TileEntityLogisticalSorter.class)
@@ -20,7 +20,7 @@ public class TileEntityLogisticalSorterMixin
     @ModifyConstant(method = "onUpdateServer", constant = @Constant(intValue = 64), require = 0, remap = false)
     private int increaseStackLimit(int val)
     {
-        if (AutoSidedConfig.increaseTransferRate())
+        if (ServerConfig.get().increaseTransferRate.get())
             return SlotLimitHelper.increaseTransferRate(val);
         else
             return val;

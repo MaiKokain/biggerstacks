@@ -7,6 +7,7 @@
 
 package portb.biggerstacks.config;
 
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
@@ -15,7 +16,8 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
  */
 public class ServerConfig
 {
-    public final static ServerConfig                 INSTANCE = new ServerConfig(true);
+    public final static ServerConfig                 SERVER_INSTANCE = new ServerConfig(true);
+    public final static ServerConfig                 LOCAL_INSTANCE  = new ServerConfig(false);
     public final        ForgeConfigSpec              SPEC;
     public final        ForgeConfigSpec.IntValue     globalMaxStackSize;
     public final        ForgeConfigSpec.BooleanValue increaseTransferRate;
@@ -24,7 +26,7 @@ public class ServerConfig
     {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
         
-        if (isOnlyForDedicatedServer && !FMLEnvironment.dist.isDedicatedServer())
+        if (isOnlyForDedicatedServer && FMLEnvironment.dist.isClient())
         {
             builder.comment(
                     "IGNORE THIS CONFIG FILE!!!!",
@@ -55,5 +57,13 @@ public class ServerConfig
         builder.pop();
         
         SPEC = builder.build();
+    }
+    
+    public static ServerConfig get()
+    {
+        if (FMLEnvironment.dist.isDedicatedServer() || !Minecraft.getInstance().hasSingleplayerServer())
+            return SERVER_INSTANCE;
+        else
+            return LOCAL_INSTANCE;
     }
 }

@@ -12,7 +12,7 @@ import mcjty.xnet.apiimpl.items.ItemConnectorSettings;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import portb.biggerstacks.config.AutoSidedConfig;
+import portb.biggerstacks.config.ServerConfig;
 import portb.biggerstacks.util.SlotLimitHelper;
 
 @Mixin({
@@ -27,7 +27,7 @@ public class XNetCompat
                     remap = false)
     private int increaseTransferRate(int value)
     {
-        if (AutoSidedConfig.increaseTransferRate())
+        if (ServerConfig.get().increaseTransferRate.get())
             return SlotLimitHelper.increaseTransferRate(value);
         else
             return value;
