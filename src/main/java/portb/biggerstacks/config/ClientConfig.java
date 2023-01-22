@@ -8,6 +8,8 @@
 package portb.biggerstacks.config;
 
 import net.minecraft.ChatFormatting;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.EnumSet;
@@ -18,6 +20,7 @@ import java.util.Objects;
 /**
  * Config used for client-side only things, such as how stack numbers are rendered.
  */
+@OnlyIn(Dist.CLIENT)
 public class ClientConfig
 {
     private static final Map<String, ChatFormatting> NUMBER_FORMATTING_COLOURS = new HashMap<>();
@@ -27,10 +30,10 @@ public class ClientConfig
     public static final  ForgeConfigSpec.BooleanValue        stfuWarning;
     private static final ForgeConfigSpec.ConfigValue<String> numberColour;
     
-    private static final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-    
     static
     {
+        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+    
         EnumSet.complementOf(EnumSet.of(
                 ChatFormatting.STRIKETHROUGH,
                 ChatFormatting.BOLD,
@@ -39,7 +42,7 @@ public class ClientConfig
                 ChatFormatting.ITALIC,
                 ChatFormatting.OBFUSCATED
         )).forEach(chatFormatting -> NUMBER_FORMATTING_COLOURS.put(chatFormatting.getName(), chatFormatting));
-        
+    
         builder.comment("Client configs");
         enableNumberShortening = builder.comment("Enable number shortening. E.g. 1000000 becomes 1M.")
                                         .define("Enable number shortening", true);

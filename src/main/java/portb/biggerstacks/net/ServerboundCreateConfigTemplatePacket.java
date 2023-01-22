@@ -47,7 +47,7 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
         
         try
         {
-            if (!FMLEnvironment.dist.isDedicatedServer())
+            if (FMLEnvironment.dist.isClient())
                 //don't display warning anymore
                 ClientConfig.stfuWarning.set(true);
     
