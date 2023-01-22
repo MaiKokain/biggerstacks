@@ -30,15 +30,15 @@ public class WorldSelectionListMixin
     {
         if (!ClientConfig.stfuWarning.get())
         {
-            int max = ConfigLib.readRuleset(FMLPaths.CONFIGDIR.get().resolve(Constants.RULESET_FILE_NAME)).getMaxStacksize();
+            int configMax = ServerConfig.LOCAL_INSTANCE.maxStackCount.get();
+            int actualMax = ConfigLib.readRuleset(FMLPaths.CONFIGDIR.get().resolve(Constants.RULESET_FILE_NAME)).getMaxStacksize();
     
             //check if user may have been relying on value cap before update
-            if (ServerConfig.LOCAL_INSTANCE.maxStackCount.get() != 1 &&
-                        max > ServerConfig.LOCAL_INSTANCE.maxStackCount.get())
+            if (configMax != 1 && actualMax > configMax)
             {
                 ci.cancel();
         
-                HighStackSizeWarning.createWarningScreen(max, () -> {
+                HighStackSizeWarning.createWarningScreen(actualMax, () -> {
                     WorldSelectionList$WorldListEntryInvoker invoker = ((WorldSelectionList$WorldListEntryInvoker) this);
                     invoker.invokeQueueLoadScreen();
                     invoker.getMinecraft().createWorldOpenFlows().loadLevel(invoker.accessScreen(),
