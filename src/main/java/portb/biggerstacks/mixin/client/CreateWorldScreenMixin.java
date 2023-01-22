@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.mixin.client;
 
 import net.minecraft.client.gui.components.Button;
@@ -9,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.config.ClientConfig;
-import portb.biggerstacks.config.LocalConfig;
+import portb.biggerstacks.config.ServerConfig;
 import portb.biggerstacks.gui.HighStackSizeWarning;
 import portb.configlib.ConfigLib;
 
@@ -45,13 +52,13 @@ public class CreateWorldScreenMixin
         if (!ClientConfig.stfuWarning.get())
         {
             int max = ConfigLib.readRuleset(FMLPaths.CONFIGDIR.get().resolve(Constants.RULESET_FILE_NAME)).getMaxStacksize();
-            
+    
             //check if user may have been relying on value cap before update
-            if (LocalConfig.INSTANCE.maxStackCount.get() != 1 &&
-                        max > LocalConfig.INSTANCE.maxStackCount.get())
+            if (ServerConfig.LOCAL_INSTANCE.maxStackCount.get() != 1 &&
+                        max > ServerConfig.LOCAL_INSTANCE.maxStackCount.get())
             {
                 HighStackSizeWarning.createWarningScreen(max, () -> ((CreateWorldScreenInvoker) this).invokeOnCreate());
-                
+        
                 return;
             }
         }

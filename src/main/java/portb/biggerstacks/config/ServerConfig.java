@@ -1,5 +1,15 @@
+/*
+ * Copyright (c) PORTB 2023
+ *
+ * Licensed under GNU LGPL v3
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
+ */
+
 package portb.biggerstacks.config;
 
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
@@ -8,10 +18,13 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
  */
 public class ServerConfig
 {
-    public final static ServerConfig                 INSTANCE = new ServerConfig(true);
-    public final        ForgeConfigSpec              SPEC;
-    public final        ForgeConfigSpec.IntValue     maxStackCount;
-    public final        ForgeConfigSpec.BooleanValue increaseTransferRate;
+    public final static ServerConfig SERVER_INSTANCE = new ServerConfig(true);
+    @OnlyIn(Dist.CLIENT)
+    public final static ServerConfig LOCAL_INSTANCE  = new ServerConfig(false);
+    
+    public final ForgeConfigSpec              SPEC;
+    public final ForgeConfigSpec.IntValue     maxStackCount;
+    public final ForgeConfigSpec.BooleanValue increaseTransferRate;
     
     ServerConfig(boolean isOnlyForDedicatedServer)
     {
@@ -48,5 +61,13 @@ public class ServerConfig
         builder.pop();
         
         SPEC = builder.build();
+    }
+    
+    public static ServerConfig get()
+    {
+        if (FMLEnvironment.dist.isDedicatedServer() || !Minecraft.getInstance().hasSingleplayerServer())
+            return SERVER_INSTANCE;
+        else
+            return LOCAL_INSTANCE;
     }
 }

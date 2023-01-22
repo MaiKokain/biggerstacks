@@ -8,18 +8,16 @@
 package portb.biggerstacks;
 
 import com.mojang.logging.LogUtils;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import portb.biggerstacks.config.ClientConfig;
-import portb.biggerstacks.config.LocalConfig;
 import portb.biggerstacks.config.ServerConfig;
 import portb.biggerstacks.event.ClientEvents;
 import portb.biggerstacks.event.CommonForgeEvents;
@@ -37,12 +35,13 @@ public class BiggerStacks
     
     public BiggerStacks()
     {
+        if (!FMLEnvironment.dist.isDedicatedServer())
+            MinecraftForge.EVENT_BUS.register(ClientEvents.class);
+    
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
         MinecraftForge.EVENT_BUS.register(CommonModEvents.class);
         MinecraftForge.EVENT_BUS.register(CommonForgeEvents.class);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-    
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MinecraftForge.EVENT_BUS.register(ClientEvents.class));
     
         ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(ConfigLib.class));
     
@@ -52,14 +51,19 @@ public class BiggerStacks
     private static void registerConfigs()
     {
         ModLoadingContext context = ModLoadingContext.get();
-        
+    
         context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
-        context.registerConfig(ModConfig.Type.CLIENT,
-                               LocalConfig.INSTANCE.SPEC,
-                               Constants.MOD_ID + "-local.toml"
-        );
+    
+        if (!FMLEnvironment.dist.isDedicatedServer())
+        {
+            context.registerConfig(ModConfig.Type.CLIENT,
+                                   ServerConfig.LOCAL_INSTANCE.SPEC,
+                                   Constants.MOD_ID + "-local.toml"
+            );
+        }
+    
         context.registerConfig(ModConfig.Type.SERVER,
-                               ServerConfig.INSTANCE.SPEC,
+                               ServerConfig.SERVER_INSTANCE.SPEC,
                                Constants.MOD_ID + "-server.toml"
         );
     }

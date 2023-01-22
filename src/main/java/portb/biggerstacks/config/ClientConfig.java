@@ -14,6 +14,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Config used for client-side only things, such as how stack numbers are rendered.
@@ -58,7 +59,8 @@ public class ClientConfig
     
         numberColour = builder.comment("The colour of the exact count tooltip shown on items.",
                                        "Available colours (case insensitive):",
-                                       String.join(",\n", NUMBER_FORMATTING_COLOURS.keySet().stream().sorted().toList())
+                                       NUMBER_FORMATTING_COLOURS.keySet().stream().sorted().collect(
+                                               Collectors.joining(",\n"))
         ).define("Exact count number colour", ChatFormatting.DARK_AQUA.getName(),
                  value -> NUMBER_FORMATTING_COLOURS.containsKey(Objects.requireNonNullElse((String) value,
                                                                                            ""
