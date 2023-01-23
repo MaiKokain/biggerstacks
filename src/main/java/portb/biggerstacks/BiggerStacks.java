@@ -1,9 +1,7 @@
 package portb.biggerstacks;
 
 import com.mojang.logging.LogUtils;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -15,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.ServerConfig;
 import portb.biggerstacks.event.ClientEvents;
-import portb.biggerstacks.event.CommonEvents;
+import portb.biggerstacks.event.CommonModEvents;
 import portb.biggerstacks.event.ServerEvents;
 import portb.configlib.ConfigLib;
 import portb.configlib.IMCAPI;
@@ -33,7 +31,7 @@ public class BiggerStacks
             MinecraftForge.EVENT_BUS.register(ClientEvents.class);
         
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
-        MinecraftForge.EVENT_BUS.register(CommonEvents.class);
+        MinecraftForge.EVENT_BUS.register(CommonModEvents.class);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         
         ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(ConfigLib.class));

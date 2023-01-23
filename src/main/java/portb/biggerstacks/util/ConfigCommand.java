@@ -5,6 +5,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.network.PacketDistributor;
 import org.slf4j.Logger;
 import portb.biggerstacks.Constants;
@@ -73,6 +74,10 @@ public class ConfigCommand
                 })
         );
         
+        //if on a server, require permissions
+        if (FMLEnvironment.dist.isDedicatedServer())
+            cmd.requires(commandSourceStack -> commandSourceStack.hasPermission(Constants.CHANGE_STACK_SIZE_COMMAND_PERMISSION_LEVEL));
+    
         event.getDispatcher().register(cmd);
     }
 }

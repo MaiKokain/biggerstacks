@@ -7,7 +7,7 @@ import portb.biggerstacks.Constants;
 import portb.biggerstacks.net.PacketHandler;
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class CommonEvents
+public class CommonModEvents
 {
     /**
      * Registers network packets

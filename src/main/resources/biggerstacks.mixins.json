@@ -17,10 +17,7 @@
         "vanilla.stacksize.ServerGamePacketListenerImplMixin"
     ],
     "client": [
-        "client.CreateWorldScreenInvoker",
-        "client.CreateWorldScreenMixin",
         "client.ItemRendererMixin",
-        "client.WorldSelectionListMixin"
     ],
     "injectors": {
         "defaultRequire": 1
