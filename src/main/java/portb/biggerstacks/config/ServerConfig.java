@@ -19,7 +19,6 @@ public class ServerConfig
     public final static ServerConfig                 SERVER_INSTANCE = new ServerConfig(true);
     public final static ServerConfig                 LOCAL_INSTANCE = new ServerConfig(false);
     public final        ForgeConfigSpec              SPEC;
-    public final        ForgeConfigSpec.IntValue     maxStackCount;
     public final        ForgeConfigSpec.BooleanValue increaseTransferRate;
     
     ServerConfig(boolean isOnlyForDedicatedServer)
@@ -49,10 +48,6 @@ public class ServerConfig
                 "- XNet can already extract a variable amount, but you will be able to go past 64 to the new maximum stack limit",
                 "- Cyclic still extracts 1 stack (more than 64 items) per tick, but the size of the stack is adjusted"
         ).define("Increase transfer rate", true);
-        
-        maxStackCount = builder.comment(
-                "DOES NOTHING. IGNORE THIS."
-        ).defineInRange("Max global stack size", 1, 1, Integer.MAX_VALUE / 2);
         
         builder.pop();
         

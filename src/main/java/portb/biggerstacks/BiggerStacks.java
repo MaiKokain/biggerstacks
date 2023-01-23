@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import portb.biggerstacks.config.ClientConfig;
 import portb.biggerstacks.config.ServerConfig;
 import portb.biggerstacks.event.ClientEvents;
+import portb.biggerstacks.event.CommonForgeEvents;
 import portb.biggerstacks.event.CommonModEvents;
 import portb.biggerstacks.event.ServerEvents;
 import portb.configlib.ConfigLib;
@@ -39,6 +40,7 @@ public class BiggerStacks
         
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
         MinecraftForge.EVENT_BUS.register(CommonModEvents.class);
+        MinecraftForge.EVENT_BUS.register(CommonForgeEvents.class);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         
         ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(ConfigLib.class));

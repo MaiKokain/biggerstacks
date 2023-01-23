@@ -13,7 +13,6 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.network.NetworkEvent;
 import portb.biggerstacks.Constants;
-import portb.biggerstacks.config.ClientConfig;
 import portb.configlib.template.ConfigTemplate;
 import portb.configlib.xml.*;
 
@@ -66,10 +65,6 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
         
         try
         {
-            if (FMLEnvironment.dist.isClient())
-                //don't display warning anymore
-                ClientConfig.stfuWarning.set(true);
-            
             Files.writeString(Constants.RULESET_FILE,
                               template.toXML(),
                               StandardOpenOption.CREATE,
