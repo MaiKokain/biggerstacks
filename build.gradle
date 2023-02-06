@@ -15,7 +15,7 @@ buildscript {
 plugins {
     id 'eclipse'
     id 'maven-publish'
-    id 'portb.gradle.MinecraftSubmoduleDependencyPlugin' version "1.0"
+    id 'portb.gradle.MinecraftSubmoduleDependencyPlugin' version "1.1"
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -136,8 +136,12 @@ minecraft.runs.all {
 submodules {
     submodulesDirectory = file("submodules")
 
+    def use_java_17 = "-Dorg.gradle.java.home=C:\\PROGRA~1\\ECLIPS~1\\jdk-17.0.5.8-hotspot"
+
     defaultOptions {
         runtime = true
+        compileTime = true
+        gradleArgs = use_java_17
     }
 
     repos {
@@ -153,6 +157,9 @@ submodules {
 
             tasks = ["runData", "build"]
             runtime = true
+            ignoreErrors = true
+
+            gradleArgs = use_java_17
         }
     }
 }
