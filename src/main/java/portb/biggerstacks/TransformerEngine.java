@@ -24,15 +24,16 @@ import portb.transformerlib.TransformerLib;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TransformerEngine implements IMixinConfigPlugin
 {
+    private static final Map<String, List<String>> MODS_THAT_CONFLICT_WITH_PATCHES = Map.of(
+            "portb.biggerstacks.mixin.vanilla.AnvilMenuMixin", List.of("the_vault")
+    );
+    
     private static final Logger  LOGGER                        = LoggerFactory.getLogger(TransformerEngine.class);
     private static final Pattern MOD_ID_PACKAGE_TARGET_PATTERN = Pattern.compile("mixin\\.compat\\.([^.]+)\\.[^.]+$");
     
@@ -69,7 +70,6 @@ public class TransformerEngine implements IMixinConfigPlugin
             public EnumSet<Phase> handlesClass(Type classType, boolean isEmpty)
             {
                 //don't touch mixin classes or "empty" classes (i'm not sure what an "empty" class is)
-                //todo maybe filter out some of the vanilla classes we're not interested in?
                 
                 return isEmpty || classType.getClassName().contains("/mixin/") ? NONE : BEFORE;
             }
@@ -130,8 +130,24 @@ public class TransformerEngine implements IMixinConfigPlugin
         }
         else
         {
-            return true;
+            if(!MODS_THAT_CONFLICT_WITH_PATCHES.containsKey(mixinClassName))
+                return true;
+            else
+                //disable the patch if a mod that conflicts with it is installed
+                return !isAnyModInstalled(MODS_THAT_CONFLICT_WITH_PATCHES.get(mixinClassName));
         }
+    }
+    
+    private static boolean isAnyModInstalled(List<String> listOfMods)
+    {
+        for (var modId : listOfMods)
+        {
+            System.out.println("Is " + modId + " installed: " + (FMLLoader.getLoadingModList().getModFileById(modId) != null));
+            if(FMLLoader.getLoadingModList().getModFileById(modId) != null)
+                return true;
+        }
+        
+        return false;
     }
     
     @Override
@@ -157,4 +173,5 @@ public class TransformerEngine implements IMixinConfigPlugin
     {
     
     }
+    
 }
