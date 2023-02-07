@@ -142,7 +142,6 @@ public class TransformerEngine implements IMixinConfigPlugin
     {
         for (var modId : listOfMods)
         {
-            System.out.println("Is " + modId + " installed: " + (FMLLoader.getLoadingModList().getModFileById(modId) != null));
             if(FMLLoader.getLoadingModList().getModFileById(modId) != null)
                 return true;
         }
