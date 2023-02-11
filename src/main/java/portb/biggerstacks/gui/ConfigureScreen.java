@@ -26,7 +26,6 @@ import portb.biggerstacks.net.ServerboundCreateConfigTemplatePacket;
 import portb.configlib.template.TemplateOptions;
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 @OnlyIn(Dist.CLIENT)
 public class ConfigureScreen extends Screen
@@ -208,7 +207,7 @@ public class ConfigureScreen extends Screen
                                    256,
                                    256,
                                    4,
-                                   200
+                                   0
         );
     }
     
