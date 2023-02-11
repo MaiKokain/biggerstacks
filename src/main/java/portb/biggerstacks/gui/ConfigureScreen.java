@@ -203,7 +203,7 @@ public class ConfigureScreen extends Screen
                                            256,
                                            256,
                                            4,
-                                           200
+                                           0
         );
     }
     
