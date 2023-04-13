@@ -35,3 +35,7 @@
 	path = submodules/StorageDrawers
 	url = https://github.com/jaquadro/StorageDrawers.git
 	branch = 1.19
+[submodule "submodules/SophisticatedBackpacks"]
+	path = submodules/SophisticatedBackpacks
+	url = https://github.com/P3pp3rF1y/SophisticatedBackpacks.git
+	branch = 1.19.x
