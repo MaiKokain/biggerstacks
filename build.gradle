@@ -125,17 +125,6 @@ repositories {
     }
 }
 
-configurations {
-    library
-    implementation.extendsFrom library
-}
-
-minecraft.runs.all {
-    lazyToken('minecraft_classpath') {
-        configurations.library.copyRecursive().resolve().collect { it.absolutePath }.join(File.pathSeparator)
-    }
-}
-
 //
 // Submodule config
 //
@@ -173,12 +162,14 @@ dependencies {
     //
     // Embedded libraries
     //
-    //todo these could be submodules? since they are just regular java libraries
-    library "portb:BiggerStacksConfigLib:$configLibVersion",
+    jarJar.enable()
+    project.configurations.minecraftLibrary.extendsFrom(project.configurations.jarJar)
+
+    jarJar "portb:BiggerStacksConfigLib:$configLibVersion",
             "portb:BiggerStacksTransformerLib:$transformerLibVersion",
             "portb:SimpleLoggerWrapper:$simpleLoggerWrapperVersion"
 
-    library("com.thoughtworks.xstream:xstream:1.4.19") {
+    jarJar("com.thoughtworks.xstream:xstream:[1.4.19]") {
         //we do not want xstream's built in parser. We will use stax.
         exclude group: 'io.github.x-stream', module: 'mxparser'
     }
@@ -192,9 +183,6 @@ dependencies {
 }
 
 jar {
-    // Include all of the jars from the bundled configuration in our jar
-    from configurations.library.asFileTree.files.collect { zipTree(it) }
-
     manifest {
         attributes([
                 "Specification-Title"        : "biggerstacks",
@@ -206,6 +194,10 @@ jar {
                 "SimpleLoggerWrapper-Version": simpleLoggerWrapperVersion
         ])
     }
+}
+
+reobf {
+    jarJar {}
 }
 
 jar.finalizedBy('reobfJar')
