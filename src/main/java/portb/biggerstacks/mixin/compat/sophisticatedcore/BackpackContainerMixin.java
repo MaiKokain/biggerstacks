@@ -19,7 +19,7 @@ import portb.biggerstacks.util.SlotLimitHelper;
 public abstract class BackpackContainerMixin
 {
     
-    @Redirect(method = "mergeItemStack(Lnet/minecraft/world/item/ItemStack;IIZZZ)Z",
+    @Redirect(method = "mergeItemStack(Lnet/minecraft/world/item/ItemStack;IIZZZ)Lnet/minecraft/world/item/ItemStack;",
               at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/Slot;getMaxStackSize()I"))
     private int avoidDoubleIncreasingStackSize(Slot slot)
     {
