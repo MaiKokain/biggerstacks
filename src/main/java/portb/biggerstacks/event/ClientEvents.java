@@ -57,8 +57,6 @@ public class ClientEvents
     static public void forgetRuleset(ClientPlayerNetworkEvent.LoggingOut event)
     {
         if (event.getPlayer() != null)
-        {
             StackSizeRules.setRuleSet(null);
-        }
     }
 }
