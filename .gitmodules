@@ -48,3 +48,7 @@
 	url = https://github.com/McJtyMods/RFToolsBase.git
 	branch = 1.18
 	ignore = all
+[submodule "submodules/SophisticatedBackpacks"]
+	path = submodules/SophisticatedBackpacks
+	url = https://github.com/P3pp3rF1y/SophisticatedBackpacks.git
+	branch = 1.18.x
