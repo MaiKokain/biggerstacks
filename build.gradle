@@ -15,7 +15,7 @@ buildscript {
 plugins {
     id 'eclipse'
     id 'maven-publish'
-    id 'portb.gradle.MinecraftSubmoduleDependencyPlugin' version "1.1"
+    id 'portb.gradle.MinecraftSubmoduleDependencyPlugin' version "1.2"
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -122,27 +122,9 @@ repositories {
     }
 }
 
-configurations {
-    library
-    implementation.extendsFrom library
-}
-
-minecraft.runs.all {
-    lazyToken('minecraft_classpath') {
-        configurations.library.copyRecursive().resolve().collect { it.absolutePath }.join(File.pathSeparator)
-    }
-}
-
 submodules {
     submodulesDirectory = file("submodules")
-
-    def use_java_17 = "-Dorg.gradle.java.home=C:\\PROGRA~1\\ECLIPS~1\\jdk-17.0.5.8-hotspot"
-
-    defaultOptions {
-        runtime = true
-        compileTime = true
-        gradleArgs = use_java_17
-    }
+    gradleJava = "C:\\PROGRA~1\\ECLIPS~1\\jdk-17.0.5.8-hotspot"
 
     repos {
         "Applied-Energistics-2" {
@@ -156,10 +138,11 @@ submodules {
             """.stripIndent()
 
             tasks = ["runData", "build"]
-            runtime = true
             ignoreErrors = true
+        }
 
-            gradleArgs = use_java_17
+        PrettyPipes {
+            forceForgeGradleVersion="5.1.69"
         }
     }
 }
@@ -170,41 +153,20 @@ dependencies {
     //
     // Embedded libraries
     //
+    jarJar.enable()
+    project.configurations.minecraftLibrary.extendsFrom(project.configurations.jarJar)
 
-    library("portb:BiggerStacksConfigLib:$configLibVersion", "portb:BiggerStacksTransformerLib:$transformerLibVersion", "portb:SimpleLoggerWrapper:$simpleLoggerWrapperVersion")
-
-    library("com.thoughtworks.xstream:xstream:1.4.20") {
-        //we do not want xstream's built in parser. We will use stax.
-        exclude group: 'io.github.x-stream', module: 'mxparser'
-    }
+    jarJar "portb:BiggerStacksConfigLib:$configLibVersion", "portb:BiggerStacksTransformerLib:$transformerLibVersion", "portb:SimpleLoggerWrapper:$simpleLoggerWrapperVersion"
 
     //
     // Mixin
     //
-
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255")
 }
 
 jar {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    // Include all of the jars from the bundled configuration in our jar
-    from(configurations.library.asFileTree.files.collect { zipTree(it).matching {
-        //try to reduce bloat from classes I never use
-        exclude("**/com/thoughtworks/xstream/io/json/**")
-        exclude("**/com/thoughtworks/xstream/io/binary/**")
-        exclude("**/com/thoughtworks/xstream/io/xml/Sax*.class")
-        exclude("**/com/thoughtworks/xstream/io/xml/Xpp*.class")
-        exclude("**/com/thoughtworks/xstream/io/xml/Dom*.class")
-        exclude("**/com/thoughtworks/xstream/io/xml/JDom*.class")
-        exclude("**/com/thoughtworks/xstream/io/xml/KXml*.class")
-
-        exclude("**/com/thoughtworks/xstream/converters/javabean/**")
-    } })
-
-
     manifest {
         attributes([
                 "Specification-Title"        : "biggerstacks",
@@ -216,6 +178,10 @@ jar {
                 "SimpleLoggerWrapper-Version": simpleLoggerWrapperVersion
         ])
     }
+}
+
+reobf {
+    jarJar {}
 }
 
 jar.finalizedBy('reobfJar')
