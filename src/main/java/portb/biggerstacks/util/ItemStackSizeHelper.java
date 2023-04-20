@@ -7,6 +7,9 @@
 
 package portb.biggerstacks.util;
 
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
@@ -14,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.StackSizeRules;
 import portb.configlib.ItemProperties;
+import portb.configlib.TagAccessor;
 
 import static portb.biggerstacks.BiggerStacks.LOGGER;
 
@@ -34,7 +38,7 @@ public class ItemStackSizeHelper
                                           (item instanceof BlockItem),
                                           item.canBeDepleted(),
                                           item instanceof BucketItem,
-                                          itemstack.getTags().map((tag) -> tag.location().toString()).toList(),
+                                          new TagAccessorImpl(itemstack),
                                           item.getClass()
                                   )
                           )
@@ -53,6 +57,15 @@ public class ItemStackSizeHelper
                 returnInfo.cancel();
                 returnInfo.setReturnValue(SlotLimitHelper.getNewStackSize());
             }
+        }
+    }
+    
+    private record TagAccessorImpl(ItemStack item) implements TagAccessor
+    {
+        @Override
+        public boolean doesItemHaveTag(String tag)
+        {
+            return item.is(new TagKey<>(Registry.ITEM_REGISTRY, new ResourceLocation(tag)));
         }
     }
 }
