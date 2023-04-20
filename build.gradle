@@ -15,7 +15,7 @@ buildscript {
 plugins {
     id 'eclipse'
     id 'maven-publish'
-    id 'portb.gradle.MinecraftSubmoduleDependencyPlugin' version "1.0"
+    id 'portb.gradle.MinecraftSubmoduleDependencyPlugin' version "1.1"
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -174,24 +174,18 @@ repositories {
     }
 }
 
-configurations {
-    library
-    implementation.extendsFrom library
-}
-
-minecraft.runs.all {
-    lazyToken('minecraft_classpath') {
-        configurations.library.copyRecursive().resolve().collect { it.absolutePath }.join(File.pathSeparator)
-    }
-}
-
 dependencies {
     minecraft "net.minecraftforge:forge:$minecraftVersion-$forgeVersion"
 
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.153")
 
-    library("portb:BiggerStacksConfigLib:$configLibVersion", "portb:BiggerStacksTransformerLib:$transformerLibVersion", "portb:SimpleLoggerWrapper:$simpleLoggerWrapperVersion")
-    library("com.thoughtworks.xstream:xstream:1.4.20") {
+    //
+    // Embedded libraries
+    //
+    jarJar.enable()
+    project.configurations.minecraftLibrary.extendsFrom(project.configurations.jarJar)
+
+    jarJar("portb:BiggerStacksConfigLib:$configLibVersion", "portb:BiggerStacksTransformerLib:$transformerLibVersion", "portb:SimpleLoggerWrapper:$simpleLoggerWrapperVersion")
+    jarJar("com.thoughtworks.xstream:xstream:1.4.20") {
         //we do not want xstream's built in parser. We will use stax.
         exclude group: 'io.github.x-stream', module: 'mxparser'
     }
@@ -200,12 +194,11 @@ dependencies {
     // Annotation processor
     //
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.153")
 }
 
 jar {
-    // Include all of the jars from the bundled configuration in our jar
-    from configurations.library.asFileTree.files.collect { zipTree(it) }
-
     manifest {
         attributes([
                 "Specification-Title"     : "biggerstacks",
