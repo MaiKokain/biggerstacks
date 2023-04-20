@@ -10,10 +10,12 @@ package portb.biggerstacks.util;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import portb.biggerstacks.config.StackSizeRules;
 import portb.configlib.ItemProperties;
+import portb.configlib.TagAccessor;
 
 import java.util.stream.Collectors;
 
@@ -21,10 +23,12 @@ import static portb.biggerstacks.BiggerStacks.LOGGER;
 
 public class ItemStackSizeHelper
 {
-    public static void applyStackSizeToItem(CallbackInfoReturnable<Integer> returnInfo, Item item)
+    public static void applyStackSizeToItem(CallbackInfoReturnable<Integer> returnInfo, ItemStack itemStack)
     {
         if (StackSizeRules.getRuleSet() != null)
         {
+            Item item = itemStack.getItem();
+            
             StackSizeRules.getRuleSet().determineStackSizeForItem(
                                   new ItemProperties(
                                           item.getRegistryName().getNamespace(),
@@ -35,7 +39,7 @@ public class ItemStackSizeHelper
                                           (item instanceof BlockItem),
                                           item.canBeDepleted(),
                                           item instanceof BucketItem,
-                                          item.getTags().stream().map(ResourceLocation::toString).collect(Collectors.toList()),
+                                          new TagAccessorImpl(item),
                                           item.getClass()
                                   )
                           )
@@ -54,6 +58,22 @@ public class ItemStackSizeHelper
                 returnInfo.cancel();
                 returnInfo.setReturnValue(SlotLimitHelper.getNewStackSize());
             }
+        }
+    }
+    
+    private static class TagAccessorImpl implements TagAccessor
+    {
+        private final Item item;
+        
+        public TagAccessorImpl(Item item)
+        {
+            this.item = item;
+        }
+        
+        @Override
+        public boolean doesItemHaveTag(String tag)
+        {
+            return item.getTags().contains(new ResourceLocation(tag));
         }
     }
 }

@@ -28,9 +28,7 @@ public class ItemStackMixin
     @Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true)
     private void increaseStackLimit(CallbackInfoReturnable<Integer> returnInfo)
     {
-        Item item = ((ItemStack) (Object) this).getItem();
-    
-        ItemStackSizeHelper.applyStackSizeToItem(returnInfo, item);
+        ItemStackSizeHelper.applyStackSizeToItem(returnInfo, ((ItemStack) (Object) this));
     }
     
     /**
