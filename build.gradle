@@ -130,7 +130,7 @@ repositories {
 //
 submodules {
     submodulesDirectory = file("submodules")
-    gradleJava = """C:/PROGRA~1/ECLIPS~1/jdk-17.0.5.8-hotspot"""
+    gradleJava = """C:/PROGRA~1/ECLIPS~1/jdk-17.0.6.10-hotspot"""
 
     repos {
         "Applied-Energistics-2" {
