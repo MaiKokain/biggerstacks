@@ -174,18 +174,25 @@ repositories {
     }
 }
 
+configurations {
+    library
+    implementation.extendsFrom library
+}
+
+minecraft.runs.all {
+    lazyToken('minecraft_classpath') {
+        configurations.library.copyRecursive().resolve().collect { it.absolutePath }.join(File.pathSeparator)
+    }
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:$minecraftVersion-$forgeVersion"
-
 
     //
     // Embedded libraries
     //
-    jarJar.enable()
-    project.configurations.minecraftLibrary.extendsFrom(project.configurations.jarJar)
-
-    jarJar("portb:BiggerStacksConfigLib:$configLibVersion", "portb:BiggerStacksTransformerLib:$transformerLibVersion", "portb:SimpleLoggerWrapper:$simpleLoggerWrapperVersion")
-    jarJar("com.thoughtworks.xstream:xstream:[1.4.20]") {
+    library("portb:BiggerStacksConfigLib:$configLibVersion", "portb:BiggerStacksTransformerLib:$transformerLibVersion", "portb:SimpleLoggerWrapper:$simpleLoggerWrapperVersion")
+    library("com.thoughtworks.xstream:xstream:[1.4.20]") {
         //we do not want xstream's built in parser. We will use stax.
         exclude group: 'io.github.x-stream', module: 'mxparser'
     }
@@ -199,6 +206,10 @@ dependencies {
 }
 
 jar {
+    from {
+        configurations.library.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
     manifest {
         attributes([
                 "Specification-Title"     : "biggerstacks",
