@@ -2,6 +2,8 @@
 
 Allows increasing stack sizes past 64 up to MAXINT/2 (about 1 billion)
 
+[//]: # (Note to self: To update submodules, use "git submodule update --remote --force" then "git submodule foreach rm build/submoduleJars -d -rf")
+
 <!--## How to build other mods for maven local
 
 1. Create a file in your documents folder and put this in it:
