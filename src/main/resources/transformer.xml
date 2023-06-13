@@ -73,6 +73,14 @@
     </class>
     <!--endregion-->
 
+<!--    Compat for iron furnaces -->
+    <class path="ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase" transformChildren="true">
+        <method name="canSmelt" transformer="replace64"/>
+        <method name="smelt" transformer="replace64"/>
+        <method name="smeltItemMult" transformer="replace64"/>
+        <method name="smeltFactoryItemMult" transformer="replace64"/>
+    </class>
+
     <!--    <class path="" transformChildren="false">-->
     <!--        <method name="" transformer="replace64"/>-->
     <!--    </class>-->
