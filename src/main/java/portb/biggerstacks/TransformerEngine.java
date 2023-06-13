@@ -33,8 +33,13 @@ import java.util.regex.Pattern;
 
 public class TransformerEngine implements IMixinConfigPlugin
 {
-    private static final Logger  LOGGER                        = LoggerFactory.getLogger(TransformerEngine.class);
-    private static final Pattern MOD_ID_PACKAGE_TARGET_PATTERN = Pattern.compile("mixin\\.compat\\.([^.]+)\\.[^.]+$");
+    private static final Map<String, List<String>> MODS_THAT_CONFLICT_WITH_PATCHES = Map.of(
+            "portb.biggerstacks.mixin.vanilla.AnvilMenuMixin", List.of("tiered")
+    );
+    private static final Logger                    LOGGER                          = LoggerFactory.getLogger(
+            TransformerEngine.class);
+    private static final Pattern                   MOD_ID_PACKAGE_TARGET_PATTERN   = Pattern.compile(
+            "mixin\\.compat\\.([^.]+)\\.[^.]+$");
     
     static
     {
@@ -130,8 +135,23 @@ public class TransformerEngine implements IMixinConfigPlugin
         }
         else
         {
-            return true;
+            if (!MODS_THAT_CONFLICT_WITH_PATCHES.containsKey(mixinClassName))
+                return true;
+            else
+                //disable the patch if a mod that conflicts with it is installed
+                return !isAnyModInstalled(MODS_THAT_CONFLICT_WITH_PATCHES.get(mixinClassName));
         }
+    }
+    
+    private static boolean isAnyModInstalled(List<String> listOfMods)
+    {
+        for (var modId : listOfMods)
+        {
+            if (FMLLoader.getLoadingModList().getModFileById(modId) != null)
+                return true;
+        }
+        
+        return false;
     }
     
     @Override
