@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
 public class TransformerEngine implements IMixinConfigPlugin
 {
     private static final Map<String, List<String>> MODS_THAT_CONFLICT_WITH_PATCHES = Map.of(
-            "portb.biggerstacks.mixin.vanilla.AnvilMenuMixin", List.of("the_vault")
+            "portb.biggerstacks.mixin.vanilla.AnvilMenuMixin", List.of("the_vault", "tiered")
     );
     
     private static final Logger  LOGGER                        = LoggerFactory.getLogger(TransformerEngine.class);
