@@ -59,4 +59,15 @@
     <class path="slimeknights.tconstruct.gadgets.Exploder" transformChildren="false">
         <method name="finish" transformer="replace64"/>
     </class>
+
+    <!--    iron furnaces compat-->
+    <class path="ironfurnaces.tileentity.BlockIronFurnaceTileBase" transformChildren="true">
+        <method name="smeltItem" transformer="replace64"/>
+    </class>
+
+    <!--    also raise the maximum value for the configs-->
+    <class path="ironfurnaces.Config" transformChildren="false">
+        <!-- 1073741823 = MAXINT/2-->
+        <method name="setupModdedFurnacesConfig" transformer="replace64" replacement="1073741823"/>
+    </class>
 </transformers>
