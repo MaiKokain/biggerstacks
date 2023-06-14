@@ -38,7 +38,7 @@ public class EditBoxWithADifferentBorderColour extends EditBox
         {
             if (this.isBordered())
             {
-                int i = this.isFocused() ? -1 : -6250336;
+                int i = this.isFocused() ? -1 : BORDER_COLOUR;
                 p_283252_.fill(this.getX() - 1,
                                this.getY() - 1,
                                this.getX() + this.width + 1,
