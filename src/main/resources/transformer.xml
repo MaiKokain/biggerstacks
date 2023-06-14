@@ -54,9 +54,12 @@
     </class>
     <!--    endregion-->
 
-    <!--    iron furnaces compat-->
-    <class path="ironfurnaces.tileentity.BlockIronFurnaceTileBase" transformChildren="true">
-        <method name="smeltItem" transformer="replace64"/>
+    <!--    Compat for iron furnaces -->
+    <class path="ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase" transformChildren="true">
+        <method name="canSmelt" transformer="replace64"/>
+        <method name="smelt" transformer="replace64"/>
+        <method name="smeltItemMult" transformer="replace64"/>
+        <method name="smeltFactoryItemMult" transformer="replace64"/>
     </class>
 
     <!--    also raise the maximum value for the configs-->
