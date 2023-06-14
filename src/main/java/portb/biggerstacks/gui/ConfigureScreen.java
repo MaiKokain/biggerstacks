@@ -7,8 +7,8 @@
 
 package portb.biggerstacks.gui;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.MultiLineLabel;
@@ -17,7 +17,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.gui.ScreenUtils;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 import portb.biggerstacks.Constants;
 import portb.biggerstacks.net.ClientboundConfigureScreenOpenPacket;
@@ -143,71 +143,69 @@ public class ConfigureScreen extends Screen
     }
     
     @Override
-    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick)
+    public void render(@NotNull GuiGraphics graphics, int pMouseX, int pMouseY, float pPartialTick)
     {
-        renderBackground(pPoseStack);
+        renderBackground(graphics);
         
         int relX = (this.width - WIDTH) / 2, relY = (this.height - HEIGHT) / 2;
         
-        drawCenteredString(pPoseStack,
-                           font,
-                           Component.translatable("biggerstacks.config.title"),
-                           width / 2,
-                           relY + 10,
-                           0xffffff
+        graphics.drawCenteredString(
+                font,
+                Component.translatable("biggerstacks.config.title"),
+                width / 2,
+                relY + 10,
+                0xffffff
         );
         
         int centreOffset = (20 - font.lineHeight) / 2;
         int labelStartX  = 20, labelStartY = 30;
         
-        drawString(pPoseStack,
-                   font,
-                   Component.translatable("biggerstacks.normalbox.label"),
-                   relX + labelStartX,
-                   centreOffset + relY + labelStartY,
-                   0xffffff
+        graphics.drawString(
+                font,
+                Component.translatable("biggerstacks.normalbox.label"),
+                relX + labelStartX,
+                centreOffset + relY + labelStartY,
+                0xffffff
         );
         
-        drawString(pPoseStack,
-                   font,
-                   Component.translatable("biggerstacks.potsbox.label"),
-                   relX + labelStartX,
-                   centreOffset + relY + labelStartY + 30,
-                   0xffffff
+        graphics.drawString(
+                font,
+                Component.translatable("biggerstacks.potsbox.label"),
+                relX + labelStartX,
+                centreOffset + relY + labelStartY + 30,
+                0xffffff
         );
         
-        drawString(pPoseStack,
-                   font,
-                   Component.translatable("biggerstacks.enchbox.label"),
-                   relX + labelStartX,
-                   centreOffset + relY + labelStartY + 60,
-                   0xffffff
+        graphics.drawString(
+                font,
+                Component.translatable("biggerstacks.enchbox.label"),
+                relX + labelStartX,
+                centreOffset + relY + labelStartY + 60,
+                0xffffff
         );
         
         if (isAlreadyUsingCustomFile)
-            OVERWRITE_WARNING_LABEL.renderCentered(pPoseStack, width / 2, relY + 125);
+            OVERWRITE_WARNING_LABEL.renderCentered(graphics, width / 2, relY + 125);
         
-        super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
+        super.render(graphics, pMouseX, pMouseY, pPartialTick);
     }
     
     @Override
-    public void renderBackground(PoseStack pPoseStack)
+    public void renderBackground(GuiGraphics graphics)
     {
         int relX = (this.width - WIDTH) / 2;
         int relY = (this.height - HEIGHT) / 2;
         
-        ScreenUtils.blitWithBorder(pPoseStack,
-                                   Constants.CONFIG_GUI_BG,
-                                   relX,
-                                   relY,
-                                   0,
-                                   0,
-                                   WIDTH,
-                                   HEIGHT,
-                                   256,
-                                   256,
-                                   4,
-                                   0
+        graphics.blitWithBorder(Constants.CONFIG_GUI_BG,
+                                relX,
+                                relY,
+                                0,
+                                0,
+                                WIDTH,
+                                HEIGHT,
+                                256,
+                                256,
+                                4
         );
     }
     

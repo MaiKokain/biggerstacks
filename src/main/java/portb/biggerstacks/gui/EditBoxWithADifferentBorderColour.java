@@ -7,10 +7,10 @@
 
 package portb.biggerstacks.gui;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -32,26 +32,24 @@ public class EditBoxWithADifferentBorderColour extends EditBox
     }
     
     @Override
-    public void renderWidget(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick)
+    public void renderWidget(GuiGraphics p_283252_, int p_281594_, int p_282100_, float p_283101_)
     {
         if (this.isVisible())
         {
             if (this.isBordered())
             {
-                int i = this.isFocused() ? -1 : BORDER_COLOUR;
-                fill(pPoseStack,
-                     this.getX() - 1,
-                     this.getY() - 1,
-                     this.getX() + this.width + 1,
-                     this.getY() + this.height + 1,
-                     i
+                int i = this.isFocused() ? -1 : -6250336;
+                p_283252_.fill(this.getX() - 1,
+                               this.getY() - 1,
+                               this.getX() + this.width + 1,
+                               this.getY() + this.height + 1,
+                               i
                 );
-                fill(pPoseStack,
-                     this.getX(),
-                     this.getY(),
-                     this.getX() + this.width,
-                     this.getY() + this.height,
-                     -16777216
+                p_283252_.fill(this.getX(),
+                               this.getY(),
+                               this.getX() + this.width,
+                               this.getY() + this.height,
+                               -16777216
                 );
             }
             
@@ -72,12 +70,7 @@ public class EditBoxWithADifferentBorderColour extends EditBox
             if (!s.isEmpty())
             {
                 String s1 = flag ? s.substring(0, j) : s;
-                j1 = this.font.drawShadow(pPoseStack,
-                                          this.formatter.apply(s1, this.displayPos),
-                                          (float) l,
-                                          (float) i1,
-                                          i2
-                );
+                j1 = p_283252_.drawString(this.font, this.formatter.apply(s1, this.displayPos), l, i1, i2);
             }
             
             boolean flag2 = this.cursorPos < this.value.length() || this.value.length() >= this.getMaxLength();
@@ -94,40 +87,35 @@ public class EditBoxWithADifferentBorderColour extends EditBox
             
             if (!s.isEmpty() && flag && j < s.length())
             {
-                this.font.drawShadow(pPoseStack,
-                                     this.formatter.apply(s.substring(j), this.cursorPos),
-                                     (float) j1,
-                                     (float) i1,
-                                     i2
-                );
+                p_283252_.drawString(this.font, this.formatter.apply(s.substring(j), this.cursorPos), j1, i1, i2);
             }
             
             if (this.hint != null && s.isEmpty() && !this.isFocused())
             {
-                this.font.drawShadow(pPoseStack, this.hint, (float) j1, (float) i1, i2);
+                p_283252_.drawString(this.font, this.hint, j1, i1, i2);
             }
             
             if (!flag2 && this.suggestion != null)
             {
-                this.font.drawShadow(pPoseStack, this.suggestion, (float) (k1 - 1), (float) i1, -8355712);
+                p_283252_.drawString(this.font, this.suggestion, k1 - 1, i1, -8355712);
             }
             
             if (flag1)
             {
                 if (flag2)
                 {
-                    GuiComponent.fill(pPoseStack, k1, i1 - 1, k1 + 1, i1 + 1 + 9, -3092272);
+                    p_283252_.fill(RenderType.guiOverlay(), k1, i1 - 1, k1 + 1, i1 + 1 + 9, -3092272);
                 }
                 else
                 {
-                    this.font.drawShadow(pPoseStack, "_", (float) k1, (float) i1, i2);
+                    p_283252_.drawString(this.font, "_", k1, i1, i2);
                 }
             }
             
             if (k != j)
             {
                 int l1 = l + this.font.width(s.substring(0, k));
-                this.renderHighlight(pPoseStack, k1, i1 - 1, l1 - 1, i1 + 1 + 9);
+                this.renderHighlight(p_283252_, k1, i1 - 1, l1 - 1, i1 + 1 + 9);
             }
             
         }
