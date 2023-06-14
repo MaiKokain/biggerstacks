@@ -52,3 +52,7 @@
 	path = submodules/SophisticatedBackpacks
 	url = https://github.com/P3pp3rF1y/SophisticatedBackpacks.git
 	branch = 1.18.x
+[submodule "submodules/IronFurnaces"]
+	path = submodules/IronFurnaces
+	url = https://github.com/Qelifern/IronFurnaces.git
+	branch = 1.18.2
