@@ -80,18 +80,4 @@
         <method name="smeltItemMult" transformer="replace64"/>
         <method name="smeltFactoryItemMult" transformer="replace64"/>
     </class>
-
-    <!--    <class path="" transformChildren="false">-->
-    <!--        <method name="" transformer="replace64"/>-->
-    <!--    </class>-->
-
-    <!--    <class path="" transformChildren="false">-->
-    <!--        <method name="" transformer="replace64"/>-->
-    <!--    </class>-->
-
-    <!--    <class path="" transformChildren="false">-->
-    <!--        <method name="" transformer="replace64"/>-->
-    <!--    </class>-->
-
-
 </transformers>
