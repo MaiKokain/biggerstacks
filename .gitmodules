@@ -48,3 +48,7 @@
 	url = https://github.com/McJtyMods/RFToolsBase.git
 	branch = 1.16
 	ignore = all
+[submodule "submodules/IronFurnaces"]
+	path = submodules/IronFurnaces
+	url = https://github.com/Qelifern/IronFurnaces.git
+	branch = 1.16.5
