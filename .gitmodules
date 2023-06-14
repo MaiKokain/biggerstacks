@@ -6,3 +6,7 @@
 	path = submodules/ModularRouters
 	url = https://github.com/desht/ModularRouters
 	branch = MC1.19.3-master
+[submodule "IronFurnaces"]
+	path = IronFurnaces
+	url = https://github.com/Qelifern/IronFurnaces.git
+	branch = 1.19.3
