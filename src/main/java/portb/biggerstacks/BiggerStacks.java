@@ -51,7 +51,7 @@ public class BiggerStacks
     private static void registerConfigs()
     {
         ModLoadingContext context = ModLoadingContext.get();
-    
+        
         if (FMLEnvironment.dist.isClient())
         {
             context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");

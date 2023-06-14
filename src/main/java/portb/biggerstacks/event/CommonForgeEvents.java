@@ -25,10 +25,10 @@ import java.nio.file.Files;
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID)
 public class CommonForgeEvents
 {
-    private final static Style SETUP_COMMAND_SHORTCUT = Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
-                                                                                                  "/biggerstacks quicksetup"
+    private final static Style     SETUP_COMMAND_SHORTCUT = Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+                                                                                                      "/biggerstacks quicksetup"
     )).withColor(ChatFormatting.BLUE).withUnderlined(true);
-    private final static     Style WIKI_LINK              = Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,
+    private final static Style     WIKI_LINK              = Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,
                                                                                                       "https://codeberg.org/PORTB/BiggerStacks/wiki"
     )).withColor(ChatFormatting.BLUE).withUnderlined(true);
     private final static Component BULLET_POINT           = Component.literal("\n> ").withStyle(ChatFormatting.WHITE);

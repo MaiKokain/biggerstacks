@@ -27,9 +27,9 @@
         <blacklist>net/p3pp3rf1y/sophisticatedcore/common/gui/StorageInventorySlot</blacklist>
     </class>
 
-<!--    endregion-->
+    <!--    endregion-->
 
-<!-- region mekanism -->
+    <!-- region mekanism -->
     <!--    Mekanism seems to use completely custom GUI stuff. BasicInventorySlot is essentially its version of Slot. Easy fix -->
     <class path="mekanism/common/inventory/slot/BasicInventorySlot" transformChildren="true">
         <method name="getLimit" transformer="slotLimit"/>

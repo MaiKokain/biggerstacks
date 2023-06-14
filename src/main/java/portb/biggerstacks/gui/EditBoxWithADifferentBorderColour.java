@@ -34,61 +34,98 @@ public class EditBoxWithADifferentBorderColour extends EditBox
     @Override
     public void renderWidget(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick)
     {
-        if (this.isVisible()) {
-            if (this.isBordered()) {
+        if (this.isVisible())
+        {
+            if (this.isBordered())
+            {
                 int i = this.isFocused() ? -1 : BORDER_COLOUR;
-                fill(pPoseStack, this.getX() - 1, this.getY() - 1, this.getX() + this.width + 1, this.getY() + this.height + 1, i);
-                fill(pPoseStack, this.getX(), this.getY(), this.getX() + this.width, this.getY() + this.height, -16777216);
+                fill(pPoseStack,
+                     this.getX() - 1,
+                     this.getY() - 1,
+                     this.getX() + this.width + 1,
+                     this.getY() + this.height + 1,
+                     i
+                );
+                fill(pPoseStack,
+                     this.getX(),
+                     this.getY(),
+                     this.getX() + this.width,
+                     this.getY() + this.height,
+                     -16777216
+                );
             }
             
-            int i2 = this.isEditable ? this.textColor : this.textColorUneditable;
-            int j = this.cursorPos - this.displayPos;
-            int k = this.highlightPos - this.displayPos;
-            String s = this.font.plainSubstrByWidth(this.value.substring(this.displayPos), this.getInnerWidth());
-            boolean flag = j >= 0 && j <= s.length();
+            int     i2    = this.isEditable ? this.textColor : this.textColorUneditable;
+            int     j     = this.cursorPos - this.displayPos;
+            int     k     = this.highlightPos - this.displayPos;
+            String  s     = this.font.plainSubstrByWidth(this.value.substring(this.displayPos), this.getInnerWidth());
+            boolean flag  = j >= 0 && j <= s.length();
             boolean flag1 = this.isFocused() && this.frame / 6 % 2 == 0 && flag;
-            int l = this.bordered ? this.getX() + 4 : this.getX();
-            int i1 = this.bordered ? this.getY() + (this.height - 8) / 2 : this.getY();
-            int j1 = l;
-            if (k > s.length()) {
+            int     l     = this.bordered ? this.getX() + 4 : this.getX();
+            int     i1    = this.bordered ? this.getY() + (this.height - 8) / 2 : this.getY();
+            int     j1    = l;
+            if (k > s.length())
+            {
                 k = s.length();
             }
             
-            if (!s.isEmpty()) {
+            if (!s.isEmpty())
+            {
                 String s1 = flag ? s.substring(0, j) : s;
-                j1 = this.font.drawShadow(pPoseStack, this.formatter.apply(s1, this.displayPos), (float)l, (float)i1, i2);
+                j1 = this.font.drawShadow(pPoseStack,
+                                          this.formatter.apply(s1, this.displayPos),
+                                          (float) l,
+                                          (float) i1,
+                                          i2
+                );
             }
             
             boolean flag2 = this.cursorPos < this.value.length() || this.value.length() >= this.getMaxLength();
-            int k1 = j1;
-            if (!flag) {
+            int     k1    = j1;
+            if (!flag)
+            {
                 k1 = j > 0 ? l + this.width : l;
-            } else if (flag2) {
+            }
+            else if (flag2)
+            {
                 k1 = j1 - 1;
                 --j1;
             }
             
-            if (!s.isEmpty() && flag && j < s.length()) {
-                this.font.drawShadow(pPoseStack, this.formatter.apply(s.substring(j), this.cursorPos), (float)j1, (float)i1, i2);
+            if (!s.isEmpty() && flag && j < s.length())
+            {
+                this.font.drawShadow(pPoseStack,
+                                     this.formatter.apply(s.substring(j), this.cursorPos),
+                                     (float) j1,
+                                     (float) i1,
+                                     i2
+                );
             }
             
-            if (this.hint != null && s.isEmpty() && !this.isFocused()) {
-                this.font.drawShadow(pPoseStack, this.hint, (float)j1, (float)i1, i2);
+            if (this.hint != null && s.isEmpty() && !this.isFocused())
+            {
+                this.font.drawShadow(pPoseStack, this.hint, (float) j1, (float) i1, i2);
             }
             
-            if (!flag2 && this.suggestion != null) {
-                this.font.drawShadow(pPoseStack, this.suggestion, (float)(k1 - 1), (float)i1, -8355712);
+            if (!flag2 && this.suggestion != null)
+            {
+                this.font.drawShadow(pPoseStack, this.suggestion, (float) (k1 - 1), (float) i1, -8355712);
             }
             
-            if (flag1) {
-                if (flag2) {
+            if (flag1)
+            {
+                if (flag2)
+                {
                     GuiComponent.fill(pPoseStack, k1, i1 - 1, k1 + 1, i1 + 1 + 9, -3092272);
-                } else {
-                    this.font.drawShadow(pPoseStack, "_", (float)k1, (float)i1, i2);
+                }
+                else
+                {
+                    this.font.drawShadow(pPoseStack, "_", (float) k1, (float) i1, i2);
                 }
             }
             
-            if (k != j) {
+            if (k != j)
+            {
                 int l1 = l + this.font.width(s.substring(0, k));
                 this.renderHighlight(pPoseStack, k1, i1 - 1, l1 - 1, i1 + 1 + 9);
             }

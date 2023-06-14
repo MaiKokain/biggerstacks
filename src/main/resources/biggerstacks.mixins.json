@@ -17,7 +17,7 @@
         "vanilla.stacksize.ServerGamePacketListenerImplMixin"
     ],
     "client": [
-        "client.ItemRendererMixin",
+        "client.ItemRendererMixin"
     ],
     "injectors": {
         "defaultRequire": 1

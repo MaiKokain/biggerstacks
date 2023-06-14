@@ -40,7 +40,7 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
         if (FMLEnvironment.dist.isDedicatedServer())
         {
             ServerPlayer sender = contextSupplier.get().getSender();
-        
+            
             if (sender == null || !sender.hasPermissions(Constants.CHANGE_STACK_SIZE_COMMAND_PERMISSION_LEVEL))
                 return;
         }

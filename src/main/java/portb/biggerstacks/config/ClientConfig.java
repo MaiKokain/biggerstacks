@@ -23,10 +23,9 @@ import java.util.Objects;
 @OnlyIn(Dist.CLIENT)
 public class ClientConfig
 {
-    private static final Map<String, ChatFormatting> NUMBER_FORMATTING_COLOURS = new HashMap<>();
-    
     public static final  ForgeConfigSpec                     SPEC;
     public static final  ForgeConfigSpec.BooleanValue        enableNumberShortening;
+    private static final Map<String, ChatFormatting>         NUMBER_FORMATTING_COLOURS = new HashMap<>();
     private static final ForgeConfigSpec.ConfigValue<String> numberColour;
     
     static

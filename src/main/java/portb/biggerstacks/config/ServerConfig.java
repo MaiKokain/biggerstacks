@@ -17,7 +17,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 public class ServerConfig
 {
     public final static ServerConfig                 SERVER_INSTANCE = new ServerConfig(true);
-    public final static ServerConfig                 LOCAL_INSTANCE = new ServerConfig(false);
+    public final static ServerConfig                 LOCAL_INSTANCE  = new ServerConfig(false);
     public final        ForgeConfigSpec              SPEC;
     public final        ForgeConfigSpec.BooleanValue increaseTransferRate;
     

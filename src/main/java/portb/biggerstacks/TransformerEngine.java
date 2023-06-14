@@ -105,6 +105,17 @@ public class TransformerEngine implements IMixinConfigPlugin
         }
     }
     
+    private static boolean isAnyModInstalled(List<String> listOfMods)
+    {
+        for (var modId : listOfMods)
+        {
+            if (FMLLoader.getLoadingModList().getModFileById(modId) != null)
+                return true;
+        }
+        
+        return false;
+    }
+    
     @Override
     public void onLoad(String mixinPackage)
     {
@@ -141,17 +152,6 @@ public class TransformerEngine implements IMixinConfigPlugin
                 //disable the patch if a mod that conflicts with it is installed
                 return !isAnyModInstalled(MODS_THAT_CONFLICT_WITH_PATCHES.get(mixinClassName));
         }
-    }
-    
-    private static boolean isAnyModInstalled(List<String> listOfMods)
-    {
-        for (var modId : listOfMods)
-        {
-            if (FMLLoader.getLoadingModList().getModFileById(modId) != null)
-                return true;
-        }
-        
-        return false;
     }
     
     @Override

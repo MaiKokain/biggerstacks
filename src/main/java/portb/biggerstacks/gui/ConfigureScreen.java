@@ -114,9 +114,9 @@ public class ConfigureScreen extends Screen
                 Component.translatable("biggerstacks.enchbox.alt")
         );
         
-        enchBooksBox.setValue("" + previousOptions.getEnchBookLimit());
-        potionsBox.setValue("" + previousOptions.getPotionStackLimit());
-        normalItemsBox.setValue("" + previousOptions.getNormalStackLimit());
+        enchBooksBox.setValue(String.valueOf(previousOptions.getEnchBookLimit()));
+        potionsBox.setValue(String.valueOf(previousOptions.getPotionStackLimit()));
+        normalItemsBox.setValue(String.valueOf(previousOptions.getNormalStackLimit()));
         
         enchBooksBox.setResponder(verifyInputBoxNumber(enchBooksBox));
         potionsBox.setResponder(verifyInputBoxNumber(potionsBox));
@@ -132,7 +132,7 @@ public class ConfigureScreen extends Screen
                                    Supplier::get
         * */
         confirmButton = new Button.Builder(Component.translatable("biggerstacks.save"), this::onConfirmButtonClicked)
-                        .bounds(relX + (WIDTH - 80) / 2, relY + HEIGHT - 30, 80, 20).build();
+                                .bounds(relX + (WIDTH - 80) / 2, relY + HEIGHT - 30, 80, 20).build();
         
         addRenderableWidget(normalItemsBox);
         addRenderableWidget(potionsBox);

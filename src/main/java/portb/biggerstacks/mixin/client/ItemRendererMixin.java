@@ -36,6 +36,35 @@ public class ItemRendererMixin
     private static final DecimalFormat MILLION_FORMAT  = new DecimalFormat("#.##M");
     private static final DecimalFormat THOUSAND_FORMAT = new DecimalFormat("#.##K");
     
+    private static String getStringForBigStackCount(int count)
+    {
+        if (ClientConfig.enableNumberShortening.get())
+        {
+            var decimal = new BigDecimal(count).round(new MathContext(3)); //pinnacle of over engineering
+            
+            var value = decimal.doubleValue();
+            
+            if (value >= ONE_BILLION)
+                return BILLION_FORMAT.format(value / ONE_BILLION);
+            else if (value >= ONE_MILLION)
+                return MILLION_FORMAT.format(value / ONE_MILLION);
+            else if (value > ONE_THOUSAND)
+                return THOUSAND_FORMAT.format(value / ONE_THOUSAND);
+        }
+        
+        return String.valueOf(count);
+    }
+    
+    private static double calculateStringScale(Font font, String countString)
+    {
+        var width = font.width(countString);
+        
+        if (width < 16)
+            return 1.0;
+        else
+            return 16.0 / width;
+    }
+    
     // region "delete" all the vanilla item count rendering
     @Redirect(method = "renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
               at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(FFF)V"))
@@ -59,6 +88,7 @@ public class ItemRendererMixin
     {
         return 0;
     }
+    //endregion
     
     @Redirect(method = "renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
               at = @At(value = "INVOKE",
@@ -74,7 +104,6 @@ public class ItemRendererMixin
     private void doNothing5(MultiBufferSource.BufferSource _unused)
     {
     }
-    //endregion
     
     //Inject the new text rendering
     @Inject(method = "renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
@@ -106,34 +135,5 @@ public class ItemRendererMixin
         );
         
         bufferSource.endBatch();
-    }
-    
-    private static String getStringForBigStackCount(int count)
-    {
-        if (ClientConfig.enableNumberShortening.get())
-        {
-            var decimal = new BigDecimal(count).round(new MathContext(3)); //pinnacle of over engineering
-            
-            var value = decimal.doubleValue();
-            
-            if (value >= ONE_BILLION)
-                return BILLION_FORMAT.format(value / ONE_BILLION);
-            else if (value >= ONE_MILLION)
-                return MILLION_FORMAT.format(value / ONE_MILLION);
-            else if (value > ONE_THOUSAND)
-                return THOUSAND_FORMAT.format(value / ONE_THOUSAND);
-        }
-        
-        return String.valueOf(count);
-    }
-    
-    private static double calculateStringScale(Font font, String countString)
-    {
-        var width = font.width(countString);
-        
-        if (width < 16)
-            return 1.0;
-        else
-            return 16.0 / width;
     }
 }
