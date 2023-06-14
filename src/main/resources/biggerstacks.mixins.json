@@ -6,6 +6,9 @@
     "plugin": "portb.biggerstacks.TransformerEngine",
     "refmap": "biggerstacks.refmap.json",
     "mixins": [
+        "compat.ae2.GenericStackInvMixin",
+        "compat.ae2.InternalInventoryMixin",
+        "compat.ae2.IOBusPartMixin",
         "vanilla.AnvilMenuMixin",
         "vanilla.ContainersMixin",
         "vanilla.FriendlyByteBufMixin",
@@ -18,6 +21,7 @@
     ],
     "client": [
         "client.ItemRendererMixin",
+        "compat.ae2.AEBaseScreenMixin"
     ],
     "injectors": {
         "defaultRequire": 1

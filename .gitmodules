@@ -1,0 +1,4 @@
+[submodule "submodules/Applied-Energistics-2"]
+	path = submodules/Applied-Energistics-2
+	url = https://github.com/AppliedEnergistics/Applied-Energistics-2.git
+	branch = forge/1.19.3

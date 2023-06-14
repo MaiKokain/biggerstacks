@@ -139,20 +139,19 @@ submodules {
                     tasks.spotlessJava.enabled = false
                     tasks.spotlessJavaCheck.enabled = false
                     tasks.spotlessJson.enabled = false
+                    tasks.test.enabled = false
                 }
             """.stripIndent()
 
             reobfTaskName = "reobfShadowJar"
             jarTask = "shadowJar"
             tasks = ["runData", "build"]
-
-            runtime = false
         }
 
     }
 
     defaultOptions {
-        runtime = false
+//        runtime = false
     }
 }
 
