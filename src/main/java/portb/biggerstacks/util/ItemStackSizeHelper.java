@@ -17,8 +17,6 @@ import portb.biggerstacks.config.StackSizeRules;
 import portb.configlib.ItemProperties;
 import portb.configlib.TagAccessor;
 
-import java.util.stream.Collectors;
-
 import static portb.biggerstacks.BiggerStacks.LOGGER;
 
 public class ItemStackSizeHelper

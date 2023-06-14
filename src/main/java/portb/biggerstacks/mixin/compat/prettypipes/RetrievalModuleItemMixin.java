@@ -27,7 +27,7 @@ public class RetrievalModuleItemMixin
     private int increaseTransferRate(RetrievalModuleItem instance)
     {
         int rate = ((RetrievalModuleItemAccessor) instance).getMaxExtractionRate();
-    
+        
         if (ServerConfig.get().increaseTransferRate.get())
             return SlotLimitHelper.scaleTransferRate(rate, false);
         else

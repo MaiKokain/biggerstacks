@@ -109,9 +109,9 @@ public class ConfigureScreen extends Screen
                 new TranslationTextComponent("biggerstacks.enchbox.alt")
         );
         
-        enchBooksBox.setValue("" + previousOptions.getEnchBookLimit());
-        potionsBox.setValue("" + previousOptions.getPotionStackLimit());
-        normalItemsBox.setValue("" + previousOptions.getNormalStackLimit());
+        enchBooksBox.setValue(String.valueOf(previousOptions.getEnchBookLimit()));
+        potionsBox.setValue(String.valueOf(previousOptions.getPotionStackLimit()));
+        normalItemsBox.setValue(String.valueOf(previousOptions.getNormalStackLimit()));
         
         enchBooksBox.setResponder(verifyInputBoxNumber(enchBooksBox));
         potionsBox.setResponder(verifyInputBoxNumber(potionsBox));
@@ -191,12 +191,12 @@ public class ConfigureScreen extends Screen
     
     public void renderCentered(MatrixStack matrixStack, FontRenderer pFont, IFormattableTextComponent pFormattedText, int maxWidth, int pWidth, int pY)
     {
-    
+        
         List<TextWithWidth> widthList = pFont.split(pFormattedText, maxWidth).stream().map((text) -> new TextWithWidth(
                 text,
                 pFont.width(text)
         )).collect(Collectors.toList());
-    
+        
         for (TextWithWidth textWithWidth : widthList)
         {
             pFont.drawShadow(matrixStack,
@@ -205,7 +205,7 @@ public class ConfigureScreen extends Screen
                              (float) pY,
                              0xffffff
             );
-    
+            
             pY += 9;
         }
     }

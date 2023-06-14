@@ -32,14 +32,18 @@ import java.util.regex.Pattern;
 public class TransformerEngine implements IMixinConfigPlugin
 {
     private static final Map<String, List<String>> MODS_THAT_CONFLICT_WITH_PATCHES = new HashMap<>();
-    private static final Logger  LOGGER                        = LogManager.getLogger(TransformerEngine.class);
-    private static final Pattern MOD_ID_PACKAGE_TARGET_PATTERN = Pattern.compile("mixin\\.compat\\.([^.]+)\\.[^.]+$");
+    private static final Logger                    LOGGER                          = LogManager.getLogger(
+            TransformerEngine.class);
+    private static final Pattern                   MOD_ID_PACKAGE_TARGET_PATTERN   = Pattern.compile(
+            "mixin\\.compat\\.([^.]+)\\.[^.]+$");
     
     static
     {
         //add values to the patch conflict map
         //thank you java
-        MODS_THAT_CONFLICT_WITH_PATCHES.put("portb.biggerstacks.mixin.vanilla.RepairContainerMixin", Arrays.asList("tiered", "charm"));
+        MODS_THAT_CONFLICT_WITH_PATCHES.put("portb.biggerstacks.mixin.vanilla.RepairContainerMixin",
+                                            Arrays.asList("tiered", "charm")
+        );
         
         EnumSet<ILaunchPluginService.Phase> NONE          = EnumSet.noneOf(ILaunchPluginService.Phase.class);
         EnumSet<ILaunchPluginService.Phase> BEFORE        = EnumSet.of(ILaunchPluginService.Phase.BEFORE);
@@ -102,6 +106,17 @@ public class TransformerEngine implements IMixinConfigPlugin
         }
     }
     
+    private static boolean isAnyModInstalled(List<String> listOfMods)
+    {
+        for (String modId : listOfMods)
+        {
+            if (FMLLoader.getLoadingModList().getModFileById(modId) != null)
+                return true;
+        }
+        
+        return false;
+    }
+    
     @Override
     public void onLoad(String mixinPackage)
     {
@@ -132,23 +147,12 @@ public class TransformerEngine implements IMixinConfigPlugin
         }
         else
         {
-            if(!MODS_THAT_CONFLICT_WITH_PATCHES.containsKey(mixinClassName))
+            if (!MODS_THAT_CONFLICT_WITH_PATCHES.containsKey(mixinClassName))
                 return true;
             else
                 //disable the patch if a mod that conflicts with it is installed
                 return !isAnyModInstalled(MODS_THAT_CONFLICT_WITH_PATCHES.get(mixinClassName));
         }
-    }
-    
-    private static boolean isAnyModInstalled(List<String> listOfMods)
-    {
-        for (String modId : listOfMods)
-        {
-            if(FMLLoader.getLoadingModList().getModFileById(modId) != null)
-                return true;
-        }
-        
-        return false;
     }
     
     @Override

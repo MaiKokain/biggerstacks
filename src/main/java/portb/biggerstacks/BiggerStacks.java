@@ -34,16 +34,16 @@ public class BiggerStacks
     {
         if (FMLEnvironment.dist.isClient())
             MinecraftForge.EVENT_BUS.register(ClientEvents.class);
-    
+        
         MinecraftForge.EVENT_BUS.register(ServerEvents.class);
         MinecraftForge.EVENT_BUS.register(CommonModEvents.class);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-    
+        
         ConfigLib.LOGGER = MyLoggerFactory.createMyLogger(
                 //don't use slf4j! even though it works in dev, it doesn't exist at runtime in production environment!
                 LogManager.getLogger(ConfigLib.class)
         );
-    
+        
         registerConfigs();
     }
     
@@ -57,7 +57,7 @@ public class BiggerStacks
     private void registerConfigs()
     {
         ModLoadingContext context = ModLoadingContext.get();
-    
+        
         if (FMLEnvironment.dist.isClient())
         {
             context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, Constants.MOD_ID + "-client.toml");
@@ -66,7 +66,7 @@ public class BiggerStacks
                                    Constants.MOD_ID + "-local.toml"
             );
         }
-    
+        
         context.registerConfig(ModConfig.Type.SERVER,
                                ServerConfig.SERVER_INSTANCE.SPEC,
                                Constants.MOD_ID + "-server.toml"

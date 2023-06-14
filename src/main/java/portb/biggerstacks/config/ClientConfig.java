@@ -23,11 +23,10 @@ import java.util.stream.Collectors;
 @OnlyIn(Dist.CLIENT)
 public class ClientConfig
 {
-    private static final Map<String, TextFormatting> NUMBER_FORMATTING_COLOURS = new HashMap<>();
-    
     public static final  ForgeConfigSpec                     SPEC;
     public static final  ForgeConfigSpec.BooleanValue        enableNumberShortening;
     public static final  ForgeConfigSpec.BooleanValue        stfuWarning;
+    private static final Map<String, TextFormatting>         NUMBER_FORMATTING_COLOURS = new HashMap<>();
     private static final ForgeConfigSpec.ConfigValue<String> numberColour;
     
     static

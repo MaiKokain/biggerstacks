@@ -7,7 +7,6 @@
 
 package portb.biggerstacks.mixin.vanilla.stacksize;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.util.Constants;

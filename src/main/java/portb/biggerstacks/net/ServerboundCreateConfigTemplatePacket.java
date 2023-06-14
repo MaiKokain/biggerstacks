@@ -39,7 +39,7 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
         if (FMLEnvironment.dist.isDedicatedServer())
         {
             ServerPlayerEntity sender = contextSupplier.get().getSender();
-        
+            
             if (sender == null || !sender.hasPermissions(Constants.CHANGE_STACK_SIZE_COMMAND_PERMISSION_LEVEL))
                 return;
         }
@@ -51,7 +51,7 @@ public class ServerboundCreateConfigTemplatePacket extends GenericTemplateOption
             if (FMLEnvironment.dist.isClient())
                 //don't display warning anymore
                 ClientConfig.stfuWarning.set(true);
-    
+            
             Files.write(Constants.RULESET_FILE,
                         template.toXML().getBytes(StandardCharsets.UTF_8),
                         StandardOpenOption.CREATE,
