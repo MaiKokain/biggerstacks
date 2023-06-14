@@ -113,14 +113,6 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     mavenCentral()
     mavenLocal()
-
-//    maven {
-//        url "https://cursemaven.com"
-//        content {
-//            includeGroup "curse.maven"
-//        }
-//    }
-
     maven { // JEI
         name 'DVS1 Maven FS'
         url 'https://dvs1.progwml6.com/files/maven'
@@ -131,9 +123,8 @@ repositories {
 // Submodule config
 //
 submodules {
-    submodulesDirectory = file("submodules")
+    submodulesDirectory = file("subtree")
 }
-
 
 dependencies {
     minecraft "net.minecraftforge:forge:$minecraftVersion-$forgeVersion"
@@ -157,8 +148,6 @@ dependencies {
     // Mixin
     //
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-
-    //runtimeOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.5.0.297")
 }
 
 jar {
@@ -184,33 +173,3 @@ reobf {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
-
-//task _sourcesJar(type: Jar, dependsOn: classes) {
-//    classifier 'sources'
-//    from sourceSets.main.allSource
-//}
-//
-//task _deobfJar(type:Jar) {
-//    from sourceSets.main.output
-//    classifier 'deobf'
-//}
-//
-//publishing {
-//    println("Publishing ${project.group}:${project.archivesBaseName}:${project.version}")
-//    publications {
-//        mavenJava(MavenPublication) {
-//            groupId = project.group
-//            artifactId = project.archivesBaseName
-//            version = project.version
-//
-//            artifact jar
-//            artifact _sourcesJar
-//            artifact _deobfJar
-//        }
-//    }
-//    repositories {
-//        maven {
-//            url "file://" + System.getenv("local_maven")
-//        }
-//    }
-//}
