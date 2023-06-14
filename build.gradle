@@ -108,17 +108,11 @@ mixin {
 submodules {
     submodulesDirectory = file("submodules")
 
-    def use_java_8 = "-Dorg.gradle.java.home=C:\\PROGRA~1\\ECLIPS~1\\jdk-8.0.322.6-hotspot"
-
-    defaultOptions {
-        gradleArgs = use_java_8
-    }
+    //System.properties.'java.home')
 
     repos {
         //these mods use snapshot mapping (incompatible) and must be compiled with reobf enabled
         "Applied-Energistics-2" {
-            gradleArgs = use_java_8
-
             //disable spotless (it causes build errors because npm isn't installed)
             customGradleCode = """
                 afterEvaluate {
@@ -135,12 +129,10 @@ submodules {
 
         Cyclic {
             enableDeobf = false
-            gradleArgs = use_java_8
         }
 
         PrettyPipes {
             enableDeobf = false
-            gradleArgs = use_java_8
 
             //need to manually enable reobfJar for this one...
             customGradleCode = """
@@ -150,7 +142,6 @@ submodules {
 
         refinedstorage {
             enableDeobf = false
-            gradleArgs = use_java_8
         }
     }
 }
