@@ -1,7 +1,3 @@
-[submodule "submodules/Applied-Energistics-2"]
-	path = submodules/Applied-Energistics-2
-	url = https://github.com/AppliedEnergistics/Applied-Energistics-2.git
-	branch = master/9965a2fd4d3fbf9eadd0a0e7190e0812537f836e
 [submodule "submodules/ModularRouters"]
 	path = submodules/ModularRouters
 	url = https://github.com/desht/ModularRouters
