@@ -88,7 +88,6 @@ public class ItemRendererMixin
     {
         return 0;
     }
-    //endregion
     
     @Redirect(method = "renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
               at = @At(value = "INVOKE",
@@ -104,6 +103,7 @@ public class ItemRendererMixin
     private void doNothing5(MultiBufferSource.BufferSource _unused)
     {
     }
+    //endregion
     
     //Inject the new text rendering
     @Inject(method = "renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
