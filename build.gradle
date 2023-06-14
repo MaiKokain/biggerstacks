@@ -132,29 +132,6 @@ repositories {
 //
 submodules {
     submodulesDirectory = file("submodules")
-
-    repos {
-        "Applied-Energistics-2" {
-            //disable spotless (it causes build errors because npm isn't installed)
-            customGradleCode = """
-                afterEvaluate{
-                    tasks.spotlessJava.enabled = false
-                    tasks.spotlessJavaCheck.enabled = false
-                    tasks.spotlessJson.enabled = false
-                    tasks.test.enabled = false
-                }
-            """.stripIndent()
-
-            reobfTaskName = "reobfShadowJar"
-            jarTask = "shadowJar"
-            tasks = ["runData", "build"]
-        }
-
-    }
-
-    defaultOptions {
-//        runtime = false
-    }
 }
 
 

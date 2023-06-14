@@ -34,7 +34,7 @@ public class ItemRendererMixin
     private static final DecimalFormat MILLION_FORMAT  = new DecimalFormat("#.##M");
     private static final DecimalFormat THOUSAND_FORMAT = new DecimalFormat("#.##K");
     
-    @Redirect(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
+    @Redirect(method = "renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
               at = @At(value = "INVOKE", target = "Ljava/lang/String;valueOf(I)Ljava/lang/String;"))
     private String getStringForBigStackCount(int count)
     {
@@ -57,12 +57,12 @@ public class ItemRendererMixin
     
     //scale down fonts to fit
     @Surrogate
-    @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
+    @Inject(method = "renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
             at = @At(value = "INVOKE",
                      target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(FFF)V",
                      shift = At.Shift.BEFORE),
             locals = LocalCapture.CAPTURE_FAILHARD)
-    private void pushStack(Font font, ItemStack tesselator, int x, int y, String j, CallbackInfo ci, PoseStack posestack, String countString)
+    private void pushStack(PoseStack posestack, Font font, ItemStack p_275590_, int p_275202_, int p_275508_, String p_275302_, CallbackInfo ci, String countString)
     {
         posestack.pushPose();
         var scale = (float) calculateStringScale(font, countString);
@@ -72,11 +72,11 @@ public class ItemRendererMixin
     
     //move the text to the correct place
     @Surrogate
-    @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
+    @Inject(method = "renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
             at = @At(value = "INVOKE",
-                     target = "Lnet/minecraft/client/gui/Font;drawInBatch(Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I"),
+                     target = "Lnet/minecraft/client/gui/Font;drawInBatch(Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/gui/Font$DisplayMode;II)I"),
             locals = LocalCapture.CAPTURE_FAILHARD)
-    private void translateStackBack(Font font, ItemStack itemStack, int x, int y, String _a, CallbackInfo ci, PoseStack posestack, String countString, MultiBufferSource.BufferSource multibuffersource$buffersource)
+    private void translateStackBack(PoseStack posestack, Font font, ItemStack p_275590_, int x, int y, String countString, CallbackInfo ci)
     {
         var width        = font.width(countString);
         var scale        = calculateStringScale(font, countString);
@@ -108,12 +108,12 @@ public class ItemRendererMixin
     }
     
     @Surrogate
-    @Inject(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
+    @Inject(method = "renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
             at = @At(value = "INVOKE",
-                     target = "Lnet/minecraft/client/gui/Font;drawInBatch(Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I",
+                     target = "Lnet/minecraft/client/gui/Font;drawInBatch(Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/gui/Font$DisplayMode;II)I",
                      shift = At.Shift.AFTER),
             locals = LocalCapture.CAPTURE_FAILHARD)
-    private void popStack(Font font, ItemStack itemStack, int _a, int _b, String _c, CallbackInfo callbackInfo, PoseStack posestack, String s, MultiBufferSource.BufferSource bufferSource)
+    private void popStack(PoseStack posestack, Font p_275652_, ItemStack p_275590_, int p_275202_, int p_275508_, String p_275302_, CallbackInfo ci, String s, MultiBufferSource.BufferSource multibuffersource$buffersource)
     {
         posestack.popPose();
     }

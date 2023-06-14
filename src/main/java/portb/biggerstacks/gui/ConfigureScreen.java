@@ -145,7 +145,7 @@ public class ConfigureScreen extends Screen
     @Override
     public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick)
     {
-        renderBackground(pPoseStack, 0);
+        renderBackground(pPoseStack);
         
         int relX = (this.width - WIDTH) / 2, relY = (this.height - HEIGHT) / 2;
         
@@ -191,7 +191,7 @@ public class ConfigureScreen extends Screen
     }
     
     @Override
-    public void renderBackground(PoseStack pPoseStack, int pVOffset)
+    public void renderBackground(PoseStack pPoseStack)
     {
         int relX = (this.width - WIDTH) / 2;
         int relY = (this.height - HEIGHT) / 2;
