@@ -1,0 +1,47 @@
+modLoader="javafml" #mandatory
+
+loaderVersion="${loader_version_range}" #mandatory
+
+license="GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007" #mandatory
+
+[[mods]] #mandatory
+
+itemIcon="ironfurnaces:iron_furnace"
+
+modId="ironfurnaces" #mandatory
+
+version="${file.jarVersion}" #mandatory
+
+displayName="Iron Furnaces" #mandatory
+
+logoFile="ironfurnaces_logo.png"
+
+displayURL="https://www.curseforge.com/minecraft/mc-mods/iron-furnaces/" #optional
+
+credits="Java, JetBrains, Minecraft, MinecraftForge, LexManos, mezz, Ellpeck, KingLemming" #optional
+
+authors="Qelifern (pizzaatime), XenoMustache" #optional
+
+description='''
+IronFurnaces is a mod that adds various tiers of metal furnaces that will smelt away to your desires.
+'''
+
+[[dependencies.ironfurnaces]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="${forge_version_range}" #mandatory
+    ordering="NONE"
+    side="BOTH"
+# Here's another dependency
+[[dependencies.ironfurnaces]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.ironfurnaces]]
+   modId="jei"
+   mandatory=false
+   versionRange="${jei_version_range}"
+   ordering="NONE"
+   side="BOTH"
