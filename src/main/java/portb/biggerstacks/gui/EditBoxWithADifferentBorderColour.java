@@ -11,7 +11,9 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -25,11 +27,15 @@ public class EditBoxWithADifferentBorderColour extends TextFieldWidget
     public EditBoxWithADifferentBorderColour(FontRenderer pFont, int pX, int pY, int pWidth, int pHeight, ITextComponent pMessage)
     {
         super(pFont, pX, pY, pWidth, pHeight, pMessage);
+        //fix crash with modernui
+        setFormatter((p_195610_0_, p_195610_1_) -> IReorderingProcessor.forward(p_195610_0_, Style.EMPTY));
     }
     
     public EditBoxWithADifferentBorderColour(FontRenderer pFont, int pX, int pY, int pWidth, int pHeight, @Nullable TextFieldWidget p_i232259_6_, ITextComponent pMessage)
     {
         super(pFont, pX, pY, pWidth, pHeight, p_i232259_6_, pMessage);
+        //fix crash with modernui
+        setFormatter((p_195610_0_, p_195610_1_) -> IReorderingProcessor.forward(p_195610_0_, Style.EMPTY));
     }
     
     @Override
