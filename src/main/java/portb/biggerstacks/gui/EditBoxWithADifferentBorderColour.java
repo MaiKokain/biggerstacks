@@ -12,6 +12,8 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
@@ -24,11 +26,15 @@ public class EditBoxWithADifferentBorderColour extends EditBox
     public EditBoxWithADifferentBorderColour(Font pFont, int pX, int pY, int pWidth, int pHeight, Component pMessage)
     {
         super(pFont, pX, pY, pWidth, pHeight, pMessage);
+        //fixes crash with modernui
+        setFormatter((p_94147_, p_94148_) -> FormattedCharSequence.forward(p_94147_, Style.EMPTY));
     }
     
     public EditBoxWithADifferentBorderColour(Font pFont, int pX, int pY, int pWidth, int pHeight, @Nullable EditBox p_94111_, Component pMessage)
     {
         super(pFont, pX, pY, pWidth, pHeight, p_94111_, pMessage);
+        //fixes crash with modernui
+        setFormatter((p_94147_, p_94148_) -> FormattedCharSequence.forward(p_94147_, Style.EMPTY));
     }
     
     @Override
