@@ -117,6 +117,7 @@ repositories {
         name 'DVS1 Maven FS'
         url 'https://dvs1.progwml6.com/files/maven'
     }
+    maven { url "https://codeberg.org/api/packages/PORTB/maven" }
 }
 
 //
@@ -148,6 +149,8 @@ dependencies {
     // Mixin
     //
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    runtimeOnly fg.deobf("portb:unifiedoptions:1.19.4-1.1")
 }
 
 jar {
