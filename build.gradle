@@ -18,6 +18,7 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'portb.gradle.MinecraftSubmoduleDependencyPlugin' version "1.2"
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 apply plugin: SubmodulesPlugin
@@ -111,13 +112,6 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     mavenCentral()
     mavenLocal()
-
-//    maven {
-//        url "https://cursemaven.com"
-//        content {
-//            includeGroup "curse.maven"
-//        }
-//    }
 
     maven { // JEI
         name 'DVS1 Maven FS'
@@ -217,32 +211,11 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
 
-//task _sourcesJar(type: Jar, dependsOn: classes) {
-//    classifier 'sources'
-//    from sourceSets.main.allSource
-//}
-//
-//task _deobfJar(type:Jar) {
-//    from sourceSets.main.output
-//    classifier 'deobf'
-//}
-//
-//publishing {
-//    println("Publishing ${project.group}:${project.archivesBaseName}:${project.version}")
-//    publications {
-//        mavenJava(MavenPublication) {
-//            groupId = project.group
-//            artifactId = project.archivesBaseName
-//            version = project.version
-//
-//            artifact jar
-//            artifact _sourcesJar
-//            artifact _deobfJar
-//        }
-//    }
-//    repositories {
-//        maven {
-//            url "file://" + System.getenv("local_maven")
-//        }
-//    }
-//}
+modrinth {
+    token = MODRINTH_TOKEN
+    projectId = modrinthProjectId
+    versionNumber = "${project.archivesBaseName}-${project.version}"
+    uploadFile = tasks.jarJar.outputs.files.getSingleFile()
+    gameVersions = [minecraftVersion]
+    loaders = ["forge"]
+}
