@@ -18,8 +18,6 @@
         "compat.prettypipes.RetrievalModuleItemAccessor",
         "compat.prettypipes.RetrievalModuleItemMixin",
         "compat.refinedstorage.UpgradeItemHandlerMixin",
-        "compat.sophisticatedcore.BackpackContainerMixin",
-        "compat.sophisticatedcore.InventoryHandlerMixin",
         "vanilla.AnvilMenuMixin",
         "vanilla.ContainersMixin",
         "vanilla.FriendlyByteBufMixin",
