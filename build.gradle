@@ -1,3 +1,4 @@
+import portb.gradle.ChangelogPrompt;
 import portb.submoduleplugin.SubmodulesPlugin
 
 buildscript {
@@ -6,11 +7,13 @@ buildscript {
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         maven { url = 'https://maven.parchmentmc.org' }
         mavenCentral()
+        mavenLocal()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.parchmentmc:librarian:1.+'
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        classpath 'portb.gradle:ChangelogPromptHelper:1.0'
     }
 }
 
@@ -18,6 +21,7 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'portb.gradle.ModSubmoduleBuildFromSource' version "1.2.2"
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 apply plugin: SubmodulesPlugin
@@ -176,4 +180,16 @@ reobf {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+modrinth {
+    token = MODRINTH_TOKEN
+    projectId = modrinthProjectId
+    versionNumber = "${project.archivesBaseName}-${project.version}"
+    uploadFile = tasks.jarJar.outputs.files.getSingleFile()
+    gameVersions = [minecraftVersion]
+    loaders = ["forge"]
+
+    if(gradle.startParameter.taskNames.contains("modrinth"))
+        changelog = ChangelogPrompt.promptForChangelog("Released version ${project.version}")
 }
