@@ -1,8 +1,9 @@
 pluginManagement {
     repositories {
-        maven {
-            url = "https://codeberg.org/api/packages/PORTB/maven"
-        }
+        mavenLocal()
+//        maven {
+//            url = "https://codeberg.org/api/packages/PORTB/maven"
+//        }
     }
 }
 

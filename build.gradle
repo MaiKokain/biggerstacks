@@ -1,4 +1,4 @@
-import portb.SubmodulesPlugin
+import portb.submoduleplugin.SubmodulesPlugin
 
 buildscript {
     repositories {
@@ -17,7 +17,7 @@ buildscript {
 plugins {
     id 'eclipse'
     id 'maven-publish'
-    id 'portb.gradle.MinecraftSubmoduleDependencyPlugin' version "1.2"
+    id 'portb.gradle.ModSubmoduleBuildFromSource' version "1.2.1"
 }
 
 apply plugin: SubmodulesPlugin
@@ -125,7 +125,7 @@ repositories {
 // Submodule config
 //
 submodules {
-    submodulesDirectory = file("subtree")
+    submodulesDirectory = file("submodules")
 }
 
 dependencies {
