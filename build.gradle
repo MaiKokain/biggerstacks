@@ -17,7 +17,7 @@ buildscript {
 plugins {
     id 'eclipse'
     id 'maven-publish'
-    id 'portb.gradle.MinecraftSubmoduleDependencyPlugin' version "1.0"
+    id 'portb.gradle.MinecraftSubmoduleDependencyPlugin' version "1.2"
 }
 
 apply plugin: SubmodulesPlugin
@@ -112,10 +112,12 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     mavenCentral()
-    mavenLocal()
     maven { // JEI
         name 'DVS1 Maven FS'
         url 'https://dvs1.progwml6.com/files/maven'
+    }
+    maven {
+        url = "https://codeberg.org/api/packages/PORTB/maven"
     }
 }
 
