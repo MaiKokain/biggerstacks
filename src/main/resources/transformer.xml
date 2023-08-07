@@ -68,4 +68,17 @@
         <method name="setupModdedFurnacesConfig" transformer="replaceInt" target="64" replacement="1073741823"
                 ordinal="0 1 3"/>
     </class>
+
+    <class path="com.grim3212.assorted.lib.core.inventory.IItemStorageHandler" transformChildren="true">
+        <method name="getStackInSlot" transformer="replace64"/>
+        <method name="getSlotLimit" transformer="slotLimit" desc="(I)I"/>
+    </class>
+
+    <class path="com.grim3212.assorted.storage.api.LargeItemStack" transformChildren="false">
+        <method name="split" transformer="replace64"/>
+    </class>
+
+    <class path="com.grim3212.assorted.storage.common.block.blockentity.CrateBlockEntity" transformChildren="false">
+        <method name="attack" transformer="replace64"/>
+    </class>
 </transformers>
