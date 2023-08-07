@@ -17,7 +17,7 @@ buildscript {
 plugins {
     id 'eclipse'
     id 'maven-publish'
-    id 'portb.gradle.ModSubmoduleBuildFromSource' version "1.2.1"
+    id 'portb.gradle.ModSubmoduleBuildFromSource' version "1.2.2"
 }
 
 apply plugin: SubmodulesPlugin
@@ -150,6 +150,8 @@ dependencies {
     // Mixin
     //
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    runtimeOnly fg.deobf("portb:unifiedoptions:1.20.1-1.1")
 }
 
 jar {

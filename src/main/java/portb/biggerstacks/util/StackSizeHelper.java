@@ -49,7 +49,15 @@ public class StackSizeHelper
     {
         return Math.max(StackSizeRules.getMaxStackSize(), 64);
     }
-    
+
+    public static void scaleTransferRate(CallbackInfoReturnable<Integer> callbackInfoReturnable, boolean respectSingle)
+    {
+        callbackInfoReturnable.cancel();
+        callbackInfoReturnable.setReturnValue(scaleTransferRate(callbackInfoReturnable.getReturnValue(),
+                respectSingle
+        ));
+    }
+
     public static int scaleTransferRate(int originalRate, boolean respectSingle)
     {
         if (originalRate == 1 && respectSingle)
