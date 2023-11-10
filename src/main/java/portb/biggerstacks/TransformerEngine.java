@@ -74,8 +74,7 @@ public class TransformerEngine implements IMixinConfigPlugin
             public EnumSet<Phase> handlesClass(Type classType, boolean isEmpty)
             {
                 //don't touch mixin classes or "empty" classes (i'm not sure what an "empty" class is)
-                //todo maybe filter out some of the vanilla classes we're not interested in?
-                
+
                 return isEmpty || classType.getClassName().contains("/mixin/") ? NONE : BEFORE;
             }
             
