@@ -1,0 +1,24 @@
+<!--
+  ~ Copyright (c) PORTB 2023
+  ~
+  ~ Licensed under GNU LGPL v3
+  ~ https://www.gnu.org/licenses/lgpl-3.0.txt
+  -->
+
+<transformers>
+    <!--
+I think this is the amount of items to remove from the tinker slot in the tinker station when the user clicks on the result item.
+I'm not sure what it does, but it's probably good to make it consistent with the larger stack size.
+ -->
+    <class path="slimeknights.tconstruct.library.recipe.ModifierRemovalRecipe" transformChildren="false">
+        <method name="shrinkToolSlotBy" transformer="replace64"/>
+    </class>
+
+    <class path="slimeknights.tconstruct.library.recipe.CreativeSlotRecipe" transformChildren="false">
+        <method name="shrinkToolSlotBy" transformer="replace64"/>
+    </class>
+
+    <class path="slimeknights.tconstruct.gadgets.Exploder" transformChildren="false">
+        <method name="finish" transformer="replace64"/>
+    </class>
+</transformers>

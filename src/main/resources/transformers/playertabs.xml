@@ -1,0 +1,14 @@
+<!--
+  ~ Copyright (c) PORTB 2023
+  ~
+  ~ Licensed under GNU LGPL v3
+  ~ https://www.gnu.org/licenses/lgpl-3.0.txt
+  -->
+
+<transformers>
+    <!--    Fixes a compat issue in Playertabs mod -->
+    <class path="wolforce.playertabs.TabsCapability" transformChildren="false">
+        <method name="saveInvToCurrTab" transformer="replace64"/>
+        <method name="writeTabToInv" transformer="replace64"/>
+    </class>
+</transformers>
