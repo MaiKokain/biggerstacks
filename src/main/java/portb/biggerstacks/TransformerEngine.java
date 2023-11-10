@@ -21,9 +21,6 @@ import portb.biggerstacks.config.StackSizeRules;
 import portb.slw.MyLoggerFactory;
 import portb.transformerlib.TransformerLib;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -52,16 +49,9 @@ public class TransformerEngine implements IMixinConfigPlugin
         TransformerLib.LOGGER = MyLoggerFactory.createMyLogger(LoggerFactory.getLogger(TransformerLib.class));
         //library needs to know how to get the maximum stack size
         TransformerLib.setGlobalStackLimitSupplier(StackSizeRules::getMaxStackSize);
-        
-        try (InputStream stream = TransformerEngine.class.getResourceAsStream("/transformer.xml"))
-        {
-            TransformerLib.loadTransformers(new String(stream.readAllBytes(), StandardCharsets.UTF_8));
-        }
-        catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
-        
+
+        TransformerLib.loadTransformers(TransformerEngine.class);
+
         plugins.put("biggerstacks_transformer", new ILaunchPluginService()
         {
             @Override
