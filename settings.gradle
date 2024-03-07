@@ -1,9 +1,13 @@
 pluginManagement {
     repositories {
+        mavenLocal()
         maven {
             url = "https://codeberg.org/api/packages/PORTB/maven"
         }
         gradlePluginPortal()
+    }
+    plugins {
+        id 'org.jetbrains.kotlin.jvm' version '1.9.22'
     }
 }
 

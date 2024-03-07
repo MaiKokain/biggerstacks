@@ -1,0 +1,5 @@
+<transformers>
+    <class path="org.cyclops.colossalchests.blockentity.BlockEntityColossalChest">
+        <method name="constructInventory" transformer="slotLimit" />
+    </class>
+</transformers>

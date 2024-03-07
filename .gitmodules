@@ -1,0 +1,21 @@
+[submodule "submodules/BiggerStacksTransformerLib"]
+	path = submodules/BiggerStacksTransformerLib
+	url = https://codeberg.org/PORTB/BiggerStacksTransformerLib.git
+[submodule "submodules/MinecraftSubmoduleDependencyPlugin"]
+	path = submodules/MinecraftSubmoduleDependencyPlugin
+	url = https://codeberg.org/PORTB/MinecraftSubmoduleDependencyPlugin.git
+[submodule "mod_subs/refinedstorage"]
+	path = mod_subs/refinedstorage
+	url = https://github.com/refinedmods/refinedstorage
+[submodule "mod_subs/ae2"]
+	path = mod_subs/ae2
+	url = https://github.com/AppliedEnergistics/Applied-Energistics-2.git
+	branch = forge/1.20.1
+[submodule "mod_subs/mekanism"]
+	path = mod_subs/mekanism
+	url = https://github.com/mekanism/Mekanism.git
+	branch = 1.20.x
+[submodule "mod_subs/modularrouters"]
+	path = mod_subs/modularrouters
+	url = https://github.com/desht/ModularRouters.git
+	branch = MC1.20.1-master

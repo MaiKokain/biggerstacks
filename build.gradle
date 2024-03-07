@@ -1,7 +1,7 @@
-import portb.gradle.ChangelogPrompt;
 import portb.submoduleplugin.SubmodulesPlugin
 
 buildscript {
+    ext.kotlin_version = '1.9.22'
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
@@ -13,7 +13,7 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.parchmentmc:librarian:1.+'
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-        classpath 'portb.gradle:ChangelogPromptHelper:1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -25,6 +25,7 @@ plugins {
 }
 
 apply plugin: SubmodulesPlugin
+apply plugin: 'kotlin'
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
@@ -131,7 +132,34 @@ repositories {
 // Submodule config
 //
 submodules {
-    submodulesDirectory = file("submodules")
+    submodulesDirectory = file("mod_subs")
+
+    repos {
+        refinedstorage {
+            enableDeobf = false
+            tasks = ["build"]
+        }
+        ae2 {
+            tasks = ["runData", "build"]
+            jarTask = "shadowJar"
+            enableDeobf = false
+            customGradleCode = """
+            afterEvaluate {
+                tasks.spotlessJava.enabled = false
+                tasks.spotlessJavaCheck.enabled = false
+                tasks.spotlessJson.enabled = false
+            }
+            """.stripIndent()
+
+            ignoreErrors = true
+        }
+        mekanism {
+            tasks = ["build"]
+        }
+        xnet {
+            tasks = ["build"]
+        }
+    }
 }
 
 dependencies {
@@ -156,6 +184,7 @@ dependencies {
     // Mixin
     //
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
 //    runtimeOnly fg.deobf("portb:unifiedoptions:1.20.1-1.1")
 }
@@ -183,15 +212,13 @@ reobf {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
-
-modrinth {
-    token = MODRINTH_TOKEN
-    projectId = modrinthProjectId
-    versionNumber = "${project.archivesBaseName}-${project.version}"
-    uploadFile = tasks.jarJar.outputs.files.getSingleFile()
-    gameVersions = [minecraftVersion]
-    loaders = ["forge"]
-
-    if(gradle.startParameter.taskNames.contains("modrinth"))
-        changelog = ChangelogPrompt.promptForChangelog("Released version ${project.version}")
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
