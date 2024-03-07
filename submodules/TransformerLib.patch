@@ -1,0 +1,25 @@
+diff --git a/build.gradle b/build.gradle
+index 6cefe08..5da6694 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -48,8 +48,7 @@ publishing {
+         }
+     }
+ 
+-    try
+-    {
++    if (System.env['mavenAuthToken']) {
+         repositories {
+             maven {
+                 name = project.name
+@@ -66,10 +65,6 @@ publishing {
+             }
+         }
+     }
+-    catch (MissingPropertyException)
+-    {
+-        println("no")
+-    }
+ }
+ 
+ java.withSourcesJar()

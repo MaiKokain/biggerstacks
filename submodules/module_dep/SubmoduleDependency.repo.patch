@@ -1,0 +1,12 @@
+diff --git a/src/main/groovy/portb/submoduleplugin/Repo.groovy b/src/main/groovy/portb/submoduleplugin/Repo.groovy
+index c8721e9..80665bf 100644
+--- a/src/main/groovy/portb/submoduleplugin/Repo.groovy
++++ b/src/main/groovy/portb/submoduleplugin/Repo.groovy
+@@ -114,7 +114,6 @@ class Repo {
+         println("===== BUILD ${directory.fileName} =====")
+ 
+         def repo = Grgit.open{
+-            dir = directory
+             currentDir = directory
+         }
+ 

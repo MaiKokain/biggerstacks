@@ -1,0 +1,19 @@
+diff --git a/build.gradle b/build.gradle
+index 8bf9f60..ef2a730 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -27,6 +27,7 @@ gradlePlugin {
+ 
+ publishing {
+     // other settings of publication
++    if (System.env["CODEBERG_AUTH_TOKEN"]) {
+     repositories {
+         maven {
+             name = "Codeberg"
+@@ -42,4 +43,5 @@ publishing {
+             }
+         }
+     }
++    }
+ }
+\ No newline at end of file
