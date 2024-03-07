@@ -1,7 +1,43 @@
-# BiggerStacks
+### Fork of PORT/BiggerStacks
 
-Allows increasing stack sizes past 64 up to MAXINT/2 (about 1 billion)
+# Changes
+- Added a few compats (ae2, modularrouters, colossalchest (only the large), etc...
 
+# Build on your own
+
+## Prerequisite
+- OpenJDK 17+
+- Unix like shell or basically access to "[patch](https://savannah.gnu.org/projects/patch/)" command. (Git Bash, MINGW64, WSL, ... works)
+- Some knowledge
+
+### 1. Clone the Repo
+#### Codeberg
+```sh
+git clone --recursive https://codeberg.org/maikokain/BiggerStacks.git
+```
+#### GitHub
+```sh
+git clone --recursive https://github.com/maikokain/BiggerStacks.git
+```
+
+### 2. Apply submodules patches
+```sh
+chmod +x ./apply-submodule-patch.sh && ./apply-submodule-patch.sh
+```
+
+### 2.1 Compile the submodules and publish to MavenLocal
+```sh
+cd ./submodules/BiggerStacksTransformerLib/ && java build publishToMavenLocal && cd ..
+cd ./MinecraftSubmoduleDependencyPlugin/ && java build publishToMavenLocal && cd ../../
+```
+
+### 3. Compile BiggerStacks
+```sh
+java build # this will also build the sub_mods so it will take long based on your pc and network
+```
+
+### 4. Use it
+build/libs/*-all.jar
 <!--## How to build other mods for maven local
 
 1. Create a file in your documents folder and put this in it:
