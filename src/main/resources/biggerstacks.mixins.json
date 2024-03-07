@@ -27,8 +27,7 @@
     "vanilla.stacksize.ServerGamePacketListenerImplMixin"
   ],
   "client": [
-    "client.ItemRendererMixin",
-    "compat.ae2.AEBaseScreenMixin"
+    "client.ItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
