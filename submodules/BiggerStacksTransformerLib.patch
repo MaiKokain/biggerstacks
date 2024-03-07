@@ -1,0 +1,162 @@
+From 2486f18e6812269862fbfec6a1ad7365911058c2 Mon Sep 17 00:00:00 2001
+From: Yuuria <yuuria_sakura@proton.me>
+Date: Thu, 7 Mar 2024 17:05:56 +0700
+Subject: modrinth patch
+
+---
+ build.gradle | 145 +++++++++++++++++++++++++--------------------------
+ 1 file changed, 70 insertions(+), 75 deletions(-)
+
+diff --git a/build.gradle b/build.gradle
+index 6cefe08..9f1344a 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -1,75 +1,70 @@
+-plugins {
+-    id 'java'
+-    id 'maven-publish'
+-}
+-
+-group 'portb'
+-version '1.4'
+-
+-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+-
+-repositories {
+-    mavenCentral()
+-    mavenLocal()
+-    maven {
+-        url = "https://codeberg.org/api/packages/PORTB/maven"
+-    }
+-}
+-
+-dependencies {
+-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+-
+-    compileOnly("org.ow2.asm:asm-tree:9.4", "org.ow2.asm:asm:9.4")
+-
+-    implementation("com.thoughtworks.xstream:xstream:1.4.20") {
+-        //we don't want the built in parser
+-        exclude group: 'io.github.x-stream', module: 'mxparser'
+-    }
+-
+-    implementation("portb:SimpleLoggerWrapper:1.0")
+-}
+-
+-test {
+-    useJUnitPlatform()
+-}
+-
+-publishing {
+-    publications {
+-        maven(MavenPublication) {
+-
+-            group = project.group
+-            artifactId = project.name
+-            version = project.version
+-
+-            println("Publishing $group:$artifactId:$version")
+-
+-            from components.java
+-        }
+-    }
+-
+-    try
+-    {
+-        repositories {
+-            maven {
+-                name = project.name
+-                url = uri("https://codeberg.org/api/packages/PORTB/maven")
+-
+-                credentials(HttpHeaderCredentials) {
+-                    name = "Authorization"
+-                    value = "Bearer $mavenAuthToken"
+-                }
+-
+-                authentication {
+-                    create("header", HttpHeaderAuthentication.class)
+-                }
+-            }
+-        }
+-    }
+-    catch (MissingPropertyException)
+-    {
+-        println("no")
+-    }
+-}
+-
+-java.withSourcesJar()
++plugins {
++    id 'java'
++    id 'maven-publish'
++}
++
++group 'portb'
++version '1.4'
++
++java.toolchain.languageVersion = JavaLanguageVersion.of(8)
++
++repositories {
++    mavenCentral()
++    mavenLocal()
++    maven {
++        url = "https://codeberg.org/api/packages/PORTB/maven"
++    }
++}
++
++dependencies {
++    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
++    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
++
++    compileOnly("org.ow2.asm:asm-tree:9.4", "org.ow2.asm:asm:9.4")
++
++    implementation("com.thoughtworks.xstream:xstream:1.4.20") {
++        //we don't want the built in parser
++        exclude group: 'io.github.x-stream', module: 'mxparser'
++    }
++
++    implementation("portb:SimpleLoggerWrapper:1.0")
++}
++
++test {
++    useJUnitPlatform()
++}
++
++publishing {
++    publications {
++        maven(MavenPublication) {
++
++            group = project.group
++            artifactId = project.name
++            version = project.version
++
++            println("Publishing $group:$artifactId:$version")
++
++            from components.java
++        }
++    }
++    
++    if (System.env['mavenAuthToken']) {
++        repositories {
++            maven {
++                name = project.name
++                url = uri("https://codeberg.org/api/packages/PORTB/maven")
++
++                credentials(HttpHeaderCredentials) {
++                    name = "Authorization"
++                    value = "Bearer $mavenAuthToken"
++                }
++
++                authentication {
++                    create("header", HttpHeaderAuthentication.class)
++                }
++            }
++        }
++    }
++}
++
++java.withSourcesJar()
+-- 
+2.44.0.windows.1
+
