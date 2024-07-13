@@ -27,8 +27,8 @@ chmod +x ./apply-submodule-patch.sh && ./apply-submodule-patch.sh
 
 ### 2.1 Compile the submodules and publish to MavenLocal
 ```sh
-cd ./submodules/BiggerStacksTransformerLib/ && java build publishToMavenLocal && cd ..
-cd ./MinecraftSubmoduleDependencyPlugin/ && java build publishToMavenLocal && cd ../../
+cd ./submodules/BiggerStacksTransformerLib/ && ./gradlew build publishToMavenLocal && cd ..
+cd ./MinecraftSubmoduleDependencyPlugin/ && ./gradlew build publishToMavenLocal && cd ../../
 ```
 
 ### 3. Compile BiggerStacks
